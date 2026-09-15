@@ -31,6 +31,12 @@ For offline restore, use the release's NuGet.Config and set NUGET_PACKAGES to a
 local developer-state directory. Some launcher tests require that no DAoC server
 is listening locally; a running server can correctly trigger the save lock.
 
+If the complete download is in `playable`, its SDK is
+`playable/tools/dotnet/dotnet.exe` and its offline configuration is
+`playable/NuGet.Config`. These are explicit alternatives to a globally installed SDK.
+The release's BUILD AND TEST SOURCE.cmd is the ready-made offline build entrypoint
+for the source bundled inside that complete download. It never deploys a build.
+
 ## Native client modifications
 
 The native raid and bot-map builders are in source/server/tools, with validation
@@ -38,7 +44,14 @@ tests alongside them. They patch a specific verified x86 binary; they are not th
 original client's C++ source. Their baseline hashes and dependencies matter.
 Historical scripts may refer to backup input paths on the author's PC: these must
 be parameterized and the required baseline supplied before rerunning. Do not
-substitute an arbitrary game.dll or remove a failed hash guard.
+substitute an arbitrary game.dll or remove a failed hash guard. The supported
+`tools/build-client-raid.py` wrapper resolves inputs from `--distribution`, includes
+the exact baseline, and stages into a fresh `--output` directory. In release
+verification this rebuilt the installed game.dll byte-for-byte.
+
+Test texture-tool source with `python tools/test-assets.py --distribution playable`
+(or the actual complete-download path). The wrapper resolves the read-only fixtures
+for the source-checkout layout; modifications happen only in temporary test copies.
 
 ## World data, navigation, and customization
 

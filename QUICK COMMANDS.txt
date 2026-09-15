@@ -1,0 +1,46 @@
+OFFLINE DAOC - QUICK COMMANDS AND LAUNCHER SHORTCUTS
+
+On the launcher, click + Lv.1 or + Lv.50 under a faction:
+  Normal click: +1 bot
+  Hold Shift while clicking: +10 bots
+  Hold Ctrl while clicking: +100 bots
+
+/tele X
+  X = a gamebot's name. Teleports you to that bot.
+  You can also right-click bot names on the launcher to teleport.
+
+/mobs X
+  X = a level. Shows names of mobs of that level.
+
+/tele mob X
+  X = the mob's exact name. Teleports you to a spawn.
+  For dungeon mobs, the configured entrance approach is used where applicable.
+
+/tc
+  Teleports you to your realm's Realm Exchange NPC.
+
+/grind
+  Starts automated grinding with a companion bot group, including for AFK use.
+
+/spawn
+  Opens a menu of valid companion bots to summon.
+
+/spawn X
+  X = a class name, if you prefer not to use the menu or want a macro.
+
+/raid 40
+/raid 80
+  Enables a 40- or 80-member companion raid. Use BEFORE /spawn.
+  Requires level 50. The total includes your own character.
+
+/aggressive
+  Companions automatically attack what you attack and react defensively.
+
+/defensive
+  Companions engage nearby threats while staying near you, letting you pull mobs
+  back to the group. Useful for harder content.
+
+These controls apply to your companions, not autonomous gamebots.
+/spawn 40 and /spawn 80 are not raid-size commands; use /raid 40 or /raid 80.
+See docs/PLAY.md for setup and docs/LLM-QUICKSTART.md for modifying your own version.
+ALL SERVER COMMANDS.txt is the exhaustive advanced reference, not this quick guide.

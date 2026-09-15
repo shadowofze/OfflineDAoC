@@ -37,6 +37,8 @@ functionality; the author's private launcher label is not the public version num
 ## First-time requirements
 
 - A compatible 64-bit Windows PC with enough memory and a working graphics driver.
+- CPUs without AVX2 support will not work.
+- 16 GB RAM recommended minimum. 8 GB may work but is untested.
 - The legacy connector requires the **.NET Framework 3.5** Windows feature. The
   package does not enable Windows features automatically. If required, enable it
   through Windows Features, as described in READ ME FIRST.txt.

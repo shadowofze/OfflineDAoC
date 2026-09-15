@@ -22,13 +22,17 @@ Follow the included component licenses when modifying or redistributing code.
 - **Everyday commands:** [Quick commands and bot-generation shortcuts](docs/QUICK-COMMANDS.md).
 - **Developers and LLM users:** [Fork and customize instructions](docs/LLM-QUICKSTART.md).
 
-The complete download will be attached to the [v0.3 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3)
-after packaging and verification. Until that release is published, this checkout
-is **not yet a complete playable distribution**.
+Use the [v0.3 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3)
+for the complete playable download. **Code > Download ZIP** contains the editable
+source; it is not the complete game download. The release's two small download
+helpers fetch, verify and extract the large parts automatically.
 
 The intended supported target is a compatible **64-bit Windows PC**. The launcher
 uses Windows Forms and the legacy game client has Windows/graphics prerequisites;
 “any PC” does not mean native macOS/Linux or every CPU/driver combination.
+
+System requirements: CPUs without AVX2 support will not work. 16 GB RAM is the
+recommended minimum; 8 GB may work but is untested.
 
 The release includes clean world data, current navigation meshes, the runnable
 components, source, and offline development dependencies. Accounts, characters,
