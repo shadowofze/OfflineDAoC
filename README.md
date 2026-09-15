@@ -18,6 +18,10 @@ Follow the included component licenses when modifying or redistributing code.
 
 ## Play / download
 
+- **Players:** [Download and play instructions](docs/PLAY.md).
+- **Everyday commands:** [Quick commands and bot-generation shortcuts](docs/QUICK-COMMANDS.md).
+- **Developers and LLM users:** [Fork and customize instructions](docs/LLM-QUICKSTART.md).
+
 The complete download will be attached to the [v0.3 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3)
 after packaging and verification. Until that release is published, this checkout
 is **not yet a complete playable distribution**.

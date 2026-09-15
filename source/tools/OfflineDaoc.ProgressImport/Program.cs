@@ -33,7 +33,7 @@ public sealed class ImportForm : Form
     readonly string destination;
     public ImportForm(string root)
     {
-        destination=root;Text="Offline DAoC 0.2 — Transfer saved progress";ClientSize=new(780,445);MinimumSize=new(700,460);
+        destination=root;Text="Offline DAoC 0.3 — Transfer saved progress";ClientSize=new(820,510);MinimumSize=new(820,550);
         StartPosition=FormStartPosition.CenterScreen;BackColor=Color.FromArgb(31,29,24);ForeColor=Color.Wheat;
         Font=new Font("Segoe UI",10);AutoScaleMode=AutoScaleMode.Dpi;
         var layout=new TableLayoutPanel{Dock=DockStyle.Fill,Padding=new Padding(22),ColumnCount=1,RowCount=9};

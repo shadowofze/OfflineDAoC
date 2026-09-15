@@ -55,7 +55,7 @@ class WorkflowTests(unittest.TestCase):
         self.stop_patch.stop();self.client_patch.stop();self.home_patch.stop()
         self.temp.cleanup()
 
-    def prepare(self,key='undead-hero-body'):
+    def prepare(self,key='abomination-body'):
         project=tool.export_project(key)
         staged=tool.build(project,self.image,256)
         return project,staged
@@ -87,7 +87,7 @@ class WorkflowTests(unittest.TestCase):
     def test_import_alpha_preserved_and_legacy_header_retained(self):
         project,staged=self.prepare()
         _,entries=read((staged/'payload/figures/skins/skin099.mpk').read_bytes())
-        data=entries[0].data;ref=(project/'reference-original.dds').read_bytes()
+        data=next(e.data for e in entries if e.name=='ab_body001.dds');ref=(project/'reference-original.dds').read_bytes()
         self.assertEqual(Image.open(io.BytesIO(data)).convert('RGBA').getchannel('A').getextrema(),(255,255))
         a=bytearray(data[:128]);b=bytearray(ref[:128])
         for i in (12,16,20,28):a[i:i+4]=b[i:i+4]
@@ -119,17 +119,17 @@ class WorkflowTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Another installation'):tool.install(staged,True)
 
     def test_aspect_ratio_change_rejected(self):
-        project=tool.export_project('undead-hero-body')
+        project=tool.export_project('abomination-body')
         Image.new('RGB',(512,256)).save(self.image)
         with self.assertRaisesRegex(ValueError,'Aspect ratio'):tool.build(project,self.image)
 
     def test_changed_mesh_rejected(self):
-        project=tool.export_project('undead-hero-body')
+        project=tool.export_project('abomination-body')
         mesh=self.root/'fake.nif';mesh.write_bytes(b'not the original rig')
         with self.assertRaisesRegex(ValueError,'New/modified meshes'):tool.build(project,self.image,mesh=mesh)
 
     def test_reference_tamper_rejected(self):
-        project=tool.export_project('undead-hero-body')
+        project=tool.export_project('abomination-body')
         (project/'reference-original.dds').write_bytes(b'changed')
         with self.assertRaisesRegex(ValueError,'Reference file changed'):tool.build(project,self.image)
 
@@ -150,8 +150,9 @@ class WorkflowTests(unittest.TestCase):
         _,staged=self.prepare()
         payload=staged/'payload/figures/skins/skin099.mpk'
         name,entries=read(payload.read_bytes())
-        self.assertEqual(entries[1].data,b'leave me alone')
-        entries[1].data=b'bad edit';payload.write_bytes(write(name,entries))
+        untouched=next(e for e in entries if e.name=='untouched.txt')
+        self.assertEqual(untouched.data,b'leave me alone')
+        untouched.data=b'bad edit';payload.write_bytes(write(name,entries))
         report=tool.load(staged/'build.json');report['outputs']['figures/skins/skin099.mpk']=tool.sha(payload.read_bytes())
         tool.save(staged/'build.json',report)
         with self.assertRaisesRegex(ValueError,'Unrelated archive texture'):tool.install(staged,True)
@@ -162,7 +163,7 @@ class WorkflowTests(unittest.TestCase):
         rows=entry.data.splitlines(keepends=True);i=next(i for i,r in enumerate(rows) if r.startswith(b'986,'))
         rows.insert(i,b',,,,,,,,,,,,,,,,,,,,,,,,,,,,\r\n');entry.data=b''.join(rows)
         p.write_bytes(write(name,entries))
-        with self.assertRaisesRegex(ValueError,'behind a blank'):tool.check_profile(self.profiles['undead-hero-body'])
+        with self.assertRaisesRegex(ValueError,'behind a blank'):tool.check_profile(self.profiles['abomination-body'])
 
     def test_install_io_failure_restores_both_files(self):
         before=self.hashes();_,staged=self.prepare('undead-hero-sword')

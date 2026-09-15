@@ -1,0 +1,1926 @@
+OFFLINE DAOC 0.3 - SERVER COMMAND REFERENCE
+
+285 command registrations read from the shipped server assemblies.
+Normal commands can still have level, realm, cooldown or state requirements.
+GM/admin commands can change or delete game data. Back up before using them.
+Descriptions containing a localization key have no matching shipped English text.
+
+COMMON COMPANION COMMANDS
+/spawn opens the companion class picker; /spawn <class> creates that class.
+/raid 40 or /raid 80 enables a level-50 companion raid (total includes you).
+There is no /spawn 40 or /spawn 80 raid-size command.
+/aggressive and /defensive control companion engagement.
+/grind, /tc and /disband are documented in their registrations below.
+Fresh accounts are normal players; the launcher GM option is OFF by default.
+
+NORMAL PLAYER COMMANDS
+======================
+
+/advice (aliases: /adv)
+  Lists all flagged Advisors, sends advisors questions, and sends messages to the Advice channel.
+  '/adv <message>' - Sends a message to the Advice channel.
+  '/advice' - Lists all online Advisors.
+  '/advisor' - Flags your character as an Advisor (<ADV>) to indicate that you are willing to answer new players' questions.
+  PLCommands.Advice.Syntax.SendAdvisor
+  Handler: DOL.GS.Commands.AdviceCommandHandler
+
+/advisor
+  Flags your character as a class or tradeskill Advisor (<ADV>) for new players' questions.
+  '/advisor' - Flags your character as an Advisor (<ADV>) to indicate that you are willing to answer new players' questions.
+  PLCommands.Advice.Syntax.SendAdvisor
+  Handler: DOL.GS.Commands.AdvisorCommandHandler
+
+/afk
+  Enables/disables a flag that indicates you are "away from keyboard," and allows you to attach a message that will auto-send to any player that uses '/send' to you (e.g., '/afk Bio break').
+  '/afk' - '/afk' - Enables/disables a flag that indicates you are "away from keyboard," and allows you to attach a message that will auto-send to any player that uses '/send' to you (e.g., '/afk Bio break').
+  '/afk <message>' - Sets yourself as "away from keyboard," and attaches a message that will auto-send to any player that uses '/send' to you.
+  Handler: DOL.GS.Commands.AFKCommandHandler
+
+/aggressive
+  Restore normal companion assisting (default)
+  /aggressive
+  Handler: DOL.GS.Commands.CompanionAggressiveCommand
+
+/angry
+  Look angrily around
+  /angry
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/anonymous (aliases: /anon)
+  Enables/disables anonymous mode, which hides you from player searches (e.g., '/who').
+  '/anonymous' or '/anon' - Enables/disables anonymous mode, which hides you from player searches (e.g., '/who').
+  Handler: DOL.GS.Commands.AnonymousCommandHandler
+
+/api
+  Toggles API options
+  /api specs - toggle showing the specs of the player
+  Handler: DOL.GS.Commands.APICommandHandler
+
+/appea
+  Use /appeal to file an appeal
+  Handler: DOL.GS.Commands.EmergencyAppealCommandHandler
+
+/appeal
+  Usage: '/appeal <appeal type> <appeal text>
+  Where <appeal type> is one of the following:
+    Harassment, Naming, Conduct, Stuck, Emergency or Other
+  and <appeal text> is a description of your issue.
+  If you have submitted an appeal, you can check its
+  status by typing '/checkappeal'.
+  Handler: DOL.GS.Commands.AppealCommandHandler
+
+/as (aliases: /asend)
+  Sends a message to the alliance chat
+  /as <text>
+  Handler: DOL.GS.Commands.AllianceGuildChatCommandHandler
+
+/assist
+  Assist your target
+  /assist [playerName]
+  Handler: DOL.GS.Commands.AssistCommandHandler
+
+/autoloot
+  automaticly pick up any loot that drops in your area
+  /autoloot <on/off>
+  Handler: DOL.GS.Commands.AutolootCommandHandler
+
+/autosplit
+  Choose how the loot and money are split between members of group
+  /autosplit on/off (Leader only: Toggles both coins and loot for entire group)
+  /autosplit coins (Leader only: When turned off, will send coins to the person who picked it up, instead of splitting it evenly across other members)
+  /autosplit loot (Leader only: When turned off, will send loot to the person who picked it up, instead of splitting it evenly across other members)
+  /autosplit self (Any group member: Choose not to receive autosplit loot items)
+  Handler: DOL.GS.Commands.AutosplitCommandHandler
+
+/backupstyle
+  Modify automatic backup style.
+  /backupstyle <set | clear>
+  Handler: DOL.GS.Commands.BackupStyleCommandHandler
+
+/bang
+  Bang on your shield
+  /bang
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/battlechat (aliases: /bc, /bchat)
+  Battle group command
+  /bc <text>
+  Handler: DOL.GS.Commands.BattleGroupCommandHandler
+
+/battlegroup (aliases: /bg)
+  Battle group command
+  /bg <option>
+  Handler: DOL.GS.Commands.BattleGroupSetupCommandHandler
+
+/beckon
+  Makes a beckoning gesture with character's hand
+  /beckon
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/beg
+  Plea for items or money
+  /beg
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/bind
+  Binds your soul to a bind location, you will start from there after you die and /release
+  /bind
+  Handler: DOL.GS.Commands.BindCommandHandler
+
+/blush
+  Act in a shy manner
+  /blush
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/boat (aliases: /boatcommand)
+  Boat command (use /boat for options)
+  /boat <option>
+  Handler: DOL.GS.Commands.BoatCommandHandler
+
+/boot
+  Kicks a player out of your house
+  Useage: /boot [playername]
+  Handler: DOL.GS.Commands.BootCommandHandler
+
+/bountyrent
+  Pay house rent with bountypoints
+  Use /bountyrent personal/guild <amount> to pay.
+  Handler: DOL.GS.Commands.BountyRentCommandHandler
+
+/bow
+  Give an honorable bow
+  /bow
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/brandish
+  Brandish your weapon
+  /brandish
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/broadcast (aliases: /b)
+  Broadcast something to other players in the same zone
+  /b <message>
+  Handler: DOL.GS.Commands.BroadcastCommandHandler
+
+/buff
+  Buff the target
+  /buff <(buffList) | all | help> [playerName | npcName]
+  Handler: DOL.GS.Commands.BuffCommandHandler
+
+/cancelstyle
+  Toggle cancelstyle flag.
+  /cancelstyle
+  Handler: DOL.GS.Commands.CancelStyleCommandHandler
+
+/charge
+  Onward!
+  /charge
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/chat (aliases: /c)
+  Chat group command
+  /c <text>
+  Handler: DOL.GS.Commands.ChatGroupCommandHandler
+
+/chatgroup (aliases: /cg)
+  Chat group command
+  /cg <option>
+  Handler: DOL.GS.Commands.ChatGroupSetupCommandHandler
+
+/checkappeal
+  Checks the status of your appeal or cancels it.
+  Usage:
+  /checkappeal view - View your appeal status.
+  /checkappeal cancel - Cancel your appeal and remove it from the queue.
+  Use /appeal to file an appeal.
+  Handler: DOL.GS.Commands.CheckAppealCommandHandler
+
+/checkconcolor
+  Check the target's con color server-side.
+  /checkconcolor
+  Handler: DOL.GS.Commands.CheckConColorCommandHandler
+
+/cheer
+  Cheer with both hands in the air
+  /cheer
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/ck
+  Displays who owns the CK while in a battleground.
+  /ck
+  Handler: DOL.GS.Commands.CkCommandHandler
+
+/clap
+  Make a clapping gesture
+  /clap
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/classes
+  Lists your realm's Classic + SI classes and party roles
+  /classes
+  Handler: DOL.GS.Commands.ClassesCommandHandler
+
+/classrog
+  change the chance% of getting ROGs outside of your current class at level 50, or the likelihood of getting items relevant to your spec while under 50
+  /classrog <%chance>
+  Handler: DOL.GS.Commands.ClassRogsCommandHandler
+
+/cloak
+  Show / hide your cloak.
+  Usage: /cloak [on|off].
+  Example: "/cloak off" to hide your cloak
+  Handler: DOL.GS.Commands.CloakCommandHandler
+
+/cmdhelp
+  Displays available commands
+  '/cmdhelp' displays a list of all the commands and their descriptions
+  '/cmdhelp <cmd>' displays the usage for cmd
+  Handler: DOL.GS.Commands.CmdHelpCommandHandler
+
+/combatstats
+  Toggle detailed combat log
+  /combatstats <on/off>
+  Handler: DOL.GS.Commands.CombatStatsCommandHandler
+
+/confuse
+  Confused
+  /confuse
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/cower
+  Cower
+  /cower
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/craftmacro
+  Crafting macros and utilities
+  '/craftmacro set <#>' to set how many items you want to craft
+  '/craftmacro clear' to reset to crafting once
+  '/craftmacro show' to show the current craft settings
+  '/craftmacro buy' to buy the necessary materials to craft one item
+  '/craftmacro buy <#>' to buy the necessary materials to craft <#> items
+  '/craftmacro buyto <#>' to buy only the missing materials to craft <#> items
+  Handler: DOL.GS.Commands.CraftMacroCommandHandler
+
+/cry
+  Sob pathetically
+  /cry
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/curtsey
+  Give a low curtsey
+  /curtsey
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/dance
+  Dance a little jig
+  /dance
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/defensive
+  Companions wait for enemies to approach you
+  /defensive
+  Handler: DOL.GS.Commands.CompanionDefensiveCommand
+
+/diabolical
+  Sneer diabolically
+  /diabolical
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/disband
+  Disband from a group
+  /disband
+  Handler: DOL.GS.Commands.DisbandCommandHandler
+
+/discard
+  Discard card # from your hand, or discard all cards.
+  /discard <#|all>
+  Handler: DOL.GS.Commands.DiscardCommandHandler
+
+/dismiss
+  Make a dismissing gesture
+  /dismiss
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/dismisspet
+  Dismiss the novelty pet
+  /dismisspet
+  Handler: DOL.GS.Commands.DismissPetCommandHandler
+
+/dismount
+  Dismount your steed
+  /dismount
+  Handler: DOL.GS.Commands.RideDismountCommandHandler
+
+/doh
+  doh
+  /doh
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/drink
+  drink
+  /drink
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/dropmr
+  Drops the Minotaurrelic.
+  /dropmr
+  Handler: DOL.GS.Commands.DropmrCommandHandler
+
+/duel
+  Duel another player
+  /duel
+  Handler: DOL.GS.Commands.DuelCommandHandler
+
+/email
+  Set e-mail address for current account
+  /email <address>
+  Handler: DOL.GS.Commands.EmailCommand
+
+/emote (aliases: /em, /e)
+  Roleplay an action or emotion
+  /emote <text>
+  Handler: DOL.GS.Commands.CustomEmoteCommandHandler
+
+/facegloc
+  Turns and faces your character into the direction of the x, y coordinates provided (using DOL region global coordinates).
+  /facegloc [x] [y]
+  Handler: DOL.GS.Commands.GLocFaceCommandHandler
+
+/faceloc
+  Turns and faces your character into the direction of the x, y coordinates provided (using Mythic zone coordinates).
+  /faceloc [x] [y]
+  Handler: DOL.GS.Commands.LocFaceCommandHandler
+
+/faction
+  Talk to players and active playerbots in your realm
+  /faction <message>
+  Handler: DOL.GS.Commands.FactionChatCommand
+
+/filter
+  Turns off the bad word filter.
+  /filter
+  Handler: DOL.GS.Commands.FilterCommandHandler
+
+/flex
+  Makes a flexing gesture
+  /flex
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/formation
+  Change the formation of your pets!
+  /formation <type>
+  Handler: DOL.GS.Commands.FormationHandler
+
+/freelevel
+  Display state of FreeLevel
+  /freelevel
+  Handler: DOL.GS.Commands.FreelevelCommandHandler
+
+/friend
+  Adds/Removes a player to/from your friendlist!
+  /friend <playerName>
+  Handler: DOL.GS.Commands.FriendCommandHandler
+
+/gc (aliases: /guildcommand)
+  Guild command (use /gc help for options)
+  /gc <option>
+  Handler: DOL.GS.Commands.GuildCommandHandler
+
+/gloc
+  Show the current coordinates
+  /gloc
+  Handler: DOL.GS.Commands.GlocCommandHandler
+
+/grind
+  Stationary automatic pulls with your temporary companions
+  /grind
+  /grind stop
+  Handler: DOL.GS.Commands.PlayerGrindCommandHandler
+
+/groundassist
+  Show the current coordinates
+  /groundassist
+  Handler: DOL.GS.Commands.GroundAssistCommandHandler
+
+/group (aliases: /g)
+  Say something to other chat group players
+  /g <message>
+  Handler: DOL.GS.Commands.GCommandHandler
+
+/groupsort
+  Sort players in the group
+  '/groupsort switch <#> <#>' - switches two group members.
+  Handler: DOL.GS.Commands.GroupSortCommandHandler
+
+/gtrange
+  Gives a range to a ground target
+  /gtrange
+  Handler: DOL.GS.Commands.GroundTargetRangeCommandHandler
+
+/gu (aliases: /guild)
+  Guild Chat command
+  /gu <text>
+  Handler: DOL.GS.Commands.GuildChatCommandHandler
+
+/hardcore
+  Flags a player as Hardcore. Dying after activating Hardcore will result in the character deletion.
+  /hardcore on
+  Handler: DOL.GS.Commands.HardcoreCommandHandler
+
+/held
+  List the cards in your hand. Use 'held g' to display faceup cards held by group members.
+  /held <g>
+  Handler: DOL.GS.Commands.HeldCommandHandler
+
+/helm
+  Toggles the helm on and off when wearing an helm.
+  /helm
+  Handler: DOL.GS.Commands.HelmCommandHandler
+
+/hood
+  Toggles the hood on and off when wearing a hooded cloak.
+  /hood
+  Handler: DOL.GS.Commands.HoodCommandHandler
+
+/horse
+  Horse emotes
+  /horse <emote>
+  Handler: DOL.GS.Commands.HorseEmoteCommandHandler
+
+/house
+  Show various housing information
+  Handler: DOL.GS.Commands.HouseCommandHandler
+
+/houseface
+  Points to the specified guildhouse of the guild noted, or the lot number noted in the command. /houseface alone will point to one's personal home.
+  Handler: DOL.GS.Commands.HouseFaceCommandHandler
+
+/housefriend
+  Invite a specified player to your house
+  /housefriend all
+  /housefriend player <player>
+  /housefriend account <player>
+  /housefriend guild <guild> (If there are two or more words enclose them with " ")
+  Handler: DOL.GS.Commands.HousefriendCommandHandler
+
+/housepoints
+  Toggles display of housepoints
+  Useage: /housepoints toggle
+  Handler: DOL.GS.Commands.HousePointsCommandHandler
+
+/howl
+  Howl with rage
+  /howl
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/hug
+  Makes a hugging gesture
+  /hug
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/ignore
+  Adds/Removes a player to/from your Ignorelist!
+  /ignore <playerName>
+  Handler: DOL.GS.Commands.IgnoreCommandHandler
+
+/induct
+  Make a ceremonial induction gesture
+  /induct
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/invite
+  Invite a specified or targeted player to join your group
+  /invite <player>
+  Handler: DOL.GS.Commands.InviteCommandHandler
+
+/kiss
+  Blow a kiss
+  /kiss
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/knock
+  Knock on a house
+  /knock
+  Handler: DOL.GS.Commands.KnockCommandHandler
+
+/language
+  Change your language.
+  Use '/language current' to see your current used language.
+  Use '/language set [language]' to set your language.
+  Use '/language show' to show all available languages and to see your current used language.
+  Handler: DOL.GS.Commands.LanguageCommandHandler
+
+/lastname
+  Set/change your lastname.
+  /lastname <name>
+  Handler: DOL.GS.Commands.LastnameCommandHandler
+
+/laugh
+  Makes a laughing gesture
+  /bang
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/level
+  Allows you to level 20 instantly if you have a level 50
+  /level
+  Handler: DOL.GS.Commands.LevelCommandHandler
+
+/lfg
+  Broadcast a LFG message to other players in the same region
+  /lfg <message>
+  Handler: DOL.GS.Commands.LFGCommandHandler
+
+/loco
+  Think this is crazy
+  /loco
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/lookfar
+  Lets you look into the distance
+  /lookfar
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/makeleader (aliases: /m)
+  Set a new group leader (can be used by current leader).
+  /m <playerName>
+  Handler: DOL.GS.Commands.MakeLeaderCommandHandler
+
+/mememe
+  mememe
+  /mememe
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/military
+  A military salute
+  /military
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/mobs
+  Lists accessible monsters at an exact level
+  /mobs <level> [page]
+  /mobs (your current level)
+  Handler: DOL.GS.Commands.MobsCommandHandler
+
+/monty
+  Think Camelot is a silly place
+  /monty
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/namemount
+  Name your hourse
+  /namemount
+  Handler: DOL.GS.Commands.NameHorseCommandHandler
+
+/news
+  Show news on social interface
+  /news
+  Handler: DOL.GS.Commands.NewsCommandHandler
+
+/no
+  Shake your head
+  /no
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/Noqueue
+  Allows you to disable/enable queuing
+  /Noqueue
+  Handler: DOL.GS.Commands.NoqueueCommandHandler
+
+/o (aliases: /osend)
+  Speak in officer chat (Must be a guild officer)
+  /o <text>
+  Handler: DOL.GS.Commands.OfficerGuildChatCommandHandler
+
+/online (aliases: /on)
+  Shows all Players that are currently online
+  Usage: /online
+  Handler: DOL.GS.Commands.OnlineCommandHandler
+
+/password
+  Changes your account password
+  /password <current_password> <new_password>
+  Handler: DOL.GS.Commands.PasswordCommand
+
+/played
+  Returns the age of the character
+  /played
+  Handler: DOL.GS.Commands.PlayedCommandHandler
+
+/point
+  Points to something in front of you
+  /point
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/ponder
+  For when you just want to go "hmmmmmmm"
+  /ponder
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/pray
+  You can pray on your gravestones to get some experience back
+  /pray
+  Handler: DOL.GS.Commands.PrayCommandHandler
+
+/present
+  To present someone with something
+  /present
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/pull
+  Orders party bots and their pets to engage your target
+  /pull
+  Handler: DOL.GS.Commands.PullGroupCommandHandler
+
+/quest (aliases: /quests)
+  Display a list of your ongoing and completed quests
+  /quest
+  Handler: DOL.GS.Commands.QuestCommandHandler
+
+/quit (aliases: /q)
+  Removes the player from the world
+  /quit
+  Handler: DOL.GS.Commands.QuitCommandHandler
+
+/raid
+  Open a level-50 companion raid (40 or 80 total)
+  /raid 40
+  /raid 80
+  Handler: DOL.GS.Commands.CompanionRaidCommand
+
+/raise
+  Raise your hand, as in volunteering or getting attention
+  /raise
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/random
+  prints out a random number between 1 and the number specified.
+  /random [#] to get a random number between 1 and the number you specified.
+  Handler: DOL.GS.Commands.RandomCommandHandler
+
+/range
+  Gives a range to a target
+  /range
+  Handler: DOL.GS.Commands.RangeCommandHandler
+
+/realm
+  Displays the current realm status.
+  /realm
+  Handler: DOL.GS.Commands.RealmCommandHandler
+
+/realmtask
+  Displays the current realm bonuses status.
+  /realmtask
+  Handler: DOL.GS.Scripts.TaskCommandHandler
+
+/realmtimer
+  Displays the players current realmtimer Status
+  /realmtimer
+  Handler: DOL.GS.Commands.RealmTimerCommandHandler
+
+/rearrange
+  Allows you to rearrange your character overview.
+  /rearrange list - Shows a list with all to this account assigned characters and their slots.
+  /rearrange setslot [source slot] [target slot] - Sets the given source slot to the given target slot.
+  Handler: DOL.GS.Commands.RearrangeCommandHandler
+
+/region (aliases: /reg)
+  Broadcast something to other players in the same region
+  /region <message>
+  Handler: DOL.GS.Commands.RegionCommandHandler
+
+/release (aliases: /rel)
+  When you are dead you can '/release'. This will bring you back to your bindpoint!
+  /release
+  Handler: DOL.GS.Commands.ReleaseCommandHandler
+
+/relics (aliases: /relic)
+  Displays the current relic status.
+  /relics
+  Handler: DOL.GS.Commands.RelicCommandHandler
+
+/rent
+  Pay house rent
+  Use /rent personal/guild <gold> to pay.
+  Handler: DOL.GS.Commands.RentCommandHandler
+
+/repair
+  You can repair an item when you are a crafter
+  /repair
+  Handler: DOL.GS.Commands.RepairCommandHandler
+
+/report
+  'Reports a bug
+  'Usage: /report <message>  Please be as detailed as possible.
+  Handler: DOL.GS.Commands.ReportCommandHandler
+
+/reportbug
+  Use /appeal to file an appeal
+  Handler: DOL.GS.Commands.ReportBugCommandHandler
+
+/reportharass
+  Use /appeal to file an appeal
+  Handler: DOL.GS.Commands.ReportHarassCommandHandler
+
+/reportstuck
+  Use /appeal to file an appeal
+  Handler: DOL.GS.Commands.ReportStuckCommandHandler
+
+/reporttos
+  Use /appeal to file an appeal
+  Handler: DOL.GS.Commands.ReportTosCommandHandler
+
+/respec
+  Respecs the char
+  /respec
+  Handler: DOL.GS.Commands.RespecCommandHandler
+
+/rofl
+  rofl
+  /rofl
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/roleplay
+  Flags a player with an  tag to indicate the player is a role player.
+  /roleplay on/off
+  Handler: DOL.GS.Commands.RolePlayCommandHandler
+
+/roll
+  simulates a dice roll.
+  /roll [#] to throw with a specified number of dice
+  Handler: DOL.GS.Commands.RollCommandHandler
+
+/rp
+  toggle receiving realm points
+  /rp <on/off>
+  Handler: DOL.GS.Commands.RPCommandHandler
+
+/rude
+  A rude gesture
+  /rude
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/safety
+  Turns off PvP safety flag.
+  /safety off
+  Handler: DOL.GS.Commands.SafetyCommandHandler
+
+/salute
+  Makes a stiff salute
+  /salute
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/salvage
+  You can salvage one or multiple item(s) when you are a crafter
+  /salvage
+  /salvage all
+  /salvage <bag>
+  /salvage <bag-bag>
+  Add 'Qxx' to specify the minimum quality of the items to salvage (Q98)
+  Handler: DOL.GS.Commands.SalvageCommandHandler
+
+/say (aliases: /s)
+  Say something to other players around you
+  /say <message>
+  Handler: DOL.GS.Commands.SayCommandHandler
+
+/search
+  Search the current area.
+  /search
+  Handler: DOL.GS.Commands.QuestSearchCommandHandler
+
+/sell
+  Sell items to a targeted merchant.  Specify a single bag, a range or all
+  Use: /sell 4 to sell all items bag 4
+  /sell 2-3 to sell all items in bags 2 and 3
+  /sell all to sell all items
+  Handler: DOL.GS.Commands.SellCommandHandler
+
+/send (aliases: /tell, /t)
+  Sends a private message to the target player.
+  '/send <targetName> <message>' - Sends a private message to the target player.
+  Handler: DOL.GS.Commands.SendCommandHandler
+
+/serverinfo
+  Shows information about the server
+  /serverinfo
+  Handler: DOL.GS.Commands.ServerInfoCommandHandler
+
+/servernews (aliases: /sn)
+  Shows the current Server News
+  Usage: /servernews
+  Handler: DOL.GS.Commands.ServerNewsCommandHandler
+
+/settitle
+  Sets the current player title
+  /settitle <index> - to change current title using index in the list
+  Handler: DOL.GS.Commands.SetTitleCommandHandler
+
+/setwho
+  Set your class or trade for /who output
+  /setwho class | trade
+  Handler: DOL.GS.Commands.SetWhoCommandHandler
+
+/shiver
+  shiver
+  /shiver
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/show
+  Show all your cards to the other players (all cards become 'up').
+  /show
+  Handler: DOL.GS.Commands.ShowCommandHandler
+
+/shrug
+  Shrug your shoulders
+  /shrug
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/sit (aliases: /rest)
+  Sit
+  /sit
+  Handler: DOL.GS.Commands.SitCommandHandler
+
+/slap
+  Slap someone
+  /slap
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/slit
+  Let your enemy know what you want to do to him
+  /slit
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/smile
+  Make a big smile
+  /smile
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/spacing
+  Change the spacing of your pets!
+  /spacing {normal, big, huge}
+  Handler: DOL.GS.Commands.SpacingHandler
+
+/spawn
+  Opens the companion class menu or creates a temporary helper
+  /spawn [class name]
+  Handler: DOL.GS.Commands.SpawnTemporaryGroupBotCommandHandler
+
+/sprint
+  Toggles sprint mode
+  /sprint
+  Handler: DOL.GS.Commands.SprintCommandHandler
+
+/stagger
+  stagger
+  /stagger
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/stand
+  Stands up when sitting
+  /stand
+  Handler: DOL.GS.Commands.StandCommandHandler
+
+/startled
+  Be startled
+  /startled
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/stats
+  Displays player statistics
+  Handler: DOL.GS.Commands.StatsCommandHandler
+
+/statsanon
+  Hides your statistics
+  /statsanon
+  Handler: DOL.GS.Commands.StatsAnonHandler
+
+/stench
+  Wave away the local stench
+  /stench
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/stuck
+  Move the player to the last recorded safe position
+  /stuck
+  Handler: DOL.GS.Commands.StuckCommandHandler
+
+/summon
+  Summon horse
+  /summon
+  Handler: DOL.GS.Commands.SummonHorseCommandHandler
+
+/surrender
+  I give up!
+  /surrender
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/sweat
+  sweat
+  /sweat
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/switch
+  Equip Weapons from bag. (/switch 1h 1, will replace your mainhand weapon with the first slot in your backpack)
+  /switch 1h <slot>
+  /switch offhand <slot>
+  /switch 2h <slot>
+  /switch range <slot>
+  Handler: DOL.GS.Commands.SwitchCommandHandler
+
+/talk
+  Talk
+  /talk
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/target
+  target a player by name
+  /target <playerName>
+  Handler: DOL.GS.Commands.TargetCommandHandler
+
+/targeteffects
+  Display various combat related info about your target
+  /targeteffects
+  Handler: DOL.GS.Commands.TargetEffectsCommandHandler
+
+/targetstats
+  Display various combat related info about your target
+  /targetstats
+  Handler: DOL.GS.Commands.TargetStatsCommandHandler
+
+/task
+  Show the actual task
+  /task
+  Handler: DOL.GS.Commands.TaskCommandHandler
+
+/taunt
+  A very mean gesture when you really want to insult someone
+  /taunt
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/tc
+  Teleport to your capital's Realm Exchange
+  /tc
+  Handler: DOL.GS.Commands.TeleportToExchangeCommandHandler
+
+/tele
+  Teleport to a playerbot or monster camp
+  /tele <playerbot name>
+  /tele mob <monster name>
+  Handler: DOL.GS.Commands.TeleportToBotCommandHandler
+
+/time
+  time in game
+  /time
+  Handler: DOL.GS.Commands.TimeCommandHandler
+
+/trade
+  Broadcast a trade message to other players in the same region
+  /trade <message>
+  Handler: DOL.GS.Commands.TradeChannelCommandHandler
+
+/train (aliases: /trainline, /trainskill)
+  Trains a line by the specified amount
+  /train <line> <level>
+  e.g. /train Dual Wield 50
+  Handler: DOL.GS.Commands.TrainCommandHandler
+
+/transfercorpse (aliases: /tc)
+  /transfercorpse <Keep name> ie: /transfercorpse dun crauchon
+  Handler: DOL.GS.Commands.transfercorpseCommandHandler
+
+/vault
+  Open the player's inventory.
+  Handler: DOL.GS.Commands.VaultCommandHandler
+
+/version
+  Get the version of the game server
+  /version
+  Handler: DOL.GS.Commands.VersionCommandHandler
+
+/victory
+  Make a victory cheer
+  /victory
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/viewreports
+  Allows you to view submitted bug reports.
+  /viewreports
+  Handler: DOL.GS.Commands.ViewReportsCommandHandler
+
+/vote
+  Displays the current poll or let you vote
+  /vote  shows you the current voting
+  /vote 1|2|...|x  vote for your choice with the given number
+  Handler: DOL.GS.Commands.VoteCommandHandler
+
+/wave
+  Makes a waving gesture
+  /wave
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/webdisplay
+  Set informations displayed on the herald
+  /webdisplay <position|template|equipment|craft> [on|off]
+  Handler: DOL.GS.Commands.WebDisplayCommandHandler
+
+/where
+  Ask where an NPC is from Guards
+  /where <NPC Name>
+  Handler: DOL.GS.Commands.WhereCommandHandler
+
+/whisper (aliases: /whis)
+  Sends a private message to your target if it is close enough
+  /whisper <message>
+  Handler: DOL.GS.Commands.WhisperCommandHandler
+
+/who
+  Shows who is online
+  /WHO ALL - lists all players online
+  /WHO <name> lists - players with names that start with <name>
+  /WHO <guild name> - lists players with names that start with <guild name>
+  /WHO <class> - lists players with of class <class>
+  /WHO <location> - lists players in the <location> area
+  /WHO <level> - lists players of level <level>
+  /WHO <level> <level> - lists players in level range
+  /WHO BG - lists all players leading a public BattleGroup
+  /WHO nogroup - lists all ungrouped players
+  /WHO hc - lists all Hardcore players
+  Handler: DOL.GS.Commands.WhoCommandHandler
+
+/worship
+  worship
+  /worship
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/xfire
+  Xfire support
+  /xfire <on|off>
+  Handler: DOL.GS.Commands.CheckXFireCommandHandler
+
+/xp
+  toggle receiving experience points
+  /xp <on/off>
+  Handler: DOL.GS.Commands.XPCommandHandler
+
+/xpstats
+  Toggle showing XP statistics
+  /xpstats <off|on|verbose>
+  Handler: DOL.GS.Commands.XPStatsCommandHandler
+
+/yawn
+  yawn
+  /yawn
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+/yell (aliases: /y)
+  Yell something to other players around you
+  /yell <message>
+  Handler: DOL.GS.Commands.YellCommandHandler
+
+/yes
+  Nod your head
+  /yes
+  Handler: DOL.GS.Commands.EmoteCommandHandler
+
+GM ONLY COMMANDS
+================
+
+/addbind
+  Adds a bindpoint to the game.
+  /addbind [radius=750]
+  Handler: DOL.GS.Commands.AddBindCommandHandler
+
+/addhookpoint
+  Add hookpoint on a keep component.
+  '/addhookpoint <skin> <id>' to add a hookpoint (select the GameKeepComponent)
+  Handler: DOL.GS.Commands.HookPointCommandHandler
+
+/adviceteam (aliases: /advt)
+  Lists all flagged Advisors, sends advisors questions, and sends messages to the Advice channel as STAFF.
+  Handler: DOL.GS.Commands.AdviceTeamCommandHandler
+
+/announce
+  Send message to all players online
+  /announce <log|window|send|center|confirm> <message>
+  Handler: DOL.GS.Commands.AnnounceCommandHandler
+
+/area
+  Various commands to help you with areas
+  /area create <name> <type(circle|square|safe|bind)> <radius> <broadcast(y|n)> <soundid>
+  Handler: DOL.GS.Commands.AreaCommandHandler
+
+/ban
+  Usage of /ban command:
+  '/ban ip <account or player name> <reason>' - Ban the specified IP address.
+  '/ban account <player name> <reason>' - Ban the specified account.
+  '/ban both <player name> <reason>' - Ban the specified account and its associated IP address.
+  #<ClientID> can be used in place of player name.  Use /clientlist to see playing clients.
+  Handler: DOL.GS.Commands.BanCommandHandler
+
+/blink
+  Makes the specified UI Part of your target or yourself blinking.
+  /blink <id>: type /blink for a list of possible IDs
+  Handler: DOL.GS.Commands.BlinkCommandHandler
+
+/cast
+  Cast a spell/effect/sound
+  /cast loadspell <spellid> Load a spell from the DB into the global spell cache
+  '/cast <effect|cast|spell|sound|style> <id>' Cast the Spell/VisualEffect/Sound associated with <id>
+  Handler: DOL.GS.Commands.CastCommandHandler
+
+/clearinventory
+  /clearinventory - clears your entire inventory
+  Handler: DOL.GS.ClearInventoryCommandHandler
+
+/clientlist
+  Usage: /clientlist [full] - full option includes IP's and accounts
+  Show a list of currently playing clients and their ID's
+  Handler: DOL.GS.Commands.ClientListCommandHandler
+
+/crafting
+  Change the crafting level of your target
+  '/crafting add <craftingSkillID> <startLevel>' To add a new crating skill to your target
+  '/crafting change <craftingSkillID> <amount>' To increase or decrease the crafting skill level of your target
+  /crafting salvageadd <SalvageYieldID (0 for next free)> <MaterialId_nb> <Count> [Realm] [PackageID]
+  /crafting salvageupdate <SalvageYieldID> <MaterialId_nb> <Count> <Realm> [PackageID]
+  /crafting salvageinfo <SalvageYieldID>
+  '/crafting list' To have the list of all crafting skill with their id
+  Handler: DOL.GS.Commands.CraftCommandHandler
+
+/debug
+  Activate or deactivate debug
+  /debug <on/off>
+  Handler: DOL.GS.Commands.DebugCommandHandler
+
+/diag
+  Toggle server logging of performance diagnostics.
+  /diag perf <on|off> [duration] to toggle performance diagnostics logging on server with an optional duration (in minutes).
+  /diag notify <on|off> <interval> to toggle GameEventMgr Notify profiling, where interval is the period of time in milliseconds during which to accumulate stats.
+  /diag object to count non-null service objects in ServiceObjectStore arrays.
+  Handler: DOL.GS.Commands.ECSDiagnosticsCommandHandler
+
+/door
+  Modfication des portes
+  '/door show' toggle enable/disable add dialog when targeting doors
+  '/door add' add a door
+  '/door update' update door in the database you GM xyz coords
+  '/door delete' delete the target door
+  '/door name <name>' to change door name
+  '/door level <level>' to change door level
+  '/door realm <realm>' change door realm. If realm = 0, the door won't open unless killed
+  '/door guild <guild>' change door guild
+  '/door sound <soundid>'
+  '/door info' show informations
+  '/door heal' set door health to max
+  '/door locked' lock the door - you can code items to unlock it
+  '/door unlocked' unlock the door - you can code items to lock it
+  Handler: DOL.GS.Commands.NewDoorCommandHandler
+
+/fly
+  Toggle invulnerable observer flight
+  /fly — toggle observer flight; returns to your starting position when disabled
+  Handler: DOL.GS.Commands.FlyCommandHandler
+
+/genuniques
+  /genuniques ([TOA] || [L51] || [self] || [suit] || [objecttype]) [itemtype] : generate 8 unique items
+  Handler: DOL.GS.LootGeneratorUniqueItem+LootGeneratorUniqueObjectCommandHandler
+
+/gmappeal (aliases: /gmhelp)
+  Commands for server staff to assist players with their Appeals.
+  /gmappeal view <player name> - Views the appeal of a specific player.
+  /gmappeal list - Lists all the current Appeals from online players only, in a window.
+  /gmappeal listall - Will list Appeals of both offline and online players, in a window.
+  /gmappeal assist <player name> - Take ownership of the player's appeal and lets other staff know you are helping this player.
+  /gmappeal jumpto - Will jump you to the player you are currently assisting (must use /gmappeal assist first).
+  /gmappeal jumpback - Will jump you back to where you were after you've helped the player (must use /gmappeal jumpto first).
+  /gmappeal close <player name> - Closes the appeal and removes it from the queue.
+  /gmappeal closeoffline <player name> - Closes an appeal of a player who is not online.
+  /gmappeal release <player name> - Releases ownership of the player's appeal so someone else can help them.
+  /gmappeal mute - Toggles receiving appeal notices, for yourself, for this session.
+  /gmappeal commands - Lists all the commands in a pop up window.
+  Handler: DOL.GS.Commands.GMAppealCommandHandler
+
+/GMinfo
+  Various Information
+  '/GMinfo (select a target or not)
+  Handler: DOL.GS.Commands.GMInfoCommandHandler
+
+/gmrelic
+  Create a new Relic
+  /gmrelic <magic|strength> <realm>
+  Handler: DOL.GS.Commands.GMRelicCommandHandler
+
+/gmrelicpad
+  Create a new RelicPad
+  /gmrelicpad <magic|strength> <name> <realm>
+  Handler: DOL.GS.Commands.GMRelicPadCommandHandler
+
+/gmstealth
+  Grants the ability to stealth to a gm/admin character
+  /gmstealth on : turns the command on
+  /gmstealth off : turns the command off
+  Handler: DOL.GS.Commands.GMStealthCommandHandler
+
+/gmvote
+  Various voting commands!
+  /gmvote create ... creates a new empty voting
+  /gmvote add choice 1 ... adds 'choice 1' to the newly created voting
+  /gmvote desc use this several times ... adds the textline 'use this several times' to the newly created voting
+  /gmvote start ... starts the newly created voting
+  /gmvote start NAME ... loads and starts the voting saved with NAME
+  /gmvote cancel ... cancels the voting currently in progress
+  /gmvote last ... shows you the statistics/result of the last voting
+  /gmvote list ... shows you a list of all saved votings
+  /gmvote list NAME ... shows you a list of saved votings with NAME as a part in their name
+  /gmvote info ... shows you the details of the newly created voting
+  /gmvote info NAME ... loads the voting given by name and shows you the details
+  /gmvote remove ... resets/clears the newly created voting (u have to use '/gmvote create' to make new)
+  Handler: DOL.GS.Commands.GMVoteCommandHandler
+
+/harm
+  Harms your target (health)
+  /harm <amount>
+  Handler: DOL.GS.Commands.HarmCommandHandler
+
+/heal
+  Heals your target (health, endu, mana)
+  /heal
+  /heal me - heals self
+  Handler: DOL.GS.Commands.HealCommandHandler
+
+/instance
+  This command assists in the creation of instances.
+  /instance key <instancekey> (this sets the id of the instance you want to work with)
+  /instance entry <ClassType> [<NpcTemplateID>] (add elements to the instance)
+  /instance remove (please target the element to remove)
+  /instance create <skin> (skin is the region id to copy)
+  /instance test (enter a created instance)
+  /instance close (delete the instance on the server)
+  /instance exit
+  Handler: DOL.GS.Commands.InstanceCommandHandler
+
+/item
+  Various Item commands!
+  Slot numbers are optional, if not included the default is 79 (the last backpack slot). Names with spaces are given in quotes "<name>".
+  '/item blank' - Create a blank item
+  '/item info <ItemTemplateName>' - Get Info on a ItemTemplate
+  '/item create <ItemTemplateName> [count]' - Create a new item from a template
+  '/item count <Amount> [slot #]' - Change item count
+  '/item maxcount <Amount> [slot #]' - Change max amount allowed in one slot
+  '/item packsize <Amount> [slot #]' - Change amount of items sold at once
+  '/item model <ModelID> [slot #]' - Change item model
+  '/item extension <ExtensionID> [slot #]' - Change item extension
+  '/item color <ColorID> [slot #]' - Change item color
+  '/item effect <EffectID> [slot #]' - Change item effect
+  '/item name <NameID> [slot #]' - Change item name
+  /item description <Description> <slot> - set the description of this item
+  '/item craftername <CrafterNameID> [slot #]' - Change item crafter name
+  '/item type <TypeID> [slot #]' - Change item type
+  '/item object <ObjectID> [slot #]' - Change object type
+  '/item hand <HandID> [slot #]' - Change item hand
+  '/item damagetype <DamageTypeID> [slot #]' - Change item damage type
+  '/item emblem <EmblemID> [slot #]' - Change item emblem
+  '/item price <platinum> <gold> <silver> <copper> [slot #]' - Change the price of an item
+  '/item condition <con> <maxCon> [slot #]' - Change the condition of an item
+  '/item quality <qua> [slot #]' - Change the quality of an item
+  '/item durability <dur> <maxDur> [slot #]' - Change the durability of an item
+  '/item ispickable <true|false> [slot #]' - Sets whether or not an item can be picked up
+  '/item isnotlosingdur <true|false> [slot #]' - Sets whether or not an item is losing dur after repairs
+  '/item isindestructible <true|false> [slot #]' - Sets whether or not an item is indestructible via shit+d
+  '/item isdropable <true|false> [slot #]' - Sets whether or not an item can be dropped
+  '/item istradable <true|false> [slot #]' - Sets whether or not an item can be traded
+  '/item isstackable <true|false> [slot #]' - Sets whether or not an item is stackable
+  '/item candropasloot <true|false> [slot #]' - Sets whether or not an item can be looted
+  '/item bonus <bonus> [slot #]' - Sets the item bonus
+  '/item mbonus <num> <BonusType> <value> [slot #]' - Sets the item magical bonus (num 0 = ExtraBonus)
+  '/item weight <weight> [slot #]' - Sets the item weight
+  '/item dps_af <NewDPS_AF> [slot #]' - Change item DPS_AF
+  '/item spd_abs <NewSPD_ABS> [slot #]' - Change item SPD_ABS
+  '/item material <Material> <MaterialLevel> [slot #]' - Change item material
+  '/item spell <Charges> <MaxCharges> <SpellID> [slot #]' - Change item spell charges #0
+  '/item spell1 <Charges> <MaxCharges> <SpellID> [slot #]' - Change item spell charges #1
+  '/item proc <SpellID> [slot #]' - Change item proc #0
+  '/item proc1 <SpellID> [slot #]' - Change item proc #1
+  /item procchance <chance>
+  '/item poison <Charges> <MaxCharges> <SpellID> [slot #]' - Change item poison
+  '/item realm <num> [slot #]' - Change items realm
+  /item classtype <ClassType> <slot> - Set this items ClassType
+  /item packageid <PackageID> <slot> - Set this items PackageID
+  /item levelrequired <level> <slot> - Set the required level needed to use spells and procs on this item
+  /item bonuslevel <level> <slot> - Set the level required for item bonuses to effect player
+  /item flags <flags> <slot> - Set the flags for this item
+  /item classes <csv_allowed_classes> <slot> - Set and replace the Allowed Classes field (0 for everybody)
+  /item salvageid <SalvageYield ID> <slot> - Set the SalvageYieldID for this item
+  /item salvageinfo <SalvageYield ID> <slot> - Show the salvage yield for this item
+  /item update <slot> - Changes to this item will also be made to the ItemTemplate and can be saved in the DB.
+  /item save <TemplateID> [slot #]' - Create a new template or save an existing one
+  /item addunique <id_nb> <slot> - save item as an unique one
+  /item saveunique <id_nb> <slot> - update a unique item
+  '/item findid <part_of_id>'
+  '/item findname <part_of_name>'
+  /item load <id_nb> - Load an item from the DB and replace or add item to the ItemTemplate cache
+  /item loadpackage <packageid> | **all** - Load all the items in a package from the DB and replace or add to the ItemTemplate cache. **all** is loading all items [! SLOW !]
+  /item loadspells - Read each item spell from the database and update the global spell list
+  Handler: DOL.GS.Commands.ItemCommandHandler
+
+/jp
+  Modify or use the jumppoint system
+  /jp add <name>
+  /jp list
+  /jp port to <name>
+  /jp remove <name>
+  Handler: DOL.GS.Commands.OnJumpPoint
+
+/jump
+  Teleports a player or yourself to the specified location xp
+  Playername can be [me]:
+  /jump to <PlayerName or MobName>
+  /jump to <#ClientID>
+  /jump to <Name> <RealmID>
+  /jump to <x> <y> <z> [<RegionID>]
+  /jump to <myhouse | house [#]>
+  /jump to region [#] - jump to same location in new region
+  /jump <name> to jail  - ports the player to DF jail
+  /jump <PlayerName> to <x> <y> <z>
+  /jump <PlayerName> to <x> <y> <z> [<RegionID>]
+  /jump <PlayerName> to <PlayerName>
+  /jump to GT
+  /jump rel <x> <y> <z>
+  /jump push - push current location to the stack
+  /jump pop - pop previous location & jump to it
+  /jump refresh - force a world refresh around you
+  Handler: DOL.GS.Commands.JumpCommandHandler
+
+/keep
+  Various keep creation commands!
+  '/keep fastcreate <type> <id> <name>' To create a keep with base template
+  '/keep fastcreate ' To show all template available in fast create
+  '/keep create <keepid> <baselevel> <radius (set to 0 for default)> <name>' To create a keep
+  '/keep towercreate <keepid> <baselevel> <name>' To create a tower
+  '/keep remove' To delete a keep from the database
+  '/keep name <Name>' To change name
+  '/keep keepid <keepID>' To assign keepid to keep
+  '/keep level <level>' To change level of keep
+  '/keep baselevel <level>' To change base level of keep
+  /keep move {[x,y,z,h] [amount]} - admin only
+  /keep skintype [0 = any, 1 = old, 2 = new] - force keep to use old or new skins
+  '/keep save' To save keep into DB
+  '/keep addteleporter' To create a teleporter stone
+  '/keep addbanner <realm|guild>' To create a banner
+  '/keep realm <newrealm>' To change the realm of a keep
+  '/keep radius <newRadius (set to 0 for default)>' To change the radius of a keep
+  Handler: DOL.GS.Commands.KeepCommandHandler
+
+/keepcomponent
+  Various keep component creation commands!
+  '/keepcomponent create <type> <keepid>' To create a keep component.
+  '/keepcomponent create <type>' To create a keep component assign to nearest keep.
+  '/keepcomponent skin <skin>' to change the skin.
+  /keepcomponent move - move to your position
+  /keepcomponent rotate [0 - 3]
+  /keepcomponent reload
+  '/keepcomponent save' to save the component in the DB
+  '/keepcomponent delete' to delete the component.
+  Handler: DOL.GS.Commands.KeepComponentCommandHandler
+
+/keepguard
+  Various keep guard commands!
+  Use '/mob' command if you want to change other param of guard.
+  '/keepguard create <lord|fighter|archer|healer|stealther|caster|merchant|currencymerchant|hastener|mission|patrol|corpsesummoner|gatekeeperin|gatekeeperout> <static(optional for archer and caster)>'.
+  '/keepguard position add <height(optional)>'.
+  '/keepguard position remove'.
+  '/keepguard path create'.
+  '/keepguard path add'.
+  '/keepguard path save'.
+  Handler: DOL.GS.Commands.KeepGuardCommandHandler
+
+/kick (aliases: /k)
+  Kicks the player offline of whom you select.
+  '/kick <PlayerName>' To kick the player.
+  /kick <#ClientID>
+  /kick account <account>
+  Handler: DOL.GS.Commands.KickCommandHandler
+
+/merchant
+  Various merchant creation commands!
+  '/merchant create' to create an empty merchant;
+  '/merchant create <type>' to create an empty merchant with class typed;
+  '/merchant info' to show info about merchant;
+  '/merchant save' to save this merchant as new object in the DB;
+  '/merchant savelist <newname>' to saves this merchants items list under a new name
+  '/merchant remove' to remove this merchant from the DB;
+  '/merchant sell add <itemsListTemplateID>' to assign this merchant with an articles list template;
+  '/merchant sellremove' to remove the articles list template from merchant;
+  '/merchant articles add <itemTemplateID> <pageNumber> [slot]' to add an item to the merchant articles list template;
+  '/merchant articles remove <pageNumber> <slot>' to remove item from the specified slot in this merchant inventory articles list template;
+  '/merchant articles delete' to delete the inventory articles list template of the merchant;
+  '/merchant type <classtype>';
+  Handler: DOL.GS.Commands.MerchantCommandHandler
+
+/minorelic
+  Various Commands for Minotaur Relics
+  '/minorelic create <Name> <Model> <Group/Self/Realm> <SpellID> <Effect / 159 = red, 160 = white, 161 = gold>' creates a new Relic with the given arguments;
+  '/minorelic movehere' moves the relic to player x, y, z and saves the coordinates as Spawn;
+  '/minorelic name <Name>' changes the name;
+  '/minorelic spell <SpellID>' assign SpellID to the Relic;
+  '/minorelic model <Model>' changes the Model;
+  '/minorelic effect <Effect / 159 = red, 160 = white, 161 = gold>' changes the effect the player gets when he picks up the relic;
+  '/minorelic info' browses relic Informations;
+  '/minorelic despawn' despawns the Relic;
+  '/minorelic remove' removes the relic from the World and Database;
+  '/minorelic xp <amount>' give amount xp to the Relic;
+  '/minorelic showall' shows all Relics;
+  '/minorelic spawn <ID>' spawns the Relic with the ID;
+  Handler: DOL.GS.Commands.MinoRelicCommandHandler
+
+/mob
+  Mob creation and modification commands.
+  '/mob create [ClassName(DOL.GS.GameNPC)] [eRealm(0)]' to create a new mob.
+  '/mob fastcreate <ModelID> <level> [save(default = 0; use 1 to save)] <name>' to create mob with specified info.
+  '/mob nfastcreate <ModelID> <level> <number> [radius(10)] [name]' to create multiple mobs within radius.
+  '/mob nrandcreate <number> [radius(50)]' to create multiple random mobs within radius.
+  '/mob model <ModelID> [OID]' to set the mob's model, optionally using OID if mob isn't targeted.
+  '/mob modelinc <#> Increments the mob model by 1.
+  '/mob modeldec <#> Decrements the mob model by 1.
+  '/mob size <size>' to set the mob's size (1..255).
+  '/mob translationid <translation id>' to set the mob's translation id.
+  '/mob name <name>' to set the mob's name.
+  '/mob suffix <suffix>' to set the mob's suffix.
+  '/mob guild <guild name>' to set the mob's guild name (blank to remove).
+  '/mob examinearticle <examine article>' to set the mob's examine article.
+  '/mob messagearticle <message article>' to set the mob's message article.
+  '/mob peace' toggle whether the mob can be attacked.
+  '/mob aggro <level>' to set mob's aggro level (0..100)%.
+  '/mob range <distance>' to set mob's aggro range.
+  '/mob roaming <distance>' set mob random range radius (0=noroaming, -1=standard, >0=individual).
+  '/mob damagetype <eDamageType>' set mob damage type.
+  '/mob movehere' move mob to player's location.
+  '/mob location' say location information in the chat window.
+  '/mob remove [true]' to remove this mob from the DB; specify true to also remove loot templates (if no other mobs of same name exist).
+  '/mob ghost' makes this mob ghost-like.
+  '/mob stealth' makes the mob stealthed (invisible).
+  '/mob torch' turns this mobs torch on and off.
+  '/mob statue' toggles statue effect.
+  '/mob fly [height]' makes this mob able to fly by changing the Z coordinate; moves mob up by height.
+  '/mob swimming' toggles mob's swimming flag (helpful for flying mobs).
+  '/mob noname' still possible to target this mob, but removes the name from above mob.
+  '/mob notarget' makes it impossible to target this mob and removes the name from above it.
+  '/mob kill' kills the mob without removing it from the DB.
+  '/mob heal' restores the mob's health to maximum.
+  '/mob attack <PlayerName>' command mob to attack a player.
+  '/mob state' show mob state (attackers, effects).
+  '/mob info' extended information about the mob.
+  '/mob realm <eRealm>' set the mob's realm.
+  '/mob speed <speed>' set the mob's max speed.
+  '/mob level <level>' set the mob's level.
+  '/mob levela <level>' set the mob's level and auto adjust stats.
+  '/mob autostats' auto adjust the mobs stats according to level.
+  '/mob brain <ClassName>' set the mob's brain.
+  '/mob respawn <duration>' set the mob's respawn time (in ms).
+  '/mob questinfo' show mob's quest info.
+  '/mob refreshquests' Update this mobs list of data quests.
+  '/mob equipinfo' show mob's inventory info.
+  '/mob equiptemplate load <EquipmentTemplateID>' to load the inventory template from the database, it is open for modification after.
+  '/mob equiptemplate create' to create an empty inventory template.
+  '/mob equiptemplate add <slot> <model> [color] [effect] [extension]' to add an item to the inventory template.
+  '/mob equiptemplate remove <slot>' to remove item from the specified slot in the inventory template.
+  '/mob equiptemplate clear' to remove the inventory template from mob.
+  '/mob equiptemplate save <EquipmentTemplateID> [replace]' to save the inventory template with a new name.
+  '/mob equiptemplate close' to finish the inventory template you are creating.
+  '/mob visibleslot <slot>' to set the visible weapon slot.  use slot names (left, right, two, distance).
+  '/mob dropcount [number]' to set the max number of drops for mob (omit number to view current value).
+  '/mob dropcount2 [number]' same as '/mob dropcount' but for the 'MobDrop' generator.
+  '/mob addloot <ItemTemplateID> <chance> [count]' to add loot to the mob's unique drop table.  Optionally specify count of how many to drop if chance = 100%.
+  '/mob addloot2 <ItemTemplateID> <chance> [count]' to add loot to the mob's drop table. Optionally specify count of how many item to drop if chance < 100%.
+  '/mob addotd <ItemTemplateID> <min level>' add a one time drop to this mob..
+  '/mob viewloot [random] [inv]' to view the selected mob's loot table.  Use random to simulate a kill drop, random inv to simulate and generate the loots.
+  '/mob removeloot <ItemTemplateID>' to remove loot from the mob's unique drop table.
+  '/mob removeloot2 <ItemTemplateID>' same as '/mob removeloot' but for the 'MobDrop' generator.
+  '/mob removeotd <ItemTemplateID>' to remove a one time drop from the mob's unique drop table.
+  '/mob refreshloot' to refresh all loot generators for this mob.
+  '/mob copy [name]' copies a mob exactly and places it at your location.
+  '/mob npctemplate <NPCTemplateID>' creates a mob with npc template, or modifies target.
+  '/mob npctemplate create <NPCTemplateID>' creates a new template from selected mob.
+  '/mob class <ClassName>' replaces mob with a clone of the specified class.
+  '/mob path <PathID>' associate the mob to the specified path.
+  '/mob house <HouseNumber>' set NPC's house number.
+  '/mob <stat> <amount>' Set the mob's stats (str, con, dex, qui, int, emp, pie, cha).
+  '/mob tether <tether range>' set mob tether range (>0: check, <=0: no check).
+  '/mob hood' toggle cloak hood visibility.
+  '/mob cloak' toggle cloak visibility.
+  '/mob race [ID]' view or set NPC's race (ID can be # or name).
+  '/mob race reload' reload race resists from the database.
+  '/mob bodytype <ID>' changing the mob's bodytype.
+  '/mob gender <0 = neutral | 1 = male | 2 = female>' set gender for this mob.
+  '/mob packageid <string>' set the package ID for this mob.
+  '/mob select' select the mob within 100 radius (used for selection of non-targettable GameNPC).
+  '/mob load <Mob_ID>' load the Mob_ID from the DB and update the Mob cache.
+  '/mob reload <name>' reload the targetted or named mob(s) from the database.
+  '/mob findname <name> <#>' search for a mob with a name like <name> with maximum <#> (def. 10) matches.
+  '/mob trigger <type> <chance> <emote> <text>' adds a trigger to targeted mob class.  Use '/mob trigger help' for more info.
+  '/mob trigger info' Give trigger informations.
+  '/mob trigger remove <id>' Remove a trigger.
+  '/mob ownerid <id>' Sets and saves the OwnerID for this mob.
+  Handler: DOL.GS.Commands.MobCommandHandler
+
+/mobfaction
+  Create a faction and assign friend and enemy faction
+  '/faction create <name> <base aggro level>' to create a faction
+  '/faction assign' to assign the faction to the target mob
+  '/faction addfriend <factionid>' to add faction friend to current faction
+  '/faction addenemy <factionid>' to add enemy to the current faction
+  '/faction relations' to show relations of the current faction
+  '/faction list' to have a list of all faction
+  '/faction select <factionid>' to select the faction with this id
+  Handler: DOL.GS.Commands.FactionCommandHandler
+
+/morph
+  Temporarily changes the target player's model
+  '/morph <modelID> [time]' to change into <modelID> for [time] minutes (default=10)
+  Handler: DOL.GS.Commands.MorphCommandHandler
+
+/mountgm
+  Mount a steed
+  /mountgm
+  Handler: DOL.GS.Commands.RideMountGmCommandHandler
+
+/mute
+  Command to mute annoying players.  Player mutes are temporary, allchars are set on an account and must be removed.
+  /mute <playername or #ClientID> - example /mute #24  to mute player on client id 24
+  /mute <playername or #ClientID> allchars - this applies an account mute to this player
+  /mute <playername or #ClientID> remove - remove all mutes from this players account
+  Handler: DOL.GS.Commands.MuteCommandHandler
+
+/ngg
+  NPC Gear Generator
+  '/ngg random [color]' Create a completely random equipment template
+  '/ngg cloth [color]' Create a random set of cloth
+  '/ngg leather [color]' Create a random set of leather
+  '/ngg studded [color]' Create a random set of studded
+  '/ngg chain [color]' Create a random set of chain
+  '/ngg scale [color]' Create a random set of scale
+  '/ngg plate [color]' Create a random set of plate
+  '/ngg cloak [color]' Add a random cloak to the NPC
+  '/ngg epic [class] [color]' create the class epic armor to the NPC
+  '/ngg equip [slotNumber] [color]' Add a random equipement to the NPC slot
+  '/ngg save' Save the template and NPC to database
+  ---------------------------------
+  [class] : class name
+  exemple : '/ngg epic shadowblade'
+  ---------------------------------
+  [color] : one number to select the same color for all the item's parts (if empty : colors random for each item's parts)
+  or [CloakColor] [HeadColor] [HandsColor] [ArmsColor] [TorsoColor] [LegsColor] [BootsColor] to choose the color of each part (all arguments needed).
+  exemple : '/ngg random 43' all the armor parts are in radom and take the black cloth color.
+  or : '/ngg plate 0 1 2 3 4 5 6' all the armor is in plate and each part take a fixed color
+  or : '/ngg plate' all the armor is in plate and each part take a random color
+  ---------------------------------
+  [slotNumber] :
+  - for weapons : 10 = 'right hand', 11 = 'left hand', 12 = 'two handed', 13 = 'distance'
+  - for armors : 21 = 'head', 22 = 'hands', 23 = 'boots', 25 = 'torso', 26 = 'cloak', 27 = 'legs', 28 = 'arms'
+  exemple : '/ngg equip 12 ' Add a two handed weapon to the NPC with a random color.
+  ---------------------------------
+  don't forget to use '/ngg save' when you have finish the npc template.
+  Handler: DOL.GS.Commands.NGGCommandHandler
+
+/npc
+  Various npc commands
+  /npc say <text>
+  /npc yell <text>
+  /npc action <text>
+  /npc emote <emote>
+  /npc face <name>
+  /npc follow <name>
+  /npc stopfollow
+  /npc walkto <name> [speed]
+  /npc target <name>
+  /npc weapon <slot>
+  /npc cast <spellLine> <spellID>
+  Handler: DOL.GS.Commands.NPCCommandHandler
+
+/object
+  Various Object commands!
+  '/object info' to get information about the object
+  '/object movehere' to move object to your location
+  '/object create [ObjectClassName]' to create a default object
+  '/object fastcreate [name] [modelID]' to create the specified object
+  '/object model <newModel>' to set the model to newModel
+  '/object modelinc' Increment the object model by 1
+  '/object modeldec' Decrement the object model by 1
+  '/object emblem <newEmblem>' to set the emblem to newEmblem
+  '/object realm <0/1/2/3>' to set the targeted object realm
+  '/object name <newName>' to set the targeted object name to newName
+  '/object noname' to remove the targeted object name
+  '/object respawn <seconds>' to set a respawn time if this object is removed from the world
+  '/object remove' to remove the targeted object
+  '/object copy' to copy the targeted object
+  '/object save' to save the object
+  '/object target' to automatically target the nearest object
+  '/object quests' to load any dataquests associated with the target object
+  Handler: DOL.GS.Commands.ObjectCommandHandler
+
+/offlinejump
+  Teleports a character to a specific location while offline
+  '/offlinejump <PlayerName> to jail' - Teleports a player to jail
+  '/offlinejump <PlayerName> to capital' - Teleports a player to their Realm's Capital
+  Handler: DOL.GS.Commands.OfflinejumpCommandHandler
+
+/path
+  There are several path functions
+  /path create - creates a new temporary path, deleting any existing temporary path
+  /path load <pathname> - loads a path from db
+  /path add [speedlimit] [wait time in second] - adds a point at the end of the current path
+  /path save <pathname> - saves a path to db
+  /path travel - makes a target npc travel the current path
+  /path stop - clears the path for a targeted npc and tells npc to walk to spawn
+  /path speed [speedlimit] - sets the speed of all path nodes
+  /path assigntaxiroute <Destination> - sets the current path as taxiroute on stablemaster
+  /path hide - hides all path markers but does not delete the path
+  /path delete - deletes the temporary path
+  /path type - changes the paths type
+  /path visualize - toggles path visualization for the selected NPC
+  Handler: DOL.GS.Commands.PathCommandHandler
+
+/player
+  Various Admin/GM commands to edit characters.
+  /player name <newName>
+  /player lastname <change|reset> <newLastName>
+  /player level <newLevel>
+  /player levelup
+  /player reset - Reset and re-level a player to their current level.
+  /player realm <newRealm>
+  /player inventory [wear|bag|vault|house|cons]
+  /player <rps|bps|xp|xpa|clxp|mlxp> <amount>
+  /player stat <typeofStat> <value>
+  /player money <copp|silv|gold|plat|mith> <amount>
+  /player respec <all|line|realm|dol|champion> <amount=1>
+  /player model <reset|[change]> <modelid>
+  /player friend <list|playerName>
+  /player <rez|kill> <albs|mids|hibs|self|all>
+  /player jump <group|guild|cg|bg> <name>
+  /player kick <all>
+  /player save <all>
+  /player purge
+  /player update
+  /player info
+  /player location - write a location string to the chat window
+  /player showgroup
+  /player showeffects
+  /player startchampion - Starts the target on the path of the Champion.
+  /player clearchampion - Remove all Champion XP and levels from this player.
+  /player respecchampion - Respec this players Champion skills.
+  /player saddlebags <0 - 15> - Set what horse saddlebags are active on this player
+  /player startml - Start this players Master Level training.
+  /player setml <level> - Set this players current Master Level.
+  /player setmlstep <level> <step> [false] - Sets a step for an ML level to finished. 0 to set as unfinished.
+  /player allchars <PlayerName>
+  /player class <list|classID|className> - view a list of classes, or change the targets class.
+  /player areas - list all the areas the player is currently inside of 
+  Handler: DOL.GS.Commands.PlayerCommandHandler
+
+/removehouse
+  Remove House or you are
+  /removehouse
+  Handler: DOL.GS.Commands.RemoveHouseCommandHandler
+
+/resetability
+  /resetability - <self|target|group|cg|bg>
+  Handler: DOL.GS.Commands.ResetAbilityCommandHandler
+
+/sameip
+  Find the double logins
+  /sameip
+  Handler: DOL.GS.Commands.DoubleIPCommandHandler
+
+/setsalvage
+  /setsalvage - the item to modify have to be in lastbagpack slot (item saved and updated automatically)
+  Handler: DOL.GS.Commands.SetSalvageCommandHandler
+
+/siegeweapon
+  creates siege weapons
+  /siegeweapon create miniram/lightram/mediumram/heavyram/catapult/ballista/cauldron/trebuchet
+  Handler: DOL.GS.Commands.SiegeWeaponCommandHandler
+
+/spammob
+  Mob creation and modification commands.
+  /spammob create [amount] - creates [amount] mobs at the player's location
+  /spammob create [amount] [radius] - creates [amount] mobs in a [radius] around the player
+  /spammob clear [radius] - deletes all spam mobs in a [radius] around the player
+  Handler: DOL.GS.Commands.SpamMobCommandHandler
+
+/speclock
+  Set your SpecMod combat modifier to a designated value <0.01 min>
+  /speclock <value> - where value is a decimal input like 1.10 or 0.85
+  /speclock reset - clear value and use normal combat calculations
+  Handler: DOL.GS.Commands.SpecLockCommandHandler
+
+/speed
+  Change base speed of target (no parameter to see current speed)
+  /speed [newSpeed]
+  Handler: DOL.GS.Commands.SpeedCommandHandler
+
+/stop
+  Stops the npc's movement!
+  '/stop' to stop the target mob
+  Handler: DOL.GS.Commands.WalkCommandHandler
+
+/team (aliases: /te)
+  Broadcasts a message to all server team members (i.e., plvl 2+).
+  '/team <message>' or '/te <message>'
+  Broadcasts a message to all server team members (i.e., plvl 2+).
+  Handler: DOL.GS.Commands.TeamCommandHandler
+
+/teleport
+  Manage teleport destinations
+  '/teleport add <ID> <type>' add a teleport destination
+  '/teleport reload' reload all teleport locations from the db
+  Handler: DOL.GS.Commands.TeleportCommandHandler
+
+/titlegm
+  Changes target player's titles
+  /titlegm <add> <class type> - add a title to the target player
+  /titlegm <remove> <class type> - remove a title from the target player
+  /titlegm <set> <class type> - sets current title of the target player
+  /titlegm <list> - lists all target player's titles
+  Handler: DOL.GS.Commands.TitleGmCommandHandler
+
+/translate
+  Use '/translate add [Language] [TranslationId] [Text]' to add a new translation.
+  Use '/translate debug' to activate / deactivate the LanguageMgr debug mode for you and to receive extended messages or not.
+  Use '/translate memadd [Language] [TranslationId]' to add a language object to your temporary properties. Use this sub command if the combination of a translation id and text is longer than the DAoC chat allows for one "line".
+  Use '/translate memclear' to remove the previously added language object from your temporary properties.
+  Use '/translate memsave [Text]' to add a text to your language object and to save it into the database. This command will also register your new translation in the LanguageMgr.
+  Use '/translate memshow' to show the translation id and the language of your language object.
+  Use '/translate refresh [Language] [TranslationId] [Text]' to refresh a existing translation.
+  Use '/translate select [Language] [TranslationId]' to select a existing translation and to add it's language object into your temporary properties. Use this sub command if the combination of a translation id and text is longer than the DAoC chat allows for one "line".
+  Use '/translate selectclear' to remove the previously selected language object from your temporary properties.
+  Use '/translate selectsave [Text]' to refresh the text of the selected translation and to save it's language object into the database.
+  Use '/translate selectshow' to show the language, translation id and the text of your selected language object.
+  Use '/translate show [Language] [TranslationId]' to show the translated text of the given language and translation id.
+  Handler: DOL.GS.Commands.TranslateCommandHandler
+
+/walk
+  Commands a npc to walk!
+  '/walk <xoff> <yoff> <zoff> <speed>' to make the npc walk to x+xoff, y+yoff, z+zoff
+  Handler: DOL.GS.Commands.WalkCommandHandler
+
+/weather
+  Sets the weather for the current region
+  '/weather info' for information about the current weather in this region
+  '/weather start <line> <duration> <speed> <diffusion> <intensity>' to start a storm in this region
+  '/weather start' to start a random storm in this region
+  '/weather restart' to restart the storm in this region
+  '/weather stop' to stop the storm in this region
+  Handler: DOL.GS.Commands.WeatherCommandHandler
+
+/xmob
+  /xmob get <radius> (max5000)
+  /xmob view
+  /xmob spawn <radius> (max5000)
+  /xmob clear
+  /xmob copy <num> (max 20)
+  /xmob setlevels <radius> <value> or <min> <max> (max5000)
+  /xmob randomspawn <radius> <newradius> (max5000)
+  /xmob npcsetupcreate <alb | mid | hib>
+  /xmob setrealm <radius> <realm>
+  /xmob remove <radius> (max5000)
+  Handler: DOL.GS.Commands.XCreateCommandHandler
+
+/zone
+  /zone info
+  /zone divingflag <0 = use region, 1 = on, 2 = off>
+  /zone waterlevel <#>
+  /zone bonus <zoneID|current> <xpBonus> <rpBonus> <bpBonus> <coinBonus> <Save? (true/false)>
+  Handler: DOL.GS.Commands.ZoneCommandHandler
+
+/zonebonus (aliases: /zb)
+  Picks a new bonus zone
+  /zonebonus or /zb
+  Handler: DOL.GS.Commands.ZoneBonusCommandHandler
+
+/zonepoint (aliases: /zp)
+  Adds a zonepoint to the game at the current player position.
+  /zonepoint add <id> <realm>
+  /zonepoint add <id> <realm> <class>
+  Handler: DOL.GS.Commands.ZonepointCommandHandler
+
+/]jump
+  Teleports yourself to the specified location
+  ']jump <zoneID> <locX> <locY> <locZ> <heading>' Autoused for *jump in debug mode
+  Handler: DOL.GS.Commands.OnDebugJump
+
+ADMIN ONLY COMMANDS
+===================
+
+/account
+  Creates new, manages existing, and controls character assignment for accounts.
+  /account accountname <characterName>
+  Identifies the account associated with the character. This may be used on offline characters.
+  /account changepassword <accountName> <newPassword>
+  Changes the password associated with an existing account. If a player requests a password reset, verify ownership of the account.
+  /account create <accountName> <password>
+  Creates a new account with the specified login credentials.
+  /account delete <accountName>
+  Deletes the specified account, along with any associated characters.
+  /account deletecharacter <characterName>
+  Deletes the matching character from its associated account.
+  /account movecharacter <characterName> <destAccount>
+  Moves the specified character to the first available slot of the same realm on the destination account.
+  /account status <accountName> <status>
+  Sets an account's status (between '0' and '255'), which is used to define custom behaviors.
+  /account unban <accountName>
+  Removes an account's ban state, if one is active. This command cannot remove IP-only bans ('/ban ip'), but will remove '/ban both' and '/ban account' records.
+  Handler: DOL.GS.Commands.AccountCommand
+
+/benchmark
+  Performs a system benchmark of the specified type. This is used to gauge overall system performance.
+  /benchmark listskills
+  Tests the total amount of time (in milliseconds) the system takes to list a set number of cached skills. This does not include spellcasting specializations.
+  /benchmark listspells
+  Tests the total amount of time (in milliseconds) the system takes to list a sec number of cached spells.
+  Handler: DOL.GS.Commands.BenchmarkCommand
+
+/code
+  Executes custom code!
+  /code <codesnippet>
+  Handler: DOL.GS.Commands.DynCodeCommandHandler
+
+/dfowner
+  Changes the Realm owning access to Darkness Falls
+  &dfowner <Realm>
+  Handler: DOL.GS.Commands.DFOwnerCommandHandler
+
+/fixnpcspawn
+  Fix NPC positions and spawn points using navmesh.
+  /fixnpcspawn [target|zone|region|world] <SnapDown> <SnapUp> <DryRun(true(default)/false)>
+  /fixnpcspawn goto <index> - Teleport to a fixed NPC from the last run
+  /fixnpcspawn result <page|clear> - Print results (2k per page) or clear memory
+  Handler: DOL.GS.Commands.FixNpcSpawnCommandHandler
+
+/freeze
+  Freeze The region timer you're in. (Test purpose only)
+  /freeze {seconds}
+  Handler: DOL.GS.Commands.Freeze
+
+/keepdoorteleport
+  Manage keepdoor teleport destinations
+  '/keepdoorteleport add <enter|exit> <in|out> add a teleport destination
+  Handler: DOL.GS.Commands.KeepDoorTeleportCommandHandler
+
+/plvl
+  Alters an account's privilege level (plvl) and grants/revokes access to command types depending on the user's plvl. With these commands, accounts may be granted Admin, GM, and Player command access from in-game.
+  /plvl command
+  Provides additional information regarding the '/plvl' command type.
+  /plvl <newPlvl> <playerName>
+  Sets the privilege level for a targeted player's account. They will then have access to all commands associated with that role. Use '/plvl single' or '/plvl singleaccount' to retain access to specific command types as a Player.
+  /plvl remove <commandType> <playerName>
+  Removes a specific command type previously granted to a player using '/plvl single'.
+  /plvl removeaccount <commandType> <playerName>
+  Removes a specific command type previously granted to a player's account using '/plvl singleaccount'.
+  /plvl single <commandType> <playerName>
+  Grants a character the ability to perform a specific command type regardless of their current privilege level. For '<commandType>', enter only the command identifier (e.g., 'player' for '/player' commands, 'plvl' for '/plvl' commands, etc.).
+  /plvl singleaccount <commandType> <playerName>
+  Grants all characters on a player's account the ability to perform a specific command type regardless of their current privilege level. For '<commandType>', enter only the command identifier (e.g., 'player' for '/player' commands, 'plvl' for '/plvl' commands, etc.).
+  Handler: DOL.GS.Commands.PlvlCommand
+
+/refresh
+  Refresh some specific static data cache stored in scripts or other objects
+  /refresh list | ClassName 'dot' MethodName
+  Handler: DOL.GS.Commands.RefreshCommand
+
+/Reload
+  Reload various elements
+  /reload mob|object|specs|spells|teleports
+  Handler: DOL.GS.Commands.ReloadCommandHandler
+
+/serverproperties
+  Reloads or clean up server properties from the database
+  /serverproperties <refresh | cleanup>
+  Handler: DOL.GS.Commands.ServerPropertiesCommand
+
+/shutdown
+  Initiates a total shutdown of the server.
+  /shutdown command
+  Provides additional information regarding the '/shutdown' command type.
+  /shutdown <seconds>
+  Schedules a manual shutdown of the server, counting down from the specified number of seconds.
+  /shutdown on <HH>:<MM>
+  Schedules a manual shutdown of the server at the scheduled time (based on a 24:59 format).
+  /shutdown stop
+  Cancels a scheduled server shutdown. Use this if a shutdown was triggered accidentally, is no longer needed, or lacks a qualified staff member to start the server again.
+  Handler: DOL.GS.Commands.ShutdownCommandHandler
+
+/snoop
+  Snoops
+  /snoop <player>
+  Handler: DOL.GS.Commands.SnoopCommandHandler
+
+/speedhack
+  Change speed hack detection parameters (non-persistent).
+  /speedhack <parameter> <value>
+  Handler: DOL.GS.Commands.SpeedHackCommandHandler
+
+/unloadxmldb
+  Unload your Database Tables to a local XML File Repository.
+  Usage: /unloadxmldb [FULL|TableName]
+  Handler: DOL.GS.DatabaseUpdate.UnloadXMLCommandHandler

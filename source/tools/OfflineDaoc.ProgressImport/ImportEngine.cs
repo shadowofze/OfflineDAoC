@@ -49,7 +49,7 @@ public static class ImportEngine
             string name=process.ProcessName;
             if(name.Equals("CoreServer",StringComparison.OrdinalIgnoreCase))
                 throw new InvalidOperationException("Stop the DAoC server before importing progress.");
-            if(name is not ("OfflineDAoC" or "game" or "connect"))continue;
+            if(name is not ("OfflineDAoC" or "game" or "camelot" or "connect"))continue;
             try
             {
                 string? file=process.MainModule?.FileName;
@@ -175,6 +175,7 @@ public static class ImportEngine
             {
                 string restore=Path.Combine(backup,"restore.db");File.Copy(Path.Combine(backup,"opendaoc.sqlite3.db"),restore);File.Replace(restore,newDb,null);
                 if(File.Exists(Path.Combine(backup,"account.txt")))File.Copy(Path.Combine(backup,"account.txt"),Path.Combine(current,"account.txt"),true);
+                else if(File.Exists(Path.Combine(current,"account.txt")))File.Delete(Path.Combine(current,"account.txt"));
             }
             throw;
         }
