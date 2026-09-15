@@ -1,0 +1,87 @@
+﻿<Window x:Class="WPFLauncher.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="Atlas Launcher Options" Height="240" Width="320" ResizeMode="NoResize" Icon="/img/icon.ico">
+    <Window.Resources>
+        <ControlTemplate x:Key="OnOffButtonTemplate" TargetType="ToggleButton">
+            <Grid
+                Width="80"
+                Height="20"
+                Background="Transparent">
+
+                <Image x:Name="ExpandImage"
+                       Source="/img/button-unpressed.png"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="1,1,1,1" />
+                <TextBlock x:Name="PTRToggleText" Text="OFF" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           TextBlock.FontWeight="Bold" Foreground="LightGray" />
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsChecked"
+                         Value="True">
+                    <Setter Property="Source"
+                            TargetName="ExpandImage"
+                            Value="/img/button-pressed.png" />
+                    <Setter Property="Foreground" TargetName="PTRToggleText" Value="White" />
+                    <Setter Property="Text" TargetName="PTRToggleText" Value="ON" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style x:Key="OnOffButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Template" Value="{StaticResource OnOffButtonTemplate}" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/img/options-bg.png" Stretch="UniformToFill" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="8*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="SaveAccountText" Grid.Row="1" Grid.Column="1" Text="Remember account"
+                   TextBlock.FontWeight="Bold" Foreground="White" VerticalAlignment="Center"
+                   HorizontalAlignment="Right" />
+        <ToggleButton x:Name="SaveAccountButton" Grid.Row="1" Grid.Column="2" Style="{StaticResource OnOffButtonStyle}"
+                      BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" />
+        <TextBlock x:Name="KeepOpenText" Grid.Row="2" Grid.Column="1" Text="Keep launcher open"
+                   TextBlock.FontWeight="Bold" Foreground="White" VerticalAlignment="Center"
+                   HorizontalAlignment="Right" />
+        <ToggleButton x:Name="KeepOpenButton" Grid.Row="2" Grid.Column="2" Style="{StaticResource OnOffButtonStyle}"
+                      BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" />
+        <TextBlock x:Name="TrayText" Grid.Row="3" Grid.Column="1" Text="Minimize to tray" TextBlock.FontWeight="Bold"
+                   Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <ToggleButton x:Name="TrayButton" Grid.Row="3" Grid.Column="2" Style="{StaticResource OnOffButtonStyle}"
+                      BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" />
+        <TextBlock x:Name="PTRText" Grid.Row="4" Grid.Column="1" Text="Connect to PTR" TextBlock.FontWeight="Bold"
+                   Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <ToggleButton x:Name="PTRButton" Grid.Row="4" Grid.Column="2" Style="{StaticResource OnOffButtonStyle}"
+                      BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" />
+
+
+        <Button x:Name="OptionSaveButton" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Content="Save"
+                Background="{x:Null}" Foreground="White" HorizontalAlignment="Center" Grid.RowSpan="2"
+                Click="OptionSaveButton_Click" />
+        <Label x:Name="RepatchButton" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Content="Force re-patch"
+               Height="20" Width="100" Background="{x:Null}" Foreground="White" HorizontalContentAlignment="Center"
+               HorizontalAlignment="Center" Margin="0,0,0,0" PreviewMouseLeftButtonDown="ForcePatchButton_click"
+               TextBlock.FontSize="10" Cursor="Hand" />
+    </Grid>
+
+</Window>

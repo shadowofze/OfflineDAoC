@@ -1,0 +1,92 @@
+ID,Description,column,Spell
+data,data,data,Overlay
+1,beckon,53,0
+2,blush,54,0
+3,bow,55,0
+4,cheer,56,0
+5,clap,57,0
+6,cry,58,0
+7,curtsey,69,0
+8,big flex,59,0
+9,blow kiss,60,0
+10,dance,61,0
+11,laugh,63,0
+12,point,64,0
+13,salute,65,0
+14,bang on shield,66,0
+15,victory,67,0
+16,wave,68,0
+17,distract,70,0
+18,Midgard Frenzy,72,8001
+19,Dirt throw,73,0
+20,Stag Frenzy,74,8000
+21,Dragon Roar,75,8300
+22,Potion/Drink,77,0
+23,Ponder,80,0
+24,Military,81,0
+25,Present,82,0
+26,Taunt(Suck it),83,0
+27,Rude,84,0
+28,Chicken,85,0
+29,Hug,86,0
+30,Lets Go,87,0
+31,Meditate,88,0
+32,No,89,0
+33,Raise Hand,90,0
+34,Shrug,91,0
+35,Slap,92,0
+36,Slit,93,0
+37,Surrender,94,0
+38,Yes,95,0
+39,Beg,106,0
+40,Indcut,107,0
+41,Dismiss,108,0
+42,Level Up,0,8007
+43,Pray,0,8005
+44,Generic Bind(No Longer Used),0,8006
+45,Spellcraft go boom,0,4054
+46,Knock,109,0
+49,rider lookfar,127,0
+50,rider stench,128,0
+51,rider halt,129,0
+52,rider pet,130,0
+53,horse_courbette,131,0
+54,horse_startle,132,0
+55,horse_nod,133,0
+56,horse_graze,134,0
+57,horse_rear,135,0
+58,emote_sweat,136,0
+59,emote_stagger,137,0
+60,emote_rider_trick,138,0
+61,emote_yawn,139,0
+62,emote_doh,140,0
+63,emote_confused,141,0
+64,emote_shiver,142,0
+65,emote_rofl,143,0
+66,emote_mememe,144,0
+67,horse whistle,145,0
+68,kowtow,146,0
+69,Player Prepare,151,0
+70,Player Pickup,152,0
+71,Player Listen,153,0
+72,Bind on Equip,0,8008
+73,Albion Bind,0,8010
+74,Midgard Bind,0,8006
+75,Hibernian Bind,0,8009
+76,Emote Howl,166,0
+77,Emote Diabolical,167,0
+78,EMPTY,168,0
+79,Emote brandish,169,0
+80,Emote Startled,170,0
+81,Emote talk,171,0
+82,Emote kick,172,0
+83,Emote stomp,173,0
+84,Emote monty,174,0
+85,Emote loco,175,0
+86,Emote duh,176,0
+87,Emote backslap,177,0
+88,Emote halt,178,0
+89,Emote stay ,179,0
+90,Emote despair     ,180,0
+91,Emote cower,181,0
+92,Emote thankyou,182,0

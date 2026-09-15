@@ -1,0 +1,2014 @@
+
+[region001]
+name=Albion
+screen01=archive://data/loading/alb1.mpk:alb0
+screen02=archive://data/loading/alb1.mpk:alb1
+screen03=archive://data/loading/alb1.mpk:alb3
+screen04=archive://data/loading/alb1.mpk:alb4
+screen05=archive://data/loading/alb1.mpk:alb5
+screens=5
+
+[region002]
+name=Albion Housing
+screen01=archive://phousing/data/loading/housing.mpk:ahouse01
+screen02=archive://phousing/data/loading/housing.mpk:ahouse02
+screen03=archive://phousing/data/loading/housing.mpk:ahouse03
+screen04=archive://phousing/data/loading/housing.mpk:ahouse04
+screens=4
+
+[region010]
+name=Camelot City
+screen01=archive://data/loading/camcity.mpk:camelot1
+screen02=archive://data/loading/camcity.mpk:camelot2
+screen03=archive://data/loading/camcity.mpk:camelot3
+screens=3
+
+[region020]
+name=Stonehenge Barrows
+screen01=archive://data/loading/alb1.mpk:StonehengeBarrows
+screens=1
+
+[region021]
+name=Tomb of Mithra
+screen01=archive://data/loading/alb1.mpk:Mithra
+screens=1
+
+[region022]
+name=Keltoi Fogou
+screen01=archive://data/loading/alb1.mpk:Keltoi
+screens=1
+
+[region023]
+name=Catacombs of Cardova
+screen01=archive://data/loading/alb1.mpk:Catacombs
+screens=1
+
+[region024]
+name=Tepok's Mine
+screen01=archive://data/loading/alb1.mpk:TepoksMine
+screens=1
+
+[region027]
+name=Tutorial
+screen01=archive://tutorial/Tutorial.mpk:tut_alb
+screen02=archive://tutorial/Tutorial.mpk:tut_mid
+screen03=archive://tutorial/Tutorial.mpk:tut_hib
+screens=3
+
+[region030]
+name=Atlantis
+screen01=archive://data/loading/toa.mpk:stygia1
+screen02=archive://data/loading/toa.mpk:stygia2
+screen03=archive://data/loading/toa.mpk:volcanus1
+screen04=archive://data/loading/toa.mpk:volcanus2
+screen05=archive://data/loading/toa.mpk:ocean1
+screen06=archive://data/loading/toa.mpk:ocean2
+screen07=archive://data/loading/toa.mpk:aerus1
+screen08=archive://data/loading/toa.mpk:aerus2
+screens=8
+
+[region035]
+name=Cetus' Pit
+screen01=archive://data/loading/toa.mpk:cetus
+screens=1
+
+[region036]
+name=Sobekite Eternal
+screen01=archive://data/loading/toa.mpk:ocean-dung
+screens=1
+
+[region037]
+name=Temple of Twilight
+screen01=archive://data/loading/toa.mpk:ocean-dung-alt
+screens=1
+
+[region040]
+name=Halls of Ma'ati
+screen01=archive://data/loading/toa.mpk:styg-dung
+screens=1
+
+[region045]
+name=The Great Pyramid
+screen01=archive://data/loading/toa.mpk:pyramid
+screens=1
+
+[region046]
+name=Deep Volcanus
+screen01=archive://data/loading/toa.mpk:volc-dung
+screens=1
+
+[region047]
+name=Aerus City
+screen01=archive://data/loading/toa.mpk:sky1
+screens=1
+
+[region048]
+instance=1
+name=The Unused Mine
+screen01=archive://data/loading/hib1.mpk:mines0
+screens=1
+
+[region049]
+instance=1
+name=Rugnog's Haven
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region050]
+name=Avalon City
+screen01=archive://data/loading/alb1.mpk:AvalonCity2
+screens=1
+
+[region051]
+name=Avalon
+screen01=archive://data/loading/alb1.mpk:Avalon1
+screen02=archive://data/loading/alb1.mpk:Avalon2
+screen03=archive://data/loading/alb1.mpk:Avalon3
+screens=3
+
+[region058]
+name=Underground Forest
+screen01=archive://data/loading/cat.mpk:undergroundforest
+screens=1
+
+[region059]
+name=Glashtin Forge
+screen01=archive://data/loading/cat.mpk:glashtinforge
+screens=1
+
+[region060]
+name=Caer Sidi
+screen01=archive://data/loading/alb1.mpk:CaerSidi
+screens=1
+
+[region061]
+name=Krondon
+screen01=archive://data/loading/alb1.mpk:OgreCitadel
+screens=1
+
+[region062]
+name=Crystal Cave
+screen01=archive://data/loading/alb1.mpk:AvalonCity2
+screens=1
+
+[region063]
+name=Roman Aqueducts
+screen01=archive://data/loading/cat.mpk:aqueducts
+screens=1
+
+[region065]
+name=Inconnu Crypt
+screen01=archive://data/loading/cat.mpk:inconnucrypt
+screens=1
+
+[region066]
+name=Underground Forest
+screen01=archive://data/loading/cat.mpk:undergroundforest
+screens=1
+
+[region067]
+name=Deadlands of Annwn
+screen01=archive://data/loading/cat.mpk:deadlands
+screens=1
+
+[region068]
+name=Lower Crypt
+screen01=archive://data/loading/cat.mpk:lowercrypt
+screens=1
+
+[region069]
+name=Darkspire
+screen01=archive://data/loading/cat.mpk:darkspire
+screens=1
+
+[region070]
+name=Ruins of Atlantis
+screen01=archive://data/loading/toa.mpk:albisland
+screens=1
+
+[region071]
+name=Ruinrar Atlantis
+screen01=archive://data/loading/toa.mpk:midisland
+screens=1
+
+[region072]
+name=Scrios de Atlantis
+screen01=archive://data/loading/toa.mpk:hibisland
+screens=1
+
+[region073]
+name=Atlantis
+screen01=archive://data/loading/toa.mpk:stygia1
+screen02=archive://data/loading/toa.mpk:stygia2
+screen03=archive://data/loading/toa.mpk:volcanus1
+screen04=archive://data/loading/toa.mpk:volcanus2
+screen05=archive://data/loading/toa.mpk:ocean1
+screen06=archive://data/loading/toa.mpk:ocean2
+screen07=archive://data/loading/toa.mpk:aerus1
+screen08=archive://data/loading/toa.mpk:aerus2
+screens=8
+
+[region078]
+name=Cetus' Pit
+screen01=archive://data/loading/toa.mpk:cetus
+screens=1
+
+[region079]
+name=Sobekite Eternal
+screen01=archive://data/loading/toa.mpk:ocean-dung
+screens=1
+
+[region080]
+name=Temple of Twilight
+screen01=archive://data/loading/toa.mpk:ocean-dung-alt
+screens=1
+
+[region083]
+name=Halls of Ma'ati
+screen01=archive://data/loading/toa.mpk:styg-dung
+screens=1
+
+[region088]
+name=The Great Pyramid
+screen01=archive://data/loading/toa.mpk:pyramid
+screens=1
+
+[region089]
+name=Deep Volcanus
+screen01=archive://data/loading/toa.mpk:volc-dung
+screens=1
+
+[region090]
+name=Aerus City
+screen01=archive://data/loading/toa.mpk:sky1
+screens=1
+
+[region091]
+name=Celestius
+screen01=archive://data/loading/toa.mpk:aerusc
+screens=1
+
+[region092]
+name=Veil Rift
+screen01=archive://data/loading/cat.mpk:theveil
+screens=1
+
+[region093]
+name=Shar Labyrinth
+screen01=archive://data/loading/cat.mpk:sharlabyrinth
+screens=1
+
+[region094]
+name=Queen's Labyrinth
+screen01=archive://data/loading/cat.mpk:queenslabyrinth
+screens=1
+
+[region095]
+name=The Frontlines
+screen01=archive://data/loading/cat.mpk:frontlines
+screens=1
+
+[region096]
+name=Underground Forest
+screen01=archive://data/loading/cat.mpk:undergroundforest
+screens=1
+
+[region097]
+name=Deadlands of Annwn
+screen01=archive://data/loading/cat.mpk:deadlands
+screens=1
+
+[region098]
+name=Darkspire
+screen01=archive://data/loading/cat.mpk:darkspire
+screens=1
+
+[region099]
+name=Glashtin Forge
+screen01=archive://data/loading/cat.mpk:glashtinforge
+screens=1
+
+[region100]
+name=Midgard
+screen01=archive://data/loading/mid1.mpk:mid1
+screen02=archive://data/loading/mid1.mpk:mid2
+screen03=archive://data/loading/mid1.mpk:mid3
+screen04=archive://data/loading/mid1.mpk:mid4
+screen05=archive://data/loading/mid1.mpk:mid5
+screens=5
+
+[region101]
+name=Jordheim
+screen01=archive://data/loading/jordcity.mpk:jordheim1
+screen02=archive://data/loading/jordcity.mpk:jordheim2
+screen03=archive://data/loading/jordcity.mpk:jordheim3
+screens=3
+
+[region102]
+name=Midgard Housing
+screen01=archive://phousing/data/loading/housing.mpk:mhouse01
+screen02=archive://phousing/data/loading/housing.mpk:mhouse02
+screen03=archive://phousing/data/loading/housing.mpk:mhouse03
+screen04=archive://phousing/data/loading/housing.mpk:mhouse04
+screens=4
+
+[region109]
+name=The Frontlines
+screen01=archive://data/loading/cat.mpk:frontlines
+screens=1
+
+[region125]
+name=Spindelhalla
+screen01=archive://data/loading/mid1.mpk:Spindelhalla
+screens=1
+
+[region126]
+name=Vendo Caverns
+screen01=archive://data/loading/mid1.mpk:VendoCave
+screens=1
+
+[region127]
+name=Varulvhamn
+screen01=archive://data/loading/mid1.mpk:Varulvheim
+screens=1
+
+[region128]
+name=Cursed Tomb
+screen01=archive://data/loading/mid1.mpk:CursedTomb
+screens=1
+
+[region129]
+name=Nisse's Lair
+screen01=archive://data/loading/mid1.mpk:NissesLair
+screens=1
+
+[region130]
+name=Atlantis
+screen01=archive://data/loading/toa.mpk:stygia1
+screen02=archive://data/loading/toa.mpk:stygia2
+screen03=archive://data/loading/toa.mpk:volcanus1
+screen04=archive://data/loading/toa.mpk:volcanus2
+screen05=archive://data/loading/toa.mpk:ocean1
+screen06=archive://data/loading/toa.mpk:ocean2
+screen07=archive://data/loading/toa.mpk:aerus1
+screen08=archive://data/loading/toa.mpk:aerus2
+screens=8
+
+[region135]
+name=Cetus' Pit
+screen01=archive://data/loading/toa.mpk:cetus
+screens=1
+
+[region136]
+name=Sobekite Eternal
+screen01=archive://data/loading/toa.mpk:ocean-dung
+screens=1
+
+[region137]
+name=Temple of Twilight
+screen01=archive://data/loading/toa.mpk:ocean-dung-alt
+screens=1
+
+[region140]
+name=Halls of Ma'ati
+screen01=archive://data/loading/toa.mpk:styg-dung
+screens=1
+
+[region145]
+name=The Great Pyramid
+screen01=archive://data/loading/toa.mpk:pyramid
+screens=1
+
+[region146]
+name=Deep Volcanus
+screen01=archive://data/loading/toa.mpk:volc-dung
+screens=1
+
+[region147]
+name=Aerus City
+screen01=archive://data/loading/toa.mpk:sky1
+screens=1
+
+[region148]
+name=The Frontlines
+screen01=archive://data/loading/cat.mpk:frontlines
+screens=1
+
+[region149]
+name=Nyttheim
+screen01=archive://data/loading/cat.mpk:nyttheim
+screens=1
+
+[region150]
+name=Trollheim
+screen01=archive://data/loading/mid1.mpk:Trollheim
+screens=1
+
+[region151]
+name=Aegir
+screen01=archive://data/loading/mid1.mpk:Aegir1
+screen02=archive://data/loading/mid1.mpk:Aegir2
+screen03=archive://data/loading/mid1.mpk:Aegir3
+screens=3
+
+[region160]
+name=Tuscaran Glacier
+screen01=archive://data/loading/mid1.mpk:IceCave
+screens=1
+
+[region161]
+name=Iarnvidiur's Lair
+screen01=archive://data/loading/mid1.mpk:IarnVidar
+screens=1
+
+[region162]
+name=Deadlands of Annwn
+screen01=archive://data/loading/cat.mpk:deadlands
+screens=1
+
+[region163]
+name=New Frontiers
+screen01=archive://frontiers/nf.mpk:alb_01
+screen02=archive://frontiers/nf.mpk:alb_02
+screen03=archive://frontiers/nf.mpk:alb_03
+screen04=archive://frontiers/nf.mpk:alb_04
+screen05=archive://frontiers/nf.mpk:mid_01
+screen06=archive://frontiers/nf.mpk:mid_02
+screen07=archive://frontiers/nf.mpk:mid_03
+screen08=archive://frontiers/nf.mpk:mid_04
+screen09=archive://frontiers/nf.mpk:hib_01
+screen10=archive://frontiers/nf.mpk:hib_02
+screen11=archive://frontiers/nf.mpk:hib_03
+screen12=archive://frontiers/nf.mpk:hib_04
+screens=12
+widestyle=1
+
+[region165]
+name=Cathal Valley
+screen01=archive://frontiers/nf.mpk:hib_02
+screens=1
+widestyle=1
+
+[region166]
+name=Caledonia
+screen01=archive://data/loading/rvr2.mpk:bg0
+screens=1
+
+[region180]
+name=Fomor City
+screen01=archive://data/loading/hib1.mpk:Fomor
+screens=1
+
+[region181]
+name=HyBrasil
+screen01=archive://data/loading/hib1.mpk:HyBrasil1
+screen02=archive://data/loading/hib1.mpk:HyBrasil2
+screen03=archive://data/loading/hib1.mpk:HyBrasil3
+screens=3
+
+[region188]
+name=Darkspire
+screen01=archive://data/loading/cat.mpk:darkspire
+screens=1
+
+[region189]
+name=Glashtin Forge
+screen01=archive://data/loading/cat.mpk:glashtinforge
+screens=1
+
+[region190]
+name=Tur Suil
+screen01=archive://data/loading/hib1.mpk:TarSuil
+screens=1
+
+[region191]
+name=Galladoria
+screen01=archive://data/loading/hib1.mpk:RootCave
+screens=1
+
+[region192]
+name=The High Consul's Sanctum
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region193]
+name=The High Consul's Sanctum
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region194]
+name=The High Consul's Sanctum
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region195]
+name=The Otherworld
+screen01=archive://data/loading/cat.mpk:otherworld
+screens=1
+
+[region196]
+name=The Otherworld
+screen01=archive://data/loading/cat.mpk:otherworld
+screens=1
+
+[region197]
+name=The Otherworld
+screen01=archive://data/loading/cat.mpk:otherworld
+screens=1
+
+[region200]
+name=Hibernia
+screen01=archive://data/loading/hib1.mpk:Hib0
+screen02=archive://data/loading/hib1.mpk:Hib1
+screen03=archive://data/loading/hib1.mpk:Hib2
+screen04=archive://data/loading/hib1.mpk:Hib3
+screen05=archive://data/loading/hib1.mpk:Hib4
+screens=5
+
+[region201]
+name=Tir na Nog
+screen01=archive://data/loading/tnn.mpk:tirnanog1
+screen02=archive://data/loading/tnn.mpk:tirnanog2
+screen03=archive://data/loading/tnn.mpk:tirnanog3
+screens=3
+
+[region202]
+name=Hibernia Housing
+screen01=archive://phousing/data/loading/housing.mpk:hhouse01
+screen02=archive://phousing/data/loading/housing.mpk:hhouse02
+screen03=archive://phousing/data/loading/housing.mpk:hhouse03
+screen04=archive://phousing/data/loading/housing.mpk:hhouse04
+screens=4
+
+[region220]
+name=Coruscating Mine
+screen01=archive://data/loading/hib1.mpk:mines0
+screens=1
+
+[region221]
+name=Muire Tomb
+screen01=archive://data/loading/hib1.mpk:muire0
+screens=1
+
+[region222]
+name=Spraggon Den
+screen01=archive://data/loading/hib1.mpk:spraggon0
+screens=1
+
+[region223]
+name=Koalinth Tribal Caverns
+screen01=archive://data/loading/hib1.mpk:koalinth
+screens=1
+
+[region224]
+name=Treibh Caillte
+screen01=archive://data/loading/hib1.mpk:Treibh1
+screens=1
+
+[region226]
+name=Abandoned Mines
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region227]
+name=Abandoned Mines
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region228]
+name=Abandoned Mines
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region229]
+name=Burial Grounds
+screen01=archive://data/loading/cat.mpk:burialgrounds
+screens=1
+
+[region233]
+name=Summoner's Hall
+screen01=archive://data/loading/rvr1.mpk:HouseOfTheDead
+screens=1
+
+[region234]
+name=The Proving Grounds
+screen01=archive://frontiers/nf.mpk:mid_03
+screens=1
+widestyle=1
+
+[region235]
+name=The Lion's Den
+screen01=archive://frontiers/nf.mpk:alb_03
+screens=1
+widestyle=1
+
+[region236]
+name=The Hills of Claret
+screen01=archive://frontiers/nf.mpk:hib_02
+screens=1
+widestyle=1
+
+[region237]
+name=Killaloe
+screen01=archive://frontiers/nf.mpk:mid_02
+screens=1
+widestyle=1
+
+[region238]
+name=Thidranki
+screen01=archive://frontiers/nf.mpk:alb_02
+screens=1
+widestyle=1
+
+[region239]
+name=Braemar
+screen01=archive://frontiers/nf.mpk:mid_04
+screens=1
+widestyle=1
+
+[region240]
+name=Wilton
+screen01=archive://frontiers/nf.mpk:hib_03
+screens=1
+widestyle=1
+
+[region241]
+name=Molvik
+screen01=archive://frontiers/nf.mpk:mid_03
+screens=1
+widestyle=1
+
+[region242]
+name=Leirvik
+screen01=archive://frontiers/nf.mpk:hib_02
+screens=1
+widestyle=1
+
+[region243]
+name=Kobold Undercity
+screen01=archive://data/loading/cat.mpk:koboldundercity
+screens=1
+
+[region244]
+name=Passage of Conflict
+screen01=archive://data/loading/alb1.mpk:OgreCitadel
+screens=1
+
+[region245]
+name=The Labyrinth
+screen01=archive://data/loading/Lab.mpk:labyrinth1
+screen02=archive://data/loading/Lab.mpk:labyrinth2
+screen03=archive://data/loading/Lab.mpk:labyrinth3
+screens=3
+
+[region246]
+name=Dodens Gruva
+screen01=archive://data/loading/rvr1.mpk:Gruva
+screens=1
+
+[region247]
+screen01=archive://data/loading/rvr1.mpk:Marfach
+screens=1
+
+[region248]
+name=Summoner's Hall
+screen01=archive://data/loading/rvr1.mpk:HouseOfTheDead
+screens=1
+
+[region249]
+name=Darkness Falls
+screen01=archive://data/loading/rvr1.mpk:DarkAlb
+screen02=archive://data/loading/rvr1.mpk:DarkHib
+screen03=archive://data/loading/rvr1.mpk:DarkMid
+screens=3
+
+[region250]
+name=Caledon
+screen01=archive://data/loading/rvr1.mpk:bg3
+screens=1
+
+[region251]
+name=Murdaigean
+screen01=archive://data/loading/rvr1.mpk:bg2
+screens=1
+
+[region252]
+name=Thidranki
+screen01=archive://data/loading/rvr1.mpk:bg1
+screens=1
+
+[region253]
+name=Abermenai
+screen01=archive://data/loading/rvr2.mpk:bg0
+screens=1
+
+[region256]
+instance=1
+name=Forgotten Mines
+screen01=archive://data/loading/alb1.mpk:tepoksmine
+screens=1
+
+[region257]
+instance=1
+name=Forgotten Mines
+screen01=archive://data/loading/alb1.mpk:tepoksmine
+screens=1
+
+[region258]
+instance=1
+name=Forgotten Mines
+screen01=archive://data/loading/alb1.mpk:tepoksmine
+screens=1
+
+[region270]
+name=Kaldrheim
+screen01=archive://data/loading/uth.mpk:kaldrheim
+screens=1
+
+[region271]
+name=Kintyre
+screen01=archive://data/loading/rvr1.mpk:bg3
+screens=1
+
+[region276]
+name=Marfach Caverns
+screen01=archive://data/loading/rvr1.mpk:Marfach
+screens=1
+
+[region277]
+name=Hall of the Corrupt
+screen01=archive://data/loading/rvr1.mpk:Corrupthall
+screens=1
+
+[region278]
+instance=1
+name=Damp Cavern
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region279]
+instance=1
+name=Damp Cavern
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region280]
+instance=1
+name=Damp Cavern
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region281]
+instance=1
+name=Forgotten Sepulchre
+screen01=archive://data/loading/mid1.mpk:cursedtomb
+screens=1
+
+[region282]
+instance=1
+name=Forgotten Sepulchre
+screen01=archive://data/loading/mid1.mpk:cursedtomb
+screens=1
+
+[region283]
+instance=1
+name=Forgotten Sepulchre
+screen01=archive://data/loading/mid1.mpk:cursedtomb
+screens=1
+
+[region284]
+instance=1
+name=The Concealed Guardhouse
+screen01=archive://data/loading/mid1.mpk:vendocave
+screens=1
+
+[region285]
+instance=1
+name=The Concealed Guardhouse
+screen01=archive://data/loading/mid1.mpk:vendocave
+screens=1
+
+[region286]
+instance=1
+name=The Concealed Guardhouse
+screen01=archive://data/loading/mid1.mpk:vendocave
+screens=1
+
+[region287]
+instance=1
+name=The Gossamer Grotto
+screen01=archive://data/loading/mid1.mpk:varulvheim
+screens=1
+
+[region288]
+instance=1
+name=The Gossamer Grotto
+screen01=archive://data/loading/mid1.mpk:varulvheim
+screens=1
+
+[region289]
+instance=1
+name=The Gossamer Grotto
+screen01=archive://data/loading/mid1.mpk:varulvheim
+screens=1
+
+[region290]
+instance=1
+name=Underground Tunnel
+screen01=archive://data/loading/mid1.mpk:spindelhalla
+screens=1
+
+[region291]
+instance=1
+name=Underground Tunnel
+screen01=archive://data/loading/mid1.mpk:spindelhalla
+screens=1
+
+[region292]
+instance=1
+name=Underground Tunnel
+screen01=archive://data/loading/mid1.mpk:spindelhalla
+screens=1
+
+[region293]
+instance=1
+name=Burial Tomb
+screen01=archive://data/loading/alb1.mpk:mithra
+screens=1
+
+[region294]
+instance=1
+name=Burial Tomb
+screen01=archive://data/loading/alb1.mpk:mithra
+screens=1
+
+[region295]
+instance=1
+name=Burial Tomb
+screen01=archive://data/loading/alb1.mpk:mithra
+screens=1
+
+[region296]
+instance=1
+name=Desecrated Grounds
+screen01=archive://data/loading/alb1.mpk:keltoi
+screens=1
+
+[region297]
+instance=1
+name=Desecrated Grounds
+screen01=archive://data/loading/alb1.mpk:keltoi
+screens=1
+
+[region298]
+instance=1
+name=Desecrated Grounds
+screen01=archive://data/loading/alb1.mpk:keltoi
+screens=1
+
+[region300]
+instance=1
+name=Damp Cavern
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region301]
+instance=1
+name=Damp Cavern
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region302]
+instance=1
+name=Damp Cavern
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region303]
+instance=1
+name=Damp Cavern
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region304]
+instance=1
+name=Damp Cavern
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region305]
+instance=1
+name=Forgotten Sepulchre
+screen01=archive://data/loading/mid1.mpk:cursedtomb
+screens=1
+
+[region306]
+instance=1
+name=Forgotten Sepulchre
+screen01=archive://data/loading/mid1.mpk:cursedtomb
+screens=1
+
+[region307]
+instance=1
+name=Forgotten Sepulchre
+screen01=archive://data/loading/mid1.mpk:cursedtomb
+screens=1
+
+[region308]
+instance=1
+name=Forgotten Sepulchre
+screen01=archive://data/loading/mid1.mpk:cursedtomb
+screens=1
+
+[region309]
+instance=1
+name=Forgotten Sepulchre
+screen01=archive://data/loading/mid1.mpk:cursedtomb
+screens=1
+
+[region310]
+instance=1
+name=The Concealed Guardhouse
+screen01=archive://data/loading/mid1.mpk:vendocave
+screens=1
+
+[region311]
+instance=1
+name=The Concealed Guardhouse
+screen01=archive://data/loading/mid1.mpk:vendocave
+screens=1
+
+[region312]
+instance=1
+name=The Concealed Guardhouse
+screen01=archive://data/loading/mid1.mpk:vendocave
+screens=1
+
+[region313]
+instance=1
+name=The Concealed Guardhouse
+screen01=archive://data/loading/mid1.mpk:vendocave
+screens=1
+
+[region314]
+instance=1
+name=The Concealed Guardhouse
+screen01=archive://data/loading/mid1.mpk:vendocave
+screens=1
+
+[region315]
+instance=1
+name=The Gossamer Grotto
+screen01=archive://data/loading/mid1.mpk:varulvheim
+screens=1
+
+[region316]
+instance=1
+name=The Gossamer Grotto
+screen01=archive://data/loading/mid1.mpk:varulvheim
+screens=1
+
+[region317]
+instance=1
+name=The Gossamer Grotto
+screen01=archive://data/loading/mid1.mpk:varulvheim
+screens=1
+
+[region318]
+instance=1
+name=The Gossamer Grotto
+screen01=archive://data/loading/mid1.mpk:varulvheim
+screens=1
+
+[region319]
+instance=1
+name=The Gossamer Grotto
+screen01=archive://data/loading/mid1.mpk:vendocave
+screens=1
+
+[region320]
+instance=1
+name=Underground Tunnel
+screen01=archive://data/loading/mid1.mpk:spindelhalla
+screens=1
+
+[region321]
+instance=1
+name=Underground Tunnel
+screen01=archive://data/loading/mid1.mpk:spindelhalla
+screens=1
+
+[region322]
+instance=1
+name=Underground Tunnel
+screen01=archive://data/loading/mid1.mpk:spindelhalla
+screens=1
+
+[region323]
+instance=1
+name=Underground Tunnel
+screen01=archive://data/loading/mid1.mpk:spindelhalla
+screens=1
+
+[region324]
+instance=1
+name=Underground Tunnel
+screen01=archive://data/loading/mid1.mpk:spindelhalla
+screens=1
+
+[region325]
+instance=1
+name=The Forgotten Tunnels
+screen01=archive://data/loading/EpicDung.mpk:DR_Epic_30_Hib
+screens=1
+
+[region326]
+instance=1
+name=The Hidden Lair
+screen01=archive://data/loading/EpicDung.mpk:DR_Epic_30_Alb-Mid
+screens=1
+
+[region327]
+instance=1
+name=Caverns of Madness
+screen01=archive://data/loading/cat.mpk:nyttheim
+screens=1
+
+[region328]
+instance=1
+name=The Hidden Lair
+screen01=archive://data/loading/EpicDung.mpk:DR_Epic_30_Alb-Mid
+screens=1
+
+[region329]
+instance=1
+name=Jarlsberg's Hideout
+screen01=archive://data/loading/cat.mpk:burialgrounds
+screens=1
+
+[region330]
+instance=1
+name=The Foothills of Albion
+screen01=archive://data/loading/DR.mpk:Ch1_Alb
+screens=1
+
+[region331]
+instance=1
+name=The Thieves Den
+screen01=archive://data/loading/cat.mpk:burialgrounds
+screens=1
+
+[region332]
+instance=1
+name=Rebel Half Orc Lair
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region333]
+instance=1
+name=The Haunted Halls
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region334]
+instance=1
+name=The Foothills of Midgard
+screen01=archive://data/loading/DR.mpk:Ch1_Mid
+screens=1
+
+[region335]
+instance=1
+name=The Foothills of Hibernia
+screen01=archive://data/loading/DR.mpk:Ch1_Hib
+screens=1
+
+[region336]
+instance=1
+name=Demonic Prison
+screen01=archive://data/loading/DR.mpk:Ch2_Dungeon
+screens=1
+
+[region337]
+instance=1
+name=Demonic Prison
+screen01=archive://data/loading/DR.mpk:Ch2_Dungeon
+screens=1
+
+[region338]
+instance=1
+name=Demonic Prison
+screen01=archive://data/loading/DR.mpk:Ch2_Dungeon
+screens=1
+
+[region339]
+name=Brimstone Caverns
+screen01=archive://data/loading/DR.mpk:Ch3_Alb
+screens=1
+
+[region340]
+name=Halls of Helgardh
+screen01=archive://data/loading/DR.mpk:Ch3_Mid
+screens=1
+
+[region341]
+name=Cave of Cruachan
+screen01=archive://data/loading/DR.mpk:Ch3_Hib
+screens=1
+
+[region345]
+instance=1
+name=Tomte Prison
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region346]
+instance=1
+name=Nisse's Retreat
+screen01=archive://data/loading/mid1.mpk:nisseslair
+screens=1
+
+[region347]
+instance=1
+name=Lair of the Demon Lord
+screen01=archive://data/loading/DR.mpk:DR_FinalBoss
+screens=1
+
+[region348]
+name=The Baron's Gaol
+screen01=archive://data/loading/DR.mpk:Ch1_Tunnel
+screens=1
+
+[region349]
+instance=1
+name=Lios's Eternal Rest
+screen01=archive://data/loading/mid1.mpk:cursedtomb
+screens=1
+
+[region350]
+instance=1
+name=Liche's Unrest
+screen01=archive://data/loading/mid1.mpk:cursedtomb
+screens=1
+
+[region351]
+name=Nephraal's Gaol
+screen01=archive://data/loading/DR.mpk:Ch1_Tunnel
+screens=1
+
+[region352]
+name=Morfesa's Gaol
+screen01=archive://data/loading/DR.mpk:Ch1_Tunnel
+screens=1
+
+[region353]
+instance=1
+name=Den of Bones
+screen01=archive://data/loading/mid1.mpk:vendocave
+screens=1
+
+[region354]
+instance=1
+name=The Lost Burrow
+screen01=archive://data/loading/mid1.mpk:vendocave
+screens=1
+
+[region355]
+instance=1
+name=Tethra's Stronghold
+screen01=archive://data/loading/EpicDung.mpk:DR_Epic_45_Hib
+screens=1
+
+[region356]
+instance=1
+name=Barrow of Restless Dead
+screen01=archive://data/loading/EpicDung.mpk:DR_Epic_45_Alb
+screens=1
+
+[region357]
+instance=1
+name=The Cursed Lair
+screen01=archive://data/loading/mid1.mpk:varulvheim
+screens=1
+
+[region358]
+instance=1
+name=The Burrow
+screen01=archive://data/loading/mid1.mpk:varulvheim
+screens=1
+
+[region359]
+instance=1
+name=Red Dagger Hideout
+screen01=archive://data/loading/EpicDung.mpk:DR_Epic_45_Mid
+screens=1
+
+[region360]
+instance=1
+name=King Eirik's Throne Room
+screen01=archive://data/loading/DR.mpk:Throne_Mid
+screens=1
+
+[region361]
+instance=1
+name=Arachnid's Labyrinth
+screen01=archive://data/loading/mid1.mpk:spindelhalla
+screens=1
+
+[region362]
+instance=1
+name=The Master's Lair
+screen01=archive://data/loading/mid1.mpk:spindelhalla
+screens=1
+
+[region363]
+instance=1
+name=Anataeus' Sanctuary
+screen01=archive://data/loading/DR.mpk:Ch2_DF-Room
+screens=1
+
+[region364]
+instance=1
+name=Keeper Iraeda's Sanctuary
+screen01=archive://data/loading/DR.mpk:Ch2_DF-Room
+screens=1
+
+[region365]
+instance=1
+name=Bandit Lair
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region366]
+instance=1
+name=Gnoll Lair
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region367]
+instance=1
+name=Vandr's Bane
+screen01=archive://data/loading/cat.mpk:burialgrounds
+screens=1
+
+[region368]
+instance=1
+name=Past and Present
+screen01=archive://data/loading/cat.mpk:aqueducts
+screens=1
+
+[region369]
+instance=1
+name=Half-Orc Camp
+screen01=archive://data/loading/cat.mpk:nyttheim
+screens=1
+
+[region370]
+instance=1
+name=Brutal Realization
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region371]
+instance=1
+name=History Repeats Itself
+screen01=archive://data/loading/cat.mpk:lowercrypt
+screens=1
+
+[region372]
+instance=1
+name=Hounds of Arawn
+screen01=archive://data/loading/cat.mpk:lowercrypt
+screens=1
+
+[region373]
+instance=1
+name=Passage of Echoes
+screen01=archive://data/loading/cat.mpk:nyttheim
+screens=1
+
+[region374]
+instance=1
+name=The Unrestful Tomb
+screen01=archive://data/loading/cat.mpk:lowercrypt
+screens=1
+
+[region375]
+instance=1
+name=The Lost Passages
+screen01=archive://data/loading/cat.mpk:queenslabyrinth
+screens=1
+
+[region376]
+instance=1
+name=Goblin's Cookery
+screen01=archive://data/loading/alb1.mpk:tepoksmine
+screens=1
+
+[region377]
+instance=1
+name=The Beastmaster's Den
+screen01=archive://data/loading/alb1.mpk:tepoksmine
+screens=1
+
+[region378]
+instance=1
+name=Keeper Garran's Sanctuary
+screen01=archive://data/loading/DR.mpk:Ch2_DF-Room
+screens=1
+
+[region379]
+instance=1
+name=The Funerary Hall
+screen01=archive://data/loading/alb1.mpk:catacombs
+screens=1
+
+[region380]
+instance=1
+name=Lair of Doom
+screen01=archive://data/loading/alb1.mpk:catacombs
+screens=1
+
+[region381]
+instance=1
+name=The Arena
+screen01=archive://data/loading/alb1.mpk:catacombs
+screens=1
+
+[region382]
+instance=1
+name=The Funerary Hall
+screen01=archive://data/loading/alb1.mpk:catacombs
+screens=1
+
+[region383]
+instance=1
+name=The Funerary Hall
+screen01=archive://data/loading/alb1.mpk:catacombs
+screens=1
+
+[region384]
+instance=1
+name=The Ritual Hall
+screen01=archive://data/loading/alb1.mpk:keltoi
+screens=1
+
+[region385]
+instance=1
+name=The Betrayer's Den
+screen01=archive://data/loading/alb1.mpk:keltoi
+screens=1
+
+[region386]
+instance=1
+name=The Sundered Tombs
+screen01=archive://data/loading/alb1.mpk:stonehengebarrows
+screens=1
+
+[region387]
+instance=1
+name=The Sundered Tombs
+screen01=archive://data/loading/alb1.mpk:stonehengebarrows
+screens=1
+
+[region388]
+instance=1
+name=The Sundered Tombs
+screen01=archive://data/loading/alb1.mpk:stonehengebarrows
+screens=1
+
+[region389]
+instance=1
+name=Shafts of the Tenebrae
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region390]
+instance=1
+name=Lair of the Exiled
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region391]
+instance=1
+name=Arcane Tower
+screen01=archive://data/loading/DR.mpk:Ch2_DF-Room
+screens=1
+
+[region392]
+instance=1
+name=The Hall of Reawakening
+screen01=archive://data/loading/alb1.mpk:mithra
+screens=1
+
+[region393]
+instance=1
+name=The Hidden Crypt
+screen01=archive://data/loading/alb1.mpk:mithra
+screens=1
+
+[region394]
+instance=1
+name=King Constantine's Throne Room
+screen01=archive://data/loading/DR.mpk:Throne_Alb
+screens=1
+
+[region395]
+instance=1
+name=King Lamfhotas' Throne Room
+screen01=archive://data/loading/DR.mpk:Throne_Hib
+screens=1
+
+[region396]
+instance=1
+name=The Depths of Despair
+screen01=archive://data/loading/cat.mpk:lowercrypt
+screens=1
+
+[region397]
+instance=1
+name=Realm of the Damned
+screen01=archive://data/loading/cat.mpk:lowercrypt
+screens=1
+
+[region398]
+instance=1
+name=Arcane Tower
+screen01=archive://data/loading/DR.mpk:Ch2_DF-Room
+screens=1
+
+[region399]
+instance=1
+name=Arcane Tower
+screen01=archive://data/loading/DR.mpk:Ch2_DF-Room
+screens=1
+
+[region400]
+instance=1
+name=Burial Tomb
+screen01=archive://data/loading/alb1.mpk:mithra
+screens=1
+
+[region401]
+instance=1
+name=Burial Tomb
+screen01=archive://data/loading/alb1.mpk:mithra
+screens=1
+
+[region402]
+instance=1
+name=Burial Tomb
+screen01=archive://data/loading/alb1.mpk:mithra
+screens=1
+
+[region403]
+instance=1
+name=Burial Tomb
+screen01=archive://data/loading/alb1.mpk:mithra
+screens=1
+
+[region404]
+instance=1
+name=Burial Tomb
+screen01=archive://data/loading/alb1.mpk:mithra
+screens=1
+
+[region405]
+instance=1
+name=Desecrated Grounds
+screen01=archive://data/loading/alb1.mpk:keltoi
+screens=1
+
+[region406]
+instance=1
+name=Desecrated Grounds
+screen01=archive://data/loading/alb1.mpk:keltoi
+screens=1
+
+[region407]
+instance=1
+name=Desecrated Grounds
+screen01=archive://data/loading/alb1.mpk:keltoi
+screens=1
+
+[region408]
+instance=1
+name=Desecrated Grounds
+screen01=archive://data/loading/alb1.mpk:keltoi
+screens=1
+
+[region409]
+instance=1
+name=Desecrated Grounds
+screen01=archive://data/loading/alb1.mpk:keltoi
+screens=1
+
+[region410]
+instance=1
+name=Forgotten Mines
+screen01=archive://data/loading/alb1.mpk:tepoksmine
+screens=1
+
+[region411]
+instance=1
+name=Forgotten Mines
+screen01=archive://data/loading/alb1.mpk:tepoksmine
+screens=1
+
+[region412]
+instance=1
+name=Forgotten Mines
+screen01=archive://data/loading/alb1.mpk:tepoksmine
+screens=1
+
+[region413]
+instance=1
+name=Forgotten Mines
+screen01=archive://data/loading/alb1.mpk:tepoksmine
+screens=1
+
+[region414]
+instance=1
+name=Forgotten Mines
+screen01=archive://data/loading/alb1.mpk:tepoksmine
+screens=1
+
+[region415]
+instance=1
+name=The Funerary Hall
+screen01=archive://data/loading/alb1.mpk:catacombs
+screens=1
+
+[region416]
+instance=1
+name=The Funerary Hall
+screen01=archive://data/loading/alb1.mpk:catacombs
+screens=1
+
+[region417]
+instance=1
+name=The Funerary Hall
+screen01=archive://data/loading/alb1.mpk:catacombs
+screens=1
+
+[region418]
+instance=1
+name=The Funerary Hall
+screen01=archive://data/loading/alb1.mpk:catacombs
+screens=1
+
+[region419]
+instance=1
+name=The Funerary Hall
+screen01=archive://data/loading/alb1.mpk:catacombs
+screens=1
+
+[region420]
+instance=1
+name=The Sundered Tombs
+screen01=archive://data/loading/alb1.mpk:stonehengebarrows
+screens=1
+
+[region421]
+instance=1
+name=The Sundered Tombs
+screen01=archive://data/loading/alb1.mpk:stonehengebarrows
+screens=1
+
+[region422]
+instance=1
+name=The Sundered Tombs
+screen01=archive://data/loading/alb1.mpk:stonehengebarrows
+screens=1
+
+[region423]
+instance=1
+name=The Sundered Tombs
+screen01=archive://data/loading/alb1.mpk:stonehengebarrows
+screens=1
+
+[region424]
+instance=1
+name=The Sundered Tombs
+screen01=archive://data/loading/alb1.mpk:stonehengebarrows
+screens=1
+
+[region425]
+instance=1
+name=The Lost Wing
+screen01=archive://data/loading/alb1.mpk:stonehengebarrows
+screens=1
+
+[region426]
+instance=1
+name=Deliah's Sanctuary
+screen01=archive://data/loading/alb1.mpk:stonehengebarrows
+screens=1
+
+[region427]
+instance=1
+name=The Cursed Barrow
+screen01=archive://data/loading/hib1.mpk:muire0
+screens=1
+
+[region428]
+instance=1
+name=The Cursed Barrow
+screen01=archive://data/loading/hib1.mpk:muire0
+screens=1
+
+[region429]
+instance=1
+name=Snyblem's Lair
+screen01=archive://data/loading/cat.mpk:aqueducts
+screens=1
+
+[region430]
+instance=1
+name=The Plutonian Shore
+screen01=archive://data/loading/cat.mpk:aqueducts
+screens=1
+
+[region431]
+instance=1
+name=The Cursed Barrow
+screen01=archive://data/loading/hib1.mpk:muire0
+screens=1
+
+[region432]
+instance=1
+name=Dismal Grotto
+screen01=archive://data/loading/hib1.mpk:spraggon0
+screens=1
+
+[region433]
+instance=1
+name=Snarg's Grotto
+screen01=archive://data/loading/cat.mpk:nyttheim
+screens=1
+
+[region434]
+instance=1
+name=The Maze of Tribulation
+screen01=archive://data/loading/cat.mpk:queenslabyrinth
+screens=1
+
+[region435]
+instance=1
+name=The Smelting Pot
+screen01=archive://data/loading/cat.mpk:glashtinforge
+screens=1
+
+[region436]
+instance=1
+name=Forges of Flame
+screen01=archive://data/loading/cat.mpk:glashtinforge
+screens=1
+
+[region437]
+instance=1
+name=Hugak's Smithy
+screen01=archive://data/loading/cat.mpk:glashtinforge
+screens=1
+
+[region438]
+instance=1
+name=The Goblin Workshop
+screen01=archive://data/loading/cat.mpk:glashtinforge
+screens=1
+
+[region439]
+instance=1
+name=Wolak's Crucible
+screen01=archive://data/loading/cat.mpk:glashtinforge
+screens=1
+
+[region440]
+instance=1
+name=Marik's Workroom
+screen01=archive://data/loading/cat.mpk:glashtinforge
+screens=1
+
+[region441]
+instance=1
+name=Dismal Grotto
+screen01=archive://data/loading/hib1.mpk:spraggon0
+screens=1
+
+[region442]
+instance=1
+name=The Steward's Crypt
+screen01=archive://data/loading/hib1.mpk:muire0
+screens=1
+
+[region443]
+instance=1
+name=Serf's Folly
+screen01=archive://data/loading/hib1.mpk:muire0
+screens=1
+
+[region444]
+instance=1
+name=Dismal Grotto
+screen01=archive://data/loading/hib1.mpk:spraggon0
+screens=1
+
+[region445]
+instance=1
+name=The Dark Caverns
+screen01=archive://data/loading/hib1.mpk:koalinth
+screens=1
+
+[region446]
+instance=1
+name=Blathnait's Refuge
+screen01=archive://data/loading/cat.mpk:theveil
+screens=1
+
+[region447]
+instance=1
+name=Broken Mirrors
+screen01=archive://data/loading/cat.mpk:theveil
+screens=1
+
+[region448]
+instance=1
+name=The Dark Caverns
+screen01=archive://data/loading/hib1.mpk:koalinth
+screens=1
+
+[region449]
+instance=1
+name=The Dark Caverns
+screen01=archive://data/loading/hib1.mpk:koalinth
+screens=1
+
+[region450]
+instance=1
+name=The Cursed Barrow
+screen01=archive://data/loading/hib1.mpk:muire0
+screens=1
+
+[region451]
+instance=1
+name=The Cursed Barrow
+screen01=archive://data/loading/hib1.mpk:muire0
+screens=1
+
+[region452]
+instance=1
+name=The Cursed Barrow
+screen01=archive://data/loading/hib1.mpk:muire0
+screens=1
+
+[region453]
+instance=1
+name=The Cursed Barrow
+screen01=archive://data/loading/hib1.mpk:muire0
+screens=1
+
+[region454]
+instance=1
+name=The Cursed Barrow
+screen01=archive://data/loading/hib1.mpk:muire0
+screens=1
+
+[region455]
+instance=1
+name=Dismal Grotto
+screen01=archive://data/loading/hib1.mpk:spraggon0
+screens=1
+
+[region456]
+instance=1
+name=Dismal Grotto
+screen01=archive://data/loading/hib1.mpk:spraggon0
+screens=1
+
+[region457]
+instance=1
+name=Dismal Grotto
+screen01=archive://data/loading/hib1.mpk:spraggon0
+screens=1
+
+[region458]
+instance=1
+name=Dismal Grotto
+screen01=archive://data/loading/hib1.mpk:spraggon0
+screens=1
+
+[region459]
+instance=1
+name=Dismal Grotto
+screen01=archive://data/loading/hib1.mpk:spraggon0
+screens=1
+
+[region460]
+instance=1
+name=The Accursed Caves
+screen01=archive://data/loading/hib1.mpk:treibh1
+screens=1
+
+[region461]
+instance=1
+name=The Accursed Caves
+screen01=archive://data/loading/hib1.mpk:treibh1
+screens=1
+
+[region462]
+instance=1
+name=The Accursed Caves
+screen01=archive://data/loading/hib1.mpk:treibh1
+screens=1
+
+[region463]
+instance=1
+name=The Accursed Caves
+screen01=archive://data/loading/hib1.mpk:treibh1
+screens=1
+
+[region464]
+instance=1
+name=The Accursed Caves
+screen01=archive://data/loading/hib1.mpk:treibh1
+screens=1
+
+[region465]
+instance=1
+name=The Dark Caverns
+screen01=archive://data/loading/hib1.mpk:koalinth
+screens=1
+
+[region466]
+instance=1
+name=The Dark Caverns
+screen01=archive://data/loading/hib1.mpk:koalinth
+screens=1
+
+[region467]
+instance=1
+name=The Dark Caverns
+screen01=archive://data/loading/hib1.mpk:koalinth
+screens=1
+
+[region468]
+instance=1
+name=The Dark Caverns
+screen01=archive://data/loading/hib1.mpk:koalinth
+screens=1
+
+[region469]
+instance=1
+name=The Dark Caverns
+screen01=archive://data/loading/hib1.mpk:koalinth
+screens=1
+
+[region470]
+instance=1
+name=Half Orc Command Post
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region471]
+instance=1
+name=The Unused Mine
+screen01=archive://data/loading/hib1.mpk:mines0
+screens=1
+
+[region472]
+instance=1
+name=The Unused Mine
+screen01=archive://data/loading/hib1.mpk:mines0
+screens=1
+
+[region473]
+instance=1
+name=The Unused Mine
+screen01=archive://data/loading/hib1.mpk:mines0
+screens=1
+
+[region474]
+instance=1
+name=The Unused Mine
+screen01=archive://data/loading/hib1.mpk:mines0
+screens=1
+
+[region475]
+instance=1
+name=Rise of the Spraggons
+screen01=archive://data/loading/hib1.mpk:spraggon0
+screens=1
+
+[region476]
+instance=1
+name=The Warrens
+screen01=archive://data/loading/hib1.mpk:spraggon0
+screens=1
+
+[region477]
+instance=1
+name=The Accursed Caves
+screen01=archive://data/loading/hib1.mpk:treibh1
+screens=1
+
+[region478]
+instance=1
+name=The Accursed Caves
+screen01=archive://data/loading/hib1.mpk:treibh1
+screens=1
+
+[region479]
+instance=1
+name=The Ancient's Retreat
+screen01=archive://data/loading/hib1.mpk:treibh1
+screens=1
+
+[region480]
+instance=1
+name=The Shaman's Inner Sanctum
+screen01=archive://data/loading/hib1.mpk:treibh1
+screens=1
+
+[region481]
+instance=1
+name=The Accursed Caves
+screen01=archive://data/loading/hib1.mpk:treibh1
+screens=1
+
+[region482]
+instance=1
+name=The Unused Mine
+screen01=archive://data/loading/hib1.mpk:mines0
+screens=1
+
+[region483]
+instance=1
+name=The Brawler's Den
+screen01=archive://data/loading/hib1.mpk:koalinth
+screens=1
+
+[region484]
+instance=1
+name=Felena's Sorrow
+screen01=archive://data/loading/hib1.mpk:koalinth
+screens=1
+
+[region485]
+instance=1
+name=The Unused Mine
+screen01=archive://data/loading/hib1.mpk:mines0
+screens=1
+
+[region486]
+instance=1
+name=The Unused Mine
+screen01=archive://data/loading/hib1.mpk:mines0
+screens=1
+
+[region487]
+instance=1
+name=The Pit of Despair
+screen01=archive://data/loading/hib1.mpk:mines0
+screens=1
+
+[region488]
+instance=1
+name=The Forgotten Vein
+screen01=archive://data/loading/hib1.mpk:mines0
+screens=1
+
+[region489]
+name=Demons' Breach
+screen01=archive://data/loading/rvr1.mpk:DarkAlb
+screen02=archive://data/loading/rvr1.mpk:DarkHib
+screen03=archive://data/loading/rvr1.mpk:DarkMid
+screens=3
+
+[region491]
+instance=1
+name=Maze of Madness
+screen01=archive://data/loading/cat.mpk:queenslabyrinth
+screens=1
+
+[region492]
+instance=1
+name=Shattered Lands
+screen01=archive://data/loading/cat.mpk:queenslabyrinth
+screens=1
+
+[region494]
+instance=1
+name=The Gnoll's Den
+screen01=archive://data/loading/cat.mpk:abandonedmines
+screens=1
+
+[region495]
+instance=1
+name=The Inner Sanctum
+screen01=archive://data/loading/cat.mpk:lowercrypt
+screens=1
+
+[region496]
+instance=1
+name=The Deep
+screen01=archive://data/loading/cat.mpk:nyttheim
+screens=1

@@ -1,0 +1,25 @@
+Verified 2026-09-08
+
+23 automated tests passed using isolated temporary copies of client assets.
+Live model, mapping, texture and original shared-asset hashes were unchanged.
+
+Coverage:
+- Body and sword export/build/install/rollback, including both sword files.
+- GUI construction, converted comparison preview and install button state.
+- Legacy DXT1/DXT5 256/512/2048 sizes, complete mipmaps, malformed DDS rejection.
+- Preservation of working alpha and legacy header fields.
+- MPK growth, compressed/expanded offsets, CRC and unrelated-entry preservation.
+- Block installs without review, while running, or under an existing install lock.
+- Reject moved atlas aspect ratio, altered meshes/references, changed payloads,
+  stale exports, model registration behind blank rows and path escapes.
+- Simulated install and rollback I/O failure handling.
+- Refuse rollback over later edits.
+
+The actual user-supplied 1254x1254 body and rusty-sword PNGs were then rebuilt at
+2048 using this tool. All THREE output files matched the working live texture
+files byte-for-byte: skin099.mpk, uh_sword001.dds and uh_sword001.tga.
+Those checks exported/built tool projects only; they did not reinstall anything.
+
+The user already confirmed the actual undead hero renders with these 2048 assets.
+Future artwork still requires preview review and an in-game appearance check.
+This is not a promise that arbitrary new artwork or meshes will render correctly.

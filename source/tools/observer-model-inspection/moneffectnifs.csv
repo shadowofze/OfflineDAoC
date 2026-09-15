@@ -1,0 +1,195 @@
+Effect,Desc,Filename,Expansion,Housing,Max
+Nif,,,Only,Only,VisibleRange
+1,CorpseLight Dark Red,corpselight_dkred,1,0,2500
+2,CorpseLight Dark Blue,corpselight_dkblu,1,0,2500
+3,CorpseLight Green Face,corpselight_grnface,1,0,2500
+4,CorpseLight Red Skull,corpselight_redskull,1,0,2500
+5,CorpseLight Torch,corpselight_torch,1,0,2500
+6,CorpseLight WhtPrp,corpselight_whtprp,1,0,2500
+7,Cloud,cloud,1,0,2500
+8,Waterglob,waterglob,1,0,2500
+9,AlgaeSlimeBlob,AlgaeSlimeBlob,1,0,2500
+10,Blood Blob,BloodBlob,1,0,2500
+11,Green Slime Blob,GreenSlimeBlob,1,0,2500
+12,Mucus Blob,mucusblob,1,0,2500
+13,Ochre Jelly Blob,OchreJellyBlob,1,0,2500
+14,Oily Slime Blob,OilySlimeBlob,1,0,2500
+15,Pink Slime Blob,PinkSlimeBlob,1,0,2500
+16,PurpleSlimeBlob,PurpleSlimeBlob,1,0,2500
+17,Acid Glob,acidglob,1,0,2500
+18,Corrosive Cloud,CorrosiveCloud,1,0,2500
+19,Miasma,Miasma,1,0,2500
+20,Noxious Fumes,NoxiousFumes,1,0,2500
+21,SulfurCloud,SulfurCloud,1,0,2500
+22,Green Wisp,grnwisp,0,0,2400
+23,Gyro,gyro_01,1,0,5000
+24,Whirlwind,whirlwind,1,0,2500
+25,Aurora,auroracyl_sfx,1,0,2500
+26,Rift,rift1_sfx,1,0,2500
+27,AlbFrame,ward_base_alb,1,0,2500
+28,MidFrame,ward_base_mid,1,0,2500
+29,HibFrame,ward_base_hib,1,0,2500
+30,Determination,ward_Determination,1,0,2500
+31,Dissonating,ward_Dissonating,1,0,2500
+32,Power,ward_Power,1,0,2500
+33,Prescience,ward_Prescience,1,0,2500
+34,Rejuvenation,ward_Rejuvenation,1,0,2500
+35,Speedwarp,ward_Speedwarp,1,0,2500
+36,dissonancetrap alb,rune_dissonancetrap_alb,1,0,2500
+37,dissonancetrap hib,rune_dissonancetrap_hib,1,0,2500
+38,dissonancetrap mid,rune_dissonancetrap_mid,1,0,2500
+39,poisonspike alb,rune_poisonspike_alb,1,0,2500
+40,poisonspike hib,rune_poisonspike_hib,1,0,2500
+41,poisonspike mid,rune_poisonspike_mid,1,0,2500
+42,powertrap alb,rune_powertrap_alb,1,0,2500
+43,powertrap hib,rune_powertrap_hib,1,0,2500
+44,powertrap mid,rune_powertrap_mid,1,0,2500
+45,siegewrecker alb,rune_siegewrecker_alb,1,0,2500
+46,siegewrecker hib,rune_siegewrecker_hib,1,0,2500
+47,siegewrecker mid,rune_siegewrecker_mid,1,0,2500
+48,tanglesnare alb,rune_tanglesnare_alb,1,0,2500
+49,tanglesnare hib,rune_tanglesnare_hib,1,0,2500
+50,tanglesnare mid,rune_tanglesnare_mid,1,0,2500
+51,range_1000_alb,range_1000_alb,1,0,2500
+52,range_1000_hib,range_1000_hib,1,0,2500
+53,range_1000_mid,range_1000_mid,1,0,2500
+55,flamering150,flamering150,1,0,2500
+56,thornring500_red,thornring500_red,1,0,2500
+57,thornring500_blu,thornring500_blu,1,0,2500
+58,thornring500_grn,thornring500_grn,1,0,2500
+59,Static Tempest,statictempest350,1,0,2500
+60,Relic Pad,relic_pad_effect,1,0,1200
+61,Color swirl,colorswirlball_sfx,1,0,2500
+62,Purple Swirl,prpswirlball_sfx,1,0,2500
+63,Flame,flame_sfx,1,0,2500
+64,Salamander,salamanderfire_sfx,1,0,2500
+65,Flame Swirl,flameswirl,1,0,2500
+66,Camp Fire,campfire_sfx,1,0,2500
+67,warlock1,warlock1,1,0,3000
+68,warlock2,warlock2,1,0,3000
+69,warlock3,warlock3,1,0,3000
+70,warlock4,warlock4,1,0,3000
+71,warlock5,warlock5,1,0,3000
+72,Dark Crystal,crystalfire_sfx,1,0,2500
+75,Shar Teleporter,SharMiniTP_effect,3,0,4000
+76,Inc Telepoter,InconnuMiniTP_effect,3,0,4000
+77,Dark Spire Crystal 1,dark_spire_crystal_01,3,0,4000
+78,Dark Spire Crystal 2,dark_spire_crystal_02,3,0,4000
+79,Quest Indicator,targetring_tridash_gold,1,0,4000
+80,statictempest_core_alb,statictempest_core_alb,1,0,2500
+81,statictempest_core_mid,statictempest_core_mid,1,0,2500
+82,statictempest_core_hib,statictempest_core_hib,1,0,2500
+83,teleporter_ground,teleporter_ground,1,0,2500
+84,Warlock Cauldron Thingy,warlock_cauldron,1,0,2500
+85,hockey_flag_wrapped01,hockey_flag_wrapped_blue,1,0,2500
+86,hockey_flag01,hockey_flag01_blue,1,0,2500
+87,hockey_fieldmarker,hockey_fieldmarker,1,0,2500
+88,hockey_flag_wrapped_yellow,hockey_flag_wrapped_yellow,1,0,2500
+89,hockey_flag01_yellow,hockey_flag01_yellow,1,0,2500
+90,hockey_flag_wrapped_brown,hockey_flag_wrapped_brown,1,0,2500
+91,hockey_flag01_brown,hockey_flag01_brown,1,0,2500
+92,hockey_flag_wrapped_green,hockey_flag_wrapped_green,1,0,2500
+93,hockey_flag01_green,hockey_flag01_green,1,0,2500
+94,hockey_flag_wrapped_red,hockey_flag_wrapped_red,1,0,2500
+95,hockey_flag01_red,hockey_flag01_red,1,0,2500
+96,Flame,voidbrn_sfx,1,0,2500
+97,Fly buzzing,flybuzz_loop,4,0,2500
+98,Thick Fly Swarm,flybuzz_thick_loop,4,0,2500
+99,mid_electric1_hit,mid_electric1_hit,1,0,2500
+100,guild_banner_alb_effect,GuildBannerFX_Alb,1,0,2500
+101,guild_banner_mid_effect,GuildBannerFX_Mid,1,0,2500
+102,guild_banner_hib_effect,GuildBannerFX_Hib,1,0,2500
+103,Poison Elemental,poisoncloud,1,0,2500
+104,Pulsating Darkness,skullcloud1_hit,1,0,2500
+105,guild_banner_alb_effect,guild_banner_alb_effect,1,0,2500
+106,guild_banner_mid_effect,guild_banner_mid_effect,1,0,2500
+107,guild_banner_hib_effect,guild_banner_hib_effect,1,0,2500
+108,Molochs Eye with no slit,sfx_Moloch_head2,5,0,2500
+109,horse flame front hoof,sfx_horse_flame_front_hoof,4,0,2500
+110,horse flame rear hoof,sfx_horse_flame_rear_hoof,4,0,2500
+111,sfx_King_Lug_aura,sfx_King_Lug_aura,5,0,2500
+112,sfx_horse_nightmare_head,sfx_horse_nightmare_head,4,0,2500
+113,sfx_horse_undead_head,sfx_horse_undead_head,4,0,2500
+114,sfx_horse_earth_body,sfx_horse_earth_body,4,0,2500
+115,Molochs Eye with slit,sfx_Moloch_head,5,0,2500
+116,sfx_horse_frost_body,sfx_horse_frost_body,4,0,2500
+117,sfx_horse_unicorn_head,sfx_horse_unicorn_head,4,0,2500
+118,sfx_horse_storm_head,sfx_horse_storm_head,4,0,2500
+119,sfx_horse_flame_head,sfx_horse_flame_head,4,0,2500
+120,sfx_horse_nightmare_rear_hoof,sfx_horse_nightmare_rear_hoof,4,0,2500
+121,sfx_horse_nightmare_front_hoof,sfx_horse_nightmare_front_hoof,4,0,2500
+122,sfx_horse_unicorn_gold_head,sfx_horse_unicorn_gold_head,4,0,2500
+123,sfx_Admorenth_head,sfx_Admorenth_head,5,0,2500
+124,targetring_tridash_red,targetring_tridash_red,1,0,4000
+125,targetring_tridash_blue,targetring_tridash_blue,1,0,4000
+126,targetring_tridash_green,targetring_tridash_green,1,0,4000
+127,New Placeable Portal,portaleffect,1,0,2500
+128,storm_base_alb,storm_base_alb,1,0,2500
+129,storm_base_mid,storm_base_mid,1,0,2500
+130,storm_base_hib,storm_base_hib,1,0,2500
+131,campfire_magic,campfire_magic,1,0,2500
+132,Storm Effect Center,storm_center,1,0,2500
+133,Silver Construct Death,Construct_Death2,6,0,4000
+134,Portal Monster Effect,portaleffect_mon,1,0,2500
+135,Relic Health Amulet,Relic_Health_Amulet_NI4,1,0,4000
+136,Relic Earth Runestone,Relic_Earth_Runestone_NI4,1,0,4000
+137,Relic Earth Razestone,Relic_Earth_Razestone_NI4,1,0,4000
+138,Relic Death Skull,Relic_Death_Skull_NI4,1,0,4000
+139,Relic Death Mask,Relic_Death_Mask_NI4,1,0,4000
+140,Relic Death Blade,Relic_Death_Blade_NI4,1,0,4000
+141,Relic Artisan Shield,Relic_Artisan_Shield_NI4,1,0,4000
+142,Relic Artisan Gear,Relic_Artisan_Gear_NI4,1,0,4000
+143,Relic Unity Staff,Relic_Unity_Staff_NI4,1,0,4000
+144,Relic Unity Scroll,Relic_Unity_Scroll_NI4,1,0,4000
+145,Relic Health Brazier,Relic_Health_Brazier_NI4,1,0,4000
+146,Relic Lightbeam,Relic_Lightbeam_NI4,1,0,4000
+147,Relic Forge Flame,Relic_Forge_Flame_NI4,1,0,4000
+148,Relic Ruler Bracer,Relic_Ruler_Bracer_NI4,1,0,4000
+149,Relic Storm Orrery,Relic_Storm_Orrery_NI4,1,0,4000
+150,Relic Storm Palantir,Relic_Storm_Palantir_NI4,1,0,4000
+151,Relic Forge Anvil,Relic_Forge_Anvil_NI4,1,0,4000
+152,Relic Cow Bell,Relic_Cowbell_NI4,1,0,4000
+153,Black Wind w/ MinoSkull,Black_Wind,6,0,2500
+154,Relic Ruler Wreath,Relic_Ruler_Wreath_NI4,1,0,4000
+155,Relic Battle Trident,Relic_Battle_Trident_NI4,1,0,4000
+156,Relic Battle Statue,Relic_Battle_Statue_NI4,1,0,4000
+157,Relic Ruler Statue,Relic_Ruler_Statue_NI4,1,0,4000
+158,Relic Warhorn,Relic_Battle_Warhorn_NI4,1,0,4000
+159,Red Labyrinth Fire,fire_labyrinth_spell,1,0,4000
+160,Ambient Moths,moths_spell,1,0,2500
+161,Ambient Butterflies,butterflies,1,0,2500
+162,Black Wind w/ Scary Face,black_wind2,6,0,2500
+163,Relic_Lightbeam_Red,Relic_Lightbeam_Red,1,0,4000
+164,Relic_Lightbeam_Gold,Relic_Lightbeam_Gold,1,0,4000
+165,Purple Labyrinth Fire,Fire_labyrinth_03,6,0,8000
+166,Relic Lock Effect,relic_lock_mon,0,0,4000
+167,Rolling Boulder,Rolling_Boulder,6,0,4000
+168,Copper Construct Death,Construct_Gold_Death2,6,0,4000
+169,2000 Unit Ring Alb,range_2000_alb,0,0,2500
+170,2000 Unit Ring Mid,range_2000_mid,0,0,2500
+171,2000 Unit Ring Hib,range_2000_hib,0,0,2500
+172,riserings3x_red,riserings3x_red,0,0,2500
+173,riserings3x_blu,riserings3x_blu,0,0,2500
+174,riserings3x_grn,riserings3x_grn,0,0,2500
+175,rise_streaks_red,rise_streaks_red,0,0,2500
+176,rise_streaks_grn,rise_streaks_grn,0,0,2500
+177,rise_streaks_blu,rise_streaks_blu,0,0,2500
+178,negmaelstrom_core_alb,negmaelstrom_core_alb,0,0,2500
+179,negmaelstrom_core_mid,negmaelstrom_core_mid,0,0,2500
+180,negmaelstrom_core_hib,negmaelstrom_core_hib,0,0,2500
+181,negmaelstrom350,negmaelstrom350,0,0,2500
+182,Exploding Glimmer Knight,Cat_GlimmerKnight_ExplodingDeath,0,0,4000
+183,Placeable Fire Prop 1,fire_labyrinth_01_propeffect,0,0,4000
+184,Hibernian Dragon Effect Monster,dragonbreath_hib_monster,0,0,4000
+185,Black Smoke Effect Prop,smoke_black_propeffect,999,0,4000
+186,Lore Quest Indicator,quest_lore,1,0,4000
+187,Lesson Quest Indicator,quest_lesson,1,0,4000
+188,Quest Completed Indicator,quest_knot_complete,1,0,4000
+189,Quest Pending Indicator,quest_knot_inactive_01,1,0,4000
+190,Relic_Lightbeam_Blue,Relic_Lightbeam_Blue,1,0,4000
+191,Relic_Lightbeam_Green,Relic_Lightbeam_Green,1,0,4000
+192,Bonedancer_totem,bonedancer_totem,1,0,2500
+193,bonedancer_area_yellow,bonedancer_area_yellow,1,0,2500
+194,bonedancer_area_purple,bonedancer_area_purple,1,0,2500
+195,bonedancer_area_blue,bonedancer_area_blue,1,0,2500
+196,siege ward,ward_siegeward,1,0,2500

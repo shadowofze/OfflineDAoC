@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\server\CoreDatabase\CoreDatabase.csproj" />
+    <ProjectReference Include="..\..\server\GameServer\GameServer.csproj" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
+    <EmbeddedResource Include="..\..\server\GameServer\bots\autonomous\data\classic165_restored_spawn_ids.txt"
+                      Link="data\classic165_restored_spawn_ids.txt" />
+    <EmbeddedResource Include="..\..\server\GameServer\bots\autonomous\data\classic165_period_restored_spawn_ids.txt"
+                      Link="data\classic165_period_restored_spawn_ids.txt" />
+  </ItemGroup>
+</Project>

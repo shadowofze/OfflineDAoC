@@ -1,0 +1,753 @@
+1000 limit,,,Use File
+NIF ID,NIF Description,NIF number,Frequency
+1,univ longsword propane-style flame,262,
+2,univ longsword regular flame,263,
+3,univ longsword orange flame,264,
+4,univ longsword rising flame,265,
+5,univ longsword flame w/smoke,266,
+6,univ longsword flame w/sparks,267,
+7,univ longsword hot glow,268,
+8,univ longsword  hot aura,269,
+9,univ longsword  blue aura,270,
+10,univ longsword  hot blue glow,271,
+11,univ longsword  hot gold glow,272,
+12,univ longsword  hot red glow,273,
+13,univ longsword  red aura,274,
+14,univ longsword cold aura w/sparkles,275,
+15,univ longsword cold aura w/vapor,276,
+16, longsword hilt wavering blue beam,277,
+17, longsword hilt wavering green beam,278,
+18, longsword hilt wavering red beam,279,
+19, longsword hilt red/blue beam,280,
+20, longsword hilt purple beam,281,
+21,univ 2h/gr sword yellow flames,282,
+22,univ 2h/gr sword orange flames,283,
+23,univ 2h/gr sword fire w/smoke,284,
+24,univ 2h/gr sword fire w/sparks,285,
+25,univ 2h/gr blue glow w/sparkles,286,
+26,univ 2h/gr blue aura w/cold vapor,287,
+27,univ 2h/gr icy blue glow,288,
+28,univ 2h/gr red aura,289,
+29,univ 2h/gr  strong crimson glow,290,
+30,univ 2h/gr  white core red glow,291,
+31,univ 2h/gr  silvery/white glow,292,
+32,univ 2h/gr  gold/yellow glow,293,
+33,univ 2h/gr  hot green glow,294,
+34,univ 1h hammer red aura,295,
+35,univ 1h hammer  fiery glow,296,
+36,univ 1h hammer more intense fiery glow,297,
+37,univ 1h hammer flaming,298,
+38,univ 1h hammer torchlike flaming,299,
+39,univ 1h hammer silvery glow,300,
+40,univ 1h hammer purple glow,301,
+41,univ 1h hammer blue aura,302,
+42,univ 1h hammer blue glow,303,
+43,univ 1h hammer arcs from head to handle,304,
+44,univ 1h crush arcing halo ,305,
+45,univ 1h crush center arcing,306,
+46,univ 1h crush smaller arcing halo ,307,
+47,univ 1h crush hot orange core glow,308,
+48,univ 1h crush orange aura,309,
+49,univ 1h crush subtle aura with sparks,310,
+50,univ 1h crush yellow flame,311,
+51,univ 1h crush mana flame,312,
+52,univ 1h crush hot green glow,313,
+53,univ 1h crush hot red glow,314,
+54,univ 1h crush hot purple glow,315,
+55,univ 1h crush cold vapor,316,
+56,univ 1h axe basic flame,317,
+57,univ 1h axe orange flame,318,
+58,univ 1h axe slow orange flame w/sparks,319,
+59,univ 1h axe fiery/trailing flame ,320,
+60,univ 1h axe cold vapor,321,
+61,univ 1h axe blue aura with twinkles,322,
+62,univ 1h axe hot green glow,323,
+63,univ 1h axe hot blue glow,324,
+64,univ 1h axe hot cyan glow,325,
+65,univ 1h axe hot purple glow,326,
+66,univ 1h axe blue->purple->orange glow,327,
+67,univ shortsword propane flame,328,
+68,univ shortsword orange flame with sparks,329,
+69,univ shortsword blue aura with twinkles,330,
+70,univ shortsword green cloud with bubbles,331,
+71,univ shortsword red aura with blood bubbles,332,
+72,univ shortsword evil green glow,333,
+73,univ shortsword black glow,334,
+74,Midgard battlespear cold with twinkles,339,
+75,Midgard battlespear evil green aura,340,
+76,Midgard battlespear evil red aura,341,
+77,Midgard battlespear flaming,342,
+78,Midgard battlespear hot gold glow,343,
+79,Midgard battlespear hot fire glow,344,
+80,Midgard battlespear red aura,345,
+81,Midgard lugged spear blue glow,346,
+82,Midgard lugged spear hot blue glow,347,
+83,Midgard lugged spear cold with twinkles,348,
+84,Midgard lugged spear electric arcing,349,
+85,Midgard lugged spear hot yellow flame,350,
+86,Midgard lugged spear orange flame w/ sparks,351,
+87,Midgard lugged spear orange to purple flame,352,
+88,Midgard lugged spear hot purple flame,353,
+89,Midgard lugged spear silvery glow,354,
+90,Briton quarterstaff blue glow,355,
+91,Briton quarterstaff blue glow w/ twinkles,356,
+92,Briton quarterstaff gold glow,357,
+93,Briton quarterstaff gold glow w/ twinkles,358,
+94,Briton quarterstaff  faint red glow,359,
+95,Relic pad effect,499,
+96,Admorenth's Staff Effect (Admorenth ONLY),731,
+98,Ice Fist 1,777,1
+99,Fire Fist 2,778,1
+100,Fire Fist 1,779,1
+101,Force/Ripple Fist,780,1
+102,Smoke Fist,781,1
+103,Energy Fist 1,782,1
+104,Energy Fist 2,784,1
+105,ADR_DSL_Hib_flex_thrust_sfx,836,1
+106,ADR_DSL_Hib_flex_slash_sfx,837,1
+107,ADR_DSL_Hib_flex_blunt_sfx,838,1
+108,ADR_DSL_Hib_bow_short_sfx,839,1
+109,ADR_DSL_Hib_bow_long_sfx,840,1
+110,ADR_DSL_Hib_bow_cross_sfx,841,1
+111,ADR_DSL_Hib_2h_sword_thrust_sfx,842,1
+112,ADR_DSL_Hib_2h_sword_slash_sfx,843,1
+113,ADR_DSL_Hib_2h_hammer_blunt_sfx,844,1
+114,ADR_DSL_Hib_2h_axe_sfx,845,1
+115,ADR_DSL_Hib_1h_sword_thrust_offhand_sfx,846,1
+116,ADR_DSL_Hib_1h_sword_thrust_mainhand_sfx,847,1
+117,ADR_DSL_Hib_1h_sword_slash_offhand_sfx,848,1
+118,ADR_DSL_Hib_1h_sword_slash_mainhand_sfx,849,1
+119,ADR_DSL_Hib_1h_hammer_blunt_offhand_sfx,850,1
+120,ADR_DSL_Hib_1h_hammer_blunt_mainhand_sfx,851,1
+121,ADR_DSL_Hib_1h_axe_offhand_sfx,852,1
+122,ADR_DSL_Hib_1h_axe_mainhand_sfx,853,1
+123,ADR_DSL_Hib_Shield_Small_sfx,854,1
+124,ADR_DSL_Hib_Shield_Medium_sfx,855,1
+125,ADR_DSL_Hib_Shield_Large_sfx,856,1
+126,ADR_DSL_Hib_scythe_sfx,857,1
+127,ADR_DSL_Hib_quiver_sfx,858,1
+128,ADR_DSL_Hib_quarterstaff_sfx,859,1
+129,ADR_DSL_Hib_pole-arm_spear_thrust_sfx,860,1
+130,ADR_DSL_Hib_pole-arm_spear_slash_sfx,861,1
+131,ADR_DSL_Hib_pole-arm_blunt_sfx,862,1
+132,ADR_DSL_Hib_magicstaff_sfx,863,1
+133,ADR_DSL_Hib_harp_sfx,864,1
+134,ADR_DSL_Hib_H2h_thrust_offhand_sfx,865,1
+135,ADR_DSL_Hib_H2h_thrust_mainhand_sfx,866,1
+136,ADR_DSL_Hib_H2h_slash_offhand_sfx,867,1
+137,ADR_DSL_Hib_H2h_slash_mainhand_sfx,868,1
+138,ADR_DSL_Hib_H2h_blunt_offhand_sfx,869,1
+139,ADR_DSL_Hib_H2h_blunt_mainhand_sfx,870,1
+140,ADR_DSL_Mid_Flex_thrust_sfx,871,1
+141,ADR_DSL_Mid_H2h_blunt_mainhand_sfx,872,1
+142,ADR_DSL_Mid_H2h_blunt_offhand_sfx,873,1
+143,ADR_DSL_Mid_H2h_slash_mainhand_sfx,874,1
+144,ADR_DSL_Mid_H2h_slash_offhand_sfx,875,1
+145,ADR_DSL_Mid_H2h_thrust_mainhand_sfx,876,1
+146,ADR_DSL_Mid_H2h_thrust_offhand_sfx,877,1
+147,ADR_DSL_Mid_harp_sfx,878,1
+148,ADR_DSL_Mid_magicstaff_sfx,879,1
+149,ADR_DSL_Mid_pole-arm_blunt_sfx,880,1
+150,ADR_DSL_Mid_pole-arm_spear_slash_sfx,881,1
+151,ADR_DSL_Mid_pole-arm_spear_thrust_sfx,882,1
+152,ADR_DSL_Mid_quarterstaff_sfx,883,1
+153,ADR_DSL_Mid_quiver_sfx,884,1
+154,ADR_DSL_Mid_scythe_sfx,885,1
+155,ADR_DSL_Mid_Shield_Large_sfx,886,1
+156,ADR_DSL_Mid_Shield_Medium_sfx,887,1
+157,ADR_DSL_Mid_Shield_Small_sfx,888,1
+158,ADR_DSL_Mid_1h_axe_mainhand_sfx,889,1
+159,ADR_DSL_Mid_1h_axe_offhand_sfx,890,1
+160,ADR_DSL_Mid_1h_hammer_blunt_mainhand_sfx,891,1
+161,ADR_DSL_Mid_1h_hammer_blunt_offhand_sfx,892,1
+162,ADR_DSL_Mid_1h_sword_slash_mainhand_sfx,893,1
+163,ADR_DSL_Mid_1h_sword_slash_offhand_sfx,894,1
+164,ADR_DSL_Mid_1h_sword_thrust_mainhand_sfx,895,1
+165,ADR_DSL_Mid_1h_sword_thrust_offhand_sfx,896,1
+166,ADR_DSL_Mid_2h_axe_sfx,897,1
+167,ADR_DSL_Mid_2h_hammer_blunt_sfx,898,1
+168,ADR_DSL_Mid_2h_sword_slash_sfx,899,1
+169,ADR_DSL_Mid_2h_sword_thrust_sfx,900,1
+170,ADR_DSL_Mid_bow_cross_sfx,901,1
+171,ADR_DSL_Mid_bow_long_sfx,902,1
+172,ADR_DSL_Mid_bow_short_sfx,903,1
+173,ADR_DSL_Mid_Flex_blunt_sfx,904,1
+174,ADR_DSL_Mid_Flex_slash_sfx,905,1
+175,ADR_DSL_Alb_1h_sword_slash_offhand_sfx,906,1
+176,ADR_DSL_Alb_1h_sword_slash_mainhand_sfx,907,1
+177,ADR_DSL_Alb_1h_hammer_blunt_offhand_sfx,908,1
+178,ADR_DSL_Alb_1h_hammer_blunt_mainhand_sfx,909,1
+179,ADR_DSL_Alb_1h_axe_offhand_sfx,910,1
+180,ADR_DSL_Alb_1h_axe_mainhand_sfx,911,1
+181,ADR_DSL_Alb_Shield_Small_sfx,912,1
+182,ADR_DSL_Alb_Shield_Medium_sfx,913,1
+183,ADR_DSL_Alb_Shield_Large_sfx,914,1
+184,ADR_DSL_Alb_scythe_sfx,915,1
+185,ADR_DSL_Alb_quiver_sfx,916,1
+186,ADR_DSL_Alb_quarterstaff_sfx,917,1
+187,ADR_DSL_Alb_pole-arm_spear_thrust_sfx,918,1
+188,ADR_DSL_Alb_pole-arm_spear_slash_sfx,919,1
+189,ADR_DSL_Alb_pole-arm_blunt_sfx,920,1
+190,ADR_DSL_Alb_magicstaff_sfx,921,1
+191,ADR_DSL_Alb_harp_sfx,922,1
+192,ADR_DSL_Alb_H2h_thrust_offhand_sfx,923,1
+193,ADR_DSL_Alb_H2h_thrust_mainhand_sfx,924,1
+194,ADR_DSL_Alb_H2h_slash_offhand_sfx,925,1
+195,ADR_DSL_Alb_H2h_slash_mainhand_sfx,926,1
+196,ADR_DSL_Alb_H2h_blunt_offhand_sfx,927,1
+197,ADR_DSL_Alb_H2h_blunt_mainhand_sfx,928,1
+198,ADR_DSL_Alb_Flex_thrust_sfx,929,1
+199,ADR_DSL_Alb_Flex_slash_sfx,930,1
+200,ADR_DSL_Alb_Flex_blunt_sfx,931,1
+201,ADR_DSL_Alb_bow_short_sfx,932,1
+202,ADR_DSL_Alb_bow_long_sfx,933,1
+203,ADR_DSL_Alb_bow_cross_sfx,934,1
+204,ADR_DSL_Alb_2h_sword_thrust_sfx,935,1
+205,ADR_DSL_Alb_2h_sword_slash_sfx,936,1
+206,ADR_DSL_Alb_2h_hammer_blunt_sfx,937,1
+207,ADR_DSL_Alb_2h_axe_sfx,938,1
+208,ADR_DSL_Alb_1h_sword_thrust_offhand_sfx,939,1
+209,ADR_DSL_Alb_1h_sword_thrust_mainhand_sfx,940,1
+256,Paladin Epic Two Handed Slash,601,1
+257,Hero Epic Blunt,603,1
+258,Warrior Epic One Handed Axe,604,1
+259,Hero_Piercing_2H,605,1
+260,Hero_Spear_2H,606,1
+261,Hero_Spear_1H,607,1
+262,Hero_Piercing_1H,608,1
+263,Hero_Blunt_2H,609,1
+264,Hero_Blade_2H,610,1
+265,Hero_Blade_1H,611,1
+266,Reaver_Sword_1H,612,1
+267,palladin_Slash_1h,613,1
+268,palladin_Thrust_2H,614,1
+269,palladin_Thrust_1H,615,1
+270,Reaver_Thrust_1H,616,1
+271,Reaver_Crush_1H,617,1
+272,Warrior_Sword_1H,618,1
+273,Warrior_Hammer_2H,619,1
+274,Warrior_Hammer_1H,620,1
+275,Warrior_Axe_2H,621,1
+276,Warrior_Sword_2H,622,1
+277,Reaver_Flex_1H,623,1
+278,palladin_Crush_2H,624,1
+279,palladin_Crush_1H,625,1
+280,Armsman_Thrust_2H,626,1
+281,Armsman_Crush_1H,627,1
+282,Armsman_Crush_2H,628,1
+283,Armsman_Pole_S,629,1
+284,Armsman_Sword_1H,630,1
+285,Armsman_Sword_2H,631,1
+286,Armsman_Thrust_1H,632,1
+287,Mercenary_T,633,1
+288,Mercenary_C,634,1
+289,Mercenary_S,635,1
+290,minstrel_T,636,1
+291,minstrel_S,637,1
+292,minstrel_H,638,1
+293,infiltrator_T,639,1
+294,Infiltrator_S,640,1
+295,sfx_epic_wpn_Armsman_Pole_C,641,1
+296,Heretic_flexS_1H,642,1
+297,Heretic_crush_1H,643,1
+298,Heretic_flexC_1H,644,1
+299,sfx_epic_wpn_cleric_C,645,1
+300,Scout_Bow,646,1
+301,Scout_T,647,1
+302,Scout_S,648,1
+303,sfx_epic_wpn_skald_axe_1h,649,1
+304,sfx_epic_wpn_skald_hammer_1h,650,1
+305,sfx_epic_wpn_skald_sword_1h,651,1
+306,sfx_epic_wpn_skald_hammer_2h,652,1
+307,sfx_epic_wpn_skald_axe_2h,653,1
+308,sfx_epic_wpn_skald_sword_2h,654,1
+309,sfx_epic_Druid_Crush_1H,655,1
+310,sfx_epic_Druid_Blade_1H,656,1
+311,sfx_epic_wpn_savage_sword_1h,657,1
+312,sfx_epic_wpn_savage_sword_2h,658,1
+313,sfx_epic_wpn_savage_axe_1h,659,1
+314,sfx_epic_Warden_Blade_1H,660,1
+315,sfx_epic_Warden_Crush_1H,661,1
+316,sfx_epic_Friar_Staff&Crush,662,1
+317,sfx_epic_Necromancer_Staff,663,1
+318,sfx_epic_wpn_savage_axe_2h,664,1
+319,sfx_epic_wpn_savage_hth,665,1
+320,sfx_epic_wpn_savage_hammer_1h,666,1
+321,sfx_epic_wpn_savage_hammer_2h,667,1
+322,sfx_epic_wpn_valkyrie_sword_1h,668,1
+323,sfx_epic_wpn_valkyrie_sword_2h,669,1
+324,sfx_epic_Ranger_Bow,670,1
+325,sfx_epic_Ranger_Pierce_1H,671,1
+326,sfx_epic_Ranger_Slash_1H,672,1
+327,sfx_epic_wpn_valkyrie_spear,673,1
+328,sfx_epic_wpn_Sorcerer_St,674,1
+329,sfx_epic_wpn_hunter_sword_2h,675,1
+330,sfx_epic_wpn_hunter_sword_1H,676,1
+331,sfx_epic_wpn_hunter_spear,677,1
+332,sfx_epic_wpn_hunter_bow,678,1
+333,sfx_epic_Blademaster_Pierce_1H,679,1
+334,sfx_epic_Blademaster_Slash_1H,680,1
+335,sfx_epic_Blademaster_Crush_1H,681,1
+336,sfx_epic_wpn_thane_sword_2h,682,1
+337,sfx_epic_wpn_thane_sword_1h,683,1
+338,sfx_epic_wpn_thane_axe_2h,684,1
+339,sfx_epic_wpn_thane_axe_1h,685,1
+340,sfx_epic_Bainshee_Staff,686,1
+341,sfx_epic_Animist_Staff,687,1
+342,sfx_epic_Eldritch_Staff,688,1
+343,sfx_epic_Enchanter_Staff,689,1
+344,sfx_epic_wpn_thane_hammer_2h,690,1
+345,sfx_epic_wpn_thane_hammer_1h,691,1
+346,sfx_epic_wpn_shadowblade_sword_2h,692,1
+347,sfx_epic_wpn_shadowblade_sword_1h,693,1
+348,sfx_epic_Mentalist_Staff,694,1
+349,sfx_epic_Valewalker_Sy,695,1
+350,sfx_epic_wpn_shadowblade_axe_1h,696,1
+351,sfx_epic_wpn_shadowblade_axe_2h,697,1
+352,sfx_epic_Healer_Crush_2H,698,1
+353,sfx_epic_Healer_Crush_1H,699,1
+354,sfx_epic_Spiritmaster_Staff,700,1
+355,sfx_epic_wpn_Cabalist_st,701,1
+356,sfx_epic_wpn_Theurgist_St,702,1
+357,sfx_epic_wpn_Vampiir_T,703,1
+358,sfx_epic_wpn_Wizard_St,704,1
+359,sfx_epic_wpn_Runemaster_St,710,1
+360,sfx_epic_Shaman_Crush_1H,711,1
+361,sfx_epic_Bonedancer_Staff,712,1
+362,sfx_epic_Warlock_Staff,713,1
+363,sfx_epic_Shaman_Crush_2H,714,1
+364,sfx_epic_wpn_Champion_Slash_2h,715,1
+365,sfx_epic_wpn_Champion_Slash_1h,716,1
+366,sfx_epic_wpn_Champion_Pierce_1h,717,1
+367,sfx_epic_wpn_Champion_Crush_2h,718,1
+368,sfx_epic_wpn_Champion_Crush_1h,719,1
+369,sfx_epic_wpn_nightshade_T,720,1
+370,sfx_epic_wpn_nightshade_S,721,1
+371,sfx_epic_wpn_berserker_axe_2h,722,1
+372,sfx_epic_wpn_berserker_axe_1h,723,1
+373,sfx_epic_wpn_berserker_sword_2h,724,1
+374,sfx_epic_wpn_berserker_sword_1h,725,1
+375,sfx_epic_wpn_berserker_hammer_2h,726,1
+376,sfx_epic_wpn_berserker_hammer_1h,727,1
+377,sfx_epic_wpn_Bard_Blade_1H,728,1
+378,sfx_epic_wpn_Bard_Crush_1H,729,1
+379,sfx_epic_wpn_Bard_Harp,730,1
+380,sfx_AlbMauler_Staff01,785,1
+381,sfx_HibMauler_Staff01,786,1
+382,sfx_MidMauler_Staff01,787,1
+383,sfx_MidMauler_Punch01,790,1
+384,sfx_HibMauler_Punch01,791,1
+385,sfx_AlbMauler_Punch01,792,1
+386,VFX_epic_DF_wpn_Armsman_thrust_2H01,945,1
+387,VFX_epic_DF_wpn_Armsman_Crush_1H01,946,1
+388,VFX_epic_DF_wpn_Armsman_Crush_2H01,947,1
+389,VFX_epic_DF_wpn_Armsman_pole_C01,948,1
+390,VFX_epic_DF_wpn_Armsman_pole_S01,949,1
+391,VFX_epic_DF_wpn_Armsman_sword_1H01,950,1
+392,VFX_epic_DF_wpn_Armsman_sword_2H01,951,1
+393,VFX_epic_DF_wpn_Armsman_thrust_1H01,952,1
+394,VFX_Epic_wpn_DF_Paladin_thrust_2H,953,1
+395,VFX_Epic_wpn_DF_Paladin_thrust_1H,954,1
+396,VFX_Epic_wpn_DF_Paladin_slash_2H,955,1
+397,VFX_Epic_wpn_DF_Paladin_slash_1H,956,1
+398,VFX_Epic_wpn_DF_Paladin_crush_2H,957,1
+399,VFX_Epic_wpn_DF_Paladin_crush_1H,958,1
+400,VFX_Epic_wpn_DF_Eldritch_Epic_Staff,959,1
+401,VFX_Epic_wpn_DF_Enchanter_Epic_Staff,960,1
+402,VFX_Epic_wpn_DF_Mentalist_Epic_Staff,961,1
+403,VFX_Epic_wpn_DF_Animist_Epic_Staff,962,1
+404,VFX_Epic_wpn_DF_Bainshee_Epic_Staff,963,1
+405,VFX_Epic_wpn_DF_Valewalker_Epic_Scythe,964,1
+406,VFX_Epic_wpn_DF_Vampiir_Epic_Pierce,965,1
+407,VFX_Epic_wpn_DF_Nightshade_Epic_Blade,966,1
+408,VFX_Epic_wpn_DF_Nightshade_Epic_Pierce,967,1
+409,VFX_Epic_wpn_DF_Bard_Epic_Blade,968,1
+410,VFX_Epic_wpn_DF_Bard_Epic_Blunt,969,1
+411,VFX_Epic_wpn_DF_Bard_Epic_Drum,970,1
+412,VFX_Epic_wpn_DF_Bard_Epic_Flute,971,1
+413,VFX_Epic_wpn_DF_Bard_Epic_Harp,972,1
+414,VFX_Epic_wpn_DF_Bard_Epic_Lute,973,1
+415,VFX_Epic_wpn_DF_Ranger_Epic_Pierce,974,1
+416,VFX_Epic_wpn_DF_Ranger_Epic_Blade,975,1
+417,VFX_Epic_wpn_DF_Hib_Recurve_Bow,976,1
+418,VFX_Epic_wpn_DF_Blademaster_Epic_Blade,977,1
+419,VFX_Epic_wpn_DF_Blademaster_Epic_Pierce,978,1
+420,VFX_Epic_wpn_DF_Blademaster_Epic_Blunt,979,1
+421,VFX_Epic_wpn_DF_Druid_Epic_Blade,980,1
+422,VFX_Epic_wpn_DF_Druid_Epic_Blunt,981,1
+423,VFX_Epic_wpn_DF_Warden_Epic_Blade,982,1
+424,VFX_Epic_wpn_DF_Warden_Epic_Blunt,983,1
+425,VFX_Epic_wpn_DF_Champion_Epic_Blade,984,1
+426,VFX_Epic_wpn_DF_Champion_Epic_Pierce,985,1
+427,VFX_Epic_wpn_DF_Champion_Epic_Blunt,986,1
+428,VFX_Epic_wpn_DF_Champion_Epic_Large_Blade,987,1
+429,VFX_Epic_wpn_DF_Champion_Epic_Large_Blunt,988,1
+430,VFX_Epic_wpn_DF_Hero_Epic_Blade,989,1
+431,VFX_Epic_wpn_DF_Hero_Epic_Pierce,990,1
+432,VFX_Epic_wpn_DF_Hero_Epic_Blunt,991,1
+433,VFX_Epic_wpn_DF_Hero_Epic_Large_Blade,992,1
+434,VFX_Epic_wpn_DF_Hero_Epic_Large_Blunt,993,1
+435,VFX_Epic_wpn_DF_Hero_Epic_Large_Pierce,994,1
+436,VFX_Epic_wpn_DF_Hero_Epic_Celtic_Spear,995,1
+437,VFX_Epic_wpn_DF_Hero_Epic_Celtic_2H_Spear,996,1
+438,VFX_Epic_wpn_DF_Cabalist_Epic_Staff,997,1
+439,VFX_Epic_wpn_DF_Sorcerer_Epic_Staff,998,1
+440,VFX_Epic_wpn_DF_Theurgist_Epic_Staff,999,1
+441,VFX_Epic_wpn_DF_Wizard_Epic_Staff,1000,1
+442,VFX_Epic_wpn_DF_Necromancer_Epic_Staff,1001,1
+443,VFX_Epic_wpn_DF_Infiltrator_Epic_Slash,1002,1
+444,VFX_Epic_wpn_DF_Infiltrator_Epic_Thrust,1003,1
+445,VFX_Epic_wpn_DF_Friar_Epic_Staff,1004,1
+446,VFX_Epic_wpn_DF_Friar_Epic_Crush,1005,1
+447,VFX_Epic_wpn_DF_Scout_Epic_Slash,1006,1
+448,VFX_Epic_wpn_DF_Scout_Epic_Thrust,1007,1
+449,VFX_Epic_wpn_DF_Scout_Epic_Longbow,1008,1
+450,VFX_Epic_wpn_DF_Minstrel_Epic_Slash,1009,1
+451,VFX_Epic_wpn_DF_Minstrel_Epic_Thrust,1010,1
+452,VFX_Epic_wpn_DF_Minstrel_Epic_Drum,1011,1
+453,VFX_Epic_wpn_DF_Minstrel_Epic_Flute,1012,1
+454,VFX_Epic_wpn_DF_Minstrel_Epic_Harp,1013,1
+455,VFX_Epic_wpn_DF_Minstrel_Epic_Lute,1014,1
+456,VFX_Epic_wpn_DF_Cleric_Epic_Crush,1015,1
+457,VFX_Epic_wpn_DF_Mercenary_Epic_Crush,1016,1
+458,VFX_Epic_wpn_DF_Mercenary_Epic_Slash,1017,1
+459,VFX_Epic_wpn_DF_Mercenary_Epic_Thrust,1018,1
+460,VFX_Epic_wpn_DF_Heretic_Epic_Crush,1019,1
+461,VFX_Epic_wpn_DF_Heretic_Epic_Flex_Crush,1020,1
+462,VFX_Epic_wpn_DF_Heretic_Epic_Flex_Slash,1021,1
+463,VFX_Epic_wpn_DF_Reaver_Epic_Crush,1022,1
+464,VFX_Epic_wpn_DF_Reaver_Epic_Slash,1023,1
+465,VFX_Epic_wpn_DF_Reaver_Epic_Thrust,1024,1
+466,VFX_Epic_wpn_DF_Reaver_Epic_Flex_Crush,1025,1
+467,VFX_Epic_wpn_DF_Reaver_Epic_Flex_Crush,1026,1
+468,VFX_Epic_wpn_DF_Runemaster_Epic_Staff,1027,1
+469,VFX_Epic_wpn_DF_Spirit_Master_Epic_Staff,1028,1
+470,VFX_Epic_wpn_DF_Bonedancer_Epic_Staff,1029,1
+471,VFX_Epic_wpn_DF_Warlock_Epic_Staff,1030,1
+472,VFX_Epic_wpn_DF_Shadowblade_Epic_Sword,1031,1
+473,VFX_Epic_wpn_DF_Shadowblade_Epic_Two_Handed_Sword,1032,1
+474,VFX_Epic_wpn_DF_Shadowblade_Epic_Axe,1033,1
+475,VFX_Epic_wpn_DF_Shadowblade_Epic_Two_Handed_Axe,1034,1
+476,VFX_Epic_wpn_DF_Hunter_Epic_Sword,1035,1
+477,VFX_Epic_wpn_DF_Hunter_Epic_Two_Handed_Sword,1036,1
+478,VFX_Epic_wpn_DF_Hunter_Epic_Spear_Thrust,1037,1
+479,VFX_Epic_wpn_DF_Hunter_Epic_Bow,1038,1
+480,VFX_Epic_wpn_DF_Berzerker_Epic_Axe,1039,1
+481,VFX_Epic_wpn_DF_Berzerker_Epic_Two_Handed_Axe,1040,1
+482,VFX_Epic_wpn_DF_Berzerker_Epic_Hammer,1041,1
+483,VFX_Epic_wpn_DF_Berzerker_Epic_Two_Handed_Hammer,1042,1
+484,VFX_Epic_wpn_DF_Berzerker_Epic_Sword,1043,1
+485,VFX_Epic_wpn_DF_Berzerker_Epic_Two_Handed_Sword,1044,1
+486,VFX_Epic_wpn_DF_Savage_Epic_Axe,1045,1
+487,VFX_Epic_wpn_DF_Savage_Epic_Two_Handed_Axe,1046,1
+488,VFX_Epic_wpn_DF_Savage_Epic_Hammer,1047,1
+489,VFX_Epic_wpn_DF_Savage_Epic_Two_Handed_Hammer,1048,1
+490,VFX_Epic_wpn_DF_Savage_Epic_Sword,1049,1
+491,VFX_Epic_wpn_DF_Savage_Epic_Two_Handed_Sword,1050,1
+492,VFX_Epic_wpn_DF_Savage_Epic_Hand_to_Hand_Slash,1051,1
+493,VFX_Epic_wpn_DF_Savage_Epic_Hand_to_Hand_Crush,1052,1
+494,VFX_Epic_wpn_DF_Healer_Epic_Hammer,1053,1
+495,VFX_Epic_wpn_DF_Healer_Epic_Two_Handed_Hammer,1054,1
+496,VFX_Epic_wpn_DF_Shaman_Epic_Hammer,1055,1
+497,VFX_Epic_wpn_DF_Shaman_Epic_Two_Handed_Hammer,1056,1
+498,VFX_Epic_wpn_DF_Skald_Epic_Axe,1057,1
+499,VFX_Epic_wpn_DF_Skald_Epic_Two_Handed_Axe,1058,1
+500,VFX_Epic_wpn_DF_Skald_Epic_Hammer,1059,1
+501,VFX_Epic_wpn_DF_Skald_Epic_Two_Handed_Hammer,1060,1
+502,VFX_Epic_wpn_DF_Skald_Epic_Sword,1061,1
+503,VFX_Epic_wpn_DF_Skald_Epic_Two_Handed_Sword,1062,1
+504,VFX_Epic_wpn_DF_Thane_Epic_Axe,1063,1
+505,VFX_Epic_wpn_DF_Thane_Epic_Two_Handed_Axe,1064,1
+506,VFX_Epic_wpn_DF_Thane_Epic_Hammer,1065,1
+507,VFX_Epic_wpn_DF_Thane_Epic_Two_Handed_Hammer,1066,1
+508,VFX_Epic_wpn_DF_Thane_Epic_Sword,1067,1
+509,VFX_Epic_wpn_DF_Thane_Epic_Two_Handed_Sword,1068,1
+510,VFX_Epic_wpn_DF_Warrior_Epic_Axe,1069,1
+511,VFX_Epic_wpn_DF_Warrior_Epic_Two_Handed_Axe,1070,1
+512,VFX_Epic_wpn_DF_Warrior_Epic_Hammer,1071,1
+513,VFX_Epic_wpn_DF_Warrior_Epic_Two_Handed_Hammer,1072,1
+514,VFX_Epic_wpn_DF_Warrior_Epic_Sword,1073,1
+515,VFX_Epic_wpn_DF_Warrior_Epic_Two_Handed_Sword,1074,1
+516,VFX_Epic_wpn_DF_Valkyrie_Epic_Sword,1075,1
+517,VFX_Epic_wpn_DF_Valkyrie_Epic_Two_Handed_Sword,1076,1
+518,VFX_Epic_wpn_DF_Valkyrie_Epic_Spear_Thrust,1077,1
+519,VFX_Epic_wpn_DF_Valkyrie_Epic_Spear_Slash,1078,1
+520,VFX_Championweapon_DF_MidMauler_Staff01,1079,1
+521,VFX_Championweapon_DF_AlbMauler_Punch01,1080,1
+522,VFX_Championweapon_DF_AlbMauler_Staff01,1081,1
+523,VFX_Championweapon_DF_HibMauler_Punch01,1082,1
+524,VFX_Championweapon_DF_HibMauler_Staff01,1083,1
+525,VFX_Championweapon_DF_MidMauler_Punch01,1084,1
+526,B_2h_Coffinhammer01_VFX_Energy,1085,1
+527,B_2h_InquisitorsPick01_VFX_Energy,1086,1
+528,B_2h_RoyalScimitar01_VFX_Energy,1087,1
+529,B_bo_SaracenShortbow01_VFX_Energy,1088,1
+530,B_bo_ThornBow01_VFX_Energy,1089,1
+531,B_Cr_BishopsMace01_VFX_Energy,1090,1
+532,B_Cr_CoffinMace01_VFX_Energy,1091,1
+533,B_flx_PickFlail01_VFX_Energy,1092,1
+534,B_flx_SpikedFlail01_VFX_Energy,1093,1
+535,B_Po_MilitaryFork01_VFX_Energy,1094,1
+536,B_Po_SaracenGlaive01_VFX_Energy,1095,1
+537,B_Po_TallHammer01_VFX_Energy,1096,1
+538,B_sl_Cinquedea01_VFX_Energy,1097,1
+539,B_sl_Falchion01_VFX_Energy,1098,1
+540,b_st_magestaff01_VFX_Energy,1099,1
+541,B_st_SpikedStaffMace01_VFX_Energy,1100,1
+542,B_th_DuelistsDagger01_VFX_Energy,1101,1
+543,B_th_DuelistsRapier01_VFX_Energy,1102,1
+544,B_xbo_SkinnersCrossbow01_VFX_Energy,1103,1
+545,H_1h_FirbolgLongSword01_VFX_Energy,1104,1
+546,H_1h_FirbolgShortSword01_VFX_Energy,1105,1
+547,H_2h_FirbolgHammer01_VFX_Energy,1106,1
+548,H_2h_FirbolgTrollSplitter01_VFX_Energy,1107,1
+549,H_bl_CelticHammer01_VFX_Energy,1108,1
+550,H_bl_FirbolgHammer01_VFX_Energy,1109,1
+551,H_bo_ElvenLongbow01_VFX_Energy,1110,1
+552,H_bo_ElvenShortBow01_VFX_Energy,1111,1
+553,H_sc_FirbolgScythe01_VFX_Energy,1112,1
+554,H_Sp_FirbolgSpear01_VFX_Energy,1113,1
+555,h_st_staff07_VFX_Energy,1114,1
+556,h_st_staff09_VFX_Energy,1115,1
+557,H_th_FirbolgAdze01_VFX_Energy,1116,1
+558,H_th_WarAdze01_VFX_Energy,1117,1
+559,N_1h_DwarvenWarAxe01_VFX_Energy,1118,1
+560,N_1h_TrollBroadSword01_VFX_Energy,1119,1
+561,N_1h_TrollWarAxe01_VFX_Energy,1120,1
+562,N_1h_TrollWarHammer01_VFX_Energy,1121,1
+563,N_2h_DwarvenSpear01_VFX_Energy,1122,1
+564,N_2h_KoboldGreatAxe01_VFX_Energy,1123,1
+565,N_2h_KoboldGreatClub01_VFX_Energy,1124,1
+566,N_2h_KoboldGreatSword01_VFX_Energy,1125,1
+567,N_bo_VikingBeardedBow01_VFX_Energy,1126,1
+568,N_hth_GreatBladedClawGreave01_VFX_Energy,1127,1
+569,N_hth_GreatBladedFangGreave01_VFX_Energy,1128,1
+570,B_2h_Coffinhammer01_VFX_Body,1129,1
+571,B_2h_InquisitorsPick01_VFX_Body,1130,1
+572,B_2h_RoyalScimitar01_VFX_Body,1131,1
+573,B_bo_SaracenShortbow01_VFX_Body,1132,1
+574,B_bo_ThornBow01_VFX_Body,1133,1
+575,B_Cr_BishopsMace01_VFX_Body,1134,1
+576,B_Cr_CoffinMace01_VFX_Body,1135,1
+577,B_flx_PickFlail01_VFX_Body,1136,1
+578,B_flx_SpikedFlail01_VFX_Body,1137,1
+579,B_Po_MilitaryFork01_VFX_Body,1138,1
+580,B_Po_SaracenGlaive01_VFX_Body,1139,1
+581,B_Po_TallHammer01_VFX_Body,1140,1
+582,B_sl_Cinquedea01_VFX_Body,1141,1
+583,B_sl_Falchion01_VFX_Body,1142,1
+584,b_st_magestaff01_VFX_Body,1143,1
+585,B_st_SpikedStaffMace01_VFX_Body,1144,1
+586,B_th_DuelistsDagger01_VFX_Body,1145,1
+587,B_th_DuelistsRapier01_VFX_Body,1146,1
+588,B_xbo_SkinnersCrossbow01_VFX_Body,1147,1
+589,H_1h_FirbolgLongSword01_VFX_Body,1148,1
+590,H_1h_FirbolgShortSword01_VFX_Body,1149,1
+591,H_2h_FirbolgHammer01_VFX_Body,1150,1
+592,H_2h_FirbolgTrollSplitter01_VFX_Body,1151,1
+593,H_bl_CelticHammer01_VFX_Body,1152,1
+594,H_bl_FirbolgHammer01_VFX_Body,1153,1
+595,H_bo_ElvenLongbow01_VFX_Body,1154,1
+596,H_bo_ElvenShortBow01_VFX_Body,1155,1
+597,H_sc_FirbolgScythe01_VFX_Body,1156,1
+598,H_Sp_FirbolgSpear01_VFX_Body,1157,1
+599,h_st_staff07_VFX_Body,1158,1
+600,h_st_staff09_VFX_Body,1159,1
+601,H_th_FirbolgAdze01_VFX_Body,1160,1
+602,H_th_WarAdze01_VFX_Body,1161,1
+603,N_1h_DwarvenWarAxe01_VFX_Body,1162,1
+604,N_1h_TrollBroadSword01_VFX_Body,1163,1
+605,N_1h_TrollWarAxe01_VFX_Body,1164,1
+606,N_1h_TrollWarHammer01_VFX_Body,1165,1
+607,N_2h_DwarvenSpear01_VFX_Body,1166,1
+608,N_2h_KoboldGreatAxe01_VFX_Body,1167,1
+609,N_2h_KoboldGreatClub01_VFX_Body,1168,1
+610,N_2h_KoboldGreatSword01_VFX_Body,1169,1
+611,N_bo_VikingBeardedBow01_VFX_Body,1170,1
+612,N_hth_GreatBladedClawGreave01_VFX_Body,1171,1
+613,N_hth_GreatBladedFangGreave01_VFX_Body,1172,1
+614,B_2h_Coffinhammer01_VFX_Air,1173,1
+615,B_2h_InquisitorsPick01_VFX_Air,1174,1
+616,B_2h_RoyalScimitar01_VFX_Air,1175,1
+617,B_bo_SaracenShortbow01_VFX_Air,1176,1
+618,B_bo_ThornBow01_VFX_Air,1177,1
+619,B_Cr_BishopsMace01_VFX_Air,1178,1
+620,B_Cr_CoffinMace01_VFX_Air,1179,1
+621,B_flx_PickFlail01_VFX_Air,1180,1
+622,B_flx_SpikedFlail01_VFX_Air,1181,1
+623,B_Po_MilitaryFork01_VFX_Air,1182,1
+624,B_Po_SaracenGlaive01_VFX_Air,1183,1
+625,B_Po_TallHammer01_VFX_Air,1184,1
+626,B_sl_Cinquedea01_VFX_Air,1185,1
+627,B_sl_Falchion01_VFX_Air,1186,1
+628,b_st_magestaff01_VFX_Air,1187,1
+629,B_st_SpikedStaffMace01_VFX_Air,1188,1
+630,B_th_DuelistsDagger01_VFX_Air,1189,1
+631,B_th_DuelistsRapier01_VFX_Air,1190,1
+632,B_xbo_SkinnersCrossbow01_VFX_Air,1191,1
+633,H_1h_FirbolgLongSword01_VFX_Air,1192,1
+634,H_1h_FirbolgShortSword01_VFX_Air,1193,1
+635,H_2h_FirbolgHammer01_VFX_Air,1194,1
+636,H_2h_FirbolgTrollSplitter01_VFX_Air,1195,1
+637,H_bl_CelticHammer01_VFX_Air,1196,1
+638,H_bl_FirbolgHammer01_VFX_Air,1197,1
+639,H_bo_ElvenLongbow01_VFX_Air,1198,1
+640,H_bo_ElvenShortBow01_VFX_Air,1199,1
+641,H_sc_FirbolgScythe01_VFX_Air,1200,1
+642,H_Sp_FirbolgSpear01_VFX_Air,1201,1
+643,h_st_staff07_VFX_Air,1202,1
+644,h_st_staff09_VFX_Air,1203,1
+645,H_th_FirbolgAdze01_VFX_Air,1204,1
+646,H_th_WarAdze01_VFX_Air,1205,1
+647,N_1h_DwarvenWarAxe01_VFX_Air,1206,1
+648,N_1h_TrollBroadSword01_VFX_Air,1207,1
+649,N_1h_TrollWarAxe01_VFX_Air,1208,1
+650,N_1h_TrollWarHammer01_VFX_Air,1209,1
+651,N_2h_DwarvenSpear01_VFX_Air,1210,1
+652,N_2h_KoboldGreatAxe01_VFX_Air,1211,1
+653,N_2h_KoboldGreatClub01_VFX_Air,1212,1
+654,N_2h_KoboldGreatSword01_VFX_Air,1213,1
+655,N_bo_VikingBeardedBow01_VFX_Air,1214,1
+656,N_hth_GreatBladedClawGreave01_VFX_Air,1215,1
+657,N_hth_GreatBladedFangGreave01_VFX_Air,1216,1
+658,B_2h_Coffinhammer01_VFX_Earth,1217,1
+659,B_2h_InquisitorsPick01_VFX_Earth,1218,1
+660,B_2h_RoyalScimitar01_VFX_Earth,1219,1
+661,B_bo_SaracenShortbow01_VFX_Earth,1220,1
+662,B_bo_ThornBow01_VFX_Earth,1221,1
+663,B_Cr_BishopsMace01_VFX_Earth,1222,1
+664,B_Cr_CoffinMace01_VFX_Earth,1223,1
+665,B_flx_PickFlail01_VFX_Earth,1224,1
+666,B_flx_SpikedFlail01_VFX_Earth,1225,1
+667,B_Po_MilitaryFork01_VFX_Earth,1226,1
+668,B_Po_SaracenGlaive01_VFX_Earth,1227,1
+669,B_Po_TallHammer01_VFX_Earth,1228,1
+670,B_sl_Cinquedea01_VFX_Earth,1229,1
+671,B_sl_Falchion01_VFX_Earth,1230,1
+672,b_st_magestaff01_VFX_Earth,1231,1
+673,B_st_SpikedStaffMace01_VFX_Earth,1232,1
+674,B_th_DuelistsDagger01_VFX_Earth,1233,1
+675,B_th_DuelistsRapier01_VFX_Earth,1234,1
+676,B_xbo_SkinnersCrossbow01_VFX_Earth,1235,1
+677,H_1h_FirbolgLongSword01_VFX_Earth,1236,1
+678,H_1h_FirbolgShortSword01_VFX_Earth,1237,1
+679,H_2h_FirbolgHammer01_VFX_Earth,1238,1
+680,H_2h_FirbolgTrollSplitter01_VFX_Earth,1239,1
+681,H_bl_CelticHammer01_VFX_Earth,1240,1
+682,H_bl_FirbolgHammer01_VFX_Earth,1241,1
+683,H_bo_ElvenLongbow01_VFX_Earth,1242,1
+684,H_bo_ElvenShortBow01_VFX_Earth,1243,1
+685,H_sc_FirbolgScythe01_VFX_Earth,1244,1
+686,H_Sp_FirbolgSpear01_VFX_Earth,1245,1
+687,h_st_staff07_VFX_Earth,1246,1
+688,h_st_staff09_VFX_Earth,1247,1
+689,H_th_FirbolgAdze01_VFX_Earth,1248,1
+690,H_th_WarAdze01_VFX_Earth,1249,1
+691,N_1h_DwarvenWarAxe01_VFX_Earth,1250,1
+692,N_1h_TrollBroadSword01_VFX_Earth,1251,1
+693,N_1h_TrollWarAxe01_VFX_Earth,1252,1
+694,N_1h_TrollWarHammer01_VFX_Earth,1253,1
+695,N_2h_DwarvenSpear01_VFX_Earth,1254,1
+696,N_2h_KoboldGreatAxe01_VFX_Earth,1255,1
+697,N_2h_KoboldGreatClub01_VFX_Earth,1256,1
+698,N_2h_KoboldGreatSword01_VFX_Earth,1257,1
+699,N_bo_VikingBeardedBow01_VFX_Earth,1258,1
+700,N_hth_GreatBladedClawGreave01_VFX_Earth,1259,1
+701,N_hth_GreatBladedFangGreave01_VFX_Earth,1260,1
+702,B_2h_Coffinhammer01_VFX_Fire,1261,1
+703,B_2h_InquisitorsPick01_VFX_Fire,1262,1
+704,B_2h_RoyalScimitar01_VFX_Fire,1263,1
+705,B_bo_SaracenShortbow01_VFX_Fire,1264,1
+706,B_bo_ThornBow01_VFX_Fire,1265,1
+707,B_Cr_BishopsMace01_VFX_Fire,1266,1
+708,B_Cr_CoffinMace01_VFX_Fire,1267,1
+709,B_flx_PickFlail01_VFX_Fire,1268,1
+710,B_flx_SpikedFlail01_VFX_Fire,1269,1
+711,B_Po_MilitaryFork01_VFX_Fire,1270,1
+712,B_Po_SaracenGlaive01_VFX_Fire,1271,1
+713,B_Po_TallHammer01_VFX_Fire,1272,1
+714,B_sl_Cinquedea01_VFX_Fire,1273,1
+715,B_sl_Falchion01_VFX_Fire,1274,1
+716,b_st_magestaff01_VFX_Fire,1275,1
+717,B_st_SpikedStaffMace01_VFX_Fire,1276,1
+718,B_th_DuelistsDagger01_VFX_Fire,1277,1
+719,B_th_DuelistsRapier01_VFX_Fire,1278,1
+720,B_xbo_SkinnersCrossbow01_VFX_Fire,1279,1
+721,H_1h_FirbolgLongSword01_VFX_Fire,1280,1
+722,H_1h_FirbolgShortSword01_VFX_Fire,1281,1
+723,H_2h_FirbolgHammer01_VFX_Fire,1282,1
+724,H_2h_FirbolgTrollSplitter01_VFX_Fire,1283,1
+725,H_bl_CelticHammer01_VFX_Fire,1284,1
+726,H_bl_FirbolgHammer01_VFX_Fire,1285,1
+727,H_bo_ElvenLongbow01_VFX_Fire,1286,1
+728,H_bo_ElvenShortBow01_VFX_Fire,1287,1
+729,H_sc_FirbolgScythe01_VFX_Fire,1288,1
+730,H_Sp_FirbolgSpear01_VFX_Fire,1289,1
+731,h_st_staff07_VFX_Fire,1290,1
+732,h_st_staff09_VFX_Fire,1291,1
+733,H_th_FirbolgAdze01_VFX_Fire,1292,1
+734,H_th_WarAdze01_VFX_Fire,1293,1
+735,N_1h_DwarvenWarAxe01_VFX_Fire,1294,1
+736,N_1h_TrollBroadSword01_VFX_Fire,1295,1
+737,N_1h_TrollWarAxe01_VFX_Fire,1296,1
+738,N_1h_TrollWarHammer01_VFX_Fire,1297,1
+739,N_2h_DwarvenSpear01_VFX_Fire,1298,1
+740,N_2h_KoboldGreatAxe01_VFX_Fire,1299,1
+741,N_2h_KoboldGreatClub01_VFX_Fire,1300,1
+742,N_2h_KoboldGreatSword01_VFX_Fire,1301,1
+743,N_bo_VikingBeardedBow01_VFX_Fire,1302,1
+744,N_hth_GreatBladedClawGreave01_VFX_Fire,1303,1
+745,N_hth_GreatBladedFangGreave01_VFX_Fire,1304,1
+746,B_2h_Coffinhammer01_VFX_Water,1305,1
+747,B_2h_InquisitorsPick01_VFX_Water,1306,1
+748,B_2h_RoyalScimitar01_VFX_Water,1307,1
+749,B_bo_SaracenShortbow01_VFX_Water,1308,1
+750,B_bo_ThornBow01_VFX_Water,1309,1
+751,B_Cr_BishopsMace01_VFX_Water,1310,1
+752,B_Cr_CoffinMace01_VFX_Water,1311,1
+753,B_flx_PickFlail01_VFX_Water,1312,1
+754,B_flx_SpikedFlail01_VFX_Water,1313,1
+755,B_Po_MilitaryFork01_VFX_Water,1314,1
+756,B_Po_SaracenGlaive01_VFX_Water,1315,1
+757,B_Po_TallHammer01_VFX_Water,1316,1
+758,B_sl_Cinquedea01_VFX_Water,1317,1
+759,B_sl_Falchion01_VFX_Water,1318,1
+760,b_st_magestaff01_VFX_Water,1319,1
+761,B_st_SpikedStaffMace01_VFX_Water,1320,1
+762,B_th_DuelistsDagger01_VFX_Water,1321,1
+763,B_th_DuelistsRapier01_VFX_Water,1322,1
+764,B_xbo_SkinnersCrossbow01_VFX_Water,1323,1
+765,H_1h_FirbolgLongSword01_VFX_Water,1324,1
+766,H_1h_FirbolgShortSword01_VFX_Water,1325,1
+767,H_2h_FirbolgHammer01_VFX_Water,1326,1
+768,H_2h_FirbolgTrollSplitter01_VFX_Water,1327,1
+769,H_bl_CelticHammer01_VFX_Water,1328,1
+770,H_bl_FirbolgHammer01_VFX_Water,1329,1
+771,H_bo_ElvenLongbow01_VFX_Water,1330,1
+772,H_bo_ElvenShortBow01_VFX_Water,1331,1
+773,H_sc_FirbolgScythe01_VFX_Water,1332,1
+774,H_Sp_FirbolgSpear01_VFX_Water,1333,1
+775,h_st_staff07_VFX_Water,1334,1
+776,h_st_staff09_VFX_Water,1335,1
+777,H_th_FirbolgAdze01_VFX_Water,1336,1
+778,H_th_WarAdze01_VFX_Water,1337,1
+779,N_1h_DwarvenWarAxe01_VFX_Water,1338,1
+780,N_1h_TrollBroadSword01_VFX_Water,1339,1
+781,N_1h_TrollWarAxe01_VFX_Water,1340,1
+782,N_1h_TrollWarHammer01_VFX_Water,1341,1
+783,N_2h_DwarvenSpear01_VFX_Water,1342,1
+784,N_2h_KoboldGreatAxe01_VFX_Water,1343,1
+785,N_2h_KoboldGreatClub01_VFX_Water,1344,1
+786,N_2h_KoboldGreatSword01_VFX_Water,1345,1
+787,N_bo_VikingBeardedBow01_VFX_Water,1346,1
+788,N_hth_GreatBladedClawGreave01_VFX_Water,1347,1
+789,N_hth_GreatBladedFangGreave01_VFX_Water,1348,1
+790,Helmet VFX hothead,1349,1
+791,Helmet VFX sunburst,1350,1
+792,VFX_head_orbit01,1351,1
+793,VFX_head_orbit02,1352,1
+794,VFX_fire_eyes01,1353,1
+795,VFX_fire_eyes01_blue,1354,1
+796,VFX_fire_eyes01_green,1355,1
+797,VFX_pumpkin works,1379,1
+798,mask_Tentacled_VFX,1384,1

@@ -1,0 +1,47 @@
+ID,Text,,,,,,,,,,,,,,,,
+Num,Item Discription,Mat ID 1,Mat ID 2,Mat ID 3,Mat ID 4,Mat ID 5,Mat ID 6,Mat ID 7,Mat ID 8,Mat ID 9,Mat ID 10,Mat ID 11,Mat ID 12,Mat ID 13,Mat ID 14,Mat ID 15,Mat ID 16
+1,Armor - Saddle,7,53,14,,,,,,,,,,,,,
+2,Armor - Light Armor,7,53,9,15,16,17,,,,,,,,,,
+3,Armor - Medium Armor,7,53,9,15,16,8,7,5,3,4,6,17,,,,
+4,Armor - Heavy Armor,2,3,4,5,6,7,8,9,10,11,12,13,15,16,53,17
+5,Body - Standard Horse,-3,4,5,6,7,8,9,-15,-16,19,54,55,17,,,
+6,Body - Heavy Horse,3,-4,5,6,7,8,9,-15,-16,19,54,55,17,,,
+7,Body - Unicorn,-3,4,5,6,7,8,9,-15,16,19,54,55,17,-14,,
+8,Body - Nightmare,3,-4,5,6,7,8,9,15,-16,19,54,55,17,,,
+9,Body - Undead,-3,4,5,6,7,8,9,-15,-16,19,54,55,17,,,
+10,Tasset Barding - No Trim,38,-2,,,,,,,,,,,,,,
+11,Tasset Barding - Full Trim,38,56,-2,,,,,,,,,,,,,
+12,Tasset Barding - Triangle Trim,38,59,-2,,,,,,,,,,,,,
+13,Tasset Barding - Square Trim,38,57,-2,,,,,,,,,,,,,
+14,Tasset Barding - Half Moon Trim,38,58,-2,,,,,,,,,,,,,
+15,Tasset Barding - Full Trim w/ reigns,38,56,41,-53,-2
+16,Tasset Barding - Triangle Trim w/ reigns,38,59,44,-53,-2
+17,Tasset Barding - Square Trim  w/ reigns,38,57,42,-53,-2
+18,Tasset Barding - Half Moon Trim  w/ reigns,38,58,43,-53,-2
+19,Blanket Barding - No Trim,39,-2,,,
+20,Blanket Barding - Full Trim,39,49,-2,,
+21,Blanket Barding - Triangle Trim,39,52,-2,,
+22,Blanket Barding - Square Trim,39,50,-2,,
+23,Blanket Barding - Half Moon Trim,39,51,-2,,
+24,Blanket Barding - Full Trim w/ reigns,39,49,41,-53,-2
+25,Blanket Barding - Triangle Trim w/ reigns,39,52,44,-53,-2
+26,Blanket Barding - Square Trim  w/ reigns,39,50,42,-53,-2
+27,Blanket Barding - Half Moon Trim  w/ reigns,39,51,43,-53,-2
+28,Half Barding - No Trim,5,6,54,-2,
+29,Half Barding - Full Trim,5,6,54,-2,45
+30,Half Barding - Triangle Trim,5,6,54,-2,48
+31,Half Barding - Square Trim,5,6,54,-2,46,,,,,,,,,
+32,Half Barding - Half Moon Trim,5,6,54,-2,47,,,,,,,,,
+33,Half Barding - Full Trim w/ reigns,5,6,54,-53,-2,45,41,53,,,,,,
+34,Half Barding - Triangle Trim w/ reigns,5,6,54,-53,-2,48,44,53,,,,,,
+35,Half Barding - Square Trim  w/ reigns,5,6,54,-53,-2,46,42,53,,,,,,
+36,Half Barding - Half Moon Trim  w/ reigns,5,6,54,-53,-2,47,43,53,,,,,,
+37,Full Barding - No Trim,5,6,54,-2,-14,8,9,55,40,,,,,
+38,Full Barding - Full Trim,5,6,54,-2,-14,8,9,55,40,45,49,,,
+39,Full Barding - Triangle Trim,5,6,54,-2,-14,8,9,55,40,48,52,,,
+40,Full Barding - Square Trim,5,6,54,-2,-14,8,9,55,40,46,50,,,
+41,Full Barding - Half Moon Trim,5,6,54,-2,-14,8,9,55,40,47,51,,,
+42,Full Barding - Full Trim w/ reigns,5,6,54,-53,-2,-14,8,9,55,40,45,41,53,49
+43,Full Barding - Triangle Trim w/ reigns,5,6,54,-53,-2,-14,8,9,55,40,48,44,53,52
+44,Full Barding - Square Trim  w/ reigns,5,6,54,-53,-2,-14,8,9,55,40,46,42,53,51
+45,Full Barding - Half Moon Trim  w/ reigns,5,6,54,-53,-2,-14,8,9,55,40,47,43,53,50

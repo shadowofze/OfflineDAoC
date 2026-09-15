@@ -1,0 +1,1403 @@
+1500 limit,,,Expansion,Housing
+NIF ID,NIF Description,NIF Filename,Only,Only
+1,Blank spell,empty,0,0
+2,blue sparkles,cast1,0,0
+3,green column with rings,grnscanrings_hit,0,0
+4,blue column with rings,bluscanrings_hit,0,0
+5,quick blue heal,heal,0,0
+6,gold column with rings,gldscanrings_hit,0,0
+7,small 3 sec fire,smallflame,0,0
+8,chimney smoke,chimsmoke,0,1
+9,Creeprot,creeprot,0,0
+10,squiggly red diagonal parts.,cramp,0,0
+11,rusty sawblade large teeth,sawblade1_hit,0,0
+12,rusty sawblade small teeth,sawblade2_hit,0,0
+13,quadriped red ground streaks rising,quad_redstreaks1_sfx,0,0
+14,black wolf red eye glow/burn,wolf_redeyes_sfx,0,0
+15,lion green eye glow,lion_grneyes_sfx,0,0
+16,Floating big bluish sparkles,haste,0,0
+17,healing spiral with lightbeams,healing,0,0
+18,sparkle column,leaping,0,0
+19,Sparkles,levitate,0,0
+20,blue swirl atom collapsing,bluatom1_hit,0,0
+21,quadriped green flames rising,quad_grnflames1_sfx,0,0
+22,vines whip around ankles,vinewhip_hit,0,0
+23,Colorful triswirl,coltriswirl_hit,0,0
+24,Purple spiral up,bless1,0,0
+25,purple twinkle sphere,twnksphere2_hit,0,0
+26,green goo triswirl,gooswirl_hit,0,0
+27,spinning flame ring,flameswirl,0,0
+28,iridescent dodeca shield,shield,0,0
+29,fungal shell/shield,fungshld_hit,0,0
+30,oakleaves falling,oakleaves_sfx,0,0
+31,bright green glows drop on sphere,grndropsphere1_hit,0,0
+32,heat sphere/damage shield,alb_heatsphere_hit,0,0
+33,green to orange glows drop on sphere,grndropsphere2_hit,0,0
+34,Golden halo,blesshalo,0,0
+35,"poison cloud, greener than dcloud",poisoncloud,0,0
+36,ground firesplash,alb_firesplash_hit,0,0
+37,ripply mirror sphere shield,sphereshield,0,0
+38,cold gather animation,alb_cold_gat,0,0
+39,cold spell hand sparkles,alb_cold_sum,0,0
+40,***Empty***,empty,0,0
+41,frostspray hit/splash,alb_frostspray_hit,0,0
+42,Large blue ground shockwave/circular arcs,zapsplash_hit,0,0
+43,Collapsing rune ring,mid_runering_hit,0,0
+44,translucent green goo drip,goodrip,0,0
+45,orangish creeprot,pestilence,0,0
+46,sparkly purple poison cloud,stuncloud,0,0
+47,illness1,alb_illness1_hit,0,0
+48,sprain1,alb_sprain_hit,0,0
+49,generic spirit ruin,alb_spiritruin_hit,0,0
+50,will drain,alb_willdrain_hit,0,0
+51,insanity 1 hit/burn,insanity1_hit,0,0
+52,Red shock rings collapsing,redringcol_hit,0,0
+53,Green shock rings collapsing,grnringcol_hit,0,0
+54,Purple shock rings collapsing,prpringcol_hit,0,0
+55,Acidic Mist hit,alb_acidmist_hit,0,0
+56,Red hand glows,alb_redsorcery_sum,0,0
+57,Red Penta Splash,alb_redpenta_gat,0,0
+58,Green Penta Splash,alb_grnpenta_gat,0,0
+59,Body decay snare hit,alb_sprainsnare_hit,0,0
+60,Green hand glows,alb_grnsorcery_sum,0,0
+61,,alb_flshbane_hit,0,0
+62,,alb_bldbane_hit,0,0
+63,,alb_hrtbane_hit,0,0
+64,,alb_soulbane_hit,0,0
+65,stun effect,alb_sprainsnare_hit,0,0
+66,,alb_weaken_hit,0,0
+67,,alb_exhaustion_hit,0,0
+68,,alb_clumsy_hit,0,0
+69,growing red circle with clouds,alb_uncoord_hit,0,0
+70,***Empty***,empty,0,0
+71,Evil burning ,evilfire_hit,0,0
+72,small pain hit flash,smpain1_hit,0,0
+73,vertical red shock hit 1,redshock1_hit,0,0
+74,flurry slashes,flurryslashes_hit,0,0
+75,small pain hit twinkles,smpain2_hit,0,0
+76,Green Star Splash,alb_grnstar_gat,0,0
+77,Purple Star Splash,alb_prpstar_gat,0,0
+78,silver twinkles sfx,slvtwink_sfx,0,0
+79,sparkles with purple popping rings,alb_confus1_hit,0,0
+80,sparkles with red popping rings,alb_confus2_hit,0,0
+81,Amnesia1 hit,alb_amnesia1_hit,0,0
+82,Green downward spirals,grnspirals_hit,0,0
+83,Silver mesmerize twinkles,alb_mezmer1_hit,0,0
+84,Gold mesmerize twinkles,alb_mezmer2_hit,0,0
+85,gold twinkles sfx,gldtwink_sfx,0,0
+86,Red downward spirals,redspirals_hit,0,0
+87,Coldsnap hit,alb_coldsnap_hit,0,0
+88,Hypothermia hit,alb_hypotherm_hit,0,0
+89,Iceblast hit,alb_iceblast_hit,0,0
+90,Arctic Wind hit,alb_arcticwind_hit,0,0
+91,Paladin Group Defense hit,alb_palgrpdefense_hit,0,0
+92,Paladin Group Heal hit,alb_palgrpheal_hit,0,0
+93,Paladin Group Strength hit,alb_palgrpstrength_hit,0,0
+94,Paladin Self Defense hit,alb_palslfdefense_hit,0,0
+95,Paladin Summon,alb_paladin_sum,0,0
+96, Generic Resist effect,resist_hit,0,0
+97,small pain hit w/burn,smpain3_hit,0,0
+98,buzzing flies,flybuzz_sfx,0,0
+99,Cleric Summon,alb_cleric_sum,0,0
+100,green hand glows Minstrel Summon,alb_min_sum,0,0
+101,colorful multiswirls,colmultiswirl_hit,0,0
+102,Musical notes swirling,alb_min_cst,0,0
+103,blue lightshaft with collapsing blue rings,bluringbeam1_hit,0,0
+104,green triswirl,grntriswirl_hit,0,0
+105,green multiswirl,grnmultiswirl_hit,0,0
+106,rainbow triswirl,rnbwtriswirl_hit,0,0
+107,Hearts Popping,hearts_popping,0,0
+108,smallest explosion,alb_fexplo1_hit,0,0
+109,small explosion,alb_fexplo2_hit,0,0
+110,medium Fiery explosion,alb_fexplo3_hit,0,0
+111,large Fiery explosion,alb_fexplo4_hit,0,0
+112,large Fiery explosion w/ flamers,alb_fexplo5_hit,0,0
+113,level 0-1 fiery projectile,alb_fire1_trv,0,0
+114,level 2-5 fiery projectile,alb_fire2_trv,0,0
+115,level 6-9 fiery projectile,alb_fire3_trv,0,0
+116,level 10-14 fiery projectile,alb_fire4_trv,0,0
+117,level 15-20 fiery projectile,alb_fire5_trv,0,0
+118,fiery handglows,alb_fire_sum,0,0
+119,scare face 1,scareface1_hit,0,0
+120,scare face 1a,scareface1a_hit,0,0
+121,scare face 2,scareface2_hit,0,0
+122,scare face 2a,scareface2a_hit,0,0
+123,Blue cylindrical rings,blucylrings_hit,0,0
+124,blue ground twinkles,alb_minmove_pls,0,0
+125,light heal sprinkle,healsprinkle_hit,0,0
+126,Minstrel Command Pulse,alb_mincom_pls,0,0
+127,gold fireworks,fireworks_gold,0,0
+128,Poison Spray ,mid_psnspray_cst,0,0
+129,small electric splash and static,mid_ddpntblnk1_hit,0,0
+130,Strength runes (ground),mid_strbuff1_hit,0,0
+131,single lightning stroke,mid_lightning1_hit,0,0
+132,double lightning stroke,mid_lightning2_hit,0,0
+133,thick lightning stroke,mid_lightning3_hit,0,0
+134,electric DD,mid_electric1_hit,0,0
+135,bigger electric DD,mid_electric2_hit,0,0
+136,thor's hammer spell,mid_mjolnir1_hit,0,0
+137,odin's spear spell,mid_gungnir1_hit,0,0
+138,Thane summon,mid_thane1_sum,0,0
+139,vertical white waves hit,whtwaves1_hit,0,0
+140,red skull cloud 5 sec,skullcloud1_hit,0,0
+141,poison explosion hit,psnexplo_hit,0,0
+142,small ground ripple of darkness,mid_darkwave1_hit,0,0
+143,medium ground ripple of darkness,mid_darkwave2_hit,0,0
+144,large ground ripple of darkness,mid_darkwave3_hit,0,0
+145,leaves swirling,leafswirl1_sfx,0,0
+146,swirl darkshield,mid_darkshield1_hit,0,0
+147,spherical misty darkshield,mid_darkdmgshld_hit,0,0
+148,evil mist ala Sorcerer,mid_nightmist1_hit,0,0
+149,generic dark projectile,mid_dark1_trv,0,0
+150,generic blue sphere shield,mid_sphereshield1_hit,0,0
+151,dark spherical blast,mid_darkblast1_hit,0,0
+152,Spiritmaster Summon handglow,mid_spirit_sum,0,0
+153,lightning storm,mid_lightning4_hit,0,0
+154,Fire DD (path of Fire),alb_ddfire1_hit,0,0
+155,Fire DD2 (path of Fire),alb_ddfire2_hit,0,0
+156,Fire DD3 (path of Fire),alb_ddfire3_hit,0,0
+157,Fire DD4 (path of Fire),alb_ddfire4_hit,0,0
+158,Fire DD5 (path of Fire),alb_ddfire5_hit,0,0
+159,Meteor projectile,alb_fire6_trv,0,0
+160,Giant explosion,alb_fexplo6_hit,0,0
+161,earth hand closing,mid_ehand_hit,0,0
+162,earth fingers grasping,mid_efinger_hit,0,0
+163,wind gust,alb_windgust1_hit,0,0
+164,wind swirl,alb_windswirl1_hit,0,0
+165,dust devil,alb_dustdevil1_hit,0,0
+166,generic cure buildup,alb_cure1_bld,0,0
+167,cure poison,alb_nopoison_hit,0,0
+168,cure disease,alb_nodisease_hit,0,0
+169,blue helix heal 1,alb_heal1_hit,0,0
+170,blue helix heal 2,alb_heal2_hit,0,0
+171,blue helix heal 3,alb_heal3_hit,0,0
+172,blue helix heal 4,alb_heal4_hit,0,0
+173,insanity 2 hit/burn,insanity2_hit,0,0
+174,spherical golden shield 1,alb_holyshld1_hit,0,0
+175,spherical golden shield 2,alb_holyshld2_hit,0,0
+176,spherical golden shield 3,alb_holyshld3_hit,0,0
+177,spherical golden shield 4,alb_holyshld4_hit,0,0
+178,light shaft with spiral twinkles,alb_clstrbuff1_hit,0,0
+179,light shaft with rising twinkles,alb_clstrbuff2_hit,0,0
+180,golden streaks shaft,alb_clstrbuff3_hit,0,0
+181,Earth Cracking Beam,alb_ecrack1_hit,0,0
+182,Amethyst shield,alb_eshield1_hit,0,0
+183,Ruby shield,alb_eshield2_hit,0,0
+184,Sapphire shield,alb_eshield3_hit,0,0
+185,Emerald shield,alb_eshield4_hit,0,0
+186,Diamond shield,alb_eshield5_hit,0,0
+187,insanity 3 hit/burn,insanity3_hit,0,0
+188,quick electric spark flash,smspark1_hit,0,0
+189,quick electric arcs hit,quickarcs_hit,0,0
+190,steamcloud hit,steamcloud_hit,0,0
+191,coldring blast,alb_coldring_hit,0,0
+192,ice shield,alb_iceshield_hit,0,0
+193,Small Orbiting Meteors,alb_meteors1_hit,0,0
+194,Mana explosion 1,hib_mexplo1_hit,0,0
+195,Mana explosion 2,hib_mexplo2_hit,0,0
+196,Mana explosion 3,hib_mexplo3_hit,0,0
+197,Mana explosion 4,hib_mexplo4_hit,0,0
+198,Mana explosion 5,hib_mexplo5_hit,0,0
+199,Void Projectile 1,hib_void1_trv,0,0
+200,Void Projectile 2,hib_void2_trv,0,0
+201,Void Projectile 3,hib_void3_trv,0,0
+202,Void Projectile 4,hib_void4_trv,0,0
+203,Void Projectile 5,hib_void5_trv,0,0
+204,Void Explosion 1,hib_vexplo1_hit,0,0
+205,Void Explosion 2,hib_vexplo2_hit,0,0
+206,Void Explosion 3,hib_vexplo3_hit,0,0
+207,Void Explosion 4,hib_vexplo4_hit,0,0
+208,Void Explosion 5,hib_vexplo5_hit,0,0
+209,Mana summoning handglow ,hib_mana_sum,0,0
+210,rainbow healing 1,hib_heal1_hit,0,0
+211,rainbow healing 2,hib_heal2_hit,0,0
+212,rainbow healing 3,hib_heal3_hit,0,0
+213,rainbow healing 4,hib_heal4_hit,0,0
+214,rainbow healing 5,hib_heal5_hit,0,0
+215,rainbow mesmerize 1,hib_mesmer1_hit,0,0
+216,rainbow mesmerize 2,hib_mesmer2_hit,0,0
+217,rainbow mesmerize 3,hib_mesmer3_hit,0,0
+218,leaf and dewdrop,dewdrop1_hit,0,0
+219,leaf and dewdrop with waterglob,dewdrop2_hit,0,0
+220,Mana buff ground power splash,hib_mbuff1_hit,0,0
+221,leaves closing,leafshield1_hit,0,0
+222,blue transporter-like light beams,blushafts_hit,0,0
+223,silver transporter-like light beams,slvshafts_hit,0,0
+224,gold transporter-like light beams,gldshafts_hit,0,0
+225,Mana shield 1,hib_mshield1_hit,0,0
+226,Mana shield 2,hib_mshield2_hit,0,0
+227,Mana shield 3,hib_mshield3_hit,0,0
+228,Mana shield 4,hib_mshield4_hit,0,0
+229,Mana shield 5,hib_mshield5_hit,0,0
+230,Manasurge gather,hib_msurge_gat,0,0
+231,Manasurge 1,hib_msurge1_hit,0,0
+232,Manasurge 3,hib_msurge3_hit,0,0
+233,Manasurge 5,hib_msurge5_hit,0,0
+234,Mana/Light  Hand Burst 1,hib_mbeam1_cst,0,0
+235,Mana/Light  Hand Burst 2,hib_mbeam2_cst,0,0
+236,Mana/Light  Hand Burst 3,hib_mbeam3_cst,0,0
+237,Mana/Light  Hand Burst 4,hib_mbeam4_cst,0,0
+238,Mana/Light  Hand Burst 5,hib_mbeam5_cst,0,0
+239,Thorn shield,hib_thornwrap_hit,0,0
+240,Oakleaf buff ,hib_oakleaves_hit,0,0
+241,Druid handglow,hib_druid_sum,0,0
+242,big camelot knot,levelling1,0,0
+243,Balor's eye effect only works for him,baloreye_sfx,1,0
+244,thor's hammer 2,mid_mjolnir2_hit,0,0
+245,Dark Explosion 1,mid_dkexplo1_hit,0,0
+246,Dark Explosion 2,mid_dkexplo2_hit,0,0
+247,Dark Explosion 3,mid_dkexplo3_hit,0,0
+248,Dark Explosion 4,mid_dkexplo4_hit,0,0
+249,Dark Explosion 5,mid_dkexplo5_hit,0,0
+250,Void summoning handglow,hib_void_sum,0,0
+251,Vine wrap/tangle/root,hib_vinewrap_hit,0,0
+252,3 second fire with smokepuff,mdfire_sfx,0,0
+253,cold cloud with twinkles,mdcold_sfx,0,0
+254,dirt cloud,mddirt_sfx,0,0
+255,Hibernian dancing longsword,hib_dancesword_sfx,0,0
+256,Arawn's eyes 4 sec,arawneyes1_hit,0,0
+257,Arawn's eyes gleaming 6 sec,arawneyes2_hit,0,0
+258,Arawn's eyes flaming 6 sec,arawneyes3_hit,0,0
+259,Arawn's eyes redbeams,arawneyes4_hit,0,0
+260,***Empty***,empty,0,0
+261,skull sphereshield,skullshield1_hit,0,0
+262,univ longsword propane-style flame,u_lnsw_flame1,0,0
+263,univ longsword regular flame,u_lnsw_flame2,0,0
+264,univ longsword orange flame,u_lnsw_flame3,0,0
+265,univ longsword rising flame,u_lnsw_flaming1,0,0
+266,univ longsword flame w/smoke,u_lnsw_firesmk1,0,0
+267,univ longsword flame w/sparks,u_lnsw_firesprk1,0,0
+268,univ longsword hot glow,u_lnsw_hotglow1,0,0
+269,univ longsword  hot aura,u_lnsw_hotglow2,0,0
+270,univ longsword  blue aura,u_lnsw_bluglow1,0,0
+271,univ longsword  hot blue glow,u_lnsw_hotblu1,0,0
+272,univ longsword  hot gold glow,u_lnsw_hotgld1,0,0
+273,univ longsword  hot red glow,u_lnsw_hotred1,0,0
+274,univ longsword  red aura,u_lnsw_redglow1,0,0
+275,univ longsword cold aura w/sparkles,u_lnsw_cold1,0,0
+276,univ longsword cold aura w/vapor,u_lnsw_cold2,0,0
+277, longsword hilt wavering blue beam,u_lshl_blubeam1,0,0
+278, longsword hilt wavering green beam,u_lshl_grnbeam1,0,0
+279, longsword hilt wavering red beam,u_lshl_redbeam1,0,0
+280, longsword hilt red/blue beam,u_lshl_redblubm1,0,0
+281, longsword hilt purple beam,u_lshl_prpbeam1,0,0
+282,univ 2h/gr sword yellow flames,u_2hsw_flame1,0,0
+283,univ 2h/gr sword orange flames,u_2hsw_flame2,0,0
+284,univ 2h/gr sword fire w/smoke,u_2hsw_firesmk1,0,0
+285,univ 2h/gr sword fire w/sparks,u_2hsw_firesprk1,0,0
+286,univ 2h/gr blue glow w/sparkles,u_2hsw_cold1,0,0
+287,univ 2h/gr blue aura w/cold vapor,u_2hsw_cold2,0,0
+288,univ 2h/gr icy blue glow,u_2hsw_iceblu1,0,0
+289,univ 2h/gr red aura,u_2hsw_redglow1,0,0
+290,univ 2h/gr sword  strong crimson glow,u_2hsw_redglow2,0,0
+291,univ 2h/gr sword white core red glow,u_2hsw_hotred1,0,0
+292,univ 2h/gr sword silvery/white glow,u_2hsw_slvglow1,0,0
+293,univ 2h/gr sword  gold/yellow glow,u_2hsw_gldglow1,0,0
+294,univ 2h/gr sword hot green glow,u_2hsw_hotgrn1,0,0
+295,univ 1h hammer red aura,u_1hhm_redglow1,0,0
+296,univ 1h hammer  fiery glow,u_1hhm_hotglow1,0,0
+297,univ 1h hammer more intense fiery glow,u_1hhm_hotglow2,0,0
+298,univ 1h hammer flaming,u_1hhm_flame1,0,0
+299,univ 1h hammer torchlike flaming,u_1hhm_flame2,0,0
+300,univ 1h hammer silvery glow,u_1hhm_slvglow1,0,0
+301,univ 1h hammer purple glow,u_1hhm_prpglow1,0,0
+302,univ 1h hammer blue aura,u_1hhm_bluglow1,0,0
+303,univ 1h hammer blue glow,u_1hhm_bluglow2,0,0
+304,univ 1h hammer arcs from head to handle,u_1hhm_electric1,0,0
+305,univ 1h crush arcing halo ,u_1hcr_electric1,0,0
+306,univ 1h crush center arcing,u_1hcr_electric2,0,0
+307,univ 1h crush smaller arcing halo ,u_1hcr_electric3,0,0
+308,univ 1h crush hot orange core glow,u_1hcr_hotglow1,0,0
+309,univ 1h crush orange aura,u_1hcr_hotglow2,0,0
+310,univ 1h crush subtle aura with sparks,u_1hcr_hotglow3,0,0
+311,univ 1h crush yellow flame,u_1hcr_flame1,0,0
+312,univ 1h crush mana flame,u_1hcr_mana1,0,0
+313,univ 1h crush hot green glow,u_1hcr_hotgrn1,0,0
+314,univ 1h crush hot red glow,u_1hcr_hotred1,0,0
+315,univ 1h crush hot purple glow,u_1hcr_hotprp1,0,0
+316,univ 1h crush cold vapor,u_1hcr_cold1,0,0
+317,univ 1h axe basic flame,u_1hax_flame1,0,0
+318,univ 1h axe orange flame,u_1hax_flame2,0,0
+319,univ 1h axe slow orange flame w/sparks,u_1hax_flame3,0,0
+320,univ 1h axe fiery/trailing flame ,u_1hax_flaming1,0,0
+321,univ 1h axe cold vapor,u_1hax_cold1,0,0
+322,univ 1h axe blue aura with twinkles,u_1hax_cold2,0,0
+323,univ 1h axe hot green glow,u_1hax_hotgrn1,0,0
+324,univ 1h axe hot blue glow,u_1hax_hotblu1,0,0
+325,univ 1h axe hot cyan glow,u_1hax_hotblu2,0,0
+326,univ 1h axe hot purple glow,u_1hax_hotprp1,0,0
+327,univ 1h axe blue->purple->orange glow,u_1hax_bluorn1,0,0
+328,univ shortsword propane flame,u_shsw_flame1,0,0
+329,univ shortsword orange flame with sparks,u_shsw_flame2,0,0
+330,univ shortsword blue aura with twinkles,u_shsw_cold1,0,0
+331,univ shortsword green cloud with bubbles,u_shsw_poison1,0,0
+332,univ shortsword red aura with blood bubbles,u_shsw_redbld1,0,0
+333,univ shortsword evil green glow,u_shsw_evlgrn1,0,0
+334,univ shortsword black glow,u_shsw_black1,0,0
+335,Dragonbreath Fire,drgnbrth_fire_cst,0,0
+336,Dragonbreath Cold,drgnbrth_cold_cst,0,0
+337,Dragonbreath Evil,drgnbrth_evil_cst,0,0
+338,Dragonbreath Steam,drgnbrth_steam_cst,0,0
+339,Midgard battlespear cold with twinkles,m_btsp_cold1,0,0
+340,Midgard battlespear evil green aura,m_btsp_evilgrn1,0,0
+341,Midgard battlespear evil red aura,m_btsp_evilred1,0,0
+342,Midgard battlespear flaming,m_btsp_flaming1,0,0
+343,Midgard battlespear hot gold glow,m_btsp_gldglow1,0,0
+344,Midgard battlespear hot fire glow,m_btsp_hotfire1,0,0
+345,Midgard battlespear red aura,m_btsp_redglow1,0,0
+346,Midgard lugged spear blue glow,m_lgsp_bluglow1,0,0
+347,Midgard lugged spear hot blue glow,m_lgsp_bluglow2,0,0
+348,Midgard lugged spear cold with twinkles,m_lgsp_cold1,0,0
+349,Midgard lugged spear electric arcing,m_lgsp_electric1,0,0
+350,Midgard lugged spear hot yellow flame,m_lgsp_flame1,0,0
+351,Midgard lugged spear orange flame w/ sparks,m_lgsp_flame2,0,0
+352,Midgard lugged spear orange to purple flame,m_lgsp_ornprp1,0,0
+353,Midgard lugged spear hot purple flame,m_lgsp_prpglow1,0,0
+354,Midgard lugged spear silvery glow,m_lgsp_slvglow1,0,0
+355,Briton quarterstaff blue glow,b_qrst_bluglow1,0,0
+356,Briton quarterstaff blue glow w/ twinkles,b_qrst_bluglow2,0,0
+357,Briton quarterstaff gold glow,b_qrst_gldglow1,0,0
+358,Briton quarterstaff gold glow w/ twinkles,b_qrst_gldglow2,0,0
+359,Briton quarterstaff  faint red glow,b_qrst_redglow1,0,0
+360,protection runes (floating),mid_shldprotect_hit,0,0
+361,protection runes (ground),mid_grndprotect_hit,0,0
+362,Spherical jacob's ladder,zapsphere_hit,0,0
+363,green shocksplash,grnsplash_hit,0,0
+364,blue shocksplash,blusplash_hit,0,0
+365,red shocksplash,redsplash_hit,0,0
+366,Angel wings,angelwings_sfx,0,0
+367,golden twinkle sphere,twnksphere_hit,0,0
+368,amber/topaz shield ,ambershld_hit,0,0
+369,Dark tendrils,dktendrils_hit,0,0
+370, 4 second Multicolor sphereshield,colorshld_hit,0,0
+371, 4 second Purple sphereshield,prpshld_hit,0,0
+372,Red skull swirl wrap,skullswirl_hit,0,0
+373, 4 second Red cylindrical shield,redcylshld_hit,0,0
+374, 4 second Purple cylindrical shield,prpcylshld_hit,0,0
+375, 4 second Power/Mana cylindrical shield,pwrcylshld_hit,0,0
+376,rainbow scintillation,rnbwscint_hit,0,0
+377,silver scintillation,slvscint_hit,0,0
+378,green scintillation,grnscint_hit,0,0
+379,red scintillation,redscint_hit,0,0
+380,blue void burning 3 sec,voidbrn_sfx,0,0
+381,mana burning 3 sec,manabrn_sfx,0,0
+382,quick dirtpuff,dirtpuff_sfx,0,0
+383,red swirls,redswirls_sfx,0,0
+384,purple spiral twirl,prpspiral_hit,0,0
+385,visions 1 hit,visions1_hit,0,0
+386,visions 2 hit,visions2_hit,0,0
+387,visions 3 hit,visions3_hit,0,0
+388,visions 4 hit,visions4_hit,0,0
+389,gold scintillation,gldscint_hit,0,0
+390,silver/rainbow scintillation,slvscint2_hit,0,0
+391,green poison hit,grndrip,0,0
+392, brown goo drip,brndrip,0,0
+393,Blue triswirls,blutriswirl_hit,0,0
+394,sickly brown puff,brnsickly_hit,0,0
+395,small lightning stroke,smlightning_hit,0,0
+396,gold/rainbow scintillation,gldscint2_hit,0,0
+397,waraxe shortsword clash,mid_wpnclash1_hit,0,0
+398,battleaxe broadsword clash,mid_wpnclash2_hit,0,0
+399,greataxe greathammer  clash,mid_wpnclash3_hit,0,0
+400,red flask,redflask_sfx,0,0
+401,orange flask,ornflask_sfx,0,0
+402,yellow flask,yelflask_sfx,0,0
+403,green flask,grnflask_sfx,0,0
+404,blue flask,bluflask_sfx,0,0
+405,purple flask,prpflask_sfx,0,0
+406,red/purple flask,redprpflask_sfx,0,0
+407,red/orange flask,redornflask_sfx,0,0
+408,rainbow flask,prpflask_sfx,0,0
+409,clear flask,clrflask_sfx,0,0
+410,mouth bubbles (Atlantis),bubbles_sfx,2,0
+411,Sand blowing 1,sand_blow_effect_one,2,0
+412,Sand blowing 2,sand_blow_effect_two,2,0
+413,Sand blowing 3,sand_blow_effect_three,2,0
+414,Sand blowing 4,sand_blow_effect_four,2,0
+415,Sand blowing 5,sand_blow_effect_five,2,0
+416,spike trap,spiketrap_sfx,2,0
+417,1 second red cylindrical shield,redcylshld1s_hit,0,0
+418,1 second purple cylindrical shield,prpcylshld1s_hit,0,0
+419,1 second mana/power cylindrical shield,pwrcylshld1s_hit,0,0
+420,1 second Multicolor sphereshield,colorshld1s_hit,0,0
+421,1 second Purple sphereshield,prpshld1s_hit,0,0
+422,yellow Gorgon Gaze eyebeams,GorgonGaze,2,0
+423,sunshaft,sunshaft_sfx,2,0
+424,moonshaft,moonshaft_sfx,2,0
+425,small Poison Spray ,poisonspray_sfx,1,0
+426, small Fire Spray ,firespray_sfx,1,0
+427,Typhon melting,typhon_melt_fx,2,0
+428,flame spout,flamespout_sfx,0,0
+429,kelp wrapping/tangling,kelpwhip_hit,2,0
+430,red rising/falling smoke effect,redsmokecolumn,2,0
+431,grey rising/falling smoke effect,greysmokecolumn,2,0
+432,red Medusa Gaze eyebeams,MedusaGaze,2,0
+433, floating Stygia Symbol,stygia_symbol_cap,2,0
+434,floating pyramid energy waves,stygia_pyramid_cap,2,0
+435,Ink cloud,inkcloud_sfx,2,0
+436,Typhon rising,typhon_rise_fx,2,0
+437,water jet spray,waterjet_sfx,2,0
+438,water blast explosion,water1_hit,2,0
+439,water bolt projectile,water1_trv,2,0
+440,spherical  crossrings green,sphere_xrings_green,0,0
+441,spherical  crossrings spirit,sphere_xrings_spirit,0,0
+442,spherical  crossrings holy,sphere_xrings_holy,0,0
+443,spherical  crossrings pearl,sphere_xrings_pearl,0,0
+444,speedwarp hit (red waves),speedwarp_hit,0,0
+445,Scorpion bolt loading ,bolt_scorpion_load,0,0
+446,Scorpion bolt ready,bolt_scorpion_ready,0,0
+447,Scorpion bolt travelling,bolt_scorpion_travel,0,0
+448,Scorpion bolt stick strike hit,bolt_scorpion_strike,0,0
+449,Ballista bolt loading,bolt_ballista_load,0,0
+450,Ballista bolt ready,bolt_ballista_ready,0,0
+451,Ballista bolt travelling,bolt_ballista_travel,0,0
+452,Ballista bolt stick strike hit,bolt_ballista_strike,0,0
+453,Boulder loading,boulder_load,0,0
+454,Boulder ready,boulder_ready,0,0
+455,Boulder travelling,boulder_travel,0,0
+456,Boulder exploding hit,boulder_explo,0,0
+457,Catapult pitchball loading,pitchball_load,0,0
+458,Catapult pitchball ready,pitchball_ready,0,0
+459,Catapult pitchball travelling,pitchball_travel,0,0
+460,Catapult pitchball exploding hit,pitchball_explo,0,0
+461,Catapult coldball loading,coldball_load,0,0
+462,Catapult coldball ready,coldball_ready,0,0
+463,Catapult coldball travelling,coldball_travel,0,0
+464,Catapult coldball exploding hit,coldball_explo,0,0
+465,Catapult stone shot loading,shot_stone_load,0,0
+466,Catapult stone shot ready,shot_stone_ready,0,0
+467,Catapult stone shot travelling,shot_stone_travel,0,0
+468,Catapult stone shot hit exploding,shot_stone_explo,0,0
+469,Catapult disease carcass load,carcass_load,0,0
+470,Catapult disease carcass ready,carcass_ready,0,0
+471,Catapult disease carcass travel,carcass_travel,0,0
+472,Catapult disease carcass explode,carcass_explo,0,0
+473,Boiling oil filling,oil_load,0,0
+474,Boiling oil ready,oil_ready,0,0
+475,Boiling oil pouring,oil_travel,0,0
+476,Straight wall crumble,E_tier1_wall_crumble,0,2
+477,Angleconvex wall crumble,E_tier1_angleconvex_crumble,0,2
+478,Elbow wall crumble,E_tier1_elbow_crumble,0,2
+479,Elbowconcave wall crumble,E_tier1_elbowconcave_crumble,0,2
+480,Smoothconvex wall crumble,E_tier1_smoothconvex_crumble,0,2
+481,Teir2 Angleconvex wall crumble,E_tier2_angleconvex_crumble,0,2
+482,Boiling oil splash,oil_splash,0,0
+483,Poison ball load,poisonball_load,0,0
+484,Poison ball ready,poisonball_ready,0,0
+485,Poison ball travelling,poisonball_travel,0,0
+486,Poison ball explosion,poisonball_explo,0,0
+487,red  damage fanspray,fanspray_damage,0,0
+488,yellow shearing fanspray,fanspray_shear2,0,0
+489,blue shearing fanspray,fanspray_shear1,0,0
+490,wavy red snaring fanspray,fanspray_snare,0,0
+491,red expanding ring ,ringblast_redwave,0,0
+492,red expanding ring with Norse runes,ringblast_redrunic,0,0
+493,single acuity shear hit,shear_Acuity_hit,0,0
+494,single DEX shear hit,shear_DEX_hit,0,0
+495,single DEX-QUI shear hit,shear_DEXQUI_hit,0,0
+496,single STR shear hit,shear_STR_hit,0,0
+497,single CON shear hit,shear_CON_hit,0,0
+498,single STRCON shear hit,shear_STRCON_hit,0,0
+499,Relic pad effect,relic_pad_effect,0,0
+500,radius acuity shear hit,shear_Acuity_rad,0,0
+501,radius DEX shear hit,shear_DEX_rad,0,0
+502,radius DEX-QUI shear hit,shear_DEXQUI_rad,0,0
+503,radius STR shear hit,shear_STR_rad,0,0
+504,radius CON shear hit,shear_CON_rad,0,0
+505,radius STRCON shear hit,shear_STRCON_rad,0,0
+506,smaller red purple explosion,deathblast1_hit,0,0
+507, red purple explosion,deathblast2_hit,0,0
+508,red purple explosion,deathblast3_hit,0,0
+509,fiery aura briefly flaring,burstaura_fiery1,0,0
+510,more pronounced fiery aura briefly flaring,burstaura_fiery2,0,0
+511,golden streaks aura,burstaura_holy1,0,0
+512,golden streaks aura with ring,burstaura_holy2,0,0
+513,golden streaks aura with ringburst,burstaura_holy3,0,0
+514,small heretic focus dmg projectile,fire1_dmgpulse,1,0
+515,small heretic focus pulse effect,fire1_pulse,1,0
+516,flame ring surge at feet,ringfire1_hit,0,0
+517, larger flame ring surge at feet,ringfire2_hit,0,0
+518,flame shield fireblossom,shield_fireblossom,0,0
+519,lava bubble shield,shield_lavabubble,0,0
+520,heatwaves shield,shield_heatwaves,0,0
+521,lifetap hit flash with skull,lifetap_skull1_hit,0,0
+522, bigger lifetap hit flash with skull,lifetap_skull2_hit,0,0
+523,constricting fire spiral,firegrasp1_hit,0,0
+524, alternate constricting fire spiral,firegrasp2_hit,0,0
+525, lava puddle cloudy 3s,lavapuddle_cloudy,0,0
+526, lava puddle crusty 3s,lavapuddle_crusty,0,0
+527, lava puddle lumpy 3s,lavapuddle_lumpy,0,0
+528, lava puddle crackle 3s,lavapuddle_crackle,0,0
+529, lava pool erupting cloudy 4s,lavapool_cloudy_erupt,0,0
+530, lava pool erupting crusty 4s,lavapool_crusty_erupt,0,0
+531, lava pool erupting lumpy 4s,lavapool_lumpy_erupt,0,0
+532, lava pool erupting carckle 4s,lavapool_crackle_erupt,0,0
+533,white pointsource soundripples,sonicwaves_white,0,0
+534,red pointsource soundripples,sonicwaves_red,0,0
+535,pointsource red black sound blast,sonicshock_redblack,0,0
+536,pointsource purple black sound blast,sonicshock_purple,0,0
+537,sound hit red shock,sonichit_redblare,0,0
+538,sound hit black shock,sonichit_blackblare,0,0
+539,flat ripple blast,blastripple_sound,0,0
+540,moon rises behind caster,moon_rise,0,0
+541,moon rise and eclipse 1,moon_eclipse1,0,0
+542,moon rise and eclipse 2,moon_eclipse2,0,0
+543,evil red streaks move downward,fallstreaks_evil1,0,0
+544,evil red black streaks move downward,fallstreaks_evil2,0,0
+545,evil red streaks move upward,risetreaks_evil1,0,0
+546,evil red black streaks move upward,risetreaks_evil2,0,0
+547,fire hit with flaming lifetap face,lifetap_fireface1,0,0
+548,item decay head,itemdecay_head,0,0
+549,item decay torso,itemdecay_torso,0,0
+550,item decay legs,itemdecay_legs,0,0
+551,evil red handglow,handglow_haze_red,0,0
+552,clawslash in air red rip,clawslash_redrip,0,0
+553,hit splash with red ring,ringhit_red,0,0
+554,inward flowing red streams with red pulse,absorb_redpulse,0,0
+555,sound spray 180 degrees purple vibration  ,soundhemi_vibe_purple,0,0
+556,sound spray 180 degrees red vibration  ,soundhemi_vibe_red,0,0
+557,sound spray 180 degrees white vibration  ,soundhemi_vibe_white,0,0
+558,sound spray 180 degrees purple snare,soundhemi_snare_purple,0,0
+559,sound ring red ping wave,soundring_ping_red,0,0
+560,sound cone mouthblast ripples,cone_soundripples,0,0
+561,sonic shield 1,shield_sonic1,0,0
+562,sonic shield 2,shield_sonic2,0,0
+563,sonic shield 3,shield_sonic3,0,0
+564,ghostly greenish shield,shield_waves_ghost,0,0
+565,vertical hitsplash red 1,hitsplash_waves_red,0,0
+566,vertical hitsplash purple 1,hitsplash_waves_purple,0,0
+567,vertical hitsplash red veins,hitsplash_veins_red,0,0
+568,vertical hitsplash soft wavy red,hitsplash_softwaves_red,0,0
+569,vertical hitsplash soft wavy purple,hitsplash_softwaves_purple,0,0
+570,vertical hitsplash soft purple,hitsplash_soft_purple,0,0
+571,vertical hitsplash green veins,hitsplash_leech_green,0,0
+572,subtle green handglow,handglow_haze_green,0,0
+573,subtle green ring handglow,handglow_hazering_green,0,0
+574,groundsplash soft fire,groundsplash_soft_fire,0,0
+575,groundsplash  heatwaves,groundsplash_heat_fire,0,0
+576,red wavy projectile 1,ball_redwaves1_trv,0,0
+577,red wavy projectile 2,ball_redwaves2_trv,0,0
+578,red wavy projectile 3,ball_redwaves3_trv,0,0
+579, green wavy projectile 1,ball_greenwaves1_trv,0,0
+580, green wavy projectile 2,ball_greenwaves2_trv,0,0
+581, green wavy projectile 3,ball_greenwaves3_trv,0,0
+582,green absorb handglow 1,handglow_absorb_green,0,0
+583,ripply distortion,burstaura_sonicshock,0,0
+584,sonic pain hit 1,sonic_pain1_hit,0,0
+585,sonic pain hit 2,sonic_pain2_hit,0,0
+586,sonic pain hit 3,sonic_pain3_hit,0,0
+587,sonic pain hit 4,sonic_pain4_hit,0,0
+588,wind ripples on ground,groundsplash_ripple_wind,0,0
+589,inhaling wind rushing in,air_inhale1,0,0
+590,shock projectile 1,shock_bullet1_trv,0,0
+591,shock projectile 2,shock_bullet2_trv,0,0
+592,shock projectile 3,shock_bullet3_trv,0,0
+593,dark purple negative headglow,headglow_darkness,0,0
+594,tower razing,e_tower_crumbles,1,2
+595,outpost_crumble_T1-2-3-4,outpost_crumble_T1-2-3-4,1,2
+596,tower razing,outpost_crumble_t4_Toppers,1,2
+597,tower razing,outpost_crumble_T3-4_buttresses,1,2
+598,tower razing,outpost_crumble_T1_plugs,1,2
+599,,,1,2
+600,,,,
+601,pally epic wpn effect,epic_wpn_palladin_2h_FX,4,0
+602,Miasma,Miasma,4,0
+603,sfx_Hero_Blunt,sfx_Hero_Blunt,4,0
+604,sfx_epic_Warrior_Axe_1H,sfx_epic_Warrior_Axe_1H,4,0
+605,sfx_epic_Hero_Piercing_2H,sfx_epic_Hero_Piercing_2H,4,0
+606,sfx_epic_Hero_Spear_2H,sfx_epic_Hero_Spear_2H,4,0
+607,sfx_epic_Hero_Spear_1H,sfx_epic_Hero_Spear_1H,4,0
+608,sfx_epic_Hero_Piercing_1H,sfx_epic_Hero_Piercing_1H,4,0
+609,sfx_epic_Hero_Blunt_2H,sfx_epic_Hero_Blunt_2H,4,0
+610,sfx_epic_Hero_Blade_2H,sfx_epic_Hero_Blade_2H,4,0
+611,sfx_epic_Hero_Blade_1H,sfx_epic_Hero_Blade_1H,4,0
+612,sfx_epic_Reaver_Sword_1H,sfx_epic_Reaver_Sword_1H,4,0
+613,sfx_epic_palladin_Slash_1h,sfx_epic_palladin_Slash_1h,4,0
+614,sfx_epic_palladin_Thrust_2H,sfx_epic_palladin_Thrust_2H,4,0
+615,sfx_epic_palladin_Thrust_1H,sfx_epic_palladin_Thrust_1H,4,0
+616,sfx_epic_Reaver_Thrust_1H,sfx_epic_Reaver_Thrust_1H,4,0
+617,sfx_epic_Reaver_Crush_1H,sfx_epic_Reaver_Crush_1H,4,0
+618,sfx_epic_Warrior_Sword_1H,sfx_epic_Warrior_Sword_1H,4,0
+619,sfx_epic_Warrior_Hammer_2H,sfx_epic_Warrior_Hammer_2H,4,0
+620,sfx_epic_Warrior_Hammer_1H,sfx_epic_Warrior_Hammer_1H,4,0
+621,sfx_epic_Warrior_Axe_2H,sfx_epic_Warrior_Axe_2H,4,0
+622,sfx_epic_Warrior_Sword_2H,sfx_epic_Warrior_Sword_2H,4,0
+623,sfx_epic_Reaver_Flex_1H,sfx_epic_Reaver_Flex_1H,4,0
+624,sfx_epic_palladin_Crush_2H,sfx_epic_palladin_Crush_2H,4,0
+625,sfx_epic_palladin_Crush_1H,sfx_epic_palladin_Crush_1H,4,0
+626,sfx_epic_wpn_Armsman_Thrust_2H,sfx_epic_wpn_Armsman_Thrust_2H,4,0
+627,sfx_epic_wpn_Armsman_Crush_1H,sfx_epic_wpn_Armsman_Crush_1H,4,0
+628,sfx_epic_wpn_Armsman_Crush_2H,sfx_epic_wpn_Armsman_Crush_2H,4,0
+629,sfx_epic_wpn_Armsman_Pole_S,sfx_epic_wpn_Armsman_Pole_S,4,0
+630,sfx_epic_wpn_Armsman_Sword_1H,sfx_epic_wpn_Armsman_Sword_1H,4,0
+631,sfx_epic_wpn_Armsman_Sword_2H,sfx_epic_wpn_Armsman_Sword_2H,4,0
+632,sfx_epic_wpn_Armsman_Thrust_1H,sfx_epic_wpn_Armsman_Thrust_1H,4,0
+633,sfx_epic_wpn_Mercenary_T,sfx_epic_wpn_Mercenary_T,4,0
+634,sfx_epic_wpn_Mercenary_C,sfx_epic_wpn_Mercenary_C,4,0
+635,sfx_epic_wpn_Mercenary_S,sfx_epic_wpn_Mercenary_S,4,0
+636,sfx_epic_minstrel_T,sfx_epic_minstrel_T,4,0
+637,sfx_epic_minstrel_S,sfx_epic_minstrel_S,4,0
+638,sfx_epic_minstrel_H,sfx_epic_minstrel_H,4,0
+639,sfx_epic_infiltrator_T,sfx_epic_infiltrator_T,4,0
+640,sfx_epic_Infiltrator_S,sfx_epic_Infiltrator_S,4,0
+641,sfx_epic_wpn_Armsman_Pole_C,sfx_epic_wpn_Armsman_Pole_C,4,0
+642,sfx_epic_wpn_Heretic_flexS_1H,sfx_epic_wpn_Heretic_flexS_1H,4,0
+643,sfx_epic_wpn_Heretic_crush_1H,sfx_epic_wpn_Heretic_crush_1H,4,0
+644,sfx_epic_wpn_Heretic_flexC_1H,sfx_epic_wpn_Heretic_flexC_1H,4,0
+645,sfx_epic_wpn_cleric_C,sfx_epic_wpn_cleric_C,4,0
+646,sfx_epic_Scout_Bow,sfx_epic_Scout_Bow,4,0
+647,sfx_epic_Scout_T,sfx_epic_Scout_T,4,0
+648,sfx_epic_Scout_S,sfx_epic_Scout_S,4,0
+649,sfx_epic_wpn_skald_axe_1h,sfx_epic_wpn_skald_axe_1h,4,0
+650,sfx_epic_wpn_skald_hammer_1h,sfx_epic_wpn_skald_hammer_1h,4,0
+651,sfx_epic_wpn_skald_sword_1h,sfx_epic_wpn_skald_sword_1h,4,0
+652,sfx_epic_wpn_skald_hammer_2h,sfx_epic_wpn_skald_hammer_2h,4,0
+653,sfx_epic_wpn_skald_axe_2h,sfx_epic_wpn_skald_axe_2h,4,0
+654,sfx_epic_wpn_skald_sword_2h,sfx_epic_wpn_skald_sword_2h,4,0
+655,sfx_epic_Druid_Crush_1H,sfx_epic_Druid_Crush_1H,4,0
+656,sfx_epic_Druid_Blade_1H,sfx_epic_Druid_Blade_1H,4,0
+657,sfx_epic_wpn_savage_sword_1h,sfx_epic_wpn_savage_sword_1h,4,0
+658,sfx_epic_wpn_savage_sword_2h,sfx_epic_wpn_savage_sword_2h,4,0
+659,sfx_epic_wpn_savage_axe_1h,sfx_epic_wpn_savage_axe_1h,4,0
+660,sfx_epic_Warden_Blade_1H,sfx_epic_Warden_Blade_1H,4,0
+661,sfx_epic_Warden_Crush_1H,sfx_epic_Warden_Crush_1H,4,0
+662,sfx_epic_Friar_Staff&Crush,sfx_epic_Friar_Staff&Crush,4,0
+663,sfx_epic_Necromancer_Staff,sfx_epic_Necromancer_Staff,4,0
+664,sfx_epic_wpn_savage_axe_2h,sfx_epic_wpn_savage_axe_2h,4,0
+665,sfx_epic_wpn_savage_hth,sfx_epic_wpn_savage_hth,4,0
+666,sfx_epic_wpn_savage_hammer_1h,sfx_epic_wpn_savage_hammer_1h,4,0
+667,sfx_epic_wpn_savage_hammer_2h,sfx_epic_wpn_savage_hammer_2h,4,0
+668,sfx_epic_wpn_valkyrie_sword_1h,sfx_epic_wpn_valkyrie_sword_1h,4,0
+669,sfx_epic_wpn_valkyrie_sword_2h,sfx_epic_wpn_valkyrie_sword_2h,4,0
+670,sfx_epic_Ranger_Bow,sfx_epic_Ranger_Bow,4,0
+671,sfx_epic_Ranger_Pierce_1H,sfx_epic_Ranger_Pierce_1H,4,0
+672,sfx_epic_Ranger_Slash_1H,sfx_epic_Ranger_Slash_1H,4,0
+673,sfx_epic_wpn_valkyrie_spear,sfx_epic_wpn_valkyrie_spear,4,0
+674,sfx_epic_wpn_Sorcerer_St,sfx_epic_wpn_Sorcerer_St,4,0
+675,sfx_epic_wpn_hunter_sword_2h,sfx_epic_wpn_hunter_sword_2h,4,0
+676,sfx_epic_wpn_hunter_sword_1h,sfx_epic_wpn_hunter_sword_1h,4,0
+677,sfx_epic_wpn_hunter_spear,sfx_epic_wpn_hunter_spear,4,0
+678,sfx_epic_wpn_hunter_bow,sfx_epic_wpn_hunter_bow,4,0
+679,sfx_epic_Blademaster_Pierce_1H,sfx_epic_Blademaster_Pierce_1H,4,0
+680,sfx_epic_Blademaster_Slash_1H,sfx_epic_Blademaster_Slash_1H,4,0
+681,sfx_epic_Blademaster_Crush_1H,sfx_epic_Blademaster_Crush_1H,4,0
+682,sfx_epic_wpn_thane_sword_2h,sfx_epic_wpn_thane_sword_2h,4,0
+683,sfx_epic_wpn_thane_sword_1h,sfx_epic_wpn_thane_sword_1h,4,0
+684,sfx_epic_wpn_thane_axe_2h,sfx_epic_wpn_thane_axe_2h,4,0
+685,sfx_epic_wpn_thane_axe_1h,sfx_epic_wpn_thane_axe_1h,4,0
+686,sfx_epic_Bainshee_Staff,sfx_epic_Bainshee_Staff,4,0
+687,sfx_epic_Animist_Staff,sfx_epic_Animist_Staff,4,0
+688,sfx_epic_Eldritch_Staff,sfx_epic_Eldritch_Staff,4,0
+689,sfx_epic_Enchanter_Staff,sfx_epic_Enchanter_Staff,4,0
+690,sfx_epic_wpn_thane_hammer_2h,sfx_epic_wpn_thane_hammer_2h,4,0
+691,sfx_epic_wpn_thane_hammer_1h,sfx_epic_wpn_thane_hammer_1h,4,0
+692,sfx_epic_wpn_shadowblade_sword_2h,sfx_epic_wpn_shadowblade_sword_2h,4,0
+693,sfx_epic_wpn_shadowblade_sword_1h,sfx_epic_wpn_shadowblade_sword_1h,4,0
+694,sfx_epic_Mentalist_Staff,sfx_epic_Mentalist_Staff,4,0
+695,sfx_epic_Valewalker_Sy,sfx_epic_Valewalker_Sy,4,0
+696,sfx_epic_wpn_shadowblade_axe_1h,sfx_epic_wpn_shadowblade_axe_1h,4,0
+697,sfx_epic_wpn_shadowblade_axe_2h,sfx_epic_wpn_shadowblade_axe_2h,4,0
+698,sfx_epic_Healer_Crush_2H,sfx_epic_Healer_Crush_2H,4,0
+699,sfx_epic_Healer_Crush_1H,sfx_epic_Healer_Crush_1H,4,0
+700,sfx_epic_Spiritmaster_Staff,sfx_epic_Spiritmaster_Staff,4,0
+701,sfx_epic_wpn_Cabalist_st,sfx_epic_wpn_Cabalist_st,4,0
+702,sfx_epic_wpn_Theurgist_St,sfx_epic_wpn_Theurgist_St,4,0
+703,sfx_epic_wpn_Vampiir_T,sfx_epic_wpn_Vampiir_T,4,0
+704,sfx_epic_wpn_Wizard_St,sfx_epic_wpn_Wizard_St,4,0
+705,fireworks_gold_blast,fireworks_gold_blast,0,0
+706,fireworks_green_blast,fireworks_green_blast,0,0
+707,fireworks_red_blast,fireworks_red_blast,0,0
+708,fireworks_white_blast,fireworks_white_blast,0,0
+709,fireworks_blue_blast,fireworks_blue_blast,0,0
+710,sfx_epic_wpn_Runemaster_St,sfx_epic_wpn_Runemaster_St,4,0
+711,sfx_epic_Shaman_Crush_1H,sfx_epic_Shaman_Crush_1H,4,0
+712,sfx_epic_Bonedancer_Staff,sfx_epic_Bonedancer_Staff,4,0
+713,sfx_epic_Warlock_Staff,sfx_epic_Warlock_Staff,4,0
+714,sfx_epic_Shaman_Crush_2H,sfx_epic_Shaman_Crush_2H,4,0
+715,sfx_epic_wpn_Champion_Slash_2h,sfx_epic_wpn_Champion_Slash_2h,4,0
+716,sfx_epic_wpn_Champion_Slash_1h,sfx_epic_wpn_Champion_Slash_1h,4,0
+717,sfx_epic_wpn_Champion_Pierce_1h,sfx_epic_wpn_Champion_Pierce_1h,4,0
+718,sfx_epic_wpn_Champion_Crush_2h,sfx_epic_wpn_Champion_Crush_2h,4,0
+719,sfx_epic_wpn_Champion_Crush_1h,sfx_epic_wpn_Champion_Crush_1h,4,0
+720,sfx_epic_wpn_nightshade_T,sfx_epic_wpn_nightshade_T,4,0
+721,sfx_epic_wpn_nightshade_S,sfx_epic_wpn_nightshade_S,4,0
+722,sfx_epic_wpn_berserker_axe_2h,sfx_epic_wpn_berserker_axe_2h,4,0
+723,sfx_epic_wpn_berserker_axe_1h,sfx_epic_wpn_berserker_axe_1h,4,0
+724,sfx_epic_wpn_berserker_sword_2h,sfx_epic_wpn_berserker_sword_2h,4,0
+725,sfx_epic_wpn_berserker_sword_1h,sfx_epic_wpn_berserker_sword_1h,4,0
+726,sfx_epic_wpn_berserker_hammer_2h,sfx_epic_wpn_berserker_hammer_2h,4,0
+727,sfx_epic_wpn_berserker_hammer_1h,sfx_epic_wpn_berserker_hammer_1h,4,0
+728,sfx_epic_wpn_Bard_Blade_1H,sfx_epic_wpn_Bard_Blade_1H,4,0
+729,sfx_epic_wpn_Bard_Crush_1H,sfx_epic_wpn_Bard_Crush_1H,4,0
+730,sfx_epic_wpn_Bard_Harp,sfx_epic_wpn_Bard_Harp,4,0
+731,sfx_Admorenth_staff,sfx_Admorenth_staff,5,0
+732,Ballista Bolt 90 Degrees,bolt_ballista_90,0,0
+733,Carcass 90 Degrees,carcass_90,0,0
+734,Cold Ball 90 Degrees,coldball_90,0,0
+735,Pitch Ball 90 Degrees,pitchball_90,0,0
+736,Stone Shot 90 Degrees,stone_shot_90,0,0
+737,Scorpion Bolt 90 Degress,bolt_scorpion_90,0,0
+738,Grey Ground Splash Ripple Rings Large,groundsplash_ripple_rings,0,0
+739,Grey Ground Splash Ripple Rings Small,groundsplash_ripple_rings_sm,0,0
+740,Red Ground Ripple Waves,groundsplash_ripple_waves2,0,0
+741,Blue Ground Ripple Waves,groundsplash_ripple_waves,0,0
+742,Yellow Hit Leach,hitsplash_leech_yellow,0,0
+743,Weapon Clash and Shatter,wpnclash1_shatter_hit,0,0
+744,Black Fan Spray,fanspray_root,0,0
+745,1 Sec Orange Aura Wave,aura_waves1s_orn,0,0
+746,1 Sec Purple Aura Wave ,aura_waves1s_prp,0,0
+747,1 Sec Red Aura Wave,aura_waves1s_red,0,0
+748,1 Sec Blue Aura Wave,aura_waves1s_blu,0,0
+749,1 Sec Green Aura Wave,aura_waves1s_grn,0,0
+750,4 Sec Blue Aura Wave,aura_waves4s_blu,0,0
+751,4 Sec Green Aura Wave,aura_waves4s_grn,0,0
+752,4 Sec Orange Aura Wave,aura_waves4s_orn,0,0
+753,4 Sec Purple Aura Wave,aura_waves4s_prp,0,0
+754,4 Sec Red Aura Wave,aura_waves4s_red,0,0
+755,1 Sec Blue Stream,aura_streams1s_blu,0,0
+756,1 Sec Green Stream,aura_streams1s_grn,0,0
+757,1 Sec Orange Stream,aura_streams1s_orn,0,0
+758,1 Sec Purple Stream,aura_streams1s_prp,0,0
+759,1 Sec Red Steam,aura_streams1s_red,0,0
+760,4 Sec Blue Stream,aura_streams4s_blu,0,0
+761,4 Sec Green Stream,aura_streams4s_grn,0,0
+762,4 Sec Orange Stream,aura_streams4s_orn,0,0
+763,4 Sec Purple Stream,aura_streams4s_prp,0,0
+764,4 Sec Red Stream,aura_streams4s_red,0,0
+765,Push Wave Effect,push_waves,0,0
+766,Orange Rising Streaks,rise_streaks_orn,0,0
+767,Purple Rising Streaks,rise_streaks_prp,0,0
+768,Red Rising Streaks,rise_streaks_red,0,0
+769,Green Rising Streaks,rise_streaks_grn,0,0
+770,Blue Rising Streaks,rise_streaks_blu,0,0
+771,Layrinth Fire Effect,fire_labyrinth_spell,0,0
+772,Power Cold Hit,pow_sm_cold,0,0
+773,Power Fire Hit,pow_sm_fire,0,0
+774,Power Purple Hit,pow_sm_purp,0,0
+775,Power Red Hit,pow_sm_red,0,0
+776,Grey Fanspray,fanspray_shockwaves,0,0
+777,Ice Fist 1,u_fist_ice1,0,0
+778,Fire Fist 2,u_fist_fire2,0,0
+779,Fire Fist 1,u_fist_fire1,0,0
+780,Force/Ripple Fist,u_fist_force1,0,0
+781,Smoke Fist,u_fist_smoke1,0,0
+782,Energy Fist 1,u_fist_energy1,0,0
+783,Hushing Face,hushface1_hit,0,0
+784,Energy Fist 2,u_fist_energy2,0,0
+785,sfx_AlbMauler_Staff01,sfx_AlbMauler_Staff01,4,0
+786,sfx_HibMauler_Staff01,sfx_HibMauler_Staff01,4,0
+787,sfx_MidMauler_Staff01,sfx_MidMauler_Staff01,4,0
+788,black_wind_hit,black_wind_hit,6,0
+789,Steamspray,Steamspray,6,0
+790,sfx_MidMauler_Punch01,sfx_MidMauler_Punch01,4,0
+791,sfx_HibMauler_Punch01,sfx_HibMauler_Punch01,4,0
+792,sfx_AlbMauler_Punch01,sfx_AlbMauler_Punch01,4,0
+793,dracolich_breath,dracolich_breath,6,0
+794,dracolich_hit,dracolich_hit,6,0
+795,Bind On Equip,aura_darkwavers2s_prp,0,0
+796,pwrcylshld10s_hit,pwrcylshld10s_hit,0,0
+797,green lightshaft with collapsing green rings,grnringbeam1_hit,0,0
+798,red lightshaft with collapsing red rings,redringbeam1_hit,0,0
+799,Logo_BlurIn_Alb,Logo_BlurIn_Alb,0,0
+800,Logo_BlurIn_Hib,Logo_BlurIn_Hib,0,0
+801,Logo_BlurIn_Mid,Logo_BlurIn_Mid,0,0
+802,Revamp Dragon Breath Fire,DragonBreath_fire_cst,0,0
+803,Revamp Dragon Breah Spirit,DragonBreath_evil_cst,0,0
+804,Revamp Dragon Breah Cold,DragonBreath_cold_cst,0,0
+805,arrow slash01 load,arrow_slash01_load,0,0
+806,arrow slash01 travel,arrow_slash01_travel,0,0
+807,arrow slash01 strike,arrow_slash01_strike,0,0
+808,arrow thrust01 load,arrow_thrust01_load,0,0
+809,arrow thrust01 travel,arrow_thrust01_travel,0,0
+810,arrow thrust01strike,arrow_thrust01_strike,0,0
+811,arrow crush01 load,arrow_crush01_load,0,0
+812,arrow crush01 travel,arrow_crush01_travel,0,0
+813,arrow crush01 strike,arrow_crush01_strike,0,0
+814,arrow crit01 load,arrow_crit01_load,0,0
+815,arrow crit01 travel,arrow_crit01_travel,0,0
+816,arrow crit01 strike,arrow_crit01_strike,0,0
+817,arrow poison01 load,arrow_poison01_load,0,0
+818,arrow poison01 travel,arrow_poison01_travel,0,0
+819,arrow poison01 strike,arrow_poison01_strike,0,0
+820,arrow acid01 load,arrow_acid01_load,0,0
+821,arrow acid01 travel,arrow_acid01_travel,0,0
+822,arrow acid01 strike,arrow_acid01_strike,0,0
+823,arrow fire01 load,arrow_fire01_load,0,0
+824,arrow fire01 travel,arrow_fire01_travel,0,0
+825,arrow fire01strike,arrow_fire01_strike,0,0
+826,arrow cold01 load,arrow_cold01_load,0,0
+827,arrow cold01 travel,arrow_cold01_travel,0,0
+828,arrow cold01strike,arrow_cold01_strike,0,0
+829,arrow siege01 load,arrow_siege01_load,0,0
+830,arrow siege01 travel,arrow_siege01_travel,0,0
+831,arrow siege01strike,arrow_siege01_strike,0,0
+832,arrow volley01 load,arrow_volley01_load,0,0
+833,arrow volley01 shoot,arrow_volley01_shoot,0,0
+834,arrow volley01 strike,arrow_volley01_strike,0,0
+835,Revamp Dragon Hit Effect Spirit,Dragonbreath_evil_hit,0,0
+836,ADR_DSL_Hib_flex_thrust_sfx,ADR_DSL_Hib_flex_thrust_sfx,0,0
+837,ADR_DSL_Hib_flex_slash_sfx,ADR_DSL_Hib_flex_slash_sfx,0,0
+838,ADR_DSL_Hib_flex_blunt_sfx,ADR_DSL_Hib_flex_blunt_sfx,0,0
+839,ADR_DSL_Hib_bow_short_sfx,ADR_DSL_Hib_bow_short_sfx,0,0
+840,ADR_DSL_Hib_bow_long_sfx,ADR_DSL_Hib_bow_long_sfx,0,0
+841,ADR_DSL_Hib_bow_cross_sfx,ADR_DSL_Hib_bow_cross_sfx,0,0
+842,ADR_DSL_Hib_2h_sword_thrust_sfx,ADR_DSL_Hib_2h_sword_thrust_sfx,0,0
+843,ADR_DSL_Hib_2h_sword_slash_sfx,ADR_DSL_Hib_2h_sword_slash_sfx,0,0
+844,ADR_DSL_Hib_2h_hammer_blunt_sfx,ADR_DSL_Hib_2h_hammer_blunt_sfx,0,0
+845,ADR_DSL_Hib_2h_axe_sfx,ADR_DSL_Hib_2h_axe_sfx,0,0
+846,ADR_DSL_Hib_1h_sword_thrust_offhand_sfx,ADR_DSL_Hib_1h_sword_thrust_offhand_sfx,0,0
+847,ADR_DSL_Hib_1h_sword_thrust_mainhand_sfx,ADR_DSL_Hib_1h_sword_thrust_mainhand_sfx,0,0
+848,ADR_DSL_Hib_1h_sword_slash_offhand_sfx,ADR_DSL_Hib_1h_sword_slash_offhand_sfx,0,0
+849,ADR_DSL_Hib_1h_sword_slash_mainhand_sfx,ADR_DSL_Hib_1h_sword_slash_mainhand_sfx,0,0
+850,ADR_DSL_Hib_1h_hammer_blunt_offhand_sfx,ADR_DSL_Hib_1h_hammer_blunt_offhand_sfx,0,0
+851,ADR_DSL_Hib_1h_hammer_blunt_mainhand_sfx,ADR_DSL_Hib_1h_hammer_blunt_mainhand_sfx,0,0
+852,ADR_DSL_Hib_1h_axe_offhand_sfx,ADR_DSL_Hib_1h_axe_offhand_sfx,0,0
+853,ADR_DSL_Hib_1h_axe_mainhand_sfx,ADR_DSL_Hib_1h_axe_mainhand_sfx,0,0
+854,ADR_DSL_Hib_Shield_Small_sfx,ADR_DSL_Hib_Shield_Small_sfx,0,0
+855,ADR_DSL_Hib_Shield_Medium_sfx,ADR_DSL_Hib_Shield_Medium_sfx,0,0
+856,ADR_DSL_Hib_Shield_Large_sfx,ADR_DSL_Hib_Shield_Large_sfx,0,0
+857,ADR_DSL_Hib_scythe_sfx,ADR_DSL_Hib_scythe_sfx,0,0
+858,ADR_DSL_Hib_quiver_sfx,ADR_DSL_Hib_quiver_sfx,0,0
+859,ADR_DSL_Hib_quarterstaff_sfx,ADR_DSL_Hib_quarterstaff_sfx,0,0
+860,ADR_DSL_Hib_pole-arm_spear_thrust_sfx,ADR_DSL_Hib_pole-arm_spear_thrust_sfx,0,0
+861,ADR_DSL_Hib_pole-arm_spear_slash_sfx,ADR_DSL_Hib_pole-arm_spear_slash_sfx,0,0
+862,ADR_DSL_Hib_pole-arm_blunt_sfx,ADR_DSL_Hib_pole-arm_blunt_sfx,0,0
+863,ADR_DSL_Hib_magicstaff_sfx,ADR_DSL_Hib_magicstaff_sfx,0,0
+864,ADR_DSL_Hib_harp_sfx,ADR_DSL_Hib_harp_sfx,0,0
+865,ADR_DSL_Hib_H2h_thrust_offhand_sfx,ADR_DSL_Hib_H2h_thrust_offhand_sfx,0,0
+866,ADR_DSL_Hib_H2h_thrust_mainhand_sfx,ADR_DSL_Hib_H2h_thrust_mainhand_sfx,0,0
+867,ADR_DSL_Hib_H2h_slash_offhand_sfx,ADR_DSL_Hib_H2h_slash_offhand_sfx,0,0
+868,ADR_DSL_Hib_H2h_slash_mainhand_sfx,ADR_DSL_Hib_H2h_slash_mainhand_sfx,0,0
+869,ADR_DSL_Hib_H2h_blunt_offhand_sfx,ADR_DSL_Hib_H2h_blunt_offhand_sfx,0,0
+870,ADR_DSL_Hib_H2h_blunt_mainhand_sfx,ADR_DSL_Hib_H2h_blunt_mainhand_sfx,0,0
+871,ADR_DSL_Mid_Flex_thrust_sfx,ADR_DSL_Mid_Flex_thrust_sfx,0,0
+872,ADR_DSL_Mid_H2h_blunt_mainhand_sfx,ADR_DSL_Mid_H2h_blunt_mainhand_sfx,0,0
+873,ADR_DSL_Mid_H2h_blunt_offhand_sfx,ADR_DSL_Mid_H2h_blunt_offhand_sfx,0,0
+874,ADR_DSL_Mid_H2h_slash_mainhand_sfx,ADR_DSL_Mid_H2h_slash_mainhand_sfx,0,0
+875,ADR_DSL_Mid_H2h_slash_offhand_sfx,ADR_DSL_Mid_H2h_slash_offhand_sfx,0,0
+876,ADR_DSL_Mid_H2h_thrust_mainhand_sfx,ADR_DSL_Mid_H2h_thrust_mainhand_sfx,0,0
+877,ADR_DSL_Mid_H2h_thrust_offhand_sfx,ADR_DSL_Mid_H2h_thrust_offhand_sfx,0,0
+878,ADR_DSL_Mid_harp_sfx,ADR_DSL_Mid_harp_sfx,0,0
+879,ADR_DSL_Mid_magicstaff_sfx,ADR_DSL_Mid_magicstaff_sfx,0,0
+880,ADR_DSL_Mid_pole-arm_blunt_sfx,ADR_DSL_Mid_pole-arm_blunt_sfx,0,0
+881,ADR_DSL_Mid_pole-arm_spear_slash_sfx,ADR_DSL_Mid_pole-arm_spear_slash_sfx,0,0
+882,ADR_DSL_Mid_pole-arm_spear_thrust_sfx,ADR_DSL_Mid_pole-arm_spear_thrust_sfx,0,0
+883,ADR_DSL_Mid_quarterstaff_sfx,ADR_DSL_Mid_quarterstaff_sfx,0,0
+884,ADR_DSL_Mid_quiver_sfx,ADR_DSL_Mid_quiver_sfx,0,0
+885,ADR_DSL_Mid_scythe_sfx,ADR_DSL_Mid_scythe_sfx,0,0
+886,ADR_DSL_Mid_Shield_Large_sfx,ADR_DSL_Mid_Shield_Large_sfx,0,0
+887,ADR_DSL_Mid_Shield_Medium_sfx,ADR_DSL_Mid_Shield_Medium_sfx,0,0
+888,ADR_DSL_Mid_Shield_Small_sfx,ADR_DSL_Mid_Shield_Small_sfx,0,0
+889,ADR_DSL_Mid_1h_axe_mainhand_sfx,ADR_DSL_Mid_1h_axe_mainhand_sfx,0,0
+890,ADR_DSL_Mid_1h_axe_offhand_sfx,ADR_DSL_Mid_1h_axe_offhand_sfx,0,0
+891,ADR_DSL_Mid_1h_hammer_blunt_mainhand_sfx,ADR_DSL_Mid_1h_hammer_blunt_mainhand_sfx,0,0
+892,ADR_DSL_Mid_1h_hammer_blunt_offhand_sfx,ADR_DSL_Mid_1h_hammer_blunt_offhand_sfx,0,0
+893,ADR_DSL_Mid_1h_sword_slash_mainhand_sfx,ADR_DSL_Mid_1h_sword_slash_mainhand_sfx,0,0
+894,ADR_DSL_Mid_1h_sword_slash_offhand_sfx,ADR_DSL_Mid_1h_sword_slash_offhand_sfx,0,0
+895,ADR_DSL_Mid_1h_sword_thrust_mainhand_sfx,ADR_DSL_Mid_1h_sword_thrust_mainhand_sfx,0,0
+896,ADR_DSL_Mid_1h_sword_thrust_offhand_sfx,ADR_DSL_Mid_1h_sword_thrust_offhand_sfx,0,0
+897,ADR_DSL_Mid_2h_axe_sfx,ADR_DSL_Mid_2h_axe_sfx,0,0
+898,ADR_DSL_Mid_2h_hammer_blunt_sfx,ADR_DSL_Mid_2h_hammer_blunt_sfx,0,0
+899,ADR_DSL_Mid_2h_sword_slash_sfx,ADR_DSL_Mid_2h_sword_slash_sfx,0,0
+900,ADR_DSL_Mid_2h_sword_thrust_sfx,ADR_DSL_Mid_2h_sword_thrust_sfx,0,0
+901,ADR_DSL_Mid_bow_cross_sfx,ADR_DSL_Mid_bow_cross_sfx,0,0
+902,ADR_DSL_Mid_bow_long_sfx,ADR_DSL_Mid_bow_long_sfx,0,0
+903,ADR_DSL_Mid_bow_short_sfx,ADR_DSL_Mid_bow_short_sfx,0,0
+904,ADR_DSL_Mid_Flex_blunt_sfx,ADR_DSL_Mid_Flex_blunt_sfx,0,0
+905,ADR_DSL_Mid_Flex_slash_sfx,ADR_DSL_Mid_Flex_slash_sfx,0,0
+906,ADR_DSL_Alb_1h_sword_slash_offhand_sfx,ADR_DSL_Alb_1h_sword_slash_offhand_sfx,0,0
+907,ADR_DSL_Alb_1h_sword_slash_mainhand_sfx,ADR_DSL_Alb_1h_sword_slash_mainhand_sfx,0,0
+908,ADR_DSL_Alb_1h_hammer_blunt_offhand_sfx,ADR_DSL_Alb_1h_hammer_blunt_offhand_sfx,0,0
+909,ADR_DSL_Alb_1h_hammer_blunt_mainhand_sfx,ADR_DSL_Alb_1h_hammer_blunt_mainhand_sfx,0,0
+910,ADR_DSL_Alb_1h_axe_offhand_sfx,ADR_DSL_Alb_1h_axe_offhand_sfx,0,0
+911,ADR_DSL_Alb_1h_axe_mainhand_sfx,ADR_DSL_Alb_1h_axe_mainhand_sfx,0,0
+912,ADR_DSL_Alb_Shield_Small_sfx,ADR_DSL_Alb_Shield_Small_sfx,0,0
+913,ADR_DSL_Alb_Shield_Medium_sfx,ADR_DSL_Alb_Shield_Medium_sfx,0,0
+914,ADR_DSL_Alb_Shield_Large_sfx,ADR_DSL_Alb_Shield_Large_sfx,0,0
+915,ADR_DSL_Alb_scythe_sfx,ADR_DSL_Alb_scythe_sfx,0,0
+916,ADR_DSL_Alb_quiver_sfx,ADR_DSL_Alb_quiver_sfx,0,0
+917,ADR_DSL_Alb_quarterstaff_sfx,ADR_DSL_Alb_quarterstaff_sfx,0,0
+918,ADR_DSL_Alb_pole-arm_spear_thrust_sfx,ADR_DSL_Alb_pole-arm_spear_thrust_sfx,0,0
+919,ADR_DSL_Alb_pole-arm_spear_slash_sfx,ADR_DSL_Alb_pole-arm_spear_slash_sfx,0,0
+920,ADR_DSL_Alb_pole-arm_blunt_sfx,ADR_DSL_Alb_pole-arm_blunt_sfx,0,0
+921,ADR_DSL_Alb_magicstaff_sfx,ADR_DSL_Alb_magicstaff_sfx,0,0
+922,ADR_DSL_Alb_harp_sfx,ADR_DSL_Alb_harp_sfx,0,0
+923,ADR_DSL_Alb_H2h_thrust_offhand_sfx,ADR_DSL_Alb_H2h_thrust_offhand_sfx,0,0
+924,ADR_DSL_Alb_H2h_thrust_mainhand_sfx,ADR_DSL_Alb_H2h_thrust_mainhand_sfx,0,0
+925,ADR_DSL_Alb_H2h_slash_offhand_sfx,ADR_DSL_Alb_H2h_slash_offhand_sfx,0,0
+926,ADR_DSL_Alb_H2h_slash_mainhand_sfx,ADR_DSL_Alb_H2h_slash_mainhand_sfx,0,0
+927,ADR_DSL_Alb_H2h_blunt_offhand_sfx,ADR_DSL_Alb_H2h_blunt_offhand_sfx,0,0
+928,ADR_DSL_Alb_H2h_blunt_mainhand_sfx,ADR_DSL_Alb_H2h_blunt_mainhand_sfx,0,0
+929,ADR_DSL_Alb_Flex_thrust_sfx,ADR_DSL_Alb_Flex_thrust_sfx,0,0
+930,ADR_DSL_Alb_Flex_slash_sfx,ADR_DSL_Alb_Flex_slash_sfx,0,0
+931,ADR_DSL_Alb_Flex_blunt_sfx,ADR_DSL_Alb_Flex_blunt_sfx,0,0
+932,ADR_DSL_Alb_bow_short_sfx,ADR_DSL_Alb_bow_short_sfx,0,0
+933,ADR_DSL_Alb_bow_long_sfx,ADR_DSL_Alb_bow_long_sfx,0,0
+934,ADR_DSL_Alb_bow_cross_sfx,ADR_DSL_Alb_bow_cross_sfx,0,0
+935,ADR_DSL_Alb_2h_sword_thrust_sfx,ADR_DSL_Alb_2h_sword_thrust_sfx,0,0
+936,ADR_DSL_Alb_2h_sword_slash_sfx,ADR_DSL_Alb_2h_sword_slash_sfx,0,0
+937,ADR_DSL_Alb_2h_hammer_blunt_sfx,ADR_DSL_Alb_2h_hammer_blunt_sfx,0,0
+938,ADR_DSL_Alb_2h_axe_sfx,ADR_DSL_Alb_2h_axe_sfx,0,0
+939,ADR_DSL_Alb_1h_sword_thrust_offhand_sfx,ADR_DSL_Alb_1h_sword_thrust_offhand_sfx,0,0
+940,ADR_DSL_Alb_1h_sword_thrust_mainhand_sfx,ADR_DSL_Alb_1h_sword_thrust_mainhand_sfx,0,0
+941,Relic_Lightbeam_Red,Relic_Lightbeam_Red,0,0
+942,Relic_holder_beam_red,relic_holder_beam_red,0,0
+943,Relic_holder_beam_blue,relic_holder_beam_blue,0,0
+944,Relic_holder_beam_green,relic_holder_beam_green,0,0
+945,VFX_epic_DF_wpn_Armsman_thrust_2H01,VFX_epic_wpn_DF_Armsman_thrust_2H,0,0
+946,VFX_epic_DF_wpn_Armsman_Crush_1H01,VFX_epic_wpn_DF_Armsman_Crush_1H,0,0
+947,VFX_epic_DF_wpn_Armsman_Crush_2H01,VFX_epic_wpn_DF_Armsman_Crush_2H,0,0
+948,VFX_epic_DF_wpn_Armsman_pole_C01,VFX_epic_wpn_DF_Armsman_pole_C,0,0
+949,VFX_epic_DF_wpn_Armsman_pole_S01,VFX_epic_wpn_DF_Armsman_pole_S,0,0
+950,VFX_epic_DF_wpn_Armsman_sword_1H01,VFX_epic_wpn_DF_Armsman_slash_1H,0,0
+951,VFX_epic_DF_wpn_Armsman_sword_2H01,VFX_epic_wpn_DF_Armsman_slash_2H,0,0
+952,VFX_epic_DF_wpn_Armsman_thrust_1H01,VFX_epic_wpn_DF_Armsman_thrust_1H,0,0
+953,VFX_Epic_wpn_DF_Paladin_thrust_2H,VFX_Epic_wpn_DF_Paladin_thrust_2H,0,0
+954,VFX_Epic_wpn_DF_Paladin_thrust_1H,VFX_Epic_wpn_DF_Paladin_thrust_1H,0,0
+955,VFX_Epic_wpn_DF_Paladin_slash_2H,VFX_Epic_wpn_DF_Paladin_slash_2H,0,0
+956,VFX_Epic_wpn_DF_Paladin_slash_1H,VFX_Epic_wpn_DF_Paladin_slash_1H,0,0
+957,VFX_Epic_wpn_DF_Paladin_crush_2H,VFX_Epic_wpn_DF_Paladin_crush_2H,0,0
+958,VFX_Epic_wpn_DF_Paladin_crush_1H,VFX_Epic_wpn_DF_Paladin_crush_1H,0,0
+959,VFX_Epic_wpn_DF_Eldritch_Epic_Staff,VFX_Epic_wpn_DF_Eldritch_Staff,0,0
+960,VFX_Epic_wpn_DF_Enchanter_Epic_Staff,VFX_Epic_wpn_DF_Enchanter_ST,0,0
+961,VFX_Epic_wpn_DF_Mentalist_Epic_Staff,VFX_Epic_wpn_DF_Mentalist_ST,0,0
+962,VFX_Epic_wpn_DF_Animist_Epic_Staff,VFX_Epic_wpn_DF_Animist_Staff,0,0
+963,VFX_Epic_wpn_DF_Bainshee_Epic_Staff,VFX_Epic_wpn_DF_Bainshee_Staff,0,0
+964,VFX_Epic_wpn_DF_Valewalker_Epic_Scythe,VFX_Epic_wpn_DF_Valewalker_SY,0,0
+965,VFX_Epic_wpn_DF_Vampiir_Epic_Pierce,VFX_Epic_wpn_DF_Vampiir_T,0,0
+966,VFX_Epic_wpn_DF_Nightshade_Epic_Blade,VFX_Epic_wpn_DF_Nightshade_S,0,0
+967,VFX_Epic_wpn_DF_Nightshade_Epic_Pierce,VFX_Epic_wpn_DF_Nightshade_T,0,0
+968,VFX_Epic_wpn_DF_Bard_Epic_Blade,VFX_Epic_wpn_DF_Bard_Blade_1h,0,0
+969,VFX_Epic_wpn_DF_Bard_Epic_Blunt,VFX_Epic_wpn_DF_Bard_Crush_1h,0,0
+970,VFX_Epic_wpn_DF_Bard_Epic_Drum,not_implimented,0,0
+971,VFX_Epic_wpn_DF_Bard_Epic_Flute,not_implimented,0,0
+972,VFX_Epic_wpn_DF_Bard_Epic_Harp,VFX_Epic_wpn_DF_Bard_Harp,0,0
+973,VFX_Epic_wpn_DF_Bard_Epic_Lute,not_implimented,0,0
+974,VFX_Epic_wpn_DF_Ranger_Epic_Pierce,VFX_Epic_wpn_DF_Ranger_Pierce_1h,0,0
+975,VFX_Epic_wpn_DF_Ranger_Epic_Blade,VFX_Epic_wpn_DF_Ranger_Slash_1h,0,0
+976,VFX_Epic_wpn_DF_Hib_Recurve_Bow,VFX_Epic_wpn_DF_Ranger_Bow,0,0
+977,VFX_Epic_wpn_DF_Blademaster_Epic_Blade,VFX_Epic_wpn_DF_Blademaster_Slash_1h,0,0
+978,VFX_Epic_wpn_DF_Blademaster_Epic_Pierce,VFX_Epic_wpn_DF_Blademaster_Pierce_1h,0,0
+979,VFX_Epic_wpn_DF_Blademaster_Epic_Blunt,VFX_Epic_wpn_DF_Blademaster_Crush_1h,0,0
+980,VFX_Epic_wpn_DF_Druid_Epic_Blade,VFX_Epic_wpn_DF_Druid_Blade_1h,0,0
+981,VFX_Epic_wpn_DF_Druid_Epic_Blunt,VFX_Epic_wpn_DF_Druid_crush_1h,0,0
+982,VFX_Epic_wpn_DF_Warden_Epic_Blade,VFX_Epic_wpn_DF_Warden_slash_1h,0,0
+983,VFX_Epic_wpn_DF_Warden_Epic_Blunt,VFX_Epic_wpn_DF_Warden_crush_1h,0,0
+984,VFX_Epic_wpn_DF_Champion_Epic_Blade,vfx_epic_wpn_DF_Champion_Slash_1H,0,0
+985,VFX_Epic_wpn_DF_Champion_Epic_Pierce,VFX_Epic_wpn_DF_Champion_Pierce_1H,0,0
+986,VFX_Epic_wpn_DF_Champion_Epic_Blunt,VFX_Epic_wpn_DF_Champion_crush_1h,0,0
+987,VFX_Epic_wpn_DF_Champion_Epic_Large_Blade,vfx_epic_wpn_DF_Champion_Slash_2H,0,0
+988,VFX_Epic_wpn_DF_Champion_Epic_Large_Blunt,VFX_Epic_wpn_DF_Champion_Crush_2h,0,0
+989,VFX_Epic_wpn_DF_Hero_Epic_Blade,VFX_Epic_wpn_DF_Hero_Blade_1h,0,0
+990,VFX_Epic_wpn_DF_Hero_Epic_Pierce,VFX_Epic_wpn_DF_Hero_Piercing_1h,0,0
+991,VFX_Epic_wpn_DF_Hero_Epic_Blunt,vfx_epic_wpn_DF_Hero_Blunt_1H,0,0
+992,VFX_Epic_wpn_DF_Hero_Epic_Large_Blade,VFX_Epic_wpn_DF_Hero_Blade_2h,0,0
+993,VFX_Epic_wpn_DF_Hero_Epic_Large_Blunt,vfx_epic_wpn_DF_Hero_Blunt_2H,0,0
+994,VFX_Epic_wpn_DF_Hero_Epic_Large_Pierce,VFX_Epic_wpn_DF_Hero_Piercing_2h,0,0
+995,VFX_Epic_wpn_DF_Hero_Epic_Celtic_Spear,VFX_Epic_wpn_DF_Hero_Spear_1h,0,0
+996,VFX_Epic_wpn_DF_Hero_Epic_Celtic_2H_Spear,VFX_Epic_wpn_DF_Hero_Spear_2h,0,0
+997,VFX_Epic_wpn_DF_Cabalist_St,VFX_Epic_wpn_DF_Cabalist_St,0,0
+998,VFX_epic_wpn_DF_Sorcerer_St,VFX_epic_wpn_DF_Sorcerer_St,0,0
+999,VFX_epic_wpn_DF_Theurgist_St,VFX_epic_wpn_DF_Theurgist_St,0,0
+1000,VFX_epic_wpn_DF_Wizard_St,VFX_epic_wpn_DF_Wizard_St,0,0
+1001,VFX_epic_wpn_DF_Necromancer_staff,VFX_epic_wpn_DF_Necromancer_staff,0,0
+1002,VFX_epic_wpn_DF_Infiltrator_S,VFX_epic_wpn_DF_Infiltrator_S,0,0
+1003,VFX_epic_wpn_DF_Infiltrator_T,VFX_epic_wpn_DF_Infiltrator_T,0,0
+1004,VFX_epic_wpn_DF_Friar_St,VFX_epic_wpn_DF_Friar_St,0,0
+1005,VFX_epic_wpn_DF_Friar_Crush_1H,VFX_epic_wpn_DF_Friar_Crush_1H,0,0
+1006,VFX_epic_wpn_DF_Scout_S,VFX_epic_wpn_DF_Scout_S,0,0
+1007,VFX_epic_wpn_DF_Scout_T,VFX_epic_wpn_DF_Scout_T,0,0
+1008,VFX_epic_wpn_DF_Scout_Bo,VFX_epic_wpn_DF_Scout_Bo,0,0
+1009,VFX_epic_wpn_DF_minstrel_S,VFX_epic_wpn_DF_minstrel_S,0,0
+1010,VFX_epic_wpn_DF_minstrel_T,VFX_epic_wpn_DF_minstrel_T,0,0
+1011,VFX_Epic_wpn_DF_Minstrel_Epic_Drum,VFX_Epic_wpn_DF_Minstrel_Epic_Drum,0,0
+1012,VFX_Epic_wpn_DF_Minstrel_Epic_Flute,VFX_Epic_wpn_DF_Minstrel_Epic_Flute,0,0
+1013,VFX_epic_wpn_DF_minstrel_H,VFX_epic_wpn_DF_minstrel_H,0,0
+1014,VFX_Epic_wpn_DF_Minstrel_Epic_Lute,VFX_Epic_wpn_DF_Minstrel_Epic_Lute,0,0
+1015,VFX_epic_wpn_DF_cleric_C,VFX_epic_wpn_DF_cleric_C,0,0
+1016,VFX_epic_wpn_DF_Mercenary_C,VFX_epic_wpn_DF_Mercenary_C,0,0
+1017,VFX_epic_wpn_DF_Mercenary_S,VFX_epic_wpn_DF_Mercenary_S,0,0
+1018,VFX_epic_wpn_DF_Mercenary_T,VFX_epic_wpn_DF_Mercenary_T,0,0
+1019,VFX_epic_wpn_DF_Heretic_crush_1H,VFX_epic_wpn_DF_Heretic_crush_1H,0,0
+1020,VFX_epic_wpn_DF_Heretic_flexC_1H,VFX_epic_wpn_DF_Heretic_flexC_1H,0,0
+1021,VFX_epic_wpn_DF_Heretic_flexS_1H,VFX_epic_wpn_DF_Heretic_flexS_1H,0,0
+1022,VFX_epic_wpn_DF_Reaver_crush_1H,VFX_epic_wpn_DF_Reaver_crush_1H,0,0
+1023,VFX_epic_wpn_DF_Reaver_Sword_1H,VFX_epic_wpn_DF_Reaver_Sword_1H,0,0
+1024,VFX_epic_wpn_DF_Reaver_thrust_1H,VFX_epic_wpn_DF_Reaver_thrust_1H,0,0
+1025,VFX_epic_wpn_DF_Reaver_flexCS_1H,VFX_epic_wpn_DF_Reaver_flexCS_1H,0,0
+1026,VFX_epic_wpn_DF_Reaver_flexCS_1H,VFX_epic_wpn_DF_Reaver_flexCS_1H,0,0
+1027,VFX_Epic_wpn_DF_Runemaster_Epic_Staff,vfx_epic_wpn_DF_Runemaster_ST,0,0
+1028,VFX_Epic_wpn_DF_Spirit_Master_Epic_Staff,vfx_epic_wpn_DF_spiritmaster_st,0,0
+1029,VFX_Epic_wpn_DF_Bonedancer_Epic_Staff,vfx_epic_wpn_DF_bonedancer_ST,0,0
+1030,VFX_Epic_wpn_DF_Warlock_Epic_Staff,vfx_epic_wpn_DF_warlock_ST,0,0
+1031,VFX_Epic_wpn_DF_Shadowblade_Epic_Sword,vfx_epic_wpn_DF_shadowblade_sword_1h,0,0
+1032,VFX_Epic_wpn_DF_Shadowblade_Epic_Two_Handed_Sword,vfx_epic_wpn_DF_shadowblade_sword_2h,0,0
+1033,VFX_Epic_wpn_DF_Shadowblade_Epic_Axe,vfx_epic_wpn_DF_shadowblade_axe_1h,0,0
+1034,VFX_Epic_wpn_DF_Shadowblade_Epic_Two_Handed_Axe,vfx_epic_wpn_DF_shadowblade_axe_2h,0,0
+1035,VFX_Epic_wpn_DF_Hunter_Epic_Sword,vfx_epic_wpn_DF_hunter_sword_1h,0,0
+1036,VFX_Epic_wpn_DF_Hunter_Epic_Two_Handed_Sword,vfx_epic_wpn_DF_hunter_sword_2h,0,0
+1037,VFX_Epic_wpn_DF_Hunter_Epic_Spear_Thrust,vfx_epic_wpn_DF_hunter_spear,0,0
+1038,vfx_epic_wpn_DF_hunter_bow,vfx_epic_wpn_DF_hunter_bow,0,0
+1039,VFX_Epic_wpn_DF_Berzerker_Epic_Axe,vfx_epic_wpn_DF_beserker_axe_1h,0,0
+1040,VFX_Epic_wpn_DF_Berzerker_Epic_Two_Handed_Axe,vfx_epic_wpn_DF_beserker_axe_2h,0,0
+1041,VFX_Epic_wpn_DF_Berzerker_Epic_Hammer,vfx_epic_wpn_DF_beserker_hammer_1h,0,0
+1042,VFX_Epic_wpn_DF_Berzerker_Epic_Two_Handed_Hammer,vfx_epic_wpn_DF_beserker_hammer_2h,0,0
+1043,VFX_Epic_wpn_DF_Berzerker_Epic_Sword,vfx_epic_wpn_DF_beserker_sword_1h,0,0
+1044,VFX_Epic_wpn_DF_Berzerker_Epic_Two_Handed_Sword,vfx_epic_wpn_DF_beserker_sword_2h,0,0
+1045,VFX_Epic_wpn_DF_Savage_Epic_Axe,vfx_epic_wpn_DF_savage_axe_1h,0,0
+1046,VFX_Epic_wpn_DF_Savage_Epic_Two_Handed_Axe,vfx_epic_wpn_DF_savage_axe_2h,0,0
+1047,VFX_Epic_wpn_DF_Savage_Epic_Hammer,vfx_epic_wpn_DF_savage_hammer_1h,0,0
+1048,VFX_Epic_wpn_DF_Savage_Epic_Two_Handed_Hammer,vfx_epic_wpn_DF_savage_hammer_2h,0,0
+1049,VFX_Epic_wpn_DF_Savage_Epic_Sword,vfx_epic_wpn_DF_savage_sword_1h,0,0
+1050,VFX_Epic_wpn_DF_Savage_Epic_Two_Handed_Sword,vfx_epic_wpn_DF_savage_sword_2h,0,0
+1051,VFX_Epic_wpn_DF_Savage_Epic_Hand_to_Hand_Slash,vfx_epic_wpn_DF_savage_hth,0,0
+1052,VFX_Epic_wpn_DF_Savage_Epic_Hand_to_Hand_Crush,vfx_epic_wpn_DF_savage_hth,0,0
+1053,VFX_Epic_wpn_DF_Healer_Epic_Hammer,vfx_epic_wpn_DF_healer_hammer_1h,0,0
+1054,VFX_Epic_wpn_DF_Healer_Epic_Two_Handed_Hammer,vfx_epic_wpn_DF_healer_hammer_2h,0,0
+1055,VFX_Epic_wpn_DF_Shaman_Epic_Hammer,vfx_epic_wpn_DF_shaman_hammer_1h,0,0
+1056,VFX_Epic_wpn_DF_Shaman_Epic_Two_Handed_Hammer,vfx_epic_wpn_DF_shaman_hammer_2h,0,0
+1057,VFX_Epic_wpn_DF_Skald_Epic_Axe,vfx_epic_wpn_DF_skald_axe_1h,0,0
+1058,VFX_Epic_wpn_DF_Skald_Epic_Two_Handed_Axe,vfx_epic_wpn_DF_skald_axe_2h,0,0
+1059,VFX_Epic_wpn_DF_Skald_Epic_Hammer,vfx_epic_wpn_DF_skald_hammer_1h,0,0
+1060,VFX_Epic_wpn_DF_Skald_Epic_Two_Handed_Hammer,vfx_epic_wpn_DF_skald_hammer_2h,0,0
+1061,VFX_Epic_wpn_DF_Skald_Epic_Sword,vfx_epic_wpn_DF_skald_sword_1h,0,0
+1062,VFX_Epic_wpn_DF_Skald_Epic_Two_Handed_Sword,vfx_epic_wpn_DF_skald_sword_2h,0,0
+1063,VFX_Epic_wpn_DF_Thane_Epic_Axe,vfx_epic_wpn_DF_thane_axe_1h,0,0
+1064,VFX_Epic_wpn_DF_Thane_Epic_Two_Handed_Axe,vfx_epic_wpn_DF_thane_axe_2h,0,0
+1065,VFX_Epic_wpn_DF_Thane_Epic_Hammer,vfx_epic_wpn_DF_thane_hammer_1h,0,0
+1066,VFX_Epic_wpn_DF_Thane_Epic_Two_Handed_Hammer,vfx_epic_wpn_DF_thane_hammer_2h,0,0
+1067,VFX_Epic_wpn_DF_Thane_Epic_Sword,vfx_epic_wpn_DF_thane_sword_1h,0,0
+1068,VFX_Epic_wpn_DF_Thane_Epic_Two_Handed_Sword,vfx_epic_wpn_DF_thane_sword_2h,0,0
+1069,VFX_Epic_wpn_DF_Warrior_Epic_Axe,vfx_epic_wpn_DF_Warrior_Axe_1H,0,0
+1070,VFX_Epic_wpn_DF_Warrior_Epic_Two_Handed_Axe,vfx_epic_wpn_DF_Warrior_Axe_2H,0,0
+1071,VFX_Epic_wpn_DF_Warrior_Epic_Hammer,vfx_epic_wpn_DF_Warrior_Hammer_1H,0,0
+1072,VFX_Epic_wpn_DF_Warrior_Epic_Two_Handed_Hammer,vfx_epic_wpn_DF_Warrior_Hammer_2H,0,0
+1073,VFX_Epic_wpn_DF_Warrior_Epic_Sword,vfx_epic_wpn_DF_Warrior_Sword_1H,0,0
+1074,VFX_Epic_wpn_DF_Warrior_Epic_Two_Handed_Sword,vfx_epic_wpn_DF_Warrior_Sword_2H,0,0
+1075,VFX_Epic_wpn_DF_Valkyrie_Epic_Sword,vfx_epic_wpn_DF_valkyrie_sword_1h,0,0
+1076,VFX_Epic_wpn_DF_Valkyrie_Epic_Two_Handed_Sword,vfx_epic_wpn_DF_valkyrie_sword_2h,0,0
+1077,VFX_Epic_wpn_DF_Valkyrie_Epic_Spear_Thrust,vfx_epic_wpn_DF_valkyrie_spear,0,0
+1078,VFX_Epic_wpn_DF_Valkyrie_Epic_Spear_Slash,vfx_epic_wpn_DF_valkyrie_spear,0,0
+1079,VFX_Championweapon_DF_MidMauler_Staff01,VFX_Championweapon_DF_MidMauler_Staff01,0,0
+1080,VFX_Championweapon_DF_AlbMauler_Punch01,VFX_Championweapon_DF_AlbMauler_Punch01,0,0
+1081,VFX_Championweapon_DF_AlbMauler_Staff01,VFX_Championweapon_DF_AlbMauler_Staff01,0,0
+1082,VFX_Championweapon_DF_HibMauler_Punch01,VFX_Championweapon_DF_HibMauler_Punch01,0,0
+1083,VFX_Championweapon_DF_HibMauler_Staff01,VFX_Championweapon_DF_HibMauler_Staff01,0,0
+1084,VFX_Championweapon_DF_MidMauler_Punch01,VFX_Championweapon_DF_MidMauler_Punch01,0,0
+1085,B_2h_Coffinhammer01_VFX_Energy,B_2h_Coffinhammer01_VFX_Energy,0,0
+1086,B_2h_InquisitorsPick01_VFX_Energy,B_2h_InquisitorsPick01_VFX_Energy,0,0
+1087,B_2h_RoyalScimitar01_VFX_Energy,B_2h_RoyalScimitar01_VFX_Energy,0,0
+1088,B_bo_SaracenShortbow01_VFX_Energy,B_bo_SaracenShortbow01_VFX_Energy,0,0
+1089,B_bo_ThornBow01_VFX_Energy,B_bo_ThornBow01_VFX_Energy,0,0
+1090,B_Cr_BishopsMace01_VFX_Energy,B_Cr_BishopsMace01_VFX_Energy,0,0
+1091,B_Cr_CoffinMace01_VFX_Energy,B_Cr_CoffinMace01_VFX_Energy,0,0
+1092,B_flx_PickFlail01_VFX_Energy,B_flx_PickFlail01_VFX_Energy,0,0
+1093,B_flx_SpikedFlail01_VFX_Energy,B_flx_SpikedFlail01_VFX_Energy,0,0
+1094,B_Po_MilitaryFork01_VFX_Energy,B_Po_MilitaryFork01_VFX_Energy,0,0
+1095,B_Po_SaracenGlaive01_VFX_Energy,B_Po_SaracenGlaive01_VFX_Energy,0,0
+1096,B_Po_TallHammer01_VFX_Energy,B_Po_TallHammer01_VFX_Energy,0,0
+1097,B_sl_Cinquedea01_VFX_Energy,B_sl_Cinquedea01_VFX_Energy,0,0
+1098,B_sl_Falchion01_VFX_Energy,B_sl_Falchion01_VFX_Energy,0,0
+1099,b_st_magestaff01_VFX_Energy,b_st_magestaff01_VFX_Energy,0,0
+1100,B_st_SpikedStaffMace01_VFX_Energy,B_st_SpikedStaffMace01_VFX_Energy,0,0
+1101,B_th_DuelistsDagger01_VFX_Energy,B_th_DuelistsDagger01_VFX_Energy,0,0
+1102,B_th_DuelistsRapier01_VFX_Energy,B_th_DuelistsRapier01_VFX_Energy,0,0
+1103,B_xbo_SkinnersCrossbow01_VFX_Energy,B_xbo_SkinnersCrossbow01_VFX_Energy,0,0
+1104,H_1h_FirbolgLongSword01_VFX_Energy,H_1h_FirbolgLongSword01_VFX_Energy,0,0
+1105,H_1h_FirbolgShortSword01_VFX_Energy,H_1h_FirbolgShortSword01_VFX_Energy,0,0
+1106,H_2h_FirbolgHammer01_VFX_Energy,H_2h_FirbolgHammer01_VFX_Energy,0,0
+1107,H_2h_FirbolgTrollSplitter01_VFX_Energy,H_2h_FirbolgTrollSplitter01_VFX_Energy,0,0
+1108,H_bl_CelticHammer01_VFX_Energy,H_bl_CelticHammer01_VFX_Energy,0,0
+1109,H_bl_FirbolgHammer01_VFX_Energy,H_bl_FirbolgHammer01_VFX_Energy,0,0
+1110,H_bo_ElvenLongbow01_VFX_Energy,H_bo_ElvenLongbow01_VFX_Energy,0,0
+1111,H_bo_ElvenShortBow01_VFX_Energy,H_bo_ElvenShortBow01_VFX_Energy,0,0
+1112,H_sc_FirbolgScythe01_VFX_Energy,H_sc_FirbolgScythe01_VFX_Energy,0,0
+1113,H_Sp_FirbolgSpear01_VFX_Energy,H_Sp_FirbolgSpear01_VFX_Energy,0,0
+1114,h_st_staff07_VFX_Energy,h_st_staff07_VFX_Energy,0,0
+1115,h_st_staff09_VFX_Energy,h_st_staff09_VFX_Energy,0,0
+1116,H_th_FirbolgAdze01_VFX_Energy,H_th_FirbolgAdze01_VFX_Energy,0,0
+1117,H_th_WarAdze01_VFX_Energy,H_th_WarAdze01_VFX_Energy,0,0
+1118,N_1h_DwarvenWarAxe01_VFX_Energy,N_1h_DwarvenWarAxe01_VFX_Energy,0,0
+1119,N_1h_TrollBroadSword01_VFX_Energy,N_1h_TrollBroadSword01_VFX_Energy,0,0
+1120,N_1h_TrollWarAxe01_VFX_Energy,N_1h_TrollWarAxe01_VFX_Energy,0,0
+1121,N_1h_TrollWarHammer01_VFX_Energy,N_1h_TrollWarHammer01_VFX_Energy,0,0
+1122,N_2h_DwarvenSpear01_VFX_Energy,N_2h_DwarvenSpear01_VFX_Energy,0,0
+1123,N_2h_KoboldGreatAxe01_VFX_Energy,N_2h_KoboldGreatAxe01_VFX_Energy,0,0
+1124,N_2h_KoboldGreatClub01_VFX_Energy,N_2h_KoboldGreatClub01_VFX_Energy,0,0
+1125,N_2h_KoboldGreatSword01_VFX_Energy,N_2h_KoboldGreatSword01_VFX_Energy,0,0
+1126,N_bo_VikingBeardedBow01_VFX_Energy,N_bo_VikingBeardedBow01_VFX_Energy,0,0
+1127,N_hth_GreatBladedClawGreave01_VFX_Energy,N_hth_GreatBladedClawGreave01_VFX_Energy,0,0
+1128,N_hth_GreatBladedFangGreave01_VFX_Energy,N_hth_GreatBladedFangGreave01_VFX_Energy,0,0
+1129,B_2h_Coffinhammer01_VFX_Body,B_2h_Coffinhammer01_VFX_Body,0,0
+1130,B_2h_InquisitorsPick01_VFX_Body,B_2h_InquisitorsPick01_VFX_Body,0,0
+1131,B_2h_RoyalScimitar01_VFX_Body,B_2h_RoyalScimitar01_VFX_Body,0,0
+1132,B_bo_SaracenShortbow01_VFX_Body,B_bo_SaracenShortbow01_VFX_Body,0,0
+1133,B_bo_ThornBow01_VFX_Body,B_bo_ThornBow01_VFX_Body,0,0
+1134,B_Cr_BishopsMace01_VFX_Body,B_Cr_BishopsMace01_VFX_Body,0,0
+1135,B_Cr_CoffinMace01_VFX_Body,B_Cr_CoffinMace01_VFX_Body,0,0
+1136,B_flx_PickFlail01_VFX_Body,B_flx_PickFlail01_VFX_Body,0,0
+1137,B_flx_SpikedFlail01_VFX_Body,B_flx_SpikedFlail01_VFX_Body,0,0
+1138,B_Po_MilitaryFork01_VFX_Body,B_Po_MilitaryFork01_VFX_Body,0,0
+1139,B_Po_SaracenGlaive01_VFX_Body,B_Po_SaracenGlaive01_VFX_Body,0,0
+1140,B_Po_TallHammer01_VFX_Body,B_Po_TallHammer01_VFX_Body,0,0
+1141,B_sl_Cinquedea01_VFX_Body,B_sl_Cinquedea01_VFX_Body,0,0
+1142,B_sl_Falchion01_VFX_Body,B_sl_Falchion01_VFX_Body,0,0
+1143,b_st_magestaff01_VFX_Body,b_st_magestaff01_VFX_Body,0,0
+1144,B_st_SpikedStaffMace01_VFX_Body,B_st_SpikedStaffMace01_VFX_Body,0,0
+1145,B_th_DuelistsDagger01_VFX_Body,B_th_DuelistsDagger01_VFX_Body,0,0
+1146,B_th_DuelistsRapier01_VFX_Body,B_th_DuelistsRapier01_VFX_Body,0,0
+1147,B_xbo_SkinnersCrossbow01_VFX_Body,B_xbo_SkinnersCrossbow01_VFX_Body,0,0
+1148,H_1h_FirbolgLongSword01_VFX_Body,H_1h_FirbolgLongSword01_VFX_Body,0,0
+1149,H_1h_FirbolgShortSword01_VFX_Body,H_1h_FirbolgShortSword01_VFX_Body,0,0
+1150,H_2h_FirbolgHammer01_VFX_Body,H_2h_FirbolgHammer01_VFX_Body,0,0
+1151,H_2h_FirbolgTrollSplitter01_VFX_Body,H_2h_FirbolgTrollSplitter01_VFX_Body,0,0
+1152,H_bl_CelticHammer01_VFX_Body,H_bl_CelticHammer01_VFX_Body,0,0
+1153,H_bl_FirbolgHammer01_VFX_Body,H_bl_FirbolgHammer01_VFX_Body,0,0
+1154,H_bo_ElvenLongbow01_VFX_Body,H_bo_ElvenLongbow01_VFX_Body,0,0
+1155,H_bo_ElvenShortBow01_VFX_Body,H_bo_ElvenShortBow01_VFX_Body,0,0
+1156,H_sc_FirbolgScythe01_VFX_Body,H_sc_FirbolgScythe01_VFX_Body,0,0
+1157,H_Sp_FirbolgSpear01_VFX_Body,H_Sp_FirbolgSpear01_VFX_Body,0,0
+1158,h_st_staff07_VFX_Body,h_st_staff07_VFX_Body,0,0
+1159,h_st_staff09_VFX_Body,h_st_staff09_VFX_Body,0,0
+1160,H_th_FirbolgAdze01_VFX_Body,H_th_FirbolgAdze01_VFX_Body,0,0
+1161,H_th_WarAdze01_VFX_Body,H_th_WarAdze01_VFX_Body,0,0
+1162,N_1h_DwarvenWarAxe01_VFX_Body,N_1h_DwarvenWarAxe01_VFX_Body,0,0
+1163,N_1h_TrollBroadSword01_VFX_Body,N_1h_TrollBroadSword01_VFX_Body,0,0
+1164,N_1h_TrollWarAxe01_VFX_Body,N_1h_TrollWarAxe01_VFX_Body,0,0
+1165,N_1h_TrollWarHammer01_VFX_Body,N_1h_TrollWarHammer01_VFX_Body,0,0
+1166,N_2h_DwarvenSpear01_VFX_Body,N_2h_DwarvenSpear01_VFX_Body,0,0
+1167,N_2h_KoboldGreatAxe01_VFX_Body,N_2h_KoboldGreatAxe01_VFX_Body,0,0
+1168,N_2h_KoboldGreatClub01_VFX_Body,N_2h_KoboldGreatClub01_VFX_Body,0,0
+1169,N_2h_KoboldGreatSword01_VFX_Body,N_2h_KoboldGreatSword01_VFX_Body,0,0
+1170,N_bo_VikingBeardedBow01_VFX_Body,N_bo_VikingBeardedBow01_VFX_Body,0,0
+1171,N_hth_GreatBladedClawGreave01_VFX_Body,N_hth_GreatBladedClawGreave01_VFX_Body,0,0
+1172,N_hth_GreatBladedFangGreave01_VFX_Body,N_hth_GreatBladedFangGreave01_VFX_Body,0,0
+1173,B_2h_Coffinhammer01_VFX_Air,B_2h_Coffinhammer01_VFX_Air,0,0
+1174,B_2h_InquisitorsPick01_VFX_Air,B_2h_InquisitorsPick01_VFX_Air,0,0
+1175,B_2h_RoyalScimitar01_VFX_Air,B_2h_RoyalScimitar01_VFX_Air,0,0
+1176,B_bo_SaracenShortbow01_VFX_Air,B_bo_SaracenShortbow01_VFX_Air,0,0
+1177,B_bo_ThornBow01_VFX_Air,B_bo_ThornBow01_VFX_Air,0,0
+1178,B_Cr_BishopsMace01_VFX_Air,B_Cr_BishopsMace01_VFX_Air,0,0
+1179,B_Cr_CoffinMace01_VFX_Air,B_Cr_CoffinMace01_VFX_Air,0,0
+1180,B_flx_PickFlail01_VFX_Air,B_flx_PickFlail01_VFX_Air,0,0
+1181,B_flx_SpikedFlail01_VFX_Air,B_flx_SpikedFlail01_VFX_Air,0,0
+1182,B_Po_MilitaryFork01_VFX_Air,B_Po_MilitaryFork01_VFX_Air,0,0
+1183,B_Po_SaracenGlaive01_VFX_Air,B_Po_SaracenGlaive01_VFX_Air,0,0
+1184,B_Po_TallHammer01_VFX_Air,B_Po_TallHammer01_VFX_Air,0,0
+1185,B_sl_Cinquedea01_VFX_Air,B_sl_Cinquedea01_VFX_Air,0,0
+1186,B_sl_Falchion01_VFX_Air,B_sl_Falchion01_VFX_Air,0,0
+1187,b_st_magestaff01_VFX_Air,b_st_magestaff01_VFX_Air,0,0
+1188,B_st_SpikedStaffMace01_VFX_Air,B_st_SpikedStaffMace01_VFX_Air,0,0
+1189,B_th_DuelistsDagger01_VFX_Air,B_th_DuelistsDagger01_VFX_Air,0,0
+1190,B_th_DuelistsRapier01_VFX_Air,B_th_DuelistsRapier01_VFX_Air,0,0
+1191,B_xbo_SkinnersCrossbow01_VFX_Air,B_xbo_SkinnersCrossbow01_VFX_Air,0,0
+1192,H_1h_FirbolgLongSword01_VFX_Air,H_1h_FirbolgLongSword01_VFX_Air,0,0
+1193,H_1h_FirbolgShortSword01_VFX_Air,H_1h_FirbolgShortSword01_VFX_Air,0,0
+1194,H_2h_FirbolgHammer01_VFX_Air,H_2h_FirbolgHammer01_VFX_Air,0,0
+1195,H_2h_FirbolgTrollSplitter01_VFX_Air,H_2h_FirbolgTrollSplitter01_VFX_Air,0,0
+1196,H_bl_CelticHammer01_VFX_Air,H_bl_CelticHammer01_VFX_Air,0,0
+1197,H_bl_FirbolgHammer01_VFX_Air,H_bl_FirbolgHammer01_VFX_Air,0,0
+1198,H_bo_ElvenLongbow01_VFX_Air,H_bo_ElvenLongbow01_VFX_Air,0,0
+1199,H_bo_ElvenShortBow01_VFX_Air,H_bo_ElvenShortBow01_VFX_Air,0,0
+1200,H_sc_FirbolgScythe01_VFX_Air,H_sc_FirbolgScythe01_VFX_Air,0,0
+1201,H_Sp_FirbolgSpear01_VFX_Air,H_Sp_FirbolgSpear01_VFX_Air,0,0
+1202,h_st_staff07_VFX_Air,h_st_staff07_VFX_Air,0,0
+1203,h_st_staff09_VFX_Air,h_st_staff09_VFX_Air,0,0
+1204,H_th_FirbolgAdze01_VFX_Air,H_th_FirbolgAdze01_VFX_Air,0,0
+1205,H_th_WarAdze01_VFX_Air,H_th_WarAdze01_VFX_Air,0,0
+1206,N_1h_DwarvenWarAxe01_VFX_Air,N_1h_DwarvenWarAxe01_VFX_Air,0,0
+1207,N_1h_TrollBroadSword01_VFX_Air,N_1h_TrollBroadSword01_VFX_Air,0,0
+1208,N_1h_TrollWarAxe01_VFX_Air,N_1h_TrollWarAxe01_VFX_Air,0,0
+1209,N_1h_TrollWarHammer01_VFX_Air,N_1h_TrollWarHammer01_VFX_Air,0,0
+1210,N_2h_DwarvenSpear01_VFX_Air,N_2h_DwarvenSpear01_VFX_Air,0,0
+1211,N_2h_KoboldGreatAxe01_VFX_Air,N_2h_KoboldGreatAxe01_VFX_Air,0,0
+1212,N_2h_KoboldGreatClub01_VFX_Air,N_2h_KoboldGreatClub01_VFX_Air,0,0
+1213,N_2h_KoboldGreatSword01_VFX_Air,N_2h_KoboldGreatSword01_VFX_Air,0,0
+1214,N_bo_VikingBeardedBow01_VFX_Air,N_bo_VikingBeardedBow01_VFX_Air,0,0
+1215,N_hth_GreatBladedClawGreave01_VFX_Air,N_hth_GreatBladedClawGreave01_VFX_Air,0,0
+1216,N_hth_GreatBladedFangGreave01_VFX_Air,N_hth_GreatBladedFangGreave01_VFX_Air,0,0
+1217,B_2h_Coffinhammer01_VFX_Earth,B_2h_Coffinhammer01_VFX_Earth,0,0
+1218,B_2h_InquisitorsPick01_VFX_Earth,B_2h_InquisitorsPick01_VFX_Earth,0,0
+1219,B_2h_RoyalScimitar01_VFX_Earth,B_2h_RoyalScimitar01_VFX_Earth,0,0
+1220,B_bo_SaracenShortbow01_VFX_Earth,B_bo_SaracenShortbow01_VFX_Earth,0,0
+1221,B_bo_ThornBow01_VFX_Earth,B_bo_ThornBow01_VFX_Earth,0,0
+1222,B_Cr_BishopsMace01_VFX_Earth,B_Cr_BishopsMace01_VFX_Earth,0,0
+1223,B_Cr_CoffinMace01_VFX_Earth,B_Cr_CoffinMace01_VFX_Earth,0,0
+1224,B_flx_PickFlail01_VFX_Earth,B_flx_PickFlail01_VFX_Earth,0,0
+1225,B_flx_SpikedFlail01_VFX_Earth,B_flx_SpikedFlail01_VFX_Earth,0,0
+1226,B_Po_MilitaryFork01_VFX_Earth,B_Po_MilitaryFork01_VFX_Earth,0,0
+1227,B_Po_SaracenGlaive01_VFX_Earth,B_Po_SaracenGlaive01_VFX_Earth,0,0
+1228,B_Po_TallHammer01_VFX_Earth,B_Po_TallHammer01_VFX_Earth,0,0
+1229,B_sl_Cinquedea01_VFX_Earth,B_sl_Cinquedea01_VFX_Earth,0,0
+1230,B_sl_Falchion01_VFX_Earth,B_sl_Falchion01_VFX_Earth,0,0
+1231,b_st_magestaff01_VFX_Earth,b_st_magestaff01_VFX_Earth,0,0
+1232,B_st_SpikedStaffMace01_VFX_Earth,B_st_SpikedStaffMace01_VFX_Earth,0,0
+1233,B_th_DuelistsDagger01_VFX_Earth,B_th_DuelistsDagger01_VFX_Earth,0,0
+1234,B_th_DuelistsRapier01_VFX_Earth,B_th_DuelistsRapier01_VFX_Earth,0,0
+1235,B_xbo_SkinnersCrossbow01_VFX_Earth,B_xbo_SkinnersCrossbow01_VFX_Earth,0,0
+1236,H_1h_FirbolgLongSword01_VFX_Earth,H_1h_FirbolgLongSword01_VFX_Earth,0,0
+1237,H_1h_FirbolgShortSword01_VFX_Earth,H_1h_FirbolgShortSword01_VFX_Earth,0,0
+1238,H_2h_FirbolgHammer01_VFX_Earth,H_2h_FirbolgHammer01_VFX_Earth,0,0
+1239,H_2h_FirbolgTrollSplitter01_VFX_Earth,H_2h_FirbolgTrollSplitter01_VFX_Earth,0,0
+1240,H_bl_CelticHammer01_VFX_Earth,H_bl_CelticHammer01_VFX_Earth,0,0
+1241,H_bl_FirbolgHammer01_VFX_Earth,H_bl_FirbolgHammer01_VFX_Earth,0,0
+1242,H_bo_ElvenLongbow01_VFX_Earth,H_bo_ElvenLongbow01_VFX_Earth,0,0
+1243,H_bo_ElvenShortBow01_VFX_Earth,H_bo_ElvenShortBow01_VFX_Earth,0,0
+1244,H_sc_FirbolgScythe01_VFX_Earth,H_sc_FirbolgScythe01_VFX_Earth,0,0
+1245,H_Sp_FirbolgSpear01_VFX_Earth,H_Sp_FirbolgSpear01_VFX_Earth,0,0
+1246,h_st_staff07_VFX_Earth,h_st_staff07_VFX_Earth,0,0
+1247,h_st_staff09_VFX_Earth,h_st_staff09_VFX_Earth,0,0
+1248,H_th_FirbolgAdze01_VFX_Earth,H_th_FirbolgAdze01_VFX_Earth,0,0
+1249,H_th_WarAdze01_VFX_Earth,H_th_WarAdze01_VFX_Earth,0,0
+1250,N_1h_DwarvenWarAxe01_VFX_Earth,N_1h_DwarvenWarAxe01_VFX_Earth,0,0
+1251,N_1h_TrollBroadSword01_VFX_Earth,N_1h_TrollBroadSword01_VFX_Earth,0,0
+1252,N_1h_TrollWarAxe01_VFX_Earth,N_1h_TrollWarAxe01_VFX_Earth,0,0
+1253,N_1h_TrollWarHammer01_VFX_Earth,N_1h_TrollWarHammer01_VFX_Earth,0,0
+1254,N_2h_DwarvenSpear01_VFX_Earth,N_2h_DwarvenSpear01_VFX_Earth,0,0
+1255,N_2h_KoboldGreatAxe01_VFX_Earth,N_2h_KoboldGreatAxe01_VFX_Earth,0,0
+1256,N_2h_KoboldGreatClub01_VFX_Earth,N_2h_KoboldGreatClub01_VFX_Earth,0,0
+1257,N_2h_KoboldGreatSword01_VFX_Earth,N_2h_KoboldGreatSword01_VFX_Earth,0,0
+1258,N_bo_VikingBeardedBow01_VFX_Earth,N_bo_VikingBeardedBow01_VFX_Earth,0,0
+1259,N_hth_GreatBladedClawGreave01_VFX_Earth,N_hth_GreatBladedClawGreave01_VFX_Earth,0,0
+1260,N_hth_GreatBladedFangGreave01_VFX_Earth,N_hth_GreatBladedFangGreave01_VFX_Earth,0,0
+1261,B_2h_Coffinhammer01_VFX_Fire,B_2h_Coffinhammer01_VFX_Fire,0,0
+1262,B_2h_InquisitorsPick01_VFX_Fire,B_2h_InquisitorsPick01_VFX_Fire,0,0
+1263,B_2h_RoyalScimitar01_VFX_Fire,B_2h_RoyalScimitar01_VFX_Fire,0,0
+1264,B_bo_SaracenShortbow01_VFX_Fire,B_bo_SaracenShortbow01_VFX_Fire,0,0
+1265,B_bo_ThornBow01_VFX_Fire,B_bo_ThornBow01_VFX_Fire,0,0
+1266,B_Cr_BishopsMace01_VFX_Fire,B_Cr_BishopsMace01_VFX_Fire,0,0
+1267,B_Cr_CoffinMace01_VFX_Fire,B_Cr_CoffinMace01_VFX_Fire,0,0
+1268,B_flx_PickFlail01_VFX_Fire,B_flx_PickFlail01_VFX_Fire,0,0
+1269,B_flx_SpikedFlail01_VFX_Fire,B_flx_SpikedFlail01_VFX_Fire,0,0
+1270,B_Po_MilitaryFork01_VFX_Fire,B_Po_MilitaryFork01_VFX_Fire,0,0
+1271,B_Po_SaracenGlaive01_VFX_Fire,B_Po_SaracenGlaive01_VFX_Fire,0,0
+1272,B_Po_TallHammer01_VFX_Fire,B_Po_TallHammer01_VFX_Fire,0,0
+1273,B_sl_Cinquedea01_VFX_Fire,B_sl_Cinquedea01_VFX_Fire,0,0
+1274,B_sl_Falchion01_VFX_Fire,B_sl_Falchion01_VFX_Fire,0,0
+1275,b_st_magestaff01_VFX_Fire,b_st_magestaff01_VFX_Fire,0,0
+1276,B_st_SpikedStaffMace01_VFX_Fire,B_st_SpikedStaffMace01_VFX_Fire,0,0
+1277,B_th_DuelistsDagger01_VFX_Fire,B_th_DuelistsDagger01_VFX_Fire,0,0
+1278,B_th_DuelistsRapier01_VFX_Fire,B_th_DuelistsRapier01_VFX_Fire,0,0
+1279,B_xbo_SkinnersCrossbow01_VFX_Fire,B_xbo_SkinnersCrossbow01_VFX_Fire,0,0
+1280,H_1h_FirbolgLongSword01_VFX_Fire,H_1h_FirbolgLongSword01_VFX_Fire,0,0
+1281,H_1h_FirbolgShortSword01_VFX_Fire,H_1h_FirbolgShortSword01_VFX_Fire,0,0
+1282,H_2h_FirbolgHammer01_VFX_Fire,H_2h_FirbolgHammer01_VFX_Fire,0,0
+1283,H_2h_FirbolgTrollSplitter01_VFX_Fire,H_2h_FirbolgTrollSplitter01_VFX_Fire,0,0
+1284,H_bl_CelticHammer01_VFX_Fire,H_bl_CelticHammer01_VFX_Fire,0,0
+1285,H_bl_FirbolgHammer01_VFX_Fire,H_bl_FirbolgHammer01_VFX_Fire,0,0
+1286,H_bo_ElvenLongbow01_VFX_Fire,H_bo_ElvenLongbow01_VFX_Fire,0,0
+1287,H_bo_ElvenShortBow01_VFX_Fire,H_bo_ElvenShortBow01_VFX_Fire,0,0
+1288,H_sc_FirbolgScythe01_VFX_Fire,H_sc_FirbolgScythe01_VFX_Fire,0,0
+1289,H_Sp_FirbolgSpear01_VFX_Fire,H_Sp_FirbolgSpear01_VFX_Fire,0,0
+1290,h_st_staff07_VFX_Fire,h_st_staff07_VFX_Fire,0,0
+1291,h_st_staff09_VFX_Fire,h_st_staff09_VFX_Fire,0,0
+1292,H_th_FirbolgAdze01_VFX_Fire,H_th_FirbolgAdze01_VFX_Fire,0,0
+1293,H_th_WarAdze01_VFX_Fire,H_th_WarAdze01_VFX_Fire,0,0
+1294,N_1h_DwarvenWarAxe01_VFX_Fire,N_1h_DwarvenWarAxe01_VFX_Fire,0,0
+1295,N_1h_TrollBroadSword01_VFX_Fire,N_1h_TrollBroadSword01_VFX_Fire,0,0
+1296,N_1h_TrollWarAxe01_VFX_Fire,N_1h_TrollWarAxe01_VFX_Fire,0,0
+1297,N_1h_TrollWarHammer01_VFX_Fire,N_1h_TrollWarHammer01_VFX_Fire,0,0
+1298,N_2h_DwarvenSpear01_VFX_Fire,N_2h_DwarvenSpear01_VFX_Fire,0,0
+1299,N_2h_KoboldGreatAxe01_VFX_Fire,N_2h_KoboldGreatAxe01_VFX_Fire,0,0
+1300,N_2h_KoboldGreatClub01_VFX_Fire,N_2h_KoboldGreatClub01_VFX_Fire,0,0
+1301,N_2h_KoboldGreatSword01_VFX_Fire,N_2h_KoboldGreatSword01_VFX_Fire,0,0
+1302,N_bo_VikingBeardedBow01_VFX_Fire,N_bo_VikingBeardedBow01_VFX_Fire,0,0
+1303,N_hth_GreatBladedClawGreave01_VFX_Fire,N_hth_GreatBladedClawGreave01_VFX_Fire,0,0
+1304,N_hth_GreatBladedFangGreave01_VFX_Fire,N_hth_GreatBladedFangGreave01_VFX_Fire,0,0
+1305,B_2h_Coffinhammer01_VFX_Water,B_2h_Coffinhammer01_VFX_Water,0,0
+1306,B_2h_InquisitorsPick01_VFX_Water,B_2h_InquisitorsPick01_VFX_Water,0,0
+1307,B_2h_RoyalScimitar01_VFX_Water,B_2h_RoyalScimitar01_VFX_Water,0,0
+1308,B_bo_SaracenShortbow01_VFX_Water,B_bo_SaracenShortbow01_VFX_Water,0,0
+1309,B_bo_ThornBow01_VFX_Water,B_bo_ThornBow01_VFX_Water,0,0
+1310,B_Cr_BishopsMace01_VFX_Water,B_Cr_BishopsMace01_VFX_Water,0,0
+1311,B_Cr_CoffinMace01_VFX_Water,B_Cr_CoffinMace01_VFX_Water,0,0
+1312,B_flx_PickFlail01_VFX_Water,B_flx_PickFlail01_VFX_Water,0,0
+1313,B_flx_SpikedFlail01_VFX_Water,B_flx_SpikedFlail01_VFX_Water,0,0
+1314,B_Po_MilitaryFork01_VFX_Water,B_Po_MilitaryFork01_VFX_Water,0,0
+1315,B_Po_SaracenGlaive01_VFX_Water,B_Po_SaracenGlaive01_VFX_Water,0,0
+1316,B_Po_TallHammer01_VFX_Water,B_Po_TallHammer01_VFX_Water,0,0
+1317,B_sl_Cinquedea01_VFX_Water,B_sl_Cinquedea01_VFX_Water,0,0
+1318,B_sl_Falchion01_VFX_Water,B_sl_Falchion01_VFX_Water,0,0
+1319,b_st_magestaff01_VFX_Water,b_st_magestaff01_VFX_Water,0,0
+1320,B_st_SpikedStaffMace01_VFX_Water,B_st_SpikedStaffMace01_VFX_Water,0,0
+1321,B_th_DuelistsDagger01_VFX_Water,B_th_DuelistsDagger01_VFX_Water,0,0
+1322,B_th_DuelistsRapier01_VFX_Water,B_th_DuelistsRapier01_VFX_Water,0,0
+1323,B_xbo_SkinnersCrossbow01_VFX_Water,B_xbo_SkinnersCrossbow01_VFX_Water,0,0
+1324,H_1h_FirbolgLongSword01_VFX_Water,H_1h_FirbolgLongSword01_VFX_Water,0,0
+1325,H_1h_FirbolgShortSword01_VFX_Water,H_1h_FirbolgShortSword01_VFX_Water,0,0
+1326,H_2h_FirbolgHammer01_VFX_Water,H_2h_FirbolgHammer01_VFX_Water,0,0
+1327,H_2h_FirbolgTrollSplitter01_VFX_Water,H_2h_FirbolgTrollSplitter01_VFX_Water,0,0
+1328,H_bl_CelticHammer01_VFX_Water,H_bl_CelticHammer01_VFX_Water,0,0
+1329,H_bl_FirbolgHammer01_VFX_Water,H_bl_FirbolgHammer01_VFX_Water,0,0
+1330,H_bo_ElvenLongbow01_VFX_Water,H_bo_ElvenLongbow01_VFX_Water,0,0
+1331,H_bo_ElvenShortBow01_VFX_Water,H_bo_ElvenShortBow01_VFX_Water,0,0
+1332,H_sc_FirbolgScythe01_VFX_Water,H_sc_FirbolgScythe01_VFX_Water,0,0
+1333,H_Sp_FirbolgSpear01_VFX_Water,H_Sp_FirbolgSpear01_VFX_Water,0,0
+1334,h_st_staff07_VFX_Water,h_st_staff07_VFX_Water,0,0
+1335,h_st_staff09_VFX_Water,h_st_staff09_VFX_Water,0,0
+1336,H_th_FirbolgAdze01_VFX_Water,H_th_FirbolgAdze01_VFX_Water,0,0
+1337,H_th_WarAdze01_VFX_Water,H_th_WarAdze01_VFX_Water,0,0
+1338,N_1h_DwarvenWarAxe01_VFX_Water,N_1h_DwarvenWarAxe01_VFX_Water,0,0
+1339,N_1h_TrollBroadSword01_VFX_Water,N_1h_TrollBroadSword01_VFX_Water,0,0
+1340,N_1h_TrollWarAxe01_VFX_Water,N_1h_TrollWarAxe01_VFX_Water,0,0
+1341,N_1h_TrollWarHammer01_VFX_Water,N_1h_TrollWarHammer01_VFX_Water,0,0
+1342,N_2h_DwarvenSpear01_VFX_Water,N_2h_DwarvenSpear01_VFX_Water,0,0
+1343,N_2h_KoboldGreatAxe01_VFX_Water,N_2h_KoboldGreatAxe01_VFX_Water,0,0
+1344,N_2h_KoboldGreatClub01_VFX_Water,N_2h_KoboldGreatClub01_VFX_Water,0,0
+1345,N_2h_KoboldGreatSword01_VFX_Water,N_2h_KoboldGreatSword01_VFX_Water,0,0
+1346,N_bo_VikingBeardedBow01_VFX_Water,N_bo_VikingBeardedBow01_VFX_Water,0,0
+1347,N_hth_GreatBladedClawGreave01_VFX_Water,N_hth_GreatBladedClawGreave01_VFX_Water,0,0
+1348,N_hth_GreatBladedFangGreave01_VFX_Water,N_hth_GreatBladedFangGreave01_VFX_Water,0,0
+1349,VFX_hothead01,VFX_hothead01,0,0
+1350,VFX_head_sunburst01,VFX_head_sunburst01,0,0
+1351,VFX_head_orbit01,VFX_head_orbit01,0,0
+1352,VFX_head_orbit02,VFX_head_orbit02,0,0
+1353,VFX_fire_eyes01,VFX_fire_eyes01,0,0
+1354,VFX_fire_eyes01_blue,VFX_fire_eyes01_blue,0,0
+1355,VFX_fire_eyes01_green,VFX_fire_eyes01_green,0,0
+1356,VFX_wormhole,VFX_wormhole,0,0
+1357,VFX_Crows01,VFX_Crows01,0,0
+1358,VFX_wings01,VFX_wings01,0,0
+1359,vfx_wings02-fire,vfx_wings02-fire,0,0
+1360,pumpkin_head_m_Dwa_m.nif,pumpkin_head_m_Dwa_m,0,0
+1361,pumpkin_head_m_elf_m.nif,pumpkin_head_m_elf_m,0,0
+1362,pumpkin_head_m_fir_m.nif,pumpkin_head_m_fir_m,0,0
+1363,pumpkin_head_m_fro_m.nif,pumpkin_head_m_fro_m,0,0
+1364,pumpkin_head_m_hal_m.nif,pumpkin_head_m_hal_m,0,0
+1365,pumpkin_head_m_hig_m.nif,pumpkin_head_m_hig_m,0,0
+1366,pumpkin_head_m_inc_m.nif,pumpkin_head_m_inc_m,0,0
+1367,pumpkin_head_m_kob_m.nif,pumpkin_head_m_kob_m,0,0
+1368,pumpkin_head_m_lur_m.nif,pumpkin_head_m_lur_m,0,0
+1369,pumpkin_head_m_min_m.nif,pumpkin_head_m_min_m,0,0
+1370,pumpkin_head_m_nor_m.nif,pumpkin_head_m_nor_m,0,0
+1371,pumpkin_head_m_sar_m.nif,pumpkin_head_m_sar_m,0,0
+1372,pumpkin_head_m_sha_m.nif,pumpkin_head_m_sha_m,0,0
+1373,pumpkin_head_m_syl_m.nif,pumpkin_head_m_syl_m,0,0
+1374,pumpkin_head_m_tro_m.nif,pumpkin_head_m_tro_m,0,0
+1375,pumpkin_head_m_val_m.nif,pumpkin_head_m_val_m,0,0
+1376,pumpkin_head_m_ava_m.nif,pumpkin_head_m_ava_m,0,0
+1377,pumpkin_head_m_bri_m.nif,pumpkin_head_m_bri_m,0,0
+1378,wings_bat01,wings_bat01,0,0
+1379,VFX_pumpkin_standard,VFX_pumpkin_standard,0,0
+1380,wings_dragon_STONE,wings_dragon_STONE,0,0
+1381,wings_dragon_GLIMMER,wings_dragon_GLIMMER,0,0
+1382,wings_dragon_wolf,wings_dragon_wolf,0,0
+1383,kaleidoscope_butterflies01,kaleidoscope_butterflies01,0,0
+1384,mask_Tentacled_VFX,mask_Tentacled_VFX,0,0
+1385,vfx_orbiting_gems01,vfx_orbiting_gems01,0,0
+1386,vfx_orbiting_gems01-GREEN,vfx_orbiting_gems01-GREEN,0,0
+1387,vfx_orbiting_gems01-YELLOW,vfx_orbiting_gems01-YELLOW,0,0
+1388,vfx_orbiting_gems01-orange,vfx_orbiting_gems01-orange,0,0
+1389,vfx_orbiting_gems01-purple,vfx_orbiting_gems01-purple,0,0
+1390,vfx_orbiting_gems01-red,vfx_orbiting_gems01-red,0,0
+1391,vfx_flaming_skull01,vfx_flaming_skull01,0,0
+1392,vfx_flaming_skull-green,vfx_flaming_skull-green,0,0
+1393,vfx_flaming_skull-blue,vfx_flaming_skull-blue,0,0
+1394,VFX_miasma01,VFX_miasma01,0,0
+1395,vfx_darkaura01,vfx_darkaura01,0,0
+1396,vfx_darkaura02,vfx_darkaura02,0,
+1397,vfx_wings03-darkfire,vfx_wings03-darkfire,0,0
+1398,vfx_shocking_aura_BLUE01,vfx_shocking_aura_BLUE01,0,0
+1399,vfx_shocking_aura_BLUE_Arm_L.NIF,vfx_shocking_aura_BLUE_Arm_L,0,0
+1400,vfx_shocking_aura_BLUE_Leg_R.NIF,vfx_shocking_aura_BLUE_Leg_R,0,0
+1401,vfx_shocking_aura_BLUE_ARM_R.NIF,vfx_shocking_aura_BLUE_ARM_R,0,0

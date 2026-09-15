@@ -1,0 +1,119 @@
+{
+  "undead-hero-sword": {
+    "label": "Abomination - exclusive fiery sword texture",
+    "private_asset": true,
+    "texture_path": "items/uh_sword001.dds",
+    "fallback_paths": [
+      "items/uh_sword001.tga"
+    ],
+    "mesh_path": "items/uh_sword001.nif",
+    "guards": {
+      "items/N_weapons01.dds": "7c19c4f89d2832cb3e1f4c54487ee4cda1b15a0ac341c60ab740fc2e40930002",
+      "items/n_weapons01.tga": "eedd720c15a224a87f1c5026d6c368958d1d105df7109eb0da322c437d6af061",
+      "items/n_2h_greatsword01.nif": "8faa40e62c9ee6b4a953776d5ad60f312fbf5417640bbfc693b791fa6ad6b86a",
+      "items/uh_sword001.nif": "cd66ed12473234268639aa3e993e3767b71699de941dc783cb4049bd51cd8408"
+    },
+    "bindings": [
+      [
+        "objects.csv",
+        572,
+        "506997016cf35640aa909ff6920195738982a737b7993c3e45655aa90fd3ffc2"
+      ],
+      [
+        "objects.csv",
+        4808,
+        "dcc896dd89140da36083f8376ddb458d0d5af36a2da0233a4b96d2569c5f55db"
+      ],
+      [
+        "items.csv",
+        134,
+        "1875d4fd3cdeb6f517f1df7178cf0a6dc62b55208cd6ea4a06e964dfc229fc58"
+      ],
+      [
+        "items.csv",
+        1639,
+        "d9f236ca4239859143ab3593ce37d21c19b5a7623231e0965f923bc547dd99ea"
+      ]
+    ]
+  },
+  "abomination-body": {
+    "label": "abomination-body",
+    "private_asset": true,
+    "texture_path": "figures/skins/skin099.mpk",
+    "archive_entry": "ab_body001.dds",
+    "mesh_path": "figures/ab_pet01.nif",
+    "guards": {
+      "figures/Demon_Knight.NIF": "1108b7da5823dd7c45ecb1b6be2c7875604739893e09402bee62e8cd1c3ee2ba",
+      "figures/ab_pet01.nif": "1108b7da5823dd7c45ecb1b6be2c7875604739893e09402bee62e8cd1c3ee2ba",
+      "figures/skins/skin017.mpk": "6ae57cf41997d7842519e3de54bf92b6b6ca13ca9f05823d8fd5ddec53a1a9ab"
+    },
+    "bindings": [
+      [
+        "monsters.csv",
+        2073,
+        "f11a1fd555814751320566ab0e79dc76bcbb05903c8de19238cee6f713af4687"
+      ],
+      [
+        "monnifs.csv",
+        986,
+        "6e25e07da32c34af374a7f1ae7d538da72b53ea4bbc76c446d693aab01175540"
+      ],
+      [
+        "skins.csv",
+        6686,
+        "2b2eb02d8f98618ab4c5e5f6231a45b6c3733c30ce5cb5377fc84d08ef84f974"
+      ],
+      [
+        "skins.csv",
+        7127,
+        "227c046a8c0b6d4c856a9857269aebdae6fc19d7da5cda54f4ed94952ce3be94"
+      ]
+    ],
+    "contiguous_registration": [
+      [
+        "monnifs.csv",
+        986
+      ]
+    ]
+  },
+  "abomination-glow": {
+    "label": "abomination-glow",
+    "private_asset": true,
+    "texture_path": "figures/skins/skin099.mpk",
+    "archive_entry": "ab_glow001.dds",
+    "mesh_path": "figures/ab_pet01.nif",
+    "guards": {
+      "figures/Demon_Knight.NIF": "1108b7da5823dd7c45ecb1b6be2c7875604739893e09402bee62e8cd1c3ee2ba",
+      "figures/ab_pet01.nif": "1108b7da5823dd7c45ecb1b6be2c7875604739893e09402bee62e8cd1c3ee2ba",
+      "figures/skins/skin017.mpk": "6ae57cf41997d7842519e3de54bf92b6b6ca13ca9f05823d8fd5ddec53a1a9ab"
+    },
+    "bindings": [
+      [
+        "monsters.csv",
+        2073,
+        "f11a1fd555814751320566ab0e79dc76bcbb05903c8de19238cee6f713af4687"
+      ],
+      [
+        "monnifs.csv",
+        986,
+        "6e25e07da32c34af374a7f1ae7d538da72b53ea4bbc76c446d693aab01175540"
+      ],
+      [
+        "skins.csv",
+        6686,
+        "2b2eb02d8f98618ab4c5e5f6231a45b6c3733c30ce5cb5377fc84d08ef84f974"
+      ],
+      [
+        "skins.csv",
+        7127,
+        "227c046a8c0b6d4c856a9857269aebdae6fc19d7da5cda54f4ed94952ce3be94"
+      ]
+    ],
+    "contiguous_registration": [
+      [
+        "monnifs.csv",
+        986
+      ]
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType><TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable>
+    <AssemblyName>OfflineDaoc.ProgressImport</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup><PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" /></ItemGroup>
+  <ItemGroup><None Include="progress-policy.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
+</Project>

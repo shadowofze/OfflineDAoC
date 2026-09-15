@@ -1,0 +1,34 @@
+# Local saves / credentials: the runtime and clean data ship as release assets.
+/runtime/
+**/account.txt
+**/.env
+**/.env.*
+**/*.sqlite3
+**/*.sqlite3.db
+**/*.db-wal
+**/*.db-shm
+**/*.db-journal
+**/*.pfx
+**/*.pem
+**/*.key
+**/user.dat
+# Generated output and local caches; do not ignore required route/resource files.
+**/bin/
+**/obj/
+**/TestResults/
+**/__pycache__/
+**/*.pyc
+**/*.log
+**/*.dmp
+**/*.trx
+**/*.nettrace
+**/developer-state/
+**/.vs/
+/.downloads/
+/playable/
+/artifacts/
+/tools/dotnet/
+/tools/nuget-feed/
+/tools/zig/
+/tools/NavmeshBuilder/
+/OFFLINE DAOC ASSET TOOL/

@@ -1,0 +1,12 @@
+{
+  "ProgressTables": [
+    "Account", "AccountXCrafting", "AccountXCustomParam", "AccountXMoney",
+    "DOLCharacters", "DOLCharactersBackup", "DOLCharactersBackupXCustomParam", "DOLCharactersXCustomParam",
+    "CharacterXDataQuest", "CharacterXMasterLevel", "CharacterXOneTimeDrop", "Quest", "Task", "TimeXLevel", "PlayerXEffect",
+    "Inventory", "ItemUnique", "bot_profiles", "bot_settings", "offline_world_bots",
+    "offline_auction_escrow", "offline_auction_ledger", "offline_auction_listings", "realm_exchange_sales",
+    "Guild", "GuildRank", "GuildAlliance", "DBHouseCharsXPerms", "DBHousePermissions", "DBIndoorItem", "DBOutdoorItem",
+    "HouseConsignmentMerchant", "househookpointitem", "PlayerBoats"
+  ],
+  "ClearTables": ["Appeal", "AuditEntry", "Ban", "BugReport", "KeepCaptureLog", "News", "PlayerInfo", "ServerInfo", "SinglePermission", "Voting", "serverstats", "offline_bot_commands", "offline_runtime_status", "offline_local_options"]
+}

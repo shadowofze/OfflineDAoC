@@ -1,0 +1,72 @@
+Tool Tip,Tool Tip,Tool Tip
+ID,Name,Description
+18,Attributes Tab,Attributes
+19,Inventory Tab,Inventory
+20,Specializations Tab,Specializations
+21,Combat Styles T ab,Combat Styles
+22,Magic Spells Tab,Magic Spells
+23,Group Tab,Group
+100,Angry,/Angry
+101,Bang,/Bang
+102,Beckon,/Beckon
+103,Beg,/Beg
+104,Blush,/Blush
+105,Bow,/Bow
+106,Charge,/Charge
+107,Cheer,/Cheer
+108,Clap,/Clap
+109,Confuse,/Confuse
+110,Cry,/Cry
+111,Curtsey,/Curtsey
+112,Dance,/Dance
+113,Dismiss,/Dismiss
+114,Doh,/Doh
+115,Drink,/Drink
+116,Flex,/Flex
+117,Hug,/Hug
+118,Induct,/Induct
+119,Kiss,/Kiss
+120,Knock,/Knock
+121,Laugh,/Laugh
+122,Lookfar,/Lookfar
+123,mememe,/Mememe
+124,Military,/Military
+125,No,/No
+126,Point,/Point
+127,Ponder,/Ponder
+128,Present,/Present
+129,Raise,/Raise
+130,Rofl,/Rofl
+131,Rude,/Rude
+132,Salute,/Salute
+133,Shiver,/Shiver
+134,Shrug,/Shrug
+135,Slap,/Slap
+136,Slit,/Slit
+137,Smile,/Smile
+138,Stagger,/Stagger
+139,Stench,/Stench
+140,Surrender,/Surrender
+141,Sweat,/Sweat
+142,Taunt,/Taunt
+143,Victory,/Victory
+144,Wave,/Wave
+145,Worship,/Worship
+146,Yawn,/Yawn
+147,Yes,/Yes
+148,Horse Courbette,/Horse Courbette
+149,Horse Graze,/Horse Graze
+150,Horse Halt,/Horse Halt
+151,Horse Nod,/Horse Nod
+152,Horse Pet,/Horse Pet
+153,Horse Rear,/Horse Rear
+154,Horse Startle,/Horse Startle
+155,Horse Trick,/Horse Trick
+156,Emoticons,Emoticons
+157,Channels,Channels
+158,Officer Chat,Officer Chat
+159,Alliance Chat,Alliance Chat
+160,Chatgroup,Chatgroup
+161,Battlegroup,Battlegroup
+162,/send [name of character],/send [name of character]
+163,/advice [name of advisor],/advice [name of advisor]

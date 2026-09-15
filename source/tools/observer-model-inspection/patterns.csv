@@ -1,0 +1,26 @@
+,,0,1,,
+Set,ID,name,red,green,blue
+1,0,Dk_Red,169,0,3
+1,1,Dk_Dark Red,89,0,0
+1,2,Dk_Violet,99,4,96
+1,3,Dk_Purple,68,14,98
+1,4,Dk_Royal Blue,0,0,168
+1,5,Dk_Blue,12,54,111
+1,6,Dk_Teal,9,78,91
+1,7,Dk_Lt. Blue,56,121,137
+1,8,Dk_Green,6,102,39
+1,9,Dk_Dk. Green,7,74,51
+1,10,Dk_Olive,75,89,10
+1,11,Dk_Tan,143,114,0
+1,12,Dk_Brown,106,78,20
+1,13,Dk_Rust,102,58,6
+1,14,Dk_Gray,75,75,75
+1,15,Dk_Maroon,116,0,68
+2,0,Lt_Kak,205,200,158
+2,1,Lt_Dark Kak,174,161,134
+2,2,Lt_Gray,154,154,154
+2,3,Lt_Yellow,235,232,97
+2,4,Lt_Orange,228,181,84
+2,5,Lt_Green,135,196,130
+2,6,Lt_Blue,143,162,204
+2,7,Lt_Purp,152,136,165

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>OfflineDAoC</AssemblyName>
+    <Product>Offline DAoC: Classic + Shrouded Isles</Product>
+    <AssemblyTitle>Offline DAoC Launcher and Population Monitor</AssemblyTitle>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
+    <Compile Include="../../server/GameServer/bots/autonomous/BotGoalSettings.cs" Link="Configuration/BotGoalSettings.cs" />
+    <Compile Include="../../server/GameServer/bots/autonomous/RealmEventRecordStore.cs" Link="Records/RealmEventRecordStore.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\offline-daoc-header.png"
+                      LogicalName="OfflineDaoc.Launcher.Assets.offline-daoc-header.png" />
+    <EmbeddedResource Include="Assets\offline-daoc-realm-shield.png"
+                      LogicalName="OfflineDaoc.Launcher.Assets.offline-daoc-realm-shield.png" />
+  </ItemGroup>
+</Project>
