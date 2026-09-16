@@ -22,6 +22,14 @@ On the launcher, click + Lv.1 or + Lv.50 under a faction:
 /grind
   Starts automated grinding with a companion bot group, including for AFK use.
 
+/pull
+  Orders your companion group and pets to engage your selected enemy. When possible,
+  a tank makes first contact before the rest of the group joins the fight.
+
+/train <line> <level>
+  Trains a specialization to the chosen level using your available specialization
+  points. Select a valid trainer for your class first.
+
 /spawn
   Opens a menu of valid companion bots to summon.
 

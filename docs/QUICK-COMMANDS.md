@@ -24,6 +24,8 @@ modifier, create one bot. Start small and increase population for your PC's capa
 | Command | What it does |
 |---|---|
 | `/grind` | Start automated grinding with a companion-bot group, including for AFK use. |
+| `/pull` | Order your companion group and pets to engage your selected enemy. When possible, a tank makes first contact before the rest of the group joins the fight. |
+| `/train <line> <level>` | Train a specialization to the chosen level using your available specialization points. Select a valid trainer for your class first. |
 | `/spawn` | Open the menu of valid companion bots to summon. |
 | `/spawn X` | Summon a companion by class name instead of using the menu; useful for macros. |
 | `/raid 40` | Enable a 40-member companion raid. Use **before** `/spawn`. Requires level 50; the total includes you. |
