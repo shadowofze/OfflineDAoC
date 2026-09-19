@@ -6,6 +6,8 @@ This file provides guidance for AI coding agents working in the OpenDAoC-Core-Bo
 
 OpenDAoC-Core-Bots is a .NET 10.0 Dark Age of Camelot server emulator with player-controlled bot companions. It's a fork of [OpenDAoC-Core](https://github.com/OpenDAoC/OpenDAoC-Core).
 
+The planned Camlann full-PvP conversion (not implemented) is `docs/CAMLANN.md` at the fork root. Do not start that work unless asked. Hostility, keep, relic, and autonomous-AI changes for that conversion belong in this tree.
+
 ## Build Commands
 
 ```bash
