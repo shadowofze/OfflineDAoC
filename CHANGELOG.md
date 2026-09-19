@@ -12,6 +12,14 @@ package, not this fork's version.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-09-19
+
+### Fixed
+
+- The launcher no longer overwrites Windowed mode on every Enter Realm launch.
+  A new AppData profile still defaults to borderless fullscreen; an existing
+  `user.dat` display choice and resolution are left alone.
+
 ## [0.3.1] - 2026-09-19
 
 ### Added

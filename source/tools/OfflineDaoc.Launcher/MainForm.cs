@@ -8,7 +8,7 @@ namespace OfflineDaoc.Launcher;
 
 internal sealed partial class MainForm : Form
 {
-    internal const string DisplayVersion = "0.3.1";
+    internal const string DisplayVersion = "0.4.0";
     internal const int AutoRefreshMilliseconds = 5 * 60 * 1000;
     internal const int RvrSnapshotRefreshMilliseconds = 30 * 1000;
     internal const int LiveBotSnapshotMaxAgeMilliseconds = 20_000;
@@ -2667,7 +2667,7 @@ internal sealed partial class MainForm : Form
         }
 
         var credentials = ReadCredentials();
-        EnsureBorderlessFullscreen();
+        ClientDisplayPreferences.EnsureIsolatedLaunchProfile(_clientDirectory);
         ClientSessionDiagnostics.Prepare(_logsDirectory);
         Process? client = Process.Start(new ProcessStartInfo(_clientConnector)
         {
@@ -2712,52 +2712,6 @@ internal sealed partial class MainForm : Form
         // probing until the successful refresh actually enables Enter Realm.
         if (processExited || _playButton.Enabled || !File.Exists(_clientConnector))
             _serverReadinessPoll.Stop();
-    }
-
-    private void EnsureBorderlessFullscreen()
-    {
-        // Use this distribution's client profile, not another installed copy's preferences.
-        string profile = "OfflineDAoCGitHub03";
-        string pathsFile = Path.Combine(_clientDirectory, "paths.dat");
-        if (File.Exists(pathsFile))
-        {
-            string? value = File.ReadLines(pathsFile).FirstOrDefault(line => line.TrimStart().StartsWith("settings=", StringComparison.OrdinalIgnoreCase));
-            if (value != null)
-            {
-                string candidate = value[(value.IndexOf('=') + 1)..].Trim();
-                if (candidate.Length > 0 && candidate.All(c => char.IsLetterOrDigit(c) || c == '_' || c == '-')) profile = candidate;
-            }
-        }
-        var profileDirectory = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "Electronic Arts", "Dark Age of Camelot", profile);
-        Directory.CreateDirectory(profileDirectory);
-        var path = Path.Combine(profileDirectory, "user.dat");
-        var lines = File.Exists(path) ? File.ReadAllLines(path).ToList() : new List<string>();
-        var mainIndex = lines.FindIndex(line => line.Trim().Equals("[main]", StringComparison.OrdinalIgnoreCase));
-        if (mainIndex < 0)
-        {
-            if (lines.Count > 0 && lines[^1].Length != 0) lines.Add(string.Empty);
-            lines.Add("[main]");
-            lines.Add("fullscreen_windowed=1");
-        }
-        else
-        {
-            var sectionEnd = lines.FindIndex(mainIndex + 1, line => line.TrimStart().StartsWith('['));
-            if (sectionEnd < 0) sectionEnd = lines.Count;
-            var settingIndex = -1;
-            for (var index = mainIndex + 1; index < sectionEnd; index++)
-            {
-                if (lines[index].TrimStart().StartsWith("fullscreen_windowed=", StringComparison.OrdinalIgnoreCase))
-                {
-                    settingIndex = index;
-                    break;
-                }
-            }
-            if (settingIndex >= 0) lines[settingIndex] = "fullscreen_windowed=1";
-            else lines.Insert(sectionEnd, "fullscreen_windowed=1");
-        }
-        File.WriteAllLines(path, lines);
     }
 
     private Process? FindExactServerProcess()
