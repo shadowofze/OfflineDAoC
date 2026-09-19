@@ -12,6 +12,22 @@ package, not this fork's version.
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-09-19
+
+### Changed
+
+- Revised `docs/CAMLANN.md`. It now targets Camlann 1.65 on the existing Old
+  Frontiers world (pre-ToA) and records owner decisions: player-founded
+  guilds, uncapped guild relics, a one-time launcher world reset,
+  any-realm companions, restrained grey-target ganking, safe portal-keep hubs,
+  and XP + RP for player kills.
+- The plan now covers gaps found in the code audit: the world is Old
+  Frontiers, not New Frontiers, so safety checks are zone-level;
+  `PvPServerRules` lacks fork guards; the client packet hack marks bots as
+  friendly; bot guilds are not persisted; keep claims and relics are realm-
+  and `GamePlayer`-only; and the Atlas PvP branches need an audit. Not
+  implemented yet.
+
 ## [0.4.1] - 2026-09-19
 
 ### Added
