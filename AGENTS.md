@@ -2,7 +2,8 @@
 
 This project contains AI-developed customizations of existing DAoC server projects.
 Read README.md, CHANGELOG.md, docs/DEVELOPMENT.md, and the relevant component's
-AGENTS.md before editing.
+AGENTS.md before editing. Planned Camlann conversion (not implemented):
+docs/CAMLANN.md. Do not start that work unless asked.
 
 ## Changelog and versioning
 

@@ -12,6 +12,13 @@ package, not this fork's version.
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-09-19
+
+### Added
+
+- Tiered Camlann conversion plan in `docs/CAMLANN.md` (full-PvP only, fresh
+  save, no dual Normal/PvP mode). Not implemented yet.
+
 ## [0.4.0] - 2026-09-19
 
 ### Fixed

@@ -7,7 +7,8 @@ This fork's launcher displays `DisplayVersion` from
 playable download remains GitHub v0.3; that package is the runtime, world data,
 and navigation baseline. Do not confuse this fork's three-part version with the
 original author's private 0.4 launcher label. Portable account bootstrap and
-default settings are release-specific differences.
+default settings are release-specific differences. Planned Camlann full-PvP
+conversion: `docs/CAMLANN.md`. Do not implement it unless asked.
 
 The release's runtime/server contains the reference installed binaries and 99
 navigation meshes. Runtime/data contains a cleaned world database. Runtime/client-opendaoc/app
