@@ -1,4 +1,4 @@
-OFFLINE DAOC 0.3 - SERVER COMMAND REFERENCE
+OFFLINE DAOC 0.3.1 - SERVER COMMAND REFERENCE
 
 285 command registrations read from the shipped server assemblies.
 Normal commands can still have level, realm, cooldown or state requirements.

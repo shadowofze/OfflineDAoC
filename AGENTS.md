@@ -1,7 +1,40 @@
 # Offline DAoC: start here
 
 This project contains AI-developed customizations of existing DAoC server projects.
-Read README.md, docs/DEVELOPMENT.md, and the relevant component's AGENTS.md before editing.
+Read README.md, CHANGELOG.md, docs/DEVELOPMENT.md, and the relevant component's
+AGENTS.md before editing.
+
+## Changelog and versioning
+
+This fork uses MAJOR.MINOR.PATCH. The launcher pin `DisplayVersion` and the
+latest dated heading in CHANGELOG.md must match. The upstream playable
+download stays GitHub v0.3; do not rewrite Get-OfflineDAoC.ps1 or the PLAY.md
+download steps when bumping this fork.
+
+Every completed change set must:
+
+- Add a dated version heading in CHANGELOG.md with Added / Changed / Fixed /
+  Removed bullets. Keep the Unreleased section empty between tasks; do not
+  pile work there and forget to bump.
+- Bump once per finished task, using the highest applicable level:
+  - PATCH (0.3.1 → 0.3.2): docs, agent rules, tests-only, comments, or
+    tooling that does not change gameplay.
+  - MINOR (0.3.1 → 0.4.0): new or changed gameplay or launcher behavior that
+    still loads the existing save.
+  - MAJOR (0.4.0 → 1.0.0): save/schema incompatibility, required progress
+    import, a native client patch, or a new playable package. Also use 1.0.0
+    if the owner explicitly declares a stable fork release.
+- Keep these in lockstep with the changelog heading:
+  - `source/tools/OfflineDaoc.Launcher/MainForm.cs` (`DisplayVersion`)
+  - `source/tools/OfflineDaoc.Launcher.Tests/LauncherPresentationTests.cs`
+  - `ALL SERVER COMMANDS.txt` header
+- Never put live save data, credentials, or hashes of personal databases in
+  the changelog.
+
+Do not jump to a bare `0.4` label. Three-part versions keep this fork
+distinct from the original author's private 0.4 launcher.
+
+## Safety defaults
 
 - Resolve paths from this checkout, never from the original author's Windows username.
 - Distinguish real players, companion bots, and autonomous gamebots before changing AI.

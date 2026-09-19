@@ -2,10 +2,12 @@
 
 ## Baseline and layout
 
-This is a separate sharing copy of the current Offline DAoC installation, whose
-launcher displays 0.4 locally. This GitHub distribution intentionally displays 0.3
-while retaining current functionality. Gameplay source is not intentionally changed for publication.
-Portable account bootstrap and default settings are release-specific differences.
+This fork's launcher displays `DisplayVersion` from
+`source/tools/OfflineDaoc.Launcher/MainForm.cs` (see CHANGELOG.md). The upstream
+playable download remains GitHub v0.3; that package is the runtime, world data,
+and navigation baseline. Do not confuse this fork's three-part version with the
+original author's private 0.4 launcher label. Portable account bootstrap and
+default settings are release-specific differences.
 
 The release's runtime/server contains the reference installed binaries and 99
 navigation meshes. Runtime/data contains a cleaned world database. Runtime/client-opendaoc/app

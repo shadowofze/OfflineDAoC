@@ -1,7 +1,9 @@
 # Release verification
 
-This is the GitHub v0.3 distribution of the current functionality, not a rollback
-to an older gameplay version. The author's local launcher remains labeled 0.4.
+This document records the GitHub v0.3 package, not a rollback to an older
+gameplay version. This fork's launcher pin is `DisplayVersion` in
+`source/tools/OfflineDaoc.Launcher/MainForm.cs` (see CHANGELOG.md), not the
+0.3 label below. The original author's private launcher remains labeled 0.4.
 
 ## Checks performed for this sharing copy
 
