@@ -20,6 +20,9 @@ Python runtime. A GitHub source ZIP alone is not the complete runtime download.
 
 ## Build (does not deploy or start the server)
 
+For the owner's WSL2 + Windows setup (install location, SDKs, baseline,
+deploy/restore scripts), follow the tiered plan in `docs/DEV-SETUP.md`.
+
 Use a .NET 10 SDK on Windows, or the SDK in the complete release. From the root:
 
 ```powershell

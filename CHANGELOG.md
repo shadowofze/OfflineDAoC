@@ -12,6 +12,15 @@ package, not this fork's version.
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-09-19
+
+### Added
+
+- `docs/DEV-SETUP.md`: tiered WSL2 + Windows development setup plan. It covers
+  the install location, toolchains, baseline tests, line-ending guard,
+  parameterized deploy/restore scripts, first client smoke test, and hand-off
+  to the Camlann work.
+
 ## [0.4.2] - 2026-09-19
 
 ### Changed
