@@ -22,10 +22,12 @@ Follow the included component licenses when modifying or redistributing code.
 - **Everyday commands:** [Quick commands and bot-generation shortcuts](docs/QUICK-COMMANDS.md).
 - **Developers and LLM users:** [Fork and customize instructions](docs/LLM-QUICKSTART.md).
 
-Use the [v0.3 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3)
+Use the [v0.31 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31)
 for the complete playable download. **Code > Download ZIP** contains the editable
-source; it is not the complete game download. The release's two small download
-helpers fetch, verify and extract the large parts automatically.
+source; it is not the complete game download. The release's small download helper
+fetches, verifies and extracts the large parts automatically. The original
+[v0.3 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3) remains
+available and is never replaced; use it when you want the unmodified v0.3 baseline.
 
 The intended supported target is a compatible **64-bit Windows PC**. The launcher
 uses Windows Forms and the legacy game client has Windows/graphics prerequisites;
@@ -34,8 +36,8 @@ uses Windows Forms and the legacy game client has Windows/graphics prerequisites
 System requirements: CPUs without AVX2 support will not work. 16 GB RAM is the
 recommended minimum; 8 GB may work but is untested.
 
-The release includes clean world data, current navigation meshes, the runnable
-components, source, and offline development dependencies. Accounts, characters,
+The v0.31 release includes clean world data, current navigation meshes, the
+runnable components, source, and offline development dependencies. Accounts, characters,
 inventories, saved bot profiles and personal settings from the author's game are
 not included. Each installation creates its own local account and saves.
 
@@ -66,5 +68,16 @@ Keep your own save database, credentials and logs out of commits. `.gitignore`
 is a safety net, not a substitute for reviewing `git diff --cached` before pushing.
 
 This repository is a clean baseline, not the author's old Git history or backups.
+The customizations in this repository were produced by AI coding agents under
+the author's direction, then reviewed and tested on the author's offline setup.
+That statement does not relicense upstream OpenDAoC or third-party client assets.
 AI-generated code can contain bugs: review changes, test a disposable copy, and
 back up saves before installing a build. No zero-regression guarantee is implied.
+
+## v0.31 scope
+
+v0.31 is the normal Classic/Shrouded Isles maintenance update. It does **not**
+include the experimental Sluaghbinder class, its quests, or its patch. That work
+is intentionally kept outside this public release until it is ready. The source
+and playable download are versioned together, while v0.3 stays downloadable as a
+separate immutable release.

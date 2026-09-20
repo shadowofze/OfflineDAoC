@@ -196,6 +196,13 @@ namespace DOL.GS
 			else if (living is GameBot bot && bot.CharacterClass != null)
 			{
 				int classId = bot.CharacterClass.ID;
+				// /spawn Bonedancers have a real, point-funded build. The generic
+				// NPC 75% estimate hid their first subordinate summon even with
+				// 15+ points trained. Leave all other bots on their existing path.
+				int spellSpecLevel = bot.IsTemporaryGroupHelper && !bot.IsAutonomousWorldBot &&
+					classId == (int)eCharacterClass.Bonedancer
+					? Math.Clamp(level, 1, Math.Max(1, (int)living.Level))
+					: Math.Max(1, living.Level - (living.Level >> 2));
 
 				// Apply the same class-based filtering as GamePlayer
 				var baseline = spsl.Where(item => item.Item1.IsBaseLine && item.Item2 == classId);
@@ -221,7 +228,7 @@ namespace DOL.GS
 				{
 					foreach (var ls in specline)
 					{
-						ls.Item1.Level = Math.Max(1, living.Level - (living.Level >> 2));
+						ls.Item1.Level = spellSpecLevel;
 						list.Add(ls.Item1);
 					}
 				}
@@ -229,7 +236,7 @@ namespace DOL.GS
 				{
 					foreach (var ls in spsl.Where(item => !item.Item1.IsBaseLine && item.Item2 == 0))
 					{
-						ls.Item1.Level = Math.Max(1, living.Level - (living.Level >> 2));
+						ls.Item1.Level = spellSpecLevel;
 						list.Add(ls.Item1);
 					}
 				}

@@ -986,6 +986,26 @@ namespace DOL.AI.Brain
                 out _);
         }
 
+        private bool TryMaintainTemporaryCompanionBonedancerArmy()
+        {
+            GameBot bot = BotBody;
+            if (bot == null || HasAggro ||
+                !AutonomousPetSupport.NeedsTemporaryCompanionBonedancerArmyUpkeep(bot))
+            {
+                return false;
+            }
+
+            // This gate exists only for ephemeral /spawn Bonedancers. It runs
+            // before owner-follow/rest can indefinitely defer the level-15+
+            // commander replacement and subordinate summon. Persistent
+            // autonomous gamebots remain on their existing maintenance path.
+            return AutonomousPetSupport.Maintain(
+                bot,
+                null,
+                ref _nextDeployablePetTick,
+                out _);
+        }
+
         private void FollowFormation(bool ambientWander = false)
         {
             // The traveling-performer preflight may already have issued this
@@ -1189,6 +1209,9 @@ namespace DOL.AI.Brain
             // completed portal/region transfer was not observed by its event.
             // Persistent bots and ordinary player group members never enter it.
             if (TemporaryGroupStableTravel.EnsureOwnerTransferCohesion(BotBody))
+                return;
+
+            if (TryMaintainTemporaryCompanionBonedancerArmy())
                 return;
 
             // A parked /spawn party rests before optional songs, chants, buffs,

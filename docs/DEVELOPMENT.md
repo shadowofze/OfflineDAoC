@@ -2,10 +2,12 @@
 
 ## Baseline and layout
 
-This is a separate sharing copy of the current Offline DAoC installation, whose
-launcher displays 0.4 locally. This GitHub distribution intentionally displays 0.3
-while retaining current functionality. Gameplay source is not intentionally changed for publication.
-Portable account bootstrap and default settings are release-specific differences.
+This is a separate sharing copy of the current normal Offline DAoC installation,
+whose launcher displays 0.4 locally. The public v0.31 source and playable release
+carry the normal maintenance fixes described in `docs/RELEASE-0.31.md`; the
+experimental Sluaghbinder class is intentionally not included. The old v0.3 tag
+and release remain immutable and usable. Portable account bootstrap and default
+settings are release-specific differences.
 
 The release's runtime/server contains the reference installed binaries and 99
 navigation meshes. Runtime/data contains a cleaned world database. Runtime/client-opendaoc/app

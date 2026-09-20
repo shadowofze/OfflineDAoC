@@ -1,5 +1,11 @@
 # Customize with your own LLM
 
+The current public baseline is **v0.31**. It is an AI-created customization of
+the upstream server, directed and tested by the repository owner. The experimental
+Sluaghbinder class is deliberately absent from this public baseline; do not infer
+or copy it from private/local folders. The immutable public v0.3 release remains
+available when a fork needs that exact baseline.
+
 ## Get an independent copy
 
 1. Click **Fork** on GitHub. No approval from the author is needed.
@@ -17,6 +23,10 @@
 > asking me. Protect my accounts, bot roster, inventory, real loot/coins, and saves.
 > Build and test separately, make only the changes I request, and report exactly
 > what changed and what was verified. My requested customization is: [describe it].
+
+For a v0.31 fork, keep the ordinary release and source versioned together. Do not
+commit runtime saves, accounts, logs, or private backups. If you want the old
+baseline, branch from the `v0.3` tag instead of deleting or rewriting v0.31.
 
 ## Where to work
 

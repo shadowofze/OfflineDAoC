@@ -85,6 +85,11 @@ namespace DOL.GS
             GameLiving current = Owner;
             for (int depth = 0; current != null && depth < 16; depth++)
             {
+                // Real players do not implement the bot-only IGamePlayer
+                // interface. Omitting them leaves their pets' template spells
+                // at full strength, including commander-owned sub-pets.
+                if (current is GamePlayer player)
+                    return player.CharacterClass;
                 // Check GameBot before following its optional human owner. A
                 // temporary /spawn Enchanter's pet scales from the Enchanter,
                 // not from the class of the human who spawned that companion.

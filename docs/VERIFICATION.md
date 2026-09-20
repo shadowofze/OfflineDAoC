@@ -1,15 +1,16 @@
 # Release verification
 
-This is the GitHub v0.3 distribution of the current functionality, not a rollback
-to an older gameplay version. The author's local launcher remains labeled 0.4.
+This is the GitHub v0.31 distribution of the normal maintenance functionality, not
+a rollback to an older gameplay version. The author's local launcher remains
+labeled 0.4. The separate v0.3 tag/release is preserved.
 
 ## Checks performed for this sharing copy
 
 - Current server source restored and rebuilt: zero build errors. Existing compiler
   warnings were retained rather than changing gameplay for publication.
-- 1,886 normal server tests passed. Explicit installed-environment probes are not
+- 1,893 normal server tests passed. Explicit installed-environment probes are not
   presented as having run in that ordinary test total.
-- 96 launcher tests passed with the public launcher label set to 0.3.
+- 96 launcher tests passed with the public launcher label set to 0.31.
 - 23 texture-tool tests passed using temporary edit/rollback copies.
 - Native 40/80 raid client rebuilt from the included baseline and customization
   source, matching the installed client SHA-256 exactly.
@@ -27,6 +28,19 @@ to an older gameplay version. The author's local launcher remains labeled 0.4.
   account through the real game client. The owner confirmed realm selection.
   The test server then shut down normally; its saves are not part of the release.
 
+## v0.31 maintenance checks
+
+- Player-owned summoned-pet spell scaling resolves the real player owner, including
+  nested pet ownership; companion-only Bonedancer upkeep remains scoped to temporary
+  `/spawn` companions.
+- Audited large-dragonfly, boobrie-hatchling, feccan, huldu-outcast and green-serpent
+  camps use live anchors, prove a reachable target, and only use measured recovery
+  pockets after normal recovery fails.
+- Effect state transitions no longer hold an effect lock while taking the owner's
+  effect-list lock, preventing the verified worker deadlock/freeze path.
+- Focused pet/effect and route-policy tests were run for the v0.31 source changes;
+  the exact test command/results are recorded with the release notes.
+
 The release archive is sealed only after the separate startup test and then every
 archive entry is checked by CRC and SHA-256. `PACKAGE FILE HASHES.json` inside the
 download and `download-manifest.json` on the release provide verification metadata.
@@ -34,7 +48,7 @@ download and `download-manifest.json` on the release provide verification metada
 ## Intended sharing differences
 
 Fresh local account bootstrap; clean progress and default settings; GitHub launcher
-label 0.3; an isolated client preference profile. Existing/imported credentials are
+label 0.31; an isolated client preference profile. Existing/imported credentials are
 preserved. Game saves are local to the extracted installation. The legacy client
 still uses its isolated Windows AppData profile for display preferences.
 

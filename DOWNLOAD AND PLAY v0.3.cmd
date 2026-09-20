@@ -6,15 +6,14 @@ if not exist "%~dp0Get-OfflineDAoC.ps1" (
   pause
   exit /b 1
 )
-echo This downloads the official shadowofze/OfflineDAoC v0.31 release.
+echo This downloads the preserved official shadowofze/OfflineDAoC v0.3 release.
 echo It verifies download hashes and extracts into a NEW playable folder.
 echo No game is started, and existing games or saves are not overwritten.
-echo PowerShell's script policy is set only for this process, not for Windows.
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0Get-OfflineDAoC.ps1" -ReleaseVersion 0.31
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0Get-OfflineDAoC.ps1" -ReleaseVersion 0.3 -Destination "%~dp0playable-v0.3"
 if errorlevel 1 (
   echo Download or extraction failed. Read the error above. Existing games were not replaced.
   pause
   exit /b 1
 )
-echo Open the playable folder, read READ ME FIRST.txt, and run START OFFLINE DAOC.cmd.
+echo Open playable-v0.3, read READ ME FIRST.txt, and run START OFFLINE DAOC.cmd.
 pause

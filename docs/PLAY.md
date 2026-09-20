@@ -11,7 +11,9 @@ The bundled modern .NET runtime does not replace this legacy connector requireme
 
 ## Get the GitHub download
 
-1. Open the project's **Releases** page and choose **v0.3**.
+1. Open the project's **Releases** page and choose **v0.31** for the current
+   normal maintenance build. Choose **v0.3** instead if you specifically want
+   the preserved original public baseline; it remains available separately.
 2. Download **DOWNLOAD AND PLAY.cmd** and **Get-OfflineDAoC.ps1** into the **same new folder**.
 3. Double-click **DOWNLOAD AND PLAY.cmd**. It downloads the game parts, checks their
    hashes, and creates a new `playable` folder. Allow roughly 35 GB of free disk
@@ -31,8 +33,9 @@ The downloader assembles and extracts the ZIP for you. If you handle the assembl
 ZIP yourself, extract the **entire** archive into a normal folder; never run files
 from inside a ZIP. Always keep an older installation in a separate folder.
 
-The GitHub launcher says **0.3** intentionally. It includes the current baseline
-functionality; the author's private launcher label is not the public version number.
+The v0.31 GitHub launcher says **0.31**. The old v0.3 launcher and release still
+say **0.3**. The author's private launcher label is separate from both public
+release numbers.
 
 ## First-time requirements
 

@@ -77,9 +77,14 @@ namespace DOL.GS
                     return false;
 
                 _transitionalState = TransitionalState.Starting;
-                Owner.effectListComponent.ProcessEffect(this);
-                return true;
             }
+
+            // Never acquire an owner's effect-list lock while holding this
+            // effect's state lock. Effect-list arbitration may need to enable,
+            // disable, or end another effect; doing that under the inverse lock
+            // order can deadlock parallel EffectService workers permanently.
+            Owner.effectListComponent.ProcessEffect(this);
+            return true;
         }
 
         public virtual bool Enable()
@@ -93,9 +98,10 @@ namespace DOL.GS
                     return false;
 
                 _transitionalState = TransitionalState.Enabling;
-                Owner.effectListComponent.ProcessEffect(this);
-                return true;
             }
+
+            Owner.effectListComponent.ProcessEffect(this);
+            return true;
         }
 
         public bool Disable()
@@ -109,9 +115,10 @@ namespace DOL.GS
                     return false;
 
                 _transitionalState = TransitionalState.Disabling;
-                Owner.effectListComponent.ProcessEffect(this);
-                return true;
             }
+
+            Owner.effectListComponent.ProcessEffect(this);
+            return true;
         }
 
         public bool End(bool playerCanceled = false)
@@ -134,9 +141,10 @@ namespace DOL.GS
                 }
 
                 _transitionalState = TransitionalState.Ending;
-                Owner.effectListComponent.ProcessEffect(this);
-                return true;
             }
+
+            Owner.effectListComponent.ProcessEffect(this);
+            return true;
         }
 
         /// <summary>

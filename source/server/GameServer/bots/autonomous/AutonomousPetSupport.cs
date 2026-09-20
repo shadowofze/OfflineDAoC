@@ -925,6 +925,45 @@ public static class AutonomousPetSupport
         return IsRequiredBonedancerArmyGap(desiredCount, activeCount, hasKnownMinion);
     }
 
+    /// <summary>
+    /// Temporary player companions follow a moving owner almost continuously,
+    /// so their ordinary optional-maintenance window may never open. Keep the
+    /// Bonedancer commander and its learned subordinate as required companion
+    /// equipment without changing persistent autonomous gamebot scheduling.
+    /// </summary>
+    public static bool NeedsTemporaryCompanionBonedancerArmyUpkeep(GameBot owner)
+    {
+        if (!IsTemporaryCompanionBonedancerScope(
+                owner?.IsTemporaryGroupHelper == true,
+                owner?.IsAutonomousWorldBot == true,
+                owner?.CharacterClass?.ID ?? 0) ||
+            !owner.IsAlive || owner.InCombat || owner.IsAttacking || owner.IsCasting)
+        {
+            return false;
+        }
+
+        IControlledBrain petBrain = owner.ControlledBrain;
+        if (petBrain?.Body?.IsAlive != true ||
+            petBrain.Body.ObjectState is not GameObject.eObjectState.Active)
+        {
+            return true;
+        }
+
+        if (petBrain.Body is not CommanderPet commander)
+            return false;
+
+        List<(Spell Spell, SpellLine Line)> spells = KnownSpells(owner).ToList();
+        return ShouldUpgradeBonedancerCommander(owner, commander, spells, null) ||
+               NeedsBonedancerArmyUpkeep(owner);
+    }
+
+    public static bool IsTemporaryCompanionBonedancerScope(
+        bool temporaryHelper,
+        bool autonomousWorldBot,
+        int characterClassId) =>
+        temporaryHelper && !autonomousWorldBot &&
+        characterClassId == (int)eCharacterClass.Bonedancer;
+
     public static bool IsRequiredBonedancerArmyGap(
         int desiredCount,
         int activeCount,

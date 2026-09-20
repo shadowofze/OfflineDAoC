@@ -269,6 +269,20 @@ public sealed class UT_AutonomousPetCombatPolicy
     }
 
     [Test]
+    public void RequiredBonedancerArmyGateIsExclusiveToTemporaryCompanions()
+    {
+        int bonedancer = (int)eCharacterClass.Bonedancer;
+        Assert.Multiple(() =>
+        {
+            Assert.That(AutonomousPetSupport.IsTemporaryCompanionBonedancerScope(true, false, bonedancer), Is.True);
+            Assert.That(AutonomousPetSupport.IsTemporaryCompanionBonedancerScope(false, false, bonedancer), Is.False);
+            Assert.That(AutonomousPetSupport.IsTemporaryCompanionBonedancerScope(true, true, bonedancer), Is.False);
+            Assert.That(AutonomousPetSupport.IsTemporaryCompanionBonedancerScope(
+                true, false, (int)eCharacterClass.Spiritmaster), Is.False);
+        });
+    }
+
+    [Test]
     public void ClassicTheurgistLimitUsesNaturalCastingConstraints()
     {
         Assert.That(SummonTheurgistPet.PetLimitAllowsAnother(30, 0), Is.True);

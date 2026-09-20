@@ -1,19 +1,25 @@
-param([string]$Destination = (Join-Path $PSScriptRoot 'playable'))
+param(
+    [string]$Destination = (Join-Path $PSScriptRoot 'playable'),
+    [ValidatePattern('^\d+\.\d+$')]
+    [string]$ReleaseVersion = '0.31'
+)
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-$releaseBase = 'https://github.com/shadowofze/OfflineDAoC/releases/download/v0.3'
+$releaseBase = "https://github.com/shadowofze/OfflineDAoC/releases/download/v$ReleaseVersion"
+$rootFolder = "OfflineDAoC-v$ReleaseVersion"
+$partPattern = '^' + [regex]::Escape($rootFolder) + '\.zip\.\d{3}$'
 $target = [IO.Path]::GetFullPath($Destination)
 if (Test-Path -LiteralPath $target) { throw 'Destination already exists. Choose a NEW folder; existing games and saves are never overwritten.' }
-$cache = Join-Path $PSScriptRoot '.downloads'
+$cache = Join-Path $PSScriptRoot (Join-Path '.downloads' "v$ReleaseVersion")
 New-Item -ItemType Directory -Path $cache -Force | Out-Null
 $manifestPath = Join-Path $cache 'download-manifest.json'
 Write-Host 'Downloading the release manifest...'
 Invoke-WebRequest -UseBasicParsing -Uri "$releaseBase/download-manifest.json" -OutFile $manifestPath
 $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
-if ($manifest.Version -ne '0.3' -or !$manifest.Parts -or $manifest.RootFolder -ne 'OfflineDAoC-v0.3') { throw 'Unexpected release manifest.' }
+if ($manifest.Version -ne $ReleaseVersion -or !$manifest.Parts -or $manifest.RootFolder -ne $rootFolder) { throw 'Unexpected release manifest.' }
 $partPaths = @()
 foreach ($part in $manifest.Parts) {
-    if ($part.Name -notmatch '^OfflineDAoC-v0\.3\.zip\.\d{3}$' -or $part.SHA256 -notmatch '^[a-f0-9]{64}$') { throw 'Invalid part metadata.' }
+    if ($part.Name -notmatch $partPattern -or $part.SHA256 -notmatch '^[a-f0-9]{64}$') { throw 'Invalid part metadata.' }
     $path = Join-Path $cache $part.Name
     $valid = (Test-Path -LiteralPath $path) -and (Get-Item -LiteralPath $path).Length -eq $part.Bytes
     if ($valid) { $valid = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash -eq $part.SHA256 }
@@ -24,7 +30,7 @@ foreach ($part in $manifest.Parts) {
     }
     $partPaths += $path
 }
-$archive = Join-Path $cache 'OfflineDAoC-v0.3.zip'
+$archive = Join-Path $cache "$rootFolder.zip"
 $joined = [IO.File]::Create($archive)
 try {
     foreach ($partPath in $partPaths) {

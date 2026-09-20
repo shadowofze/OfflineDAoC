@@ -39,6 +39,14 @@ public static class AutonomousRouteHotspotRepair
         Vector3 NetworkWitness,
         float? SourceZ = null);
 
+    private readonly record struct AuditedCampPocket(
+        ushort RegionId,
+        string MonsterName,
+        Vector2 Center,
+        float Radius,
+        Vector3 Escape,
+        Vector3 NetworkWitness);
+
     private static readonly FloorDriftHotspot[] FloorDriftHotspots =
     [
         // Shannon Estuary: the route toward the Tir na Nog/Connacht side and
@@ -141,6 +149,25 @@ public static class AutonomousRouteHotspotRepair
         new(221, new(31900, 32669), 360, new(32036, 32669, 16003), new(31120, 29939, 16239)),
         new(221, new(30567, 34164), 360, new(30681, 34192, 15763), new(31120, 29939, 16239)),
         new(221, new(29811, 32799), 520, new(29437, 32846, 15520), new(31120, 29939, 16239)),
+    ];
+
+    // These five outdoor camps were audited from live recovery records. Their
+    // tiny collision pockets are not general zone shortcuts: a bot must be on
+    // the matching objective, in the matching region and inside the measured
+    // footprint, and ordinary local recovery must already have failed. The
+    // exit and witness are checked against the installed mesh every time.
+    private static readonly AuditedCampPocket[] AuditedCampPockets =
+    [
+        new(51, "large dragonfly", new(526102, 543403), 850,
+            new(528150, 539061, 3140), new(529168, 539735, 3141)),
+        new(151, "boobrie hatchling", new(285151, 346544), 2_100,
+            new(282972, 344890, 3456), new(288755, 343565, 3477)),
+        new(200, "feccan", new(337977, 479973), 1_600,
+            new(337734, 478720, 5325), new(339331, 476773, 5247)),
+        new(100, "huldu outcast", new(812733, 722524), 1_400,
+            new(810855, 719902, 5034), new(811550, 721706, 5104)),
+        new(100, "green serpent", new(759936, 751403), 1_600,
+            new(759817, 749618, 4568), new(757921, 743637, 4410)),
     ];
 
     public static bool IsKnownFloorDriftArea(ushort regionId, Vector3 position, out float maximumCorrection)
@@ -402,6 +429,44 @@ public static class AutonomousRouteHotspotRepair
             escape = floor.Value;
             return true;
         }
+        return false;
+    }
+
+    /// <summary>
+    /// Resolves only the measured physical-collision pockets for the audited
+    /// outdoor objectives. This is called after normal side-step recovery has
+    /// failed, so ordinary movement and all unrelated camps remain unchanged.
+    /// </summary>
+    public static bool TryGetAuditedCampEscape(IPathfindingMgr nav, Region region, ushort regionId,
+        string monsterName, Vector3 position, out Vector3 escape)
+    {
+        escape = default;
+        if (region == null || nav?.IsAvailable != true || string.IsNullOrWhiteSpace(monsterName))
+            return false;
+
+        foreach (AuditedCampPocket pocket in AuditedCampPockets)
+        {
+            if (pocket.RegionId != regionId ||
+                !string.Equals(pocket.MonsterName, monsterName.Trim(), StringComparison.OrdinalIgnoreCase) ||
+                Vector2.DistanceSquared(new(position.X, position.Y), pocket.Center) > pocket.Radius * pocket.Radius)
+                continue;
+
+            Zone zone = region.GetZone((int)pocket.Escape.X, (int)pocket.Escape.Y);
+            Zone witnessZone = region.GetZone((int)pocket.NetworkWitness.X, (int)pocket.NetworkWitness.Y);
+            if (zone == null || zone != witnessZone || !nav.HasNavmesh(zone))
+                return false;
+
+            Vector3? floor = nav.GetClosestPoint(zone, pocket.Escape, 96, 96, 512, nav.DefaultFilters);
+            Vector3? witness = nav.GetClosestPoint(zone, pocket.NetworkWitness, 96, 96, 512, nav.DefaultFilters);
+            if (!floor.HasValue || !witness.HasValue ||
+                !AutonomousRendezvousNavigation.HasLocalExit(nav, zone, floor.Value) ||
+                !AutonomousZoneItinerary.HasCompleteCorridor(nav, zone, floor.Value, witness.Value))
+                return false;
+
+            escape = floor.Value;
+            return true;
+        }
+
         return false;
     }
 

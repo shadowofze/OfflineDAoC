@@ -2271,9 +2271,15 @@ namespace DOL.GS
                 // Run native checks only after cheap filters and sorting, and
                 // stop at the first reachable target. Self-defense is handled
                 // separately and must never be suppressed by this pull gate.
-                .FirstOrDefault(npc => bot.CurrentZone?.IsDungeon != true ||
-                    AutonomousDungeonTargetRoute.CanReach(PathfindingProvider.Instance, bot.CurrentZone,
-                        new(bot.X, bot.Y, bot.Z), new(npc.X, npc.Y, npc.Z)));
+                .FirstOrDefault(npc =>
+                {
+                    bool verifyRoute = bot.CurrentZone?.IsDungeon == true ||
+                        AutonomousAuditedCampPolicy.RequiresVerifiedTargetRoute(
+                            npc.CurrentRegionID, npc.Name);
+                    return !verifyRoute || AutonomousDungeonTargetRoute.CanReach(
+                        PathfindingProvider.Instance, bot.CurrentZone,
+                        new(bot.X, bot.Y, bot.Z), new(npc.X, npc.Y, npc.Z));
+                });
 
             // Preserve the old cheap local lookup for ordinary pulls. Only an
             // empty local ring pays for the requested 5,000-unit expansion.
@@ -3422,7 +3428,15 @@ namespace DOL.GS
             Vector3 escape;
             ushort escapeRegion;
             string escapeName;
-            if (AutonomousRouteHotspotRepair.TryGetImmediateEscape(
+            if (_camp != null &&
+                AutonomousRouteHotspotRepair.TryGetAuditedCampEscape(
+                    PathfindingProvider.Instance, bot.CurrentRegion, bot.CurrentRegionID,
+                    _camp.MonsterName, current, out escape))
+            {
+                escapeRegion = bot.CurrentRegionID;
+                escapeName = _camp.ZoneName;
+            }
+            else if (AutonomousRouteHotspotRepair.TryGetImmediateEscape(
                     PathfindingProvider.Instance, bot.CurrentRegion, bot.CurrentRegionID, current, out escape))
             {
                 escapeRegion = bot.CurrentRegionID;

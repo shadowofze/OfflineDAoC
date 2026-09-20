@@ -59,5 +59,30 @@ namespace DOL.UnitTests
             Assert.That(AutonomousAuditedCampPolicy.UsesLiveAnchor(200, name), Is.EqualTo(expected));
             Assert.That(AutonomousAuditedCampPolicy.UsesLiveAnchor(1, name), Is.False);
         }
+
+        [TestCase(51, "large dragonfly")]
+        [TestCase(151, "boobrie hatchling")]
+        [TestCase(200, "feccan")]
+        [TestCase(100, "huldu outcast")]
+        [TestCase(100, "green serpent")]
+        public void RepeatedOutdoorRouteFailuresRequirePerMobApproachProof(int region, string name)
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(AutonomousAuditedCampPolicy.UsesLiveAnchor((ushort)region, name), Is.True);
+                Assert.That(AutonomousAuditedCampPolicy.RequiresVerifiedTargetRoute((ushort)region, name), Is.True);
+            });
+        }
+
+        [Test]
+        public void OrdinaryOutdoorCampsKeepTheCheapTargetLookup()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(AutonomousAuditedCampPolicy.RequiresVerifiedTargetRoute(1, "brown drake"), Is.False);
+                Assert.That(AutonomousAuditedCampPolicy.RequiresVerifiedTargetRoute(200, "orchard nipper"), Is.False,
+                    "The older live-anchor repair did not have per-mob route failure evidence");
+            });
+        }
     }
 }
