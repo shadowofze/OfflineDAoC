@@ -25,6 +25,8 @@ play; neither requires Git, an LLM, or programming knowledge.
    chose plus `Get-OfflineDAoC.ps1` from the selected tag into the **same new
    folder**. For normal play this is `DOWNLOAD AND PLAY.cmd`; for Sluaghbinder
    play it is `DOWNLOAD AND PLAY v0.31b.cmd`.
+   GitHub may display those uploaded helpers with dots instead of spaces,
+   such as `DOWNLOAD.AND.PLAY.v0.31b.cmd`; that is the same file.
 2. Double-click that helper. The normal helper downloads the preserved v0.3 seed,
    checks its hashes, applies the small v0.31 update, and creates `playable`.
    The v0.31b helper also downloads v0.31, verifies the optional class patch, and

@@ -52,6 +52,10 @@ these two clearly separate paths:
 | Normal Offline DAoC with the public Classic + Shrouded Isles features | The **v0.31** release and its `DOWNLOAD AND PLAY.cmd` helper (or the preserved **v0.3** release) | Creates a clean playable folder with no Sluaghbinder class. Start the included `START OFFLINE DAOC.cmd`. |
 | Normal game **plus** the optional Hibernian Sluaghbinder class | The **v0.31b** release's `DOWNLOAD AND PLAY v0.31b.cmd` helper, or `Sluaghbinder-v0.31b-patch.zip` | Downloads a v0.31 baseline, makes a separate copy, and installs Sluaghbinder there. The original v0.3/v0.31 folder is never changed. |
 
+GitHub changes spaces to dots in uploaded asset names. On the Releases page the
+two helpers may therefore appear as `DOWNLOAD.AND.PLAY.cmd` and
+`DOWNLOAD.AND.PLAY.v0.31b.cmd`; they are the same double-clickable files.
+
 For either path, open the new folder, read `READ ME FIRST.txt`, start the
 launcher, click **START SERVER**, wait for **RUNNING**, then click **ENTER
 REALM**. The launcher creates a local offline account automatically; no online
