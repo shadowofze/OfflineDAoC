@@ -23,6 +23,21 @@ Follow the included component licenses when modifying or redistributing code.
 - **Developers and LLM users:** [Fork and customize instructions](docs/LLM-QUICKSTART.md).
 - **Changelog:** [Version history and the v0.31/v0.31b scope](CHANGELOG.md).
 
+## Video demos
+
+These are linked previews, not large files stored in the repository. Click a
+thumbnail to watch on YouTube:
+
+[![Offline DAoC V3.1b — Optional Hibernian Sluaghbinder Class Expansion](https://i.ytimg.com/vi/EowrCcjigBY/hqdefault.jpg)](https://www.youtube.com/watch?v=EowrCcjigBY)
+
+**[Offline DAoC V3.1b — Optional Hibernian Sluaghbinder Class Expansion](https://www.youtube.com/watch?v=EowrCcjigBY)**
+Short introduction to the optional class.
+
+[![Offline DAoC v0.3 — Introduction to Raids & Realm Events](https://i.ytimg.com/vi/zmh7YkajRx0/hqdefault.jpg)](https://www.youtube.com/watch?v=zmh7YkajRx0)
+
+**[Offline DAoC v0.3 — Introduction to Raids & Realm Events](https://www.youtube.com/watch?v=zmh7YkajRx0)**
+Dragon raid demonstration for the normal v0.3 feature set.
+
 Use the [v0.31 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31)
 for the complete playable download. **Code > Download ZIP** contains the editable
 source; it is not the complete game download. The release's small download helper

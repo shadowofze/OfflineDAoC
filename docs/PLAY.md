@@ -61,6 +61,13 @@ The v0.31 GitHub launcher says **0.31**. The optional v0.31b launcher says
 **0.31b**. The old v0.3 launcher and release still say **0.3**. The author's
 private launcher label is separate from all public release numbers.
 
+## Watch the demos
+
+The [Sluaghbinder introduction](https://www.youtube.com/watch?v=EowrCcjigBY)
+shows the optional class. The [v0.3 dragon raid demonstration](https://www.youtube.com/watch?v=zmh7YkajRx0)
+shows the normal realm-event feature set. These are ordinary YouTube links; no
+video files are downloaded as part of the game setup.
+
 ## Optional Sluaghbinder play path
 
 To play the normal game without the class, follow the steps above and start the
