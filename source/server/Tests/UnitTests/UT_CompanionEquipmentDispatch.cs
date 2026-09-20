@@ -136,6 +136,52 @@ public class UT_CompanionEquipmentDispatch
     }
 
     [Test]
+    public void SluaghbinderCompanionPlanChoosesOneAdvancedPathAndMatchingStarterWeapon()
+    {
+        var choices = BotSpec.GetSpecializationChoices(eCharacterClass.Sluaghbinder);
+        Assert.That(choices, Is.EquivalentTo(new[]
+        {
+            eSpecType.SluaghbinderBulwark,
+            eSpecType.SluaghbinderBane,
+            eSpecType.SluaghbinderCovenant,
+        }));
+
+        // Use the deterministic constructor to cover every path without
+        // relying on a probabilistic distribution in a unit test.  This is
+        // the same single-line shape used by /spawn after it rolls a choice.
+        var deterministicPlans = Enumerable.Range(0, 24)
+            .Select(seed => new SluaghbinderBotSpec(eSpecType.None, seed, true))
+            .ToArray();
+        Assert.That(deterministicPlans.Select(plan => plan.SpecType).Distinct(),
+            Is.EquivalentTo(choices));
+        Assert.That(deterministicPlans.All(plan => plan.SpecLines.Count == 1), Is.True);
+
+        foreach (eSpecType specialization in choices)
+        {
+            var bot = Make(eRealm.Hibernia, eCharacterClass.Sluaghbinder, 20, true);
+            var plan = new SluaghbinderBotSpec(specialization, 0, true);
+            typeof(GameBot).GetProperty(nameof(GameBot.BotSpec)).SetValue(bot,
+                plan);
+            typeof(GameBot).GetMethod("SetWeapons", BindingFlags.NonPublic | BindingFlags.Instance)
+                .Invoke(bot, [true]);
+
+            DbInventoryItem right = bot.Inventory.GetItem(eInventorySlot.RightHandWeapon);
+            DbInventoryItem left = bot.Inventory.GetItem(eInventorySlot.LeftHandWeapon);
+            DbInventoryItem twoHand = bot.Inventory.GetItem(eInventorySlot.TwoHandWeapon);
+            if (plan.WeaponTwoType == eObjectType.Scythe)
+            {
+                Assert.That(twoHand?.Object_Type, Is.EqualTo((int)eObjectType.Scythe));
+                Assert.That(right, Is.Null);
+            }
+            else
+            {
+                Assert.That(right?.Object_Type, Is.EqualTo((int)eObjectType.Blunt));
+                Assert.That(twoHand, Is.Null);
+            }
+        }
+    }
+
+    [Test]
     public void LastResortTemporaryWeaponUsesTheSameValidatedGenerator()
     {
         var bot = Make(eRealm.Hibernia, eCharacterClass.Champion, 1, true);

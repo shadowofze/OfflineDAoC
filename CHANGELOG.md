@@ -1,5 +1,22 @@
 # Offline DAoC changelog
 
+## 2026-09-20 — Sluaghbinder companion build plans
+
+- Fixed Hibernian `/spawn` Sluaghbinder companions always receiving the
+  default blunt-and-shield loadout.  Each companion now rolls one advanced
+  path once at creation and keeps it: Dullahan's Bulwark uses one-handed
+  blunt and shield, Abhartach's Bane starts with a scythe, and Sluagh
+  Covenant randomly chooses between those two weapon plans.
+- The selected path remains the companion's build for its learned abilities:
+  Covenant pet buffs, Bane scythe styles/life-steal/extra rot effects, and
+  Bulwark taunts and protection tools are filtered into that bot's spell/style
+  catalog.  Player-only skeletal service spells remain excluded.
+- Persistent autonomous gamebots keep their existing deterministic
+  specialization choice; their inventory reconciliation now recognizes the
+  same scythe plan without requiring a real loot scythe first.
+- No other class, player, PvE group, loot table, save, or gamebot behavior was
+  changed.
+
 ## 2026-09-20 — Hibernian exchange guard layout
 
 - Moved Eilwen's two Sentinel Exchange Guards to flanking positions beside her

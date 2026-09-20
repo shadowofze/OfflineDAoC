@@ -23,10 +23,12 @@ namespace DOL.GS
                 ? spec
                 : Choose(seed, deterministic);
 
-            // Every new helper receives a usable mace first.  Scythes are
-            // added as the Bane/Covenant plan's preferred upgrade path, while
-            // the shield is supplied by the class career in GameBot.  This
-            // keeps low-level spawns safe before their first weapon upgrade.
+            // The weapon is part of the selected plan from the moment the
+            // helper is created.  Bulwark (and a Covenant roll that chooses
+            // the flexible one-handed option) uses the class's legal mace and
+            // shield; Bane always uses a scythe, while Covenant may roll a
+            // scythe.  GameBot equips the corresponding starter item rather
+            // than waiting for a loot upgrade to make the plan visible.
             WeaponOneType = eObjectType.Blunt;
             WeaponTwoType = 0;
             Is2H = false;

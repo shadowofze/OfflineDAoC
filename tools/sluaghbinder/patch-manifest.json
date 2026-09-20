@@ -40,17 +40,17 @@
     {
       "Path": "runtime\\server\\GameServer.dll",
       "Bytes": 12296192,
-      "SHA256": "29ca6c263649aace5cba83dd410673336cd2d5260d18e4e4208ef64d7f2b0043"
+      "SHA256": "4fea9d915086df89835e0139ba4b51283175f35fd9bef1a2094cb87209acfeca"
     },
     {
       "Path": "runtime\\server\\lib\\GameServer.dll",
       "Bytes": 12296192,
-      "SHA256": "29ca6c263649aace5cba83dd410673336cd2d5260d18e4e4208ef64d7f2b0043"
+      "SHA256": "4fea9d915086df89835e0139ba4b51283175f35fd9bef1a2094cb87209acfeca"
     },
     {
       "Path": "runtime\\server\\win-x64\\GameServer.dll",
       "Bytes": 12296192,
-      "SHA256": "29ca6c263649aace5cba83dd410673336cd2d5260d18e4e4208ef64d7f2b0043"
+      "SHA256": "4fea9d915086df89835e0139ba4b51283175f35fd9bef1a2094cb87209acfeca"
     }
   ]
 }

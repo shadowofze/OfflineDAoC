@@ -32,6 +32,16 @@ two Sentinel Exchange Guards are placed beside her in Tir na Nog. The repair is
 limited to those two Hibernian guard rows and does not move Eilwen or any other
 broker.
 
+The companion `/spawn` path now commits each Sluaghbinder to one advanced
+build at creation. Bulwark companions start with blunt and shield, Bane
+companions start with a scythe, and Covenant companions randomly choose either
+weapon plan while retaining their pet-focused spell and buff line. The normal
+Sluaghbinder spell/style filtering is build-specific, so a companion receives
+only its chosen path's taunts, scythe/life-steal/rot tools, or pet enhancements.
+Persistent autonomous Sluaghbinders retain their existing deterministic build
+choice; this repair only makes the starter and reconciliation equipment honor
+that choice.
+
 ## If you want to develop with an LLM
 
 Fork the repository and give the fork and `AGENTS.md` to the LLM. The complete
