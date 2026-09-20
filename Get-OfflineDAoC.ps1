@@ -16,7 +16,63 @@ $manifestPath = Join-Path $cache 'download-manifest.json'
 Write-Host 'Downloading the release manifest...'
 Invoke-WebRequest -UseBasicParsing -Uri "$releaseBase/download-manifest.json" -OutFile $manifestPath
 $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
-if ($manifest.Version -ne $ReleaseVersion -or !$manifest.Parts -or $manifest.RootFolder -ne $rootFolder) { throw 'Unexpected release manifest.' }
+if ($manifest.Version -ne $ReleaseVersion) { throw 'Unexpected release manifest version.' }
+
+# v0.31 is intentionally a small, hash-verified update over the immutable v0.3
+# playable seed. This keeps the large navmesh/world download in one place while
+# preserving a clean, separate v0.3 install for anyone who wants that baseline.
+if ($manifest.Mode -eq 'delta') {
+    if ($manifest.BaseVersion -ne '0.3' -or !$manifest.PatchName -or
+        $manifest.PatchRootFolder -ne 'OfflineDAoC-v0.31-update' -or
+        $manifest.PatchSHA256 -notmatch '^[a-f0-9]{64}$') { throw 'Unexpected v0.31 update manifest.' }
+
+    Write-Host 'Downloading the preserved v0.3 playable seed first...'
+    & $PSCommandPath -ReleaseVersion $manifest.BaseVersion -Destination $target
+    if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) { throw 'The v0.3 seed download failed.' }
+
+    $patchPath = Join-Path $cache $manifest.PatchName
+    $patchValid = (Test-Path -LiteralPath $patchPath) -and
+        (Get-Item -LiteralPath $patchPath).Length -eq [int64]$manifest.PatchBytes
+    if ($patchValid) { $patchValid = (Get-FileHash -LiteralPath $patchPath -Algorithm SHA256).Hash -eq $manifest.PatchSHA256 }
+    if (!$patchValid) {
+        Write-Host "Downloading $($manifest.PatchName)..."
+        Invoke-WebRequest -UseBasicParsing -Uri "$releaseBase/$($manifest.PatchName)" -OutFile $patchPath
+        if ((Get-Item -LiteralPath $patchPath).Length -ne [int64]$manifest.PatchBytes -or
+            (Get-FileHash -LiteralPath $patchPath -Algorithm SHA256).Hash -ne $manifest.PatchSHA256) {
+            throw 'v0.31 update verification failed. The v0.3 seed is intact; run again to retry.'
+        }
+    }
+
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $zip = [IO.Compression.ZipFile]::OpenRead($patchPath)
+    try {
+        $prefix = $manifest.PatchRootFolder + '/'
+        $targetPrefix = $target.TrimEnd('\') + '\'
+        foreach ($entry in $zip.Entries) {
+            $entryName = $entry.FullName.Replace('\','/')
+            if (!$entryName.StartsWith($prefix,[StringComparison]::Ordinal) -or
+                $entryName.Contains(':')) { throw 'Unexpected v0.31 update layout.' }
+            $relative = $entryName.Substring($prefix.Length)
+            if (!$relative) { continue }
+            $resolved = [IO.Path]::GetFullPath((Join-Path $target $relative))
+            if (!$resolved.StartsWith($targetPrefix,[StringComparison]::OrdinalIgnoreCase)) { throw 'Unsafe v0.31 update entry.' }
+        }
+        foreach ($entry in $zip.Entries) {
+            $entryName = $entry.FullName.Replace('\','/')
+            $relative = $entryName.Substring($prefix.Length)
+            if (!$relative) { continue }
+            $resolved = Join-Path $target $relative
+            if ($entryName.EndsWith('/')) { New-Item -ItemType Directory -Path $resolved -Force | Out-Null; continue }
+            New-Item -ItemType Directory -Path (Split-Path -Parent $resolved) -Force | Out-Null
+            [IO.Compression.ZipFileExtensions]::ExtractToFile($entry,$resolved,$true)
+        }
+    } finally { $zip.Dispose() }
+    Write-Host "Verified v0.31 update and applied it to $target"
+    Write-Host 'Read the included README.md and docs, then open START OFFLINE DAOC.cmd. Nothing was started automatically.'
+    exit 0
+}
+
+if (!$manifest.Parts -or $manifest.RootFolder -ne $rootFolder) { throw 'Unexpected full-release manifest.' }
 $partPaths = @()
 foreach ($part in $manifest.Parts) {
     if ($part.Name -notmatch $partPattern -or $part.SHA256 -notmatch '^[a-f0-9]{64}$') { throw 'Invalid part metadata.' }

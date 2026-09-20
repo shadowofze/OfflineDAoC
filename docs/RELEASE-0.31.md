@@ -33,7 +33,9 @@ copy before importing real progress.
 ## Version and data safety
 
 - The public `v0.3` tag and release remain available unchanged.
-- `v0.31` is a new tag/release with matching source and playable download helpers.
+- `v0.31` is a new tag/release with matching source and a small, hash-verified
+  playable update layered on the preserved v0.3 seed. The one-click helper performs
+  that layering into a new folder; it never edits an existing install.
 - No accounts, characters, inventories, saved bot profiles, logs, or private settings
   are included. A fresh local account is created on first entry to a new install.
 - The customizations in this repository were made by AI coding agents under the
