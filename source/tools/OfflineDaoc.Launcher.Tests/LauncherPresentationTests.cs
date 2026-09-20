@@ -97,6 +97,62 @@ public sealed class LauncherPresentationTests
         readinessTimer.Stop();
     }
 
+    [Test]
+    public void HiberniaExchangeGuardMigrationFlanksEilwenWithoutMovingHer()
+    {
+        string path = Path.Combine(Path.GetTempPath(), "daoc-guard-layout-" + Guid.NewGuid().ToString("N") + ".db");
+        try
+        {
+            using (var db = new SQLiteConnection($"Data Source={path};Version=3;New=True;"))
+            {
+                db.Open();
+                using var command = db.CreateCommand();
+                command.CommandText = """
+                    CREATE TABLE Mob (Mob_ID TEXT PRIMARY KEY, PackageID TEXT, Region INTEGER, X INTEGER, Y INTEGER);
+                    INSERT INTO Mob VALUES
+                        ('offline-realm-exchange-hibernia', 'offline_realm_exchange', 201, 33197, 31340),
+                        ('offline-realm-exchange-hibernia-guard-left', 'offline_realm_exchange', 201, 33097, 31340),
+                        ('offline-realm-exchange-hibernia-guard-right', 'offline_realm_exchange', 201, 33297, 31340),
+                        ('unrelated-row', 'other_package', 201, 1, 2);
+                    """;
+                command.ExecuteNonQuery();
+            }
+
+            Type main = Launcher.GetType("OfflineDaoc.Launcher.MainForm")!;
+            MethodInfo migrate = main.GetMethod("EnsureRealmExchangeGuardPositions", HiddenStatic,
+                binder: null, types: [typeof(string)], modifiers: null)!;
+            migrate.Invoke(null, [path]);
+
+            using var verify = new SQLiteConnection($"Data Source={path};Version=3;Read Only=True;");
+            verify.Open();
+            using var check = verify.CreateCommand();
+            check.CommandText = "SELECT X, Y FROM Mob WHERE Mob_ID=@id";
+            var id = check.Parameters.Add("@id", System.Data.DbType.String);
+            id.Value = "offline-realm-exchange-hibernia";
+            Assert.That(Convert.ToInt32(check.ExecuteScalar()), Is.EqualTo(33197));
+            check.CommandText = "SELECT Y FROM Mob WHERE Mob_ID='offline-realm-exchange-hibernia-guard-left'";
+            Assert.That(Convert.ToInt32(check.ExecuteScalar()), Is.EqualTo(31240));
+            check.CommandText = "SELECT X, Y FROM Mob WHERE Mob_ID='offline-realm-exchange-hibernia-guard-right'";
+            using (var right = check.ExecuteReader())
+            {
+                Assert.That(right.Read(), Is.True);
+                Assert.That(right.GetInt32(0), Is.EqualTo(33197));
+                Assert.That(right.GetInt32(1), Is.EqualTo(31440));
+            }
+            check.CommandText = "SELECT X, Y FROM Mob WHERE Mob_ID='unrelated-row'";
+            using (var unrelated = check.ExecuteReader())
+            {
+                Assert.That(unrelated.Read(), Is.True);
+                Assert.That(unrelated.GetInt32(0), Is.EqualTo(1));
+                Assert.That(unrelated.GetInt32(1), Is.EqualTo(2));
+            }
+        }
+        finally
+        {
+            try { File.Delete(path); } catch { }
+        }
+    }
+
     [TestCase(300.0, "5:00")]
     [TestCase(299.1, "5:00")]
     [TestCase(61.0, "1:01")]

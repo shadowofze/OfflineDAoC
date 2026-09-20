@@ -220,6 +220,10 @@ internal sealed partial class MainForm : Form
         _serverReadinessPoll.Tick += async (_, _) => await RefreshWhenServerReadyAsync();
         Shown += async (_, _) =>
         {
+            // v0.31/v0.31b migration: move only the two Hibernian exchange
+            // guards beside Eilwen.  The operation is idempotent and is
+            // deliberately isolated from all other world rows.
+            EnsureRealmExchangeGuardPositions();
             await RefreshDashboardAsync();
             await RefreshRealmExchangeAsync();
             _displayClock.Start();
@@ -2502,6 +2506,11 @@ internal sealed partial class MainForm : Form
             return;
         }
 
+        // Run once more immediately before CoreServer starts.  This covers a
+        // launcher that was left open while its database was being prepared,
+        // without ever allowing a failed cosmetic migration to block startup.
+        EnsureRealmExchangeGuardPositions();
+
         var availableGb = AvailableMemoryBytes() / 1024d / 1024d / 1024d;
         if (availableGb < 4 && MessageBox.Show(this,
                 $"Only {availableGb:F1} GB of memory is currently available. Close some programs before running a large bot population. Start anyway?",
@@ -2557,6 +2566,64 @@ internal sealed partial class MainForm : Form
         finally
         {
             _ = RefreshDashboardAsync();
+        }
+    }
+
+    private void EnsureRealmExchangeGuardPositions() =>
+        EnsureRealmExchangeGuardPositions(_database);
+
+    private static void EnsureRealmExchangeGuardPositions(string databasePath)
+    {
+        if (!File.Exists(databasePath)) return;
+
+        try
+        {
+            using var connection = new SQLiteConnection($"Data Source={databasePath};Version=3;Pooling=False;Default Timeout=5");
+            connection.Open();
+            if (!TableExists(connection, "Mob") ||
+                !ColumnExists(connection, "Mob", "Mob_ID") ||
+                !ColumnExists(connection, "Mob", "PackageID") ||
+                !ColumnExists(connection, "Mob", "Region") ||
+                !ColumnExists(connection, "Mob", "X") ||
+                !ColumnExists(connection, "Mob", "Y"))
+                return;
+
+            using var transaction = connection.BeginTransaction();
+            using var command = connection.CreateCommand();
+            command.Transaction = transaction;
+            command.CommandText = """
+                UPDATE Mob
+                   SET X = @x, Y = @y
+                 WHERE Mob_ID = @id
+                   AND Region = 201
+                   AND PackageID = 'offline_realm_exchange'
+                """;
+            command.Parameters.Add("@x", System.Data.DbType.Int32);
+            command.Parameters.Add("@y", System.Data.DbType.Int32);
+            command.Parameters.Add("@id", System.Data.DbType.String);
+
+            foreach (var guard in new[]
+            {
+                (Id: "offline-realm-exchange-hibernia-guard-left", X: 33197, Y: 31240),
+                (Id: "offline-realm-exchange-hibernia-guard-right", X: 33197, Y: 31440),
+            })
+            {
+                command.Parameters["@x"].Value = guard.X;
+                command.Parameters["@y"].Value = guard.Y;
+                command.Parameters["@id"].Value = guard.Id;
+                command.ExecuteNonQuery();
+            }
+            transaction.Commit();
+        }
+        catch (SQLiteException exception) when (exception.ResultCode is SQLiteErrorCode.Busy or SQLiteErrorCode.Locked)
+        {
+            // A server/world-load lock is transient.  The second call before
+            // startup (and the next launcher start) retries safely.
+        }
+        catch
+        {
+            // A missing/older optional table must never make the launcher
+            // close or prevent the server from starting.
         }
     }
 

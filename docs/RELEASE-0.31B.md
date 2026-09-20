@@ -27,6 +27,11 @@ unlock the Epic Spells page and its stationary, player-only skeletal services.
 Quest objectives and locations are intentionally discovered in-game; this file
 does not spoil their clues.
 
+The included launcher also carries the v0.31 exchange-layout repair: Eilwen's
+two Sentinel Exchange Guards are placed beside her in Tir na Nog. The repair is
+limited to those two Hibernian guard rows and does not move Eilwen or any other
+broker.
+
 ## If you want to develop with an LLM
 
 Fork the repository and give the fork and `AGENTS.md` to the LLM. The complete

@@ -1,5 +1,13 @@
 # Offline DAoC changelog
 
+## 2026-09-20 — Hibernian exchange guard layout
+
+- Moved Eilwen's two Sentinel Exchange Guards to flanking positions beside her
+  in Tir na Nog. Eilwen herself and every other exchange broker are unchanged.
+- v0.31 and the optional v0.31b launcher apply this narrow, idempotent repair to
+  an existing release database before the server starts; older v0.3 remains
+  available unchanged.
+
 ## 2026-09-20 — bot shield-style damage fix
 
 - Fixed companion bots and autonomous gamebots using a shield as the damage

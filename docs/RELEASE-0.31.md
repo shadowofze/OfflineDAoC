@@ -6,6 +6,10 @@ private until it is intentionally published in a later, separate update.
 
 ## What changed
 
+- Moved Eilwen's two Sentinel Exchange Guards to flanking positions beside her
+  in Tir na Nog. The v0.31 launcher applies this narrow repair automatically to
+  the v0.31 database before startup; Eilwen and other realm-exchange brokers
+  are unchanged.
 - Fixed level-based spell scaling for player-owned summoned pets, including pets
   whose owner is reached through another controlled pet. Companion/Zealot spell
   power and Ally/Compatriot healing/buff values now use the correct owner level.

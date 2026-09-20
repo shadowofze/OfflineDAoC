@@ -400,7 +400,7 @@ internal static class Program
                 GuardModel = 217, GuardEquipment = "MidTownGuard2", GuardName = "Valkyrie Exchange Guard", Guard1X = 32150, Guard1Y = 28294, Guard2X = 32350, Guard2Y = 28294,
                 Male = new[] { "Arnvald", "Dagmund", "Eirik", "Haldgrim", "Sigsten", "Torulf" }, Female = new[] { "Astrid", "Brynhild", "Gudrun", "Ingrid", "Sigrid" } },
             new { Id = "offline-realm-exchange-hibernia", Realm = 3, Region = 201, X = 33197, Y = 31340, Z = 8000, Heading = 512, MaleModel = 384, FemaleModel = 312, Equipment = "HibClothAlt2",
-                GuardModel = 387, GuardEquipment = "f845eb8e-1da2-4c34-86e5-a1b87108e9c1", GuardName = "Sentinel Exchange Guard", Guard1X = 33097, Guard1Y = 31340, Guard2X = 33297, Guard2Y = 31340,
+                GuardModel = 387, GuardEquipment = "f845eb8e-1da2-4c34-86e5-a1b87108e9c1", GuardName = "Sentinel Exchange Guard", Guard1X = 33197, Guard1Y = 31240, Guard2X = 33197, Guard2Y = 31440,
                 Male = new[] { "Aedan", "Branric", "Ciaran", "Eoghan", "Niallan", "Rian" }, Female = new[] { "Aine", "Caoilinn", "Eilwen", "Maeve", "Niamh", "Orla" } },
         };
 

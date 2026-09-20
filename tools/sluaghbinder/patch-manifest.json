@@ -14,18 +14,18 @@
     },
     {
       "Path": "runtime\\OfflineDAoC.dll",
-      "Bytes": 1369600,
-      "SHA256": "23dd7e28d19f34ca76d716ea47f8036c0d4aaf8329a95962ac99747d5a97be0c"
+      "Bytes": 1371136,
+      "SHA256": "b4e3d6dbe45ba1385c887b4b7dbeaa19882f8627832ea3d7dde0510683e0d879"
     },
     {
       "Path": "runtime\\OfflineDAoC.exe",
       "Bytes": 162816,
-      "SHA256": "1184e0c5dddc63fa95f1d86abd7513793f0dc449315e138e2d9fa614db95ac6d"
+      "SHA256": "16433c3668eac8e2fe8c240888092dbbaa25b7846b7f1b41e50b9d867b771fb6"
     },
     {
       "Path": "runtime\\OfflineDAoC.pdb",
-      "Bytes": 68124,
-      "SHA256": "92a958b5ebc148e12a88fc7c6da60f243060184746507400c54aaaacd389f39d"
+      "Bytes": 68456,
+      "SHA256": "e51afcfe683b3ed9bc954c6a208dd1874704188d861f2461fa4ebdbb8329b3fc"
     },
     {
       "Path": "runtime\\OfflineDAoC.runtimeconfig.json",
