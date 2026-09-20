@@ -2569,8 +2569,15 @@ internal sealed partial class MainForm : Form
         }
     }
 
-    private void EnsureRealmExchangeGuardPositions() =>
+    private void EnsureRealmExchangeGuardPositions()
+    {
+        // Never write a world row while any CoreServer owns a database.  If a
+        // launcher is opened beside a running server, the next stopped launch
+        // will retry the same idempotent migration safely.
+        if (_serverProcess is { HasExited: false } || FindExactServerProcess() is not null)
+            return;
         EnsureRealmExchangeGuardPositions(_database);
+    }
 
     private static void EnsureRealmExchangeGuardPositions(string databasePath)
     {
