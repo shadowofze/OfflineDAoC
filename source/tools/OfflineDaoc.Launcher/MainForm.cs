@@ -8,7 +8,9 @@ namespace OfflineDaoc.Launcher;
 
 internal sealed partial class MainForm : Form
 {
-    internal const string DisplayVersion = "0.31";
+    // Public optional expansion label. The author's private installation uses
+    // its separate 0.4 label and is never changed by this repository.
+    internal const string DisplayVersion = "0.31b";
     internal const int AutoRefreshMilliseconds = 5 * 60 * 1000;
     internal const int RvrSnapshotRefreshMilliseconds = 30 * 1000;
     internal const int LiveBotSnapshotMaxAgeMilliseconds = 20_000;

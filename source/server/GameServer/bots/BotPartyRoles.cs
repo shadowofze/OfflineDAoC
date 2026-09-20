@@ -14,7 +14,8 @@ namespace DOL.GS
             eCharacterClass.Paladin or
             eCharacterClass.Armsman or eCharacterClass.Reaver or
             eCharacterClass.Warrior or eCharacterClass.Thane or
-            eCharacterClass.Hero or eCharacterClass.Champion => BotPartyRole.Tank,
+            eCharacterClass.Hero or eCharacterClass.Champion or
+            eCharacterClass.Sluaghbinder => BotPartyRole.Tank,
             _ => BotPartyRole.Damage
         };
 

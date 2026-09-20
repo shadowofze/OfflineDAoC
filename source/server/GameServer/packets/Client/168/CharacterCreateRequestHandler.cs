@@ -415,6 +415,24 @@ namespace DOL.GS.PacketHandler.Client.v168
             ch.Realm = pdata.Realm;
             ch.Class = pdata.Class;
 
+            // The classic client has a fixed Hibernian class slot that is
+            // reserved for MaulerHib.  The isolated Sluaghbinder test build
+            // uses that disabled slot for the new player-only class.  Store
+            // the novice as Hibernian Acolyte (levels 1-4), like Albion's
+            // Disciple -> Necromancer path; the trainer promotes it to the
+            // real Sluaghbinder class at level 5.  The overview packet still
+            // uses the relabeled client slot, so this does not remove the
+            // Sluaghbinder choice from character select.
+            if ((eRealm)ch.Realm == eRealm.Hibernia &&
+                (ch.Class == (int)eCharacterClass.MaulerHib ||
+                 ch.Class == (int)eCharacterClass.Sluaghbinder))
+            {
+                if (log.IsDebugEnabled)
+                    log.Debug($"Mapping Hibernian client class slot {eCharacterClass.MaulerHib} to experimental Acolyte (Sluaghbinder novice path)");
+
+                ch.Class = (int)eCharacterClass.Acolyte;
+            }
+
             // Set Account Slot, Gender
             ch.AccountSlot = accountSlot + ch.Realm * 100;
             ch.Gender = pdata.Gender;
@@ -947,6 +965,15 @@ namespace DOL.GS.PacketHandler.Client.v168
                 }
 
                 ICharacterClass charClass = ScriptMgr.FindCharacterClass(ch.Class);
+
+                // Hibernia has no ordinary Acolyte career.  This isolated
+                // novice path uses the Sluaghbinder race rules until the
+                // level-5 promotion, rather than the Albion-only base list.
+                if ((eRealm)ch.Realm == eRealm.Hibernia &&
+                    ch.Class == (int)eCharacterClass.Acolyte)
+                {
+                    charClass = ScriptMgr.FindCharacterClass((int)eCharacterClass.Sluaghbinder);
+                }
 
                 if(!charClass.EligibleRaces.Exists(s => (int)s.ID == ch.Race))
                 {

@@ -11,6 +11,21 @@ namespace DOL.GS.PacketHandler
 	{
 		private static readonly Logging.Logger log = Logging.LoggerManager.Create(MethodBase.GetCurrentMethod().DeclaringType);
 
+		// The 1.109c client has no native Sluaghbinder class slot. Keep the
+		// persisted/server class ID intact, but present promoted Sluaghbinders
+		// through the Hibernian Mauler slot that the isolated client has been
+		// relabeled to. Novice Hibernian Acolytes remain Acolytes in the overview.
+		private static bool IsSluaghbinderOverview(int classId, int realm) =>
+			classId == (int)eCharacterClass.Sluaghbinder && realm == (int)eRealm.Hibernia;
+
+		private static byte GetClientOverviewClassId(int classId, int realm) =>
+			IsSluaghbinderOverview(classId, realm)
+				? (byte)eCharacterClass.MaulerHib
+				: (byte)classId;
+
+		private static string GetClientOverviewClassName(int classId, int realm) =>
+			IsSluaghbinderOverview(classId, realm) ? "Sluaghbinder" : ((eCharacterClass)classId).ToString();
+
 		/// <summary>
 		/// Constructs a new PacketLib for Client Version 1.104
 		/// </summary>
@@ -129,14 +144,14 @@ namespace DOL.GS.PacketHandler
 
 							string classname = string.Empty;
 							if (c.Class != 0)
-								classname = ((eCharacterClass)c.Class).ToString();
+								classname = GetClientOverviewClassName(c.Class, c.Realm);
 							pak.FillString(classname, 24);
 
 							string racename = m_gameClient.RaceToTranslatedName(c.Race, c.Gender);
 							pak.FillString(racename, 24);
 
 							pak.WriteByte((byte)c.Level);
-							pak.WriteByte((byte)c.Class);
+			pak.WriteByte(GetClientOverviewClassId(c.Class, c.Realm));
 							pak.WriteByte((byte)c.Realm);
 							pak.WriteByte((byte)((((c.Race & 0x10) << 2) + (c.Race & 0x0F)) | (c.Gender << 4))); // race max value can be 0x1F
 							pak.WriteShortLowEndian((ushort)c.CurrentModel);

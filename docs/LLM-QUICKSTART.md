@@ -2,9 +2,11 @@
 
 The current public baseline is **v0.31**. It is an AI-created customization of
 the upstream server, directed and tested by the repository owner. The experimental
-Sluaghbinder class is deliberately absent from this public baseline; do not infer
-or copy it from private/local folders. The immutable public v0.3 release remains
-available when a fork needs that exact baseline.
+Sluaghbinder is an optional **v0.31b** overlay; the immutable public v0.3 and
+v0.31 baselines remain available without it. Do not infer private saves or copy
+runtime files from the author's local folders. The optional class source and
+static-overlay tooling are included in this repository so a fork can audit or
+modify them with an LLM.
 
 ## Get an independent copy
 
@@ -27,6 +29,12 @@ available when a fork needs that exact baseline.
 For a v0.31 fork, keep the ordinary release and source versioned together. Do not
 commit runtime saves, accounts, logs, or private backups. If you want the old
 baseline, branch from the `v0.3` tag instead of deleting or rewriting v0.31.
+
+For the optional class, use the `v0.31b` tag/release. The patcher is copy-first:
+it accepts only a clean v0.3/v0.31 installation, validates hashes and the DB
+schema, writes a rollback backup, and leaves the selected base untouched. The
+public launcher label is 0.31b; the private local 0.4 label is not part of this
+repository.
 
 ## Where to work
 

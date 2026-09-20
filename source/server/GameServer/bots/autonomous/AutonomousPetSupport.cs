@@ -88,7 +88,8 @@ public static class AutonomousPetSupport
     /// buffs and can starve FOLLOW forever after the army is summoned).
     /// </summary>
     public static bool OwnsPetUpkeep(eCharacterClass characterClass) =>
-        characterClass is eCharacterClass.Bonedancer or eCharacterClass.Necromancer or eCharacterClass.Minstrel ||
+        characterClass is eCharacterClass.Bonedancer or eCharacterClass.Necromancer or eCharacterClass.Minstrel or
+            eCharacterClass.Sluaghbinder ||
         UsesIndependentOwnerPetCombat(characterClass);
 
     /// <summary>
@@ -857,7 +858,8 @@ public static class AutonomousPetSupport
         if (!persistentWorldBot || temporaryHelper || playerLed || inCombat ||
             characterClass is not (eCharacterClass.Bonedancer or eCharacterClass.Enchanter or eCharacterClass.Cabalist or
                                     eCharacterClass.Spiritmaster or eCharacterClass.Sorcerer or
-                                    eCharacterClass.Mentalist or eCharacterClass.Minstrel))
+                                    eCharacterClass.Mentalist or eCharacterClass.Minstrel or
+                                    eCharacterClass.Sluaghbinder))
         {
             return false;
         }
@@ -891,7 +893,7 @@ public static class AutonomousPetSupport
             eCharacterClass.Bonedancer or eCharacterClass.Enchanter or eCharacterClass.Cabalist or
             eCharacterClass.Spiritmaster or eCharacterClass.Sorcerer or eCharacterClass.Mentalist or
             eCharacterClass.Necromancer or eCharacterClass.Hunter or eCharacterClass.Druid or
-            eCharacterClass.Minstrel;
+            eCharacterClass.Minstrel or eCharacterClass.Sluaghbinder;
     }
 
     /// <summary>
@@ -1278,7 +1280,9 @@ public static class AutonomousPetSupport
         if (owner is GameBot bot)
         {
             bool bonedancer = bot.CharacterClass?.ID == (int)eCharacterClass.Bonedancer;
-            foreach (Spell spell in bot.Spells?.Where(spell => spell != null) ?? Enumerable.Empty<Spell>())
+            foreach (Spell spell in bot.Spells?
+                .Where(spell => spell != null && !SluaghbinderBotPolicy.IsPlayerOnlyServiceSpell(spell)) ??
+                Enumerable.Empty<Spell>())
                 yield return (spell, bot.ResolvePowerSpellLine(spell, MobSpellLine));
 
             // SetCasterSpells intentionally retains only the highest rank per

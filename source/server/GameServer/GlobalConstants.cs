@@ -1006,6 +1006,8 @@ namespace DOL.GS
 				eCharacterClass.Animist, 		// Animist = 55,
 				eCharacterClass.Valewalker, 	// Valewalker = 56,
 				eCharacterClass.Forester, 		// Forester = 57,
+				eCharacterClass.Acolyte,       // Experimental Sluaghbinder novice (levels 1-4)
+				eCharacterClass.Sluaghbinder, 	// Sluaghbinder = 63 (experimental player-only class)
 				// eCharacterClass.Vampiir, 		// Vampiir = 58,
 				// eCharacterClass.MaulerHib	 	// Mauler_Hib = 62,
 			}},

@@ -11,33 +11,66 @@ The bundled modern .NET runtime does not replace this legacy connector requireme
 
 ## Get the GitHub download
 
-1. Open the project's **Releases** page and choose **v0.31** for the current
-   normal maintenance build. Choose **v0.3** instead if you specifically want
-   the preserved original public baseline; it remains available separately.
-2. Download **DOWNLOAD AND PLAY.cmd** and **Get-OfflineDAoC.ps1** into the **same new folder**.
-3. Double-click **DOWNLOAD AND PLAY.cmd**. It downloads the preserved v0.3 seed,
-   checks its hashes, applies the small v0.31 update, and creates a new `playable`
-   folder. Allow roughly 35 GB of free disk space for the downloads, extracted game,
-   and working room.
-4. Open `playable`, read **READ ME FIRST.txt**, and run **START OFFLINE DAOC.cmd**.
-5. In the launcher, click **START SERVER** and wait until it reports **RUNNING**.
+Choose one path before downloading. Both paths are ordinary point-and-click
+play; neither requires Git, an LLM, or programming knowledge.
+
+- **Normal play (no Sluaghbinder):** choose **v0.31** for the current public
+  maintenance build, or **v0.3** for the preserved original public baseline.
+  Use that release's `DOWNLOAD AND PLAY.cmd` helper.
+- **Optional Sluaghbinder play:** choose **v0.31b** and use the
+  `DOWNLOAD AND PLAY v0.31b.cmd` helper. This installs the class into a new
+  sibling copy and leaves the normal v0.31 game available separately.
+
+1. Open the project's **Releases** page and download the helper for the path you
+   chose plus `Get-OfflineDAoC.ps1` from the selected tag into the **same new
+   folder**. For normal play this is `DOWNLOAD AND PLAY.cmd`; for Sluaghbinder
+   play it is `DOWNLOAD AND PLAY v0.31b.cmd`.
+2. Double-click that helper. The normal helper downloads the preserved v0.3 seed,
+   checks its hashes, applies the small v0.31 update, and creates `playable`.
+   The v0.31b helper also downloads v0.31, verifies the optional class patch, and
+   creates `playable-v0.31b`. Allow roughly 35 GB of free disk space for the
+   downloads, extracted game, and working room.
+3. Open the new playable folder, read **READ ME FIRST.txt**, and run
+   **START OFFLINE DAOC.cmd**.
+4. In the launcher, click **START SERVER** and wait until it reports **RUNNING**.
    The launcher refreshes automatically when **ENTER REALM** becomes available;
    this can take several seconds. Click **ENTER REALM** and let loading finish.
-6. Do **not** launch CoreServer.exe, connect.exe, or OpenDAoC separately. Do not
+5. Do **not** launch CoreServer.exe, connect.exe, or OpenDAoC separately. Do not
    manually enter an account or register: the game creates and uses its local account.
-7. Choose a realm, create a character, select it, and enter the realm. Characters
+6. Choose a realm, create a character, select it, and enter the realm. Characters
    and progress save inside your extracted game folder.
-8. This version starts with an empty bot roster. Use the launcher's **+ Lv.1** or
+7. This version starts with an empty bot roster. Use the launcher's **+ Lv.1** or
    **+ Lv.50** buttons under each faction to generate playerbots.
+
+For the optional path, double-click **DOWNLOAD AND PLAY v0.31b.cmd** instead of
+`DOWNLOAD AND PLAY.cmd`. It downloads the normal v0.31 baseline first, verifies
+the Sluaghbinder patch, and creates `playable-v0.31b` with the optional class.
+If you already have a clean v0.3/v0.31 folder, use `Sluaghbinder-v0.31b-patch.zip`
+and `INSTALL SLAUGHBINDER PATCH.cmd`; the installer makes a separate copy and
+places `ROLLBACK SLAUGHBINDER PATCH.cmd` inside it. If you do not want the class,
+never run that optional helper or installer and simply play the normal folder.
 
 The downloader verifies and extracts the v0.3 seed, then applies the verified v0.31
 update without overwriting an existing destination. If you handle an archive
 yourself, extract the **entire** archive into a normal folder; never run files from
 inside a ZIP. Always keep older installations in separate folders.
 
-The v0.31 GitHub launcher says **0.31**. The old v0.3 launcher and release still
-say **0.3**. The author's private launcher label is separate from both public
-release numbers.
+The v0.31 GitHub launcher says **0.31**. The optional v0.31b launcher says
+**0.31b**. The old v0.3 launcher and release still say **0.3**. The author's
+private launcher label is separate from all public release numbers.
+
+## Optional Sluaghbinder play path
+
+To play the normal game without the class, follow the steps above and start the
+v0.3 or v0.31 folder. To add Sluaghbinder, download `Sluaghbinder-v0.31b-patch.zip`
+from the v0.31b release, extract it into a new temporary folder, and double-click
+`INSTALL SLAUGHBINDER PATCH.cmd`. Choose the clean v0.3 or v0.31 folder. The
+patcher creates a new `-Sluaghbinder-v0.31b` sibling copy, keeps local progress,
+and writes a rollback command into that new copy. It never modifies the selected
+base folder. Sluaghbinder is Hibernian; new characters begin as Acolytes and
+follow the trainer's level-5 promotion path. The five epic quests and their
+locations are discovered through in-game clues, so the public play guide does
+not spoil them.
 
 ## First-time requirements
 

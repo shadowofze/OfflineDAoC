@@ -28,8 +28,30 @@ namespace DOL.GS.PacketHandler
         /// Property to enable "forced" Tooltip send when Update are made to player skills, or player effects.
         /// This can be controlled through server propertiers !
         /// </summary>
-		public virtual bool ForceTooltipUpdate {
+        public virtual bool ForceTooltipUpdate {
 			get { return ServerProperties.Properties.USE_NEW_TOOLTIP_FORCEDUPDATE; }
+		}
+
+		/// <summary>
+		/// The classic active-effect packet has separate fields for the visible
+		/// icon and the tooltip identity.  Most stock spells intentionally use
+		/// the same value for both, but the isolated Sluaghbinder spells reuse
+		/// stock icons and have their own tooltip identities.  Sending the icon
+		/// as the delve identity makes Cairn Skin resolve to Shield of Faith (and
+		/// does the same for the other reused icons).  Keep the stock behavior for
+		/// every other spell and substitute the spell's own tooltip identity only
+		/// for the bounded experimental spell range.
+		/// </summary>
+		private static ushort GetActiveEffectTooltipId(ECSGameEffect effect)
+		{
+			if (effect is ECSGameSpellEffect spellEffect)
+			{
+				var spell = spellEffect.SpellHandler?.Spell;
+				if (spell != null && spell.ID >= 59000 && spell.ID <= 59069 && spell.InternalID != 0)
+					return (ushort)spell.InternalID;
+			}
+
+			return effect.Icon;
 		}
 
         /// <summary>
@@ -102,7 +124,7 @@ namespace DOL.GS.PacketHandler
 					pak.WriteShort(effect.Icon);
 					pak.WriteShort((ushort)(effect.GetRemainingTimeForClient() / 1000));
 					if (effect is ECSGameEffect || effect is ECSImmunityEffect)
-						pak.WriteShort(effect.Icon); //v1.110+ send the spell ID for delve info in active icon
+						pak.WriteShort(GetActiveEffectTooltipId(effect)); // v1.110+ spell tooltip identity
 					else
 						pak.WriteShort(0);//don't override existing tooltip ids
 

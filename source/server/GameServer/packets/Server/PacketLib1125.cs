@@ -14,6 +14,23 @@ namespace DOL.GS.PacketHandler
 		private static readonly Logging.Logger log = Logging.LoggerManager.Create(MethodBase.GetCurrentMethod().DeclaringType);
 
 		/// <summary>
+		/// The isolated client has no native class-id slot for Sluaghbinder.
+		/// Use the Hibernian Mauler slot only for promoted Sluaghbinders in
+		/// character-overview packets. Novice Hibernian Acolytes stay Acolytes
+		/// in the overview until their level-5 promotion.
+		/// </summary>
+		protected static bool IsSluaghbinderOverview(int classId, int realm) =>
+			classId == (int)eCharacterClass.Sluaghbinder && realm == (int)eRealm.Hibernia;
+
+		protected static byte GetClientOverviewClassId(int classId, int realm) =>
+			IsSluaghbinderOverview(classId, realm)
+				? (byte)eCharacterClass.MaulerHib
+				: (byte)classId;
+
+		protected static string GetClientOverviewClassName(int classId, int realm) =>
+			IsSluaghbinderOverview(classId, realm) ? "Sluaghbinder" : ((eCharacterClass)classId).ToString();
+
+		/// <summary>
 		/// Constructs a new PacketLib for Client Version 1.125
 		/// </summary>
 		/// <param name="client">the gameclient this lib is associated with</param>
@@ -194,7 +211,7 @@ namespace DOL.GS.PacketHandler
 							string classname = string.Empty;
 							if (c.Class != 0)
 							{
-								classname = ((eCharacterClass)c.Class).ToString();
+								classname = GetClientOverviewClassName(c.Class, c.Realm);
 							}
 							pak.WritePascalStringIntLE(classname);
 
@@ -314,7 +331,7 @@ namespace DOL.GS.PacketHandler
 							pak.WriteByte((byte)c.Piety);
 							pak.WriteByte((byte)c.Empathy);
 							pak.WriteByte((byte)c.Charisma);
-							pak.WriteByte((byte)c.Class); // moved
+			pak.WriteByte(GetClientOverviewClassId(c.Class, c.Realm)); // moved
 							pak.WriteByte((byte)c.Realm); // moved
 							pak.WriteByte((byte)((((c.Race & 0x10) << 2) + (c.Race & 0x0F)) | (c.Gender << 4)));
 

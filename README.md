@@ -21,7 +21,7 @@ Follow the included component licenses when modifying or redistributing code.
 - **Players:** [Download and play instructions](docs/PLAY.md).
 - **Everyday commands:** [Quick commands and bot-generation shortcuts](docs/QUICK-COMMANDS.md).
 - **Developers and LLM users:** [Fork and customize instructions](docs/LLM-QUICKSTART.md).
-- **Changelog:** [Version history and the v0.31 scope](CHANGELOG.md).
+- **Changelog:** [Version history and the v0.31/v0.31b scope](CHANGELOG.md).
 
 Use the [v0.31 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31)
 for the complete playable download. **Code > Download ZIP** contains the editable
@@ -41,6 +41,45 @@ The v0.31 release includes clean world data, current navigation meshes, the
 runnable components, source, and offline development dependencies. Accounts, characters,
 inventories, saved bot profiles and personal settings from the author's game are
 not included. Each installation creates its own local account and saves.
+
+### Pick the play path that fits you
+
+You do **not** need an LLM, Git, or programming knowledge to play. Use one of
+these two clearly separate paths:
+
+| What you want | What to download | What happens |
+| --- | --- | --- |
+| Normal Offline DAoC with the public Classic + Shrouded Isles features | The **v0.31** release and its `DOWNLOAD AND PLAY.cmd` helper (or the preserved **v0.3** release) | Creates a clean playable folder with no Sluaghbinder class. Start the included `START OFFLINE DAOC.cmd`. |
+| Normal game **plus** the optional Hibernian Sluaghbinder class | The **v0.31b** release's `DOWNLOAD AND PLAY v0.31b.cmd` helper, or `Sluaghbinder-v0.31b-patch.zip` | Downloads a v0.31 baseline, makes a separate copy, and installs Sluaghbinder there. The original v0.3/v0.31 folder is never changed. |
+
+For either path, open the new folder, read `READ ME FIRST.txt`, start the
+launcher, click **START SERVER**, wait for **RUNNING**, then click **ENTER
+REALM**. The launcher creates a local offline account automatically; no online
+account or LLM is required. Choose the ordinary v0.3/v0.31 path if you do not
+want Sluaghbinder. Choose v0.31b only when you want to create a Hibernian
+Acolyte and discover the Sluaghbinder trainer and quests in-game. The optional
+class is not added to existing v0.3/v0.31 installations unless you deliberately
+run the optional patch installer.
+
+## Optional Sluaghbinder expansion (v0.31b)
+
+Sluaghbinder is an optional Hibernian player class. The ordinary **v0.3** and
+**v0.31** downloads remain usable without it; it is not silently added to
+either baseline. Players who want the class should use the separate
+[v0.31b download-and-play helper](DOWNLOAD%20AND%20PLAY%20v0.31b.cmd), or download
+the `Sluaghbinder-v0.31b-patch.zip` asset from the [v0.31b release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b)
+and run `INSTALL SLAUGHBINDER PATCH.cmd`. The installer asks for a clean v0.3
+or v0.31 folder, makes a new sibling copy, verifies the payload, migrates only
+the class's static rows, and leaves your original folder untouched. A rollback
+command is placed in the new copy; it restores that copy's pre-patch files and
+database without deleting the original.
+
+The expansion includes the Sluaghbinder character path (Acolyte through level
+5 promotion), its three core lines and three trainable paths, dedicated player,
+companion, and autonomous gamebot behavior, Muirenn in Tir na Nog, and the
+five chained epic quests that unlock the Epic Spells service summons. It does
+not export or import the author's accounts, characters, bot roster, settings,
+or saves. If you do not want the class, download v0.3 or v0.31 as usual.
 
 ## Customize with your own LLM
 
@@ -78,7 +117,7 @@ back up saves before installing a build. No zero-regression guarantee is implied
 ## v0.31 scope
 
 v0.31 is the normal Classic/Shrouded Isles maintenance update. It does **not**
-include the experimental Sluaghbinder class, its quests, or its patch. That work
-is intentionally kept outside this public release until it is ready. The source
-and playable download are versioned together, while v0.3 stays downloadable as a
+include the Sluaghbinder class, its quests, or its patch. Those are available only
+through the clearly separate optional v0.31b overlay above. The source and
+playable download are versioned together, while v0.3 stays downloadable as a
 separate immutable release.

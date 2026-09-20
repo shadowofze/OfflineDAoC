@@ -26,6 +26,7 @@ using DOL.Events;
 using DOL.GS.PropertyCalc;
 using System.Collections;
 using DOL.Language;
+using DOL.Database;
 
 namespace DOL.GS.Spells
 {
@@ -38,6 +39,37 @@ namespace DOL.GS.Spells
 	{
 		public SummonDruidPet(GameLiving caster, Spell spell, SpellLine line)
 			: base(caster, spell, line) { }
+
+		protected override IControlledBrain GetPetBrain(GameLiving owner)
+		{
+			// The experimental Sluaghbinder is player-only in the isolated
+			// new-class build.  Give its controlled pets their class-specific
+			// hybrid upkeep without changing any existing Druid pet behavior.
+			if (owner is IGamePlayer playerLike && playerLike.CharacterClass != null &&
+				(playerLike.CharacterClass.ID == (int)eCharacterClass.Sluaghbinder ||
+				 (owner is GamePlayer player && player.CharacterClass.ID == (int)eCharacterClass.Acolyte &&
+				  player.Realm == eRealm.Hibernia && player.Level < 5)))
+			{
+				return new SluaghbinderPetBrain(owner);
+			}
+
+			return base.GetPetBrain(owner);
+		}
+
+		protected override GameSummonedPet GetGamePet(INpcTemplate template)
+		{
+			// The dedicated role stats apply to real players, persistent GameBots,
+			// and temporary companions on the isolated Sluaghbinder path only.
+			if (Caster is IGamePlayer playerLike && playerLike.CharacterClass != null &&
+				(playerLike.CharacterClass.ID == (int)eCharacterClass.Sluaghbinder ||
+				 (Caster is GamePlayer player && player.CharacterClass.ID == (int)eCharacterClass.Acolyte &&
+				  player.Realm == eRealm.Hibernia && player.Level < 5)))
+			{
+				return new SluaghbinderPet(template);
+			}
+
+			return base.GetGamePet(template);
+		}
 
 		public override bool CheckEndCast(GameLiving selectedTarget)
 		{

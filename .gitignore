@@ -32,3 +32,7 @@
 /tools/zig/
 /tools/NavmeshBuilder/
 /OFFLINE DAOC ASSET TOOL/
+# Release-only Sluaghbinder payloads are generated locally and uploaded as a
+# separate optional asset; they are not part of the editable source checkout.
+/tools/sluaghbinder/payload-v0.31b/
+/tools/sluaghbinder/patcher/

@@ -13,6 +13,13 @@ The release's runtime/server contains the reference installed binaries and 99
 navigation meshes. Runtime/data contains a cleaned world database. Runtime/client-opendaoc/app
 contains the compatible game installation. Never use the author's old absolute paths.
 
+The optional v0.31b Sluaghbinder expansion is an overlay on the v0.3/v0.31
+baseline. Its class source is in the same `source/server` tree, its client
+build-identifying helpers are under `source/server/tools`, and its static data
+overlay builder/installer sources are under `tools/sluaghbinder` and
+`source/tools/OfflineDaoc.SluaghbinderPatch`. The public 0.31b launcher label is
+deliberate; the local 0.4 label is private and must not be copied into a fork.
+
 The runnable release also bundles tools/dotnet and tools/nuget-feed for offline C#
 development, the navigation builder/native dependencies, and the texture tool's
 Python runtime. A GitHub source ZIP alone is not the complete runtime download.

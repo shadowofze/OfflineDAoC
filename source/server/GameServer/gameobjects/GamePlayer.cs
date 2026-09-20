@@ -4294,7 +4294,8 @@ namespace DOL.GS
             if (expTotal >= 0)
             {
                 //Level up
-                if (Level >= 5 && !CharacterClass.HasAdvancedFromBaseClass())
+                if (Level >= 5 && (!CharacterClass.HasAdvancedFromBaseClass() ||
+                    (Realm == eRealm.Hibernia && CharacterClass.ID == (int)eCharacterClass.Acolyte)))
                 {
                     if (expTotal > 0)
                     {
@@ -4417,7 +4418,8 @@ namespace DOL.GS
             if (expTotal >= 0)
             {
                 //Level up
-                if (Level >= 5 && !CharacterClass.HasAdvancedFromBaseClass())
+                if (Level >= 5 && (!CharacterClass.HasAdvancedFromBaseClass() ||
+                    (Realm == eRealm.Hibernia && CharacterClass.ID == (int)eCharacterClass.Acolyte)))
                 {
                     if (expTotal > 0)
                     {
@@ -9911,6 +9913,74 @@ namespace DOL.GS
             // Get this Attached Class Specialization from SkillBase.
             IDictionary<Specialization, int> careers = SkillBase.GetSpecializationCareer(CharacterClass.ID);
 
+            // The isolated Sluaghbinder test uses the existing Acolyte base
+            // class for levels 1-4, just as Albion stores a new Necromancer
+            // as a Disciple until promotion.  Hibernia has no normal Acolyte
+            // starting path, so give only that experimental path its own
+            // career spell lines while it is still an Acolyte.  These are
+            // career specializations (not spendable points), and are removed
+            // automatically when the Tir na Nog trainer promotes the player
+            // to class 63 at level 5.
+            if (CharacterClass.ID == (int)eCharacterClass.Acolyte && Realm == eRealm.Hibernia)
+            {
+                foreach (Specialization genericSpec in careers.Keys
+                    .Where(spec => spec.KeyName.Equals("Rejuvenation", StringComparison.OrdinalIgnoreCase) ||
+                                   spec.KeyName.Equals("Enhancement", StringComparison.OrdinalIgnoreCase))
+                    .ToList())
+                {
+                    careers.Remove(genericSpec);
+                }
+
+                // Remove generic Acolyte spell lines that may have been loaded
+                // by an older test build before adding the themed novice set.
+                RemoveSpellLine("Rejuvenation");
+                RemoveSpellLine("Enhancement");
+
+                // Keep the level-1-to-4 novice spellbook on the three core
+                // Sluaghbinder lines.  The three optional paths are added by
+                // the class promotion at level 5; the epic line is added only
+                // by its future level-10 quest reward.
+                string[] noviceLines = { "Sluagh Host", "Abhartach's Rot", "Cairn Oath" };
+                foreach (string lineKey in noviceLines)
+                {
+                    Specialization source = SkillBase.GetSpecialization(lineKey, false);
+                    if (source == null)
+                        continue;
+
+                    // CareerSpecialization follows the player's level and does
+                    // not consume the Acolyte's level-1-to-4 training points.
+                    Specialization novice = new CareerSpecialization(
+                        source.KeyName, source.Name, source.Icon, source.ID)
+                    {
+                        LevelRequired = -3,
+                    };
+
+                    careers[novice] = -3;
+                }
+            }
+
+            // The Epic Spells page is a quest-earned career line.  It is not
+            // a trainer specialization and therefore must remain completely
+            // absent until the first Sluaghbinder epic reward is finished.
+            // Once earned, CareerSpecialization makes the line follow the
+            // player's level and keeps every reward spell automatically
+            // available without spending specialization points.
+            if (CharacterClass.ID == (int)eCharacterClass.Sluaghbinder &&
+                DOL.GS.Quests.Hibernia.SluaghbinderEpicQuestState.HasFirstReward(this))
+            {
+                Specialization source = SkillBase.GetSpecialization("Epic Spells", false);
+                if (source != null)
+                {
+                    Specialization epicSpells = new CareerSpecialization(
+                        source.KeyName, source.Name, source.Icon, source.ID)
+                    {
+                        LevelRequired = -3,
+                    };
+
+                    careers[epicSpells] = -3;
+                }
+            }
+
             // Remove All Trainable Specialization or "Career Spec" that aren't managed by This Data Career anymore
             var speclist = GetSpecList();
             var careerslist = careers.Keys.Select(k => k.KeyName.ToLower());
@@ -10028,6 +10098,17 @@ namespace DOL.GS
             HandleCharacterSkills();
             HandleCraftingSkills(await craftingForRealmTask);
             HandleQuests(await scriptedQuestsTask, await dataQuestsTask);
+            // Sluaghbinder's Epic Spells line is gated by completed scripted
+            // quests.  Character skills are loaded before the quest journal,
+            // so refresh this isolated class once after quests are hydrated;
+            // otherwise a relog can temporarily hide the earned service
+            // spells until the player trains again.
+            if (CharacterClass?.ID == (int)eCharacterClass.Sluaghbinder && Realm == eRealm.Hibernia)
+            {
+                RefreshSpecDependantSkills(false);
+                GetAllUsableListSpells(true);
+                GetAllUsableSkills(true);
+            }
             FactionMgr.LoadAllAggroToFaction(this, await factionRelationsTask);
             HandleTasks(await tasksTask);
             HandleMasterLevels(await masterLevelsTask);

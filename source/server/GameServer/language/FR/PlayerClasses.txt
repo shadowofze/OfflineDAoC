@@ -81,6 +81,7 @@ PlayerClass.Name.Valkyrie:			Valkyrie
 PlayerClass.Name.Vampiir:			Séide de Leanansidhe
 PlayerClass.Name.Viking:			Combattant
 PlayerClass.Name.Warden:			Sentinelle
+PlayerClass.Name.Sluaghbinder:			Sluaghbinder
 PlayerClass.Name.Warlock:			Helhaxa
 PlayerClass.Name.Warrior:			Guerrier
 PlayerClass.Name.Wizard:			Thaumaturge

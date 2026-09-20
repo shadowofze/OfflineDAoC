@@ -1,16 +1,16 @@
 /*
  * DAWN OF LIGHT - The first free open source DAoC server emulator
- * 
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
  * of the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
@@ -44,14 +44,14 @@ namespace DOL.GS
 		/// can be negative for sorting, as long as Spec Level is positive it will match
 		/// </summary>
 		private int m_levelRequired = 0;
-				
+
 		/// <summary>
 		/// Script Constructor
 		/// </summary>
 		public Specialization(string keyname, string displayname, ushort icon)
 			: this(keyname, displayname, icon, icon)
 		{
-			
+
 		}
 		/// <summary>
 		/// Default constructor
@@ -70,7 +70,7 @@ namespace DOL.GS
 			set { m_levelRequired = value; }
 		}
 
-		
+
 		/// <summary>
 		/// type of skill
 		/// </summary>
@@ -79,7 +79,7 @@ namespace DOL.GS
 				return eSkillPage.Specialization;
 			}
 		}
-		
+
 		/// <summary>
 		/// Is this Specialization Trainable ?
 		/// </summary>
@@ -103,9 +103,9 @@ namespace DOL.GS
 		{
 			get { return false; }
 		}
-				
+
 		#region Getters
-		
+
 		/// <summary>
 		/// Default getter for SpellLines
 		/// Retrieve spell line depending on advanced class and class hint
@@ -117,7 +117,7 @@ namespace DOL.GS
 		{
 			return GetSpellLinesForLiving(living, GetSpecLevelForLiving(living));
 		}
-		
+
 		/// <summary>
 		/// Default getter for SpellLines with a "step" hint used to display future upgrade
 		/// Retrieve spell line depending on advanced class and class hint
@@ -130,7 +130,7 @@ namespace DOL.GS
 		{
 			return GetSpellLinesForLiving(living, step);
 		}
-		
+
 		/// <summary>
 		/// Default getter for SpellLines
 		/// Retrieve spell line depending on advanced class and class hint
@@ -143,19 +143,35 @@ namespace DOL.GS
 		{
 			List<SpellLine> list = new List<SpellLine>();
 			IList<Tuple<SpellLine, int>> spsl = SkillBase.GetSpecsSpellLines(KeyName);
-			
+
 			// Get Spell Lines by order of appearance
 			if (living is GamePlayer)
 			{
-				
+
 				GamePlayer player = (GamePlayer)living;
-				
-				// select only spec line if is advanced class...
-				var tmp = spsl.Where(item => (item.Item1.IsBaseLine || player.CharacterClass.HasAdvancedFromBaseClass()))
+				int spellClassId = player.CharacterClass.ID;
+
+				// The experimental Sluaghbinder is stored as Hibernian Acolyte
+				// through level 4.  Its three baseline lines still use the real
+				// class-63 spell-line hints so promotion and post-promotion skill
+				// loading share exactly the same spell data.  The three optional
+				// specialization lines are deliberately not exposed before promotion.
+				if (spellClassId == (int)eCharacterClass.Acolyte &&
+					player.Realm == eRealm.Hibernia &&
+					(KeyName == "Sluagh Host" || KeyName == "Abhartach's Rot" || KeyName == "Cairn Oath"))
+				{
+					spellClassId = (int)eCharacterClass.Sluaghbinder;
+				}
+
+				// Select non-baseline lines only for an advanced class.  The novice
+				// exception is limited to class-hint resolution for the three
+				// baseline lines; it must not leak the level-5 paths early.
+				var tmp = spsl.Where(item => (item.Item1.IsBaseLine ||
+					player.CharacterClass.HasAdvancedFromBaseClass()))
 					.OrderBy(item => (item.Item1.IsBaseLine ? 0 : 1)).ThenBy(item => item.Item1.ID);
-				
+
 				// try with class hint
-				var baseline = tmp.Where(item => item.Item1.IsBaseLine && item.Item2 == player.CharacterClass.ID);
+				var baseline = tmp.Where(item => item.Item1.IsBaseLine && item.Item2 == spellClassId);
 				if (baseline.Any())
 				{
 					foreach (Tuple<SpellLine, int> ls in baseline)
@@ -172,9 +188,9 @@ namespace DOL.GS
 						list.Add(ls.Item1);
 					}
 				}
-				
+
 				// try spec with class hint
-				var specline = tmp.Where(item => !item.Item1.IsBaseLine && item.Item2 == player.CharacterClass.ID);
+				var specline = tmp.Where(item => !item.Item1.IsBaseLine && item.Item2 == spellClassId);
 				if (specline.Any())
 				{
 					foreach (Tuple<SpellLine, int> ls in specline)
@@ -191,7 +207,7 @@ namespace DOL.GS
 						list.Add(ls.Item1);
 					}
 				}
-				
+
 			}
 			else if (living is GameBot bot && bot.CharacterClass != null)
 			{
@@ -255,10 +271,10 @@ namespace DOL.GS
 					list.Add(ls.Item1);
 				}
 			}
-				
+
 			return list;
 		}
-		
+
 		/// <summary>
 		/// Default Getter For Spells
 		/// Retrieve Spell index by SpellLine, List Spell by Level Order
@@ -283,7 +299,7 @@ namespace DOL.GS
 		{
 			return GetLinesSpellsForLiving(living, step);
 		}
-		
+
 		/// <summary>
 		/// Default Getter For Spells
 		/// Retrieve Spell index by SpellLine, List Spell by Level Order
@@ -295,7 +311,7 @@ namespace DOL.GS
 		protected virtual IDictionary<SpellLine, List<Skill>> GetLinesSpellsForLiving(GameLiving living, int level)
 		{
 			IDictionary<SpellLine, List<Skill>> dict = new Dictionary<SpellLine, List<Skill>>();
-			
+
 			foreach (SpellLine sl in GetSpellLinesForLiving(living, level))
 			{
 				dict.Add(sl, SkillBase.GetSpellList(sl.KeyName)
@@ -303,10 +319,10 @@ namespace DOL.GS
 				         .OrderBy(item => item.Level)
 				         .ThenBy(item => item.ID).Cast<Skill>().ToList());
 			}
-			
+
 			return dict;
 		}
-		
+
 		/// <summary>
 		/// Default getter for Ability
 		/// Return Abilities it lists depending on spec level
@@ -318,7 +334,7 @@ namespace DOL.GS
 		{
 			return GetAbilitiesForLiving(living, GetSpecLevelForLiving(living));
 		}
-		
+
 		/// <summary>
 		/// Getter for Ability with a "step" hint used to display future upgrade
 		/// Return Abilities it lists depending on spec level
@@ -333,7 +349,7 @@ namespace DOL.GS
 				.Where(k => k.SpecLevelRequirement <= step)
 				.OrderBy(k => k.SpecLevelRequirement).ToList();
 		}
-		
+
 		/// <summary>
 		/// Default getter for Ability
 		/// Return Abilities it lists depending on spec level
@@ -346,19 +362,19 @@ namespace DOL.GS
 		{
 			// Select only Enabled and Max Level Abilities
 			List<Ability> abs = SkillBase.GetSpecAbilityList(KeyName, living is GamePlayer ? ((GamePlayer)living).CharacterClass.ID : 0);
-			
+
 			// Get order of first appearing skills
 			IOrderedEnumerable<Ability> order = abs.GroupBy(item => item.KeyName)
 				.Select(ins => ins.OrderBy(it => it.SpecLevelRequirement).First())
 				.Where(item => item.SpecLevelRequirement <= level)
 				.OrderBy(item => item.SpecLevelRequirement)
 				.ThenBy(item => item.ID);
-			
+
 			// Get best of skills
 			List<Ability> best = abs.Where(item => item.SpecLevelRequirement <= level)
 				.GroupBy(item => item.KeyName)
 				.Select(ins => ins.OrderByDescending(it => it.SpecLevelRequirement).First()).ToList();
-			
+
 			List<Ability> results = new List<Ability>();
 			// make some kind of "Join" between the order of appearance and the best abilities.
 			foreach (Ability ab in order)
@@ -373,7 +389,7 @@ namespace DOL.GS
 					}
 				}
 			}
-			
+
 			return results;
 		}
 
@@ -395,11 +411,11 @@ namespace DOL.GS
 		/// <param name="living"></param>
 		/// <param name="step">step is only used when called for pretending some level (for trainer display)</param>
 		/// <returns></returns>
-		public virtual List<Style> PretendStylesForLiving(GameLiving living, int step)	
+		public virtual List<Style> PretendStylesForLiving(GameLiving living, int step)
 		{
 			return GetStylesForLiving(living, step);
-		}		
-		
+		}
+
 		/// <summary>
 		/// Default Getter For Styles
 		/// Return Styles depending on spec level
@@ -411,7 +427,7 @@ namespace DOL.GS
 		{
 			// Try with Class ID 0 if no class id styles
 			int classid = ResolveClassId(living);
-			
+
 			List<Style> styles = null;
 			if (classid == 0)
 			{
@@ -420,16 +436,16 @@ namespace DOL.GS
 			else
 			{
 				styles = SkillBase.GetStyleList(KeyName, classid);
-				
+
 				if (styles.Count == 0)
 					styles = SkillBase.GetStyleList(KeyName, 0);
 			}
-			
+
 			// Select only enabled Styles and Order them
 			return styles.Where(item => item.SpecLevelRequirement <= level)
 				.OrderBy(item => item.SpecLevelRequirement)
 				.ThenBy(item => item.ID).ToList();
-			
+
 		}
 
 		/// <summary>
@@ -446,14 +462,14 @@ namespace DOL.GS
 
 			return 0;
 		}
-		
+
 		public virtual int GetSpecLevelForLiving(GameLiving living)
 		{
 			return Level;
 		}
 		#endregion
 	}
-	
+
 	public class UntrainableSpecialization : Specialization
 	{
 		/// <summary>
@@ -472,7 +488,7 @@ namespace DOL.GS
 			get { return false; }
 		}
 	}
-	
+
 	public class  CareerSpecialization : UntrainableSpecialization
 	{
 		/// <summary>
@@ -482,7 +498,7 @@ namespace DOL.GS
 			: base(keyname, displayname, icon, ID)
 		{
 		}
-		
+
 		/// <summary>
 		/// Can This Specialization be saved in Player record ?
 		/// </summary>
@@ -490,7 +506,7 @@ namespace DOL.GS
 		{
 			get { return false; }
 		}
-		
+
 		/// <summary>
 		/// Career level are always considered spec'ed up to user level
 		/// </summary>

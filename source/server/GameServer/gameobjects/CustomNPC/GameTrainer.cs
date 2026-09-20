@@ -98,6 +98,14 @@ namespace DOL.GS
 					break;
 			}
 
+			// Some data-driven NPCs do not use the conventional "<Class> Trainer"
+			// guild label.  Resolve the registered class as a safe fallback so new
+			// player classes (including Sluaghbinder) still appear correctly.
+			if (string.IsNullOrEmpty(TrainerClassName) && TrainedClass != eCharacterClass.Unknown)
+			{
+				TrainerClassName = ScriptMgr.FindCharacterClass((int)TrainedClass)?.Name ?? TrainedClass.ToString();
+			}
+
 			IList list = new ArrayList();
             list.Add(LanguageMgr.GetTranslation(player.Client.Account.Language, "GameTrainer.GetExamineMessages.YouTarget", 
                                                 GetName(0, false, player.Client.Account.Language, this)));

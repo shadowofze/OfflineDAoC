@@ -3596,6 +3596,33 @@ namespace DOL.GS
 		/// </summary>
 		public override bool HasEffect(Spell spell)
 		{
+			// Cairnheart is a five-rank Sluaghbinder pet regeneration line.  The
+			// ranks intentionally share an effect group so a stronger rank replaces
+			// a weaker one, but the generic check below treats any matching effect
+			// as a block.  That made Cairnheart Rebirth (rank 50) silently fail when
+			// an older rank was still active.  For this isolated line, only the same
+			// or a stronger rank should block the cast; EffectListComponent will
+			// then replace the weaker effect using its normal comparison rules.
+			if (spell != null && spell.ID is >= 59065 and <= 59069)
+			{
+				lock (EffectList.Lock)
+				{
+					foreach (IGameEffect effect in EffectList)
+					{
+						if (effect is not GameSpellEffect existing || existing.Spell == null)
+							continue;
+
+						if (existing.Spell.SpellType == spell.SpellType &&
+							existing.Spell.EffectGroup == spell.EffectGroup &&
+							existing.Spell.ID is >= 59065 and <= 59069 &&
+							existing.Spell.Value >= spell.Value)
+							return true;
+					}
+				}
+
+				return false;
+			}
+
 			lock (EffectList.Lock)
 			{
 				foreach (IGameEffect effect in EffectList)

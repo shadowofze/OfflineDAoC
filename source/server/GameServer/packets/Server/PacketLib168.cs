@@ -27,6 +27,14 @@ namespace DOL.GS.PacketHandler
 		protected const int MAX_PACKET_LENGTH = 2048;
 		protected const int JOURNAL_MAX_QUEST_COUNT = 25;
 
+		// The isolated client reuses the Hibernian Mauler slot for the
+		// experimental Sluaghbinder. Novices remain server-side Acolytes until
+		// level 5, so only a promoted Sluaghbinder is sent through that slot.
+		private static byte GetClientOverviewClassId(int classId, int realm) =>
+			classId == (int)eCharacterClass.Sluaghbinder && realm == (int)eRealm.Hibernia
+				? (byte)eCharacterClass.MaulerHib
+				: (byte)classId;
+
 		/// <summary>
 		/// Defines a logger for this class.
 		/// </summary>
@@ -212,7 +220,7 @@ namespace DOL.GS.PacketHandler
 							//pak.FillString(GamePlayer.RACENAMES[characters[j].Race], 24);
 							pak.FillString(m_gameClient.RaceToTranslatedName(characters[j].Race, characters[j].Gender), 24);
 							pak.WriteByte((byte) characters[j].Level);
-							pak.WriteByte((byte) characters[j].Class);
+							pak.WriteByte(GetClientOverviewClassId(characters[j].Class, characters[j].Realm));
 							pak.WriteByte((byte) characters[j].Realm);
 							pak.WriteByte(
 								(byte) ((((characters[j].Race & 0x10) << 2) + (characters[j].Race & 0x0F)) | (characters[j].Gender << 4)));

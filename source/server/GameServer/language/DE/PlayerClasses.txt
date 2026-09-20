@@ -57,6 +57,7 @@ PlayerClass.Name.Valkyrie:			Walküre
 PlayerClass.Name.Vampiir:			Vampyr
 PlayerClass.Name.Viking:			Wikinger
 PlayerClass.Name.Warden:			Hüter
+PlayerClass.Name.Sluaghbinder:			Sluaghbinder
 PlayerClass.Name.Warlock:			Hexenmeister
 PlayerClass.Name.Warrior:			Krieger
 PlayerClass.Name.Wizard:			Zauberer

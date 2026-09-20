@@ -101,5 +101,12 @@ namespace DOL.GS
 
         OneHandHybrid,
         TwoHandHybrid,
+
+        // Isolated Sluaghbinder bot plans.  These values are appended so the
+        // existing persisted plans for every other class keep their numeric
+        // meaning across restarts.
+        SluaghbinderBulwark,
+        SluaghbinderBane,
+        SluaghbinderCovenant,
     }
 }

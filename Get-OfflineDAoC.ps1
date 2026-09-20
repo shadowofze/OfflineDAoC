@@ -1,6 +1,6 @@
 param(
     [string]$Destination = (Join-Path $PSScriptRoot 'playable'),
-    [ValidatePattern('^\d+\.\d+$')]
+    [ValidatePattern('^\d+\.\d+(b)?$')]
     [string]$ReleaseVersion = '0.31'
 )
 $ErrorActionPreference = 'Stop'
@@ -17,6 +17,68 @@ Write-Host 'Downloading the release manifest...'
 Invoke-WebRequest -UseBasicParsing -Uri "$releaseBase/download-manifest.json" -OutFile $manifestPath
 $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
 if ($manifest.Version -ne $ReleaseVersion) { throw 'Unexpected release manifest version.' }
+
+# v0.31b is an optional, copy-first expansion. It downloads the immutable
+# v0.31 playable baseline, then applies the separately hash-verified
+# Sluaghbinder patch into a new sibling folder. The old v0.3/v0.31 paths below
+# remain unchanged, so anyone who does not want the class can keep using them.
+if ($manifest.Mode -eq 'optional-patch') {
+    if ($manifest.BaseVersion -ne '0.31' -or !$manifest.PatchName -or
+        $manifest.PatchRootFolder -ne 'OfflineDAoC-Sluaghbinder-v0.31b-patch' -or
+        $manifest.PatchSHA256 -notmatch '^[a-f0-9]{64}$') { throw 'Unexpected v0.31b optional patch manifest.' }
+    $parent = Split-Path -Parent $target
+    $leaf = Split-Path -Leaf $target
+    $baseTarget = Join-Path $parent ($leaf + '-v0.31-base')
+    if (Test-Path -LiteralPath $baseTarget) { throw "Base staging folder already exists: $baseTarget" }
+    Write-Host 'Downloading the preserved v0.31 playable baseline first...'
+    & $PSCommandPath -ReleaseVersion $manifest.BaseVersion -Destination $baseTarget
+    if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) { throw 'The v0.31 baseline download failed.' }
+
+    $patchPath = Join-Path $cache $manifest.PatchName
+    $patchValid = (Test-Path -LiteralPath $patchPath) -and
+        (Get-Item -LiteralPath $patchPath).Length -eq [int64]$manifest.PatchBytes
+    if ($patchValid) { $patchValid = (Get-FileHash -LiteralPath $patchPath -Algorithm SHA256).Hash -eq $manifest.PatchSHA256 }
+    if (!$patchValid) {
+        Write-Host "Downloading $($manifest.PatchName)..."
+        Invoke-WebRequest -UseBasicParsing -Uri "$releaseBase/$($manifest.PatchName)" -OutFile $patchPath
+        if ((Get-Item -LiteralPath $patchPath).Length -ne [int64]$manifest.PatchBytes -or
+            (Get-FileHash -LiteralPath $patchPath -Algorithm SHA256).Hash -ne $manifest.PatchSHA256) {
+            throw 'Sluaghbinder patch verification failed. The v0.31 baseline is intact; run again to retry.'
+        }
+    }
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $patchExtract = Join-Path $cache ('patch-' + [guid]::NewGuid().ToString('N'))
+    New-Item -ItemType Directory -Path $patchExtract | Out-Null
+    $zip = [IO.Compression.ZipFile]::OpenRead($patchPath)
+    try {
+        $prefix = $manifest.PatchRootFolder + '/'
+        $extractPrefix = $patchExtract.TrimEnd('\') + '\'
+        foreach ($entry in $zip.Entries) {
+            $entryName = $entry.FullName.Replace('\','/')
+            if (!$entryName.StartsWith($prefix,[StringComparison]::Ordinal) -or
+                $entryName.Contains(':') -or $entryName.Contains('/../') -or $entryName.EndsWith('/..')) { throw 'Unexpected Sluaghbinder patch layout.' }
+            $relative = $entryName.Substring($prefix.Length)
+            if (!$relative) { continue }
+            $resolved = [IO.Path]::GetFullPath((Join-Path $patchExtract $relative))
+            if (!$resolved.StartsWith($extractPrefix,[StringComparison]::OrdinalIgnoreCase)) { throw 'Unsafe Sluaghbinder patch entry.' }
+        }
+        foreach ($entry in $zip.Entries) {
+            $relative = $entry.FullName.Replace('\','/').Substring($prefix.Length)
+            if (!$relative) { continue }
+            $resolved = Join-Path $patchExtract $relative
+            if ($entry.FullName.EndsWith('/')) { New-Item -ItemType Directory -Path $resolved -Force | Out-Null; continue }
+            New-Item -ItemType Directory -Path (Split-Path -Parent $resolved) -Force | Out-Null
+            [IO.Compression.ZipFileExtensions]::ExtractToFile($entry,$resolved,$false)
+        }
+    } finally { $zip.Dispose() }
+    $installer = Join-Path $patchExtract 'Install-Sluaghbinder.ps1'
+    if (!(Test-Path -LiteralPath $installer)) { throw 'Sluaghbinder patch installer is missing.' }
+    & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $installer -BasePath $baseTarget -Destination $target
+    if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) { throw 'Sluaghbinder patch installation failed; the v0.31 baseline remains intact.' }
+    Write-Host "Verified v0.31b optional Sluaghbinder expansion and installed it to $target"
+    Write-Host "The unmodified v0.31 staging copy is at $baseTarget until you choose to remove it."
+    exit 0
+}
 
 # v0.31 is intentionally a small, hash-verified update over the immutable v0.3
 # playable seed. This keeps the large navmesh/world download in one place while
