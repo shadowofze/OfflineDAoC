@@ -21,6 +21,7 @@ Follow the included component licenses when modifying or redistributing code.
 - **Players:** [Download and play instructions](docs/PLAY.md).
 - **Everyday commands:** [Quick commands and bot-generation shortcuts](docs/QUICK-COMMANDS.md).
 - **Developers and LLM users:** [Fork and customize instructions](docs/LLM-QUICKSTART.md).
+- **Changelog:** [Version history and the v0.31 scope](CHANGELOG.md).
 
 Use the [v0.31 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31)
 for the complete playable download. **Code > Download ZIP** contains the editable
