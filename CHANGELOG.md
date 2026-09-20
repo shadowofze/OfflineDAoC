@@ -1,5 +1,14 @@
 # Offline DAoC changelog
 
+## 2026-09-20 — bot shield-style damage fix
+
+- Fixed companion bots and autonomous gamebots using a shield as the damage
+  weapon when they selected a shield style. They still require and validate the
+  equipped shield, but the swing now uses the active main-hand weapon so it
+  deals normal damage instead of producing a misleading 0-damage hit.
+- No player attack behavior, style data, shield permissions, saves, or loot
+  tables were changed.
+
 ## v0.31 — normal maintenance update
 
 - Fixed level-based scaling for player-owned summoned pets and nested pet owners.
