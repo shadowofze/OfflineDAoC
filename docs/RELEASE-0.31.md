@@ -24,11 +24,12 @@ private until it is intentionally published in a later, separate update.
 
 ## Validation
 
-The normal local build reported zero release-build errors and the focused pet/effect
-suite reported 178/178 passing tests. The public source includes the narrow policy
-tests and the release is packaged from a clean, non-personal seed. Static checks and
-tests are not a promise that every PC or encounter is bug-free; test a disposable
-copy before importing real progress.
+The normal local build reported zero release-build errors. The full server suite
+passed 1,893/1,893 tests and the launcher suite passed 96/96 tests; the focused
+pet/effect and route-policy checks are included in those totals. The public source
+includes the narrow policy tests and the playable update is hash-verified against a
+clean, non-personal v0.3 seed. Static checks and tests are not a promise that every
+PC or encounter is bug-free; test a disposable copy before importing real progress.
 
 ## Version and data safety
 

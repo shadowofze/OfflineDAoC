@@ -41,9 +41,10 @@ labeled 0.4. The separate v0.3 tag/release is preserved.
 - Focused pet/effect and route-policy tests were run for the v0.31 source changes;
   the exact test command/results are recorded with the release notes.
 
-The release archive is sealed only after the separate startup test and then every
-archive entry is checked by CRC and SHA-256. `PACKAGE FILE HASHES.json` inside the
-download and `download-manifest.json` on the release provide verification metadata.
+The v0.31 update asset is sealed after source/build checks and is checked by
+SHA-256 before it is applied. `download-manifest.json` and `SHA256SUMS.txt` on the
+release provide the patch hash and byte count; the updater also rechecks the
+preserved v0.3 seed before applying anything.
 
 ## Intended sharing differences
 
