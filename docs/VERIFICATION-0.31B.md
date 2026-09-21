@@ -17,6 +17,10 @@ modified.
   extracted `Sluaghbinder-v0.31b-patch.zip`.
 - Rollback test: the generated rollback command restored the patched copy's
   pre-patch files and database backup; no original folder was touched.
+- Pet overlay check: template `60170003` (Sturdy Zombie) now uses model `467`
+  with no visible weapon, and template `60170004` (Zombie Magician) uses
+  Murkman model `446` while retaining its staff template. Their spell, stat,
+  and damage fields are unchanged.
 
 The public asset is a small binary/source overlay, not a copy of a player's
 runtime. It contains no account, character, inventory, bot, settings, log, or

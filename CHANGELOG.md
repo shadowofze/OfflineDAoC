@@ -1,5 +1,14 @@
 # Offline DAoC changelog
 
+## 2026-09-21 — v0.31b Sluaghbinder pet model polish
+
+- Moved the former Zombie Magician model to the level-7 Sturdy Zombie.
+- Changed the level-12 Zombie Magician to use the existing Murkman model.
+- The Sturdy Zombie remains unarmed; the Zombie Magician keeps its staff,
+  spells, stats, and damage unchanged.
+- This is an optional v0.31b visual-only patch change. The normal v0.3/v0.31
+  releases are unchanged.
+
 ## 2026-09-21 — v0.31 / v0.31b maintenance fixes
 
 - Source-empty PvE camps now use small live spawn clusters and a real nearby

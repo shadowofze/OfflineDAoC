@@ -42,6 +42,11 @@ Persistent autonomous Sluaghbinders retain their existing deterministic build
 choice; this repair only makes the starter and reconciliation equipment honor
 that choice.
 
+The optional pet visuals are aligned with the class design: the level-7 Sturdy
+Zombie uses the former Zombie Magician model without a weapon, while the
+level-12 Zombie Magician uses the existing Murkman model and keeps its staff
+and spell behavior.
+
 ## Maintenance fixes included in the current 0.31b source
 
 The optional source carries the same narrow camp, PvE recovery, Reaver Flexible
