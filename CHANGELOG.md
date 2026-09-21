@@ -1,5 +1,17 @@
 # Offline DAoC changelog
 
+## 2026-09-21 — v0.31 maintenance fixes
+
+- Source-empty PvE camps now use small live spawn clusters and a real nearby
+  creature as the route anchor, with reachability checked before a pull.
+- PvE groups continue with a viable tank, healer, and attacker core when an
+  unreachable meetup member is released. The missing bot uses its normal
+  return route instead of disbanding the party; RvR groups are unchanged.
+- Reaver Flexible equipment is recognized during saved-build loading and
+  repeated inventory/service warnings are rate-limited.
+- Completed training, exchange, repair-kit, sale, and purchase work closes its
+  service assignment promptly instead of leaving a stale route behind.
+
 ## v0.31 — normal maintenance update
 
 - Fixed level-based scaling for player-owned summoned pets and nested pet owners.

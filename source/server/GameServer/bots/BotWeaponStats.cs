@@ -46,7 +46,7 @@ namespace DOL.GS
 
             BotSpec spec = bot.BotSpec;
             if (spec == null || spec.WeaponOneType == 0 && spec.WeaponTwoType == 0)
-                return bot.HasAbilityToUseItem(item);
+                return HasConfiguredWeaponProficiency(bot, item);
 
             eObjectType type = (eObjectType)item.Object_Type;
             return MatchesBuild(spec, type);
@@ -68,7 +68,27 @@ namespace DOL.GS
             IsConfiguredMeleeWeapon(bot, item.Template) &&
             HasFunctionalMeleeStats(item) &&
             item.LevelRequirement <= bot.Level &&
-            bot.HasAbilityToUseItem(item.Template);
+            HasConfiguredWeaponProficiency(bot, item.Template);
+
+        /// <summary>
+        /// Reavers can have a real Flexible specialization while their
+        /// generated ability list is still catching up after a persisted
+        /// build is loaded. The server's normal item check keys off the
+        /// ability object, so that short load window made a legal one-handed
+        /// flexible weapon look unusable and caused repeated starter-weapon
+        /// warnings. Keep the normal ability gate for every other class and
+        /// accept Flexible only when the Reaver has actually trained the line.
+        /// </summary>
+        public static bool HasConfiguredWeaponProficiency(GameBot bot, DbItemTemplate item)
+        {
+            if (bot == null || item == null)
+                return false;
+            if (bot.HasAbilityToUseItem(item))
+                return true;
+            return bot.CharacterClass?.ID == (int)eCharacterClass.Reaver &&
+                   (eObjectType)item.Object_Type == eObjectType.Flexible &&
+                   bot.GetModifiedSpecLevel(Specs.Flexible) > 0;
+        }
 
         public static eObjectType PrimaryType(eObjectType first, eObjectType second, bool twoHanded) =>
             twoHanded && second is eObjectType.TwoHandedWeapon or eObjectType.PolearmWeapon or

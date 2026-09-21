@@ -208,9 +208,11 @@ namespace DOL.GS;
             if (bot?.Inventory == null || item?.Template == null || item.LevelRequirement > bot.Level ||
                 !BotWeaponStats.HasFunctionalMeleeStats(item) ||
                 (BotWeaponStats.IsMeleeWeapon((eObjectType)item.Object_Type) &&
-                 !BotWeaponStats.IsConfiguredMeleeWeapon(bot, item.Template)) ||
+                (!BotWeaponStats.IsConfiguredMeleeWeapon(bot, item.Template) ||
+                 !BotWeaponStats.HasConfiguredWeaponProficiency(bot, item.Template))) ||
                 (BotRangedCombat.IsRangedWeaponType((eObjectType)item.Object_Type) && !BotRangedCombat.IsUsableWeapon(item)) ||
-                !GameServer.ServerRules.CheckAbilityToUseItem(bot, item.Template))
+                (!BotWeaponStats.IsMeleeWeapon((eObjectType)item.Object_Type) &&
+                 !GameServer.ServerRules.CheckAbilityToUseItem(bot, item.Template)))
                 return false;
 
             equipSlot = ResolveEquipmentSlot(bot, item);

@@ -515,6 +515,27 @@ public static class AutonomousObjectiveAssignments
     public static bool WantsBetweenTaskDowntime(GameBot bot) =>
         HasBetweenTaskFlag(bot?.PersistentRecord, 'D');
 
+    /// <summary>
+    /// Closes a maintenance assignment as soon as the work it actually
+    /// requested is complete. The old path waited for the next global
+    /// rebalance (or the thirty-minute lease) even after the sale/listing,
+    /// purchase, or training action had succeeded, leaving stale service
+    /// routes and repeated timeout messages. Optional town downtime keeps
+    /// its own controller-owned clock and is intentionally left alone here.
+    /// </summary>
+    public static bool TryCompleteBetweenTaskServicesIfSatisfied(GameBot bot)
+    {
+        if (!IsBetweenPveTasks(bot) || BetweenTaskServiceExpired(bot) || WantsBetweenTaskDowntime(bot))
+            return false;
+        bool trainingComplete = !WantsBetweenTaskTraining(bot) ||
+            (!bot.HasSpendableAutonomousTrainingPoints && !bot.HasPendingAutonomousTraining);
+        bool inventoryComplete = !WantsBetweenTaskInventory(bot) || AutonomousBotEconomy.GetNeededService(bot) == null;
+        if (!trainingComplete || !inventoryComplete)
+            return false;
+        CompleteBetweenTaskServices(bot);
+        return true;
+    }
+
     public static bool HasBetweenTaskFlag(OfflineWorldBotRecord record, char flag)
     {
         if (!IsBetweenPveTasks(record)) return false;

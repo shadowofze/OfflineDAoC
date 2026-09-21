@@ -21,11 +21,22 @@ private until it is intentionally published in a later, separate update.
   Persistent autonomous gamebots keep their existing scheduling.
 - Fixed the effect-processing lock order that could deadlock three workers and
   leave the world loop frozen while background database work continued.
+- Source-empty camps now use small live spawn clusters and an actual nearby
+  creature as the route anchor. The bot verifies that anchor before pulling,
+  preventing stale averaged points from sending it into an empty pocket.
+- PvE meetups can continue with a viable tank, healer, and attacker core when a
+  member cannot reach the rendezvous. The missing bot releases and uses its
+  normal return route instead of disbanding the whole party. RvR and realm
+  event groups are not changed.
+- Reaver Flexible weapons are accepted when the saved Flexible specialization
+  is present, generated Flexible loot is recognized, and repeated inventory
+  warnings are rate-limited. Completed training and item-service assignments
+  close as soon as their requested work is actually complete.
 
 ## Validation
 
 The normal local build reported zero release-build errors. The full server suite
-passed 1,893/1,893 tests and the launcher suite passed 96/96 tests; the focused
+passed 1,894/1,894 tests and the launcher suite passed 96/96 tests; the focused
 pet/effect and route-policy checks are included in those totals. The public source
 includes the narrow policy tests and the playable update is hash-verified against a
 clean, non-personal v0.3 seed. Static checks and tests are not a promise that every

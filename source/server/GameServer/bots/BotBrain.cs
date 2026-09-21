@@ -1548,6 +1548,8 @@ namespace DOL.AI.Brain
                     ? $"Listed {item.Name} on the Realm Exchange"
                     : $"Kept {item.Name} after its listing failed",
                     listed ? $"Real item listed for {price} copper" : "The real inventory item was not removed");
+                if (listed)
+                    AutonomousObjectiveAssignments.TryCompleteBetweenTaskServicesIfSatisfied(bot);
                 _nextExchangeCheckTick = now + 3_000 + Random.Shared.Next(4_001);
                 return listed;
             }
@@ -1572,8 +1574,11 @@ namespace DOL.AI.Brain
                 {
                     bool listed = AutonomousBotEconomy.TryList(bot, candidate.Item, listingPrice);
                     if (listed)
+                    {
                         SetExchangeStatus(bot, $"Listed {candidate.Item.Name} on the Realm Exchange",
                             $"Real item listed for {listingPrice} copper");
+                        AutonomousObjectiveAssignments.TryCompleteBetweenTaskServicesIfSatisfied(bot);
+                    }
                     return listed;
                 }
 
@@ -1598,6 +1603,7 @@ namespace DOL.AI.Brain
                         equipped ? $"Bought and equipped {purchase.Item.Name}" : $"Bought {purchase.Item.Name} from the Realm Exchange",
                         $"Paid {paidCopper} copper from real saved coin");
                     AutonomousStuckWatchdog.MarkProgress(bot, eAutonomousProgressKind.Money);
+                    AutonomousObjectiveAssignments.TryCompleteBetweenTaskServicesIfSatisfied(bot);
                     _nextExchangeCheckTick = now + 3_000 + Random.Shared.Next(4_001);
                     return true;
                 }
@@ -1650,6 +1656,7 @@ namespace DOL.AI.Brain
                 if (repairKits>0)
                 {
                     SetMerchantStatus(bot,$"Restocked {repairKits} siege repair kits", "Paid from saved coins; topped up to five at the current merchant");
+                    AutonomousObjectiveAssignments.TryCompleteBetweenTaskServicesIfSatisfied(bot);
                     _nextMerchantServiceTick=now+30_000;
                     return true;
                 }
@@ -1665,6 +1672,7 @@ namespace DOL.AI.Brain
                 {
                     SetMerchantStatus(bot, $"Sold {trash.Name} to {merchant.Name}", $"Received {earned} saved copper from a real vendor");
                     AutonomousStuckWatchdog.MarkProgress(bot, eAutonomousProgressKind.Money);
+                    AutonomousObjectiveAssignments.TryCompleteBetweenTaskServicesIfSatisfied(bot);
                     _nextMerchantServiceTick = now + 3_000;
                     return true;
                 }
@@ -1676,6 +1684,7 @@ namespace DOL.AI.Brain
                 _lastBetweenTaskPurchaseAssignment = bot.PersistentRecord.ObjectiveAssignmentId;
                 SetMerchantStatus(bot, $"Bought {purchased.Name} from {merchant.Name}", $"Spent {spent} saved copper on a legal equipment upgrade");
                 AutonomousStuckWatchdog.MarkProgress(bot, eAutonomousProgressKind.Money);
+                AutonomousObjectiveAssignments.TryCompleteBetweenTaskServicesIfSatisfied(bot);
                 _nextMerchantServiceTick = now + 30_000 + Random.Shared.Next(30_001);
                 return true;
             }
