@@ -14,7 +14,7 @@
   usable weapon. Repeated full-inventory/service warnings are rate-limited.
 - Completed training, exchange, repair-kit, sale, and purchase assignments now
   close promptly instead of holding a stale service route until its lease ends.
-- These fixes are source-only until the release assets are rebuilt and hashed;
+- The v0.31 and v0.31b release assets were rebuilt, hash-verified, and published;
   the v0.3 baseline, player data, bot data, saves, settings, and the running
   launcher/server are untouched.
 
