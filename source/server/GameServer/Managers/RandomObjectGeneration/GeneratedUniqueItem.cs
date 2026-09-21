@@ -231,6 +231,7 @@ namespace DOL.GS
                 case eObjectType.Blades:
                 case eObjectType.Blunt:
                 case eObjectType.CrushingWeapon:
+                case eObjectType.Flexible:
                 case eObjectType.HandToHand:
                 case eObjectType.Piercing:
                 case eObjectType.SlashingWeapon:

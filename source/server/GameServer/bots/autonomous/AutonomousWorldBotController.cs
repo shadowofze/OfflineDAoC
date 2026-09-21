@@ -22,6 +22,11 @@ namespace DOL.GS
     public sealed partial class AutonomousWorldBotController
     {
         private const int CampCellSize = 4200;
+        // Source-empty CapnBry zones are rebuilt from live NPCs. Their live
+        // clusters are intentionally smaller than the ordinary 4,200-unit
+        // catalog cell so two nearby spawns cannot be averaged into a wall,
+        // river, or empty ground between them.
+        private const int SourceEmptyCampCellSize = 1500;
         private const int CampArrivalRadius = 1250;
         private const int ImmediateTargetSearchRadius = 2600;
         // Search the local camp rather than one database spawn point. Dungeon
@@ -398,7 +403,10 @@ namespace DOL.GS
                     if (!AutonomousObjectiveAssignments.BetweenTaskServiceExpired(bot))
                     {
                         if (AutonomousObjectiveAssignments.WantsBetweenTaskTraining(bot) && HandlePendingTraining(bot))
+                        {
+                            AutonomousObjectiveAssignments.TryCompleteBetweenTaskServicesIfSatisfied(bot);
                             return true;
+                        }
                         if (AutonomousObjectiveAssignments.WantsBetweenTaskInventory(bot) && TryRouteToNeededService(bot))
                             return true;
                         if (AutonomousObjectiveAssignments.WantsBetweenTaskDowntime(bot) && HandleTownIdle(brain, bot))
@@ -2275,7 +2283,8 @@ namespace DOL.GS
                 {
                     bool verifyRoute = bot.CurrentZone?.IsDungeon == true ||
                         AutonomousAuditedCampPolicy.RequiresVerifiedTargetRoute(
-                            npc.CurrentRegionID, npc.Name);
+                            npc.CurrentRegionID, npc.Name) ||
+                        IsSourceEmptyCamp(_camp?.Id);
                     return !verifyRoute || AutonomousDungeonTargetRoute.CanReach(
                         PathfindingProvider.Instance, bot.CurrentZone,
                         new(bot.X, bot.Y, bot.Z), new(npc.X, npc.Y, npc.Z));
@@ -2606,26 +2615,37 @@ namespace DOL.GS
                 // Hibernia SI maps). Preserve the old live-spawn behavior only
                 // for those explicitly source-empty zones. A local coordinate
                 // can never override a CapnBry coordinate in a covered zone.
-                foreach (IGrouping<(ushort RegionId, int CellX, int CellY, string Name), CampMonster> group in
+                foreach (IGrouping<(ushort ZoneId, ushort RegionId, int CellX, int CellY, string Name, int Level), CampMonster> group in
                          liveByZoneAndName
                              .Where(pair => AutonomousCapnBryGoalCatalog.SourceEmptySupportedZoneIds.Contains(pair.Key.ZoneId))
                              .SelectMany(pair => pair.Value)
                              .Where(npc => npc.CurrentZone?.IsDungeon != true)
-                             .GroupBy(npc => (npc.CurrentRegionID, npc.X / CampCellSize, npc.Y / CampCellSize, npc.Name)))
+                             .GroupBy(npc => (npc.CurrentZone.ID, npc.CurrentRegionID,
+                                 npc.X / SourceEmptyCampCellSize, npc.Y / SourceEmptyCampCellSize,
+                                 npc.Name.Trim().ToLowerInvariant(), npc.EffectiveLevel)))
                 {
                     CampMonster[] members = group.ToArray();
-                    CampMonster representative = members[0];
-                    if (restoredGroups.ContainsKey((representative.CurrentZone.ID,
-                        group.Key.Name, group.Key.CellX, group.Key.CellY)))
+                    // Pick an actual live NPC nearest the cluster centroid.
+                    // Never publish the arithmetic average as a destination:
+                    // that point can be between disconnected spawn surfaces.
+                    float averageX = (float)members.Average(npc => npc.X);
+                    float averageY = (float)members.Average(npc => npc.Y);
+                    CampMonster representative = members
+                        .OrderBy(npc => Math.Abs(npc.X - averageX) + Math.Abs(npc.Y - averageY))
+                        .ThenBy(npc => npc.InternalId, StringComparer.Ordinal)
+                        .First();
+                    bool overlapsRestoredCell = restoredGroups.Keys.Any(key =>
+                        key.ZoneId == representative.CurrentZone.ID &&
+                        string.Equals(key.Name, group.Key.Name, StringComparison.OrdinalIgnoreCase) &&
+                        key.CellX == representative.X / CampCellSize &&
+                        key.CellY == representative.Y / CampCellSize);
+                    if (overlapsRestoredCell)
                         continue;
-                    int x = (int)Math.Round(members.Average(npc => npc.X));
-                    int y = (int)Math.Round(members.Average(npc => npc.Y));
-                    int z = (int)Math.Round(members.Average(npc => npc.Z));
-                    string id = $"capnbry-source-empty:{group.Key.RegionId}:{group.Key.CellX}:{group.Key.CellY}:{group.Key.Name}";
+                    string id = $"capnbry-source-empty:{group.Key.ZoneId}:{group.Key.RegionId}:{group.Key.CellX}:{group.Key.CellY}:{group.Key.Name}:{group.Key.Level}";
                     cells.Add(new CampCatalogCell(id, group.Key.Name,
                         representative.CurrentZone.Description ?? representative.CurrentZone.ZoneRegion?.Description ?? $"region {group.Key.RegionId}",
                         group.Key.RegionId,
-                        x, y, z,
+                        representative.X, representative.Y, representative.Z,
                         members.Select(npc => npc.EffectiveLevel).OrderBy(level => level).ToArray(),
                         members.Length, representative.CurrentZone,
                         representative.CurrentZone.ZoneRegion?.IsDungeon == true || representative.CurrentZone.IsDungeon,
@@ -2635,6 +2655,10 @@ namespace DOL.GS
                 AddVerifiedDungeonCamps(cells, liveByZoneAndName);
                 return cells.ToArray();
         }
+
+        private static bool IsSourceEmptyCamp(string campId) =>
+            !string.IsNullOrWhiteSpace(campId) &&
+            campId.StartsWith("capnbry-source-empty:", StringComparison.OrdinalIgnoreCase);
 
         private void AbandonCamp(GameBot bot, string reason)
         {

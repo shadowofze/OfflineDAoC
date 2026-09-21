@@ -27,6 +27,28 @@ unlock the Epic Spells page and its stationary, player-only skeletal services.
 Quest objectives and locations are intentionally discovered in-game; this file
 does not spoil their clues.
 
+The included launcher also carries the v0.31 exchange-layout repair: Eilwen's
+two Sentinel Exchange Guards are placed beside her in Tir na Nog. The repair is
+limited to those two Hibernian guard rows and does not move Eilwen or any other
+broker.
+
+The companion `/spawn` path now commits each Sluaghbinder to one advanced
+build at creation. Bulwark companions start with blunt and shield, Bane
+companions start with a scythe, and Covenant companions randomly choose either
+weapon plan while retaining their pet-focused spell and buff line. The normal
+Sluaghbinder spell/style filtering is build-specific, so a companion receives
+only its chosen path's taunts, scythe/life-steal/rot tools, or pet enhancements.
+Persistent autonomous Sluaghbinders retain their existing deterministic build
+choice; this repair only makes the starter and reconciliation equipment honor
+that choice.
+
+## Maintenance fixes included in the current 0.31b source
+
+The optional source carries the same narrow camp, PvE recovery, Reaver Flexible
+equipment, and stale service-assignment fixes as normal v0.31. They do not alter
+Sluaghbinder rules, player-only skeletal services, realm-event groups, or the
+preserved v0.3 baseline.
+
 ## If you want to develop with an LLM
 
 Fork the repository and give the fork and `AGENTS.md` to the LLM. The complete
