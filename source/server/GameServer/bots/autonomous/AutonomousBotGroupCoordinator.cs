@@ -1360,9 +1360,9 @@ public static partial class AutonomousBotGroupCoordinator
             return false;
         }
         if (raidView == null && session.ObjectiveKind == eAutonomousObjectiveKind.GroupPve &&
-            (members.Length != 8 || !HasRequiredPveComposition(session, members)))
+            !HasViablePveComposition(session, members))
         {
-            FinishGroupTask(session, "The locked PvE party no longer has all eight assigned roles");
+            FinishGroupTask(session, "The PvE party no longer has a viable tank, healer, and attacker roster");
             return false;
         }
         if (members.Length < 2)
@@ -1677,8 +1677,7 @@ public static partial class AutonomousBotGroupCoordinator
         {
             foreach (GameBot member in missing)
                 LogNoShow(session, member, now);
-            FinishGroupTask(session,
-                $"Locked meetup failed because {string.Join(", ", missing.Select(member => member.Name))} did not arrive");
+            ReducePvePartyAfterNoShows(session, members, missing, now);
             return;
         }
         GameBot leader = ChooseLeader(session, members);
@@ -1762,6 +1761,96 @@ public static partial class AutonomousBotGroupCoordinator
         session.Attendance.Rebase(members.Select(MemberKey), now);
         foreach (GameBot member in members)
             session.Attendance.Observe(MemberKey(member), now, AtRendezvous(session, member));
+    }
+
+    /// <summary>
+    /// PvE parties may continue after a route failure removes one or more
+    /// meetup no-shows. The initial roster is still formed with eight bots;
+    /// this predicate only governs safe continuation after that point.
+    /// Realm-event and RvR parties do not use this rule.
+    /// </summary>
+    private static bool HasViablePveComposition(Session session, GameBot[] members)
+    {
+        if (session == null || members == null || members.Length < 3 ||
+            members.Any(member => !session.PveRoles.ContainsKey(MemberKey(member))))
+            return false;
+
+        int tanks = members.Count(member => session.PveRoles[MemberKey(member)] == BotPveGroupRole.Tank);
+        int healers = members.Count(member => session.PveRoles[MemberKey(member)] == BotPveGroupRole.Healer);
+        int attackers = members.Count(member => session.PveRoles[MemberKey(member)] == BotPveGroupRole.Attacker);
+        return tanks > 0 && healers > 0 && attackers > 0;
+    }
+
+    private static void ReducePvePartyAfterNoShows(Session session, GameBot[] members,
+        GameBot[] missing, long now)
+    {
+        if (session == null || members == null || missing == null || missing.Length == 0)
+            return;
+
+        session.ProcessingAttendanceRemovals = true;
+        try
+        {
+            foreach (GameBot member in missing)
+            {
+                session.PveRoles.Remove(MemberKey(member));
+                session.Group.RemoveMember(member, retainSingleRemainingMember: true);
+                AutonomousObjectiveAssignments.BeginSoloAfterGroupTask(member,
+                    "Could not reach the PvE rendezvous; choosing independent work");
+            }
+        }
+        finally
+        {
+            session.ProcessingAttendanceRemovals = false;
+        }
+
+        GameBot[] remaining = BotMembers(session.Group);
+        session.LockedSize = remaining.Length;
+        session.Camp = null;
+        session.PreferredLevelBonus = RollPreferredLevelBonus(remaining.Length) - session.WipePenalty;
+        if (!HasViablePveComposition(session, remaining))
+        {
+            FinishGroupTask(session,
+                $"PvE meetup lost {string.Join(", ", missing.Select(member => member.Name))} and no viable core roster remained");
+            return;
+        }
+
+        GameBot leader = ChooseLeader(session, remaining);
+        if (leader == null)
+        {
+            FinishGroupTask(session, "No living PvE leader remained after unreachable members were released");
+            return;
+        }
+
+        if (missing.Contains(session.Leader))
+        {
+            session.Leader = leader;
+            if (!TryChooseRendezvous(leader, session.ObjectiveKind, out Vector3 point,
+                    out string name, out ushort region))
+            {
+                FinishGroupTask(session, "No validated replacement PvE rendezvous was reachable");
+                return;
+            }
+            session.Rendezvous = point;
+            session.RendezvousName = name;
+            session.RendezvousRegion = region;
+            session.Phase = "Leader staging";
+            session.LeaderReadyForAssembly = false;
+            session.Attendance.Reset();
+            session.LeaderStagingDeadlineTick = now + LeaderStagingTimeoutMilliseconds;
+            session.LeaderStagingDeadlineUtc = DateTime.UtcNow.AddMilliseconds(LeaderStagingTimeoutMilliseconds);
+        }
+
+        if (!TryBuildRendezvousSlots(session, remaining))
+        {
+            FinishGroupTask(session, "The reduced PvE party had no valid formation slots");
+            return;
+        }
+
+        RebaseAttendance(session, remaining);
+        Log.Warn($"AUTONOMOUS_GROUP_PARTIAL_ROSTER group={session.Id} " +
+                 $"removed=\"{string.Join(",", missing.Select(member => member.Name))}\" " +
+                 $"remaining={remaining.Length} reason=unreachable-rendezvous action=continue");
+        WriteSessionMetadata(session, remaining);
     }
 
     private static void FinishGroupTask(Session session, string reason)
@@ -1957,12 +2046,14 @@ public static partial class AutonomousBotGroupCoordinator
             string roleName = session.PveRoles.TryGetValue(MemberKey(deadBot), out BotPveGroupRole role)
                 ? BotPartyRoles.GroupRoleLabel(role) : "unknown";
             Log.Warn($"AUTONOMOUS_GROUP_RESURRECTION_TIMEOUT group={session.Id} bot=\"{deadBot.Name}\" " +
-                     $"role=\"{roleName}\" combatClearSeconds=60 action=release-and-disband " +
+                     $"role=\"{roleName}\" combatClearSeconds=60 action=release-and-rejoin " +
                      $"corpse={deadBot.CurrentRegionID}:{deadBot.X},{deadBot.Y},{deadBot.Z} " +
                      $"resurrectors=\"{string.Join(";", members.Where(m => m.ResurrectionSpell != null).Select(m =>
                          $"{m.Name}:alive={m.IsAlive}:region={m.CurrentRegionID}:distance={m.GetDistanceTo(deadBot)}:mana={m.ManaPercent}:casting={m.IsCasting}:interrupted={m.IsBeingInterruptedByOther}"))}\"");
-            FinishGroupTask(session, $"{deadBot.Name} could not be resurrected within one minute after combat");
-            return PveCorpseDisposition.ReleaseAndDisband;
+            // A missed resurrection is a member-recovery problem, not a party
+            // wipe. The dead bot releases to bind and uses its normal
+            // return-to-party route while the surviving PvE roster continues.
+            return PveCorpseDisposition.ReleaseAndRejoin;
         }
     }
 
@@ -2342,12 +2433,12 @@ public static partial class AutonomousBotGroupCoordinator
         }
         GameBot[] members = BotMembers(group);
         bool requiredSize = AutonomousRealmRaid.GetView(group) != null || session.ObjectiveKind != eAutonomousObjectiveKind.GroupPve ||
-                            members.Length == 8 && HasRequiredPveComposition(session, members);
+                            HasViablePveComposition(session, members);
         if (members.Length >= 2 && requiredSize && members.All(member => member.Group == group) &&
             !group.GetMembersInTheGroup().Any(member => member is GamePlayer))
             return;
         FinishGroupTask(session, session.ObjectiveKind == eAutonomousObjectiveKind.GroupPve && !requiredSize
-            ? "The locked PvE party lost a member or required role"
+            ? "The PvE party lost its viable tank, healer, or attacker core"
             : members.Length < 2
             ? "Fewer than two active members remain; dissolving the orphaned party"
             : "The group roster is no longer valid");

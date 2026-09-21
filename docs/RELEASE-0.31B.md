@@ -42,6 +42,13 @@ Persistent autonomous Sluaghbinders retain their existing deterministic build
 choice; this repair only makes the starter and reconciliation equipment honor
 that choice.
 
+## Maintenance fixes included in the current 0.31b source
+
+The optional source carries the same narrow camp, PvE recovery, Reaver Flexible
+equipment, and stale service-assignment fixes as normal v0.31. They do not alter
+Sluaghbinder rules, player-only skeletal services, realm-event groups, or the
+preserved v0.3 baseline.
+
 ## If you want to develop with an LLM
 
 Fork the repository and give the fork and `AGENTS.md` to the LLM. The complete

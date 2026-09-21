@@ -107,6 +107,7 @@ namespace DOL.GS
         public BotSpec BotSpec { get; private set; }
         public eBotStance Stance { get; set; } = eBotStance.Auto;
         private int m_leftOverSpecPoints;
+        private long _nextWeaponRepairWarningTick;
 
         public override IList GetExamineMessages(GamePlayer player)
         {
@@ -4207,8 +4208,15 @@ namespace DOL.GS
                     SwitchWeapon(eActiveWeaponSlot.Standard);
                 else if (twoHandReady)
                     SwitchWeapon(eActiveWeaponSlot.TwoHanded);
-                else if (log.IsWarnEnabled)
+                else if (log.IsWarnEnabled && GameLoop.GameLoopTime >= _nextWeaponRepairWarningTick)
+                {
+                    // Weapon reconciliation runs from the ordinary bot pulse.
+                    // A full backpack or a temporarily unavailable service is
+                    // not a new failure every pulse; rate-limit the diagnostic
+                    // while retaining the retry and preserving all real items.
+                    _nextWeaponRepairWarningTick = GameLoop.GameLoopTime + 60_000;
                     log.Warn($"No usable {preferredType} weapon or free replacement slot for bot {Name}; preserving existing inventory.");
+                }
             }
 
             return changed;

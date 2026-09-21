@@ -1,5 +1,23 @@
 # Offline DAoC changelog
 
+## 2026-09-21 — v0.31 / v0.31b maintenance fixes
+
+- Source-empty PvE camps now use small live spawn clusters and a real nearby
+  creature as the route anchor. Bots verify that anchor before pulling, so a
+  stale average point cannot send them into an empty or unreachable pocket.
+- PvE groups can continue with a viable tank, healer, and attacker core when a
+  member cannot reach the meetup. The missing bot is released to rejoin on its
+  normal route instead of disbanding the whole party. Realm-event and RvR
+  groups are unchanged.
+- Reaver Flexible weapons now pass the configured-proficiency check while a
+  saved build finishes loading, and generated Flexible loot is classified as a
+  usable weapon. Repeated full-inventory/service warnings are rate-limited.
+- Completed training, exchange, repair-kit, sale, and purchase assignments now
+  close promptly instead of holding a stale service route until its lease ends.
+- These fixes are source-only until the release assets are rebuilt and hashed;
+  the v0.3 baseline, player data, bot data, saves, settings, and the running
+  launcher/server are untouched.
+
 ## 2026-09-20 — Sluaghbinder companion build plans
 
 - Fixed Hibernian `/spawn` Sluaghbinder companions always receiving the
