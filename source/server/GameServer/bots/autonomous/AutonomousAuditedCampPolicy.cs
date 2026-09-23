@@ -5,6 +5,14 @@ namespace DOL.GS
     /// <summary>Measured historical-anchor/live-level mismatches, not new spawns.</summary>
     public static class AutonomousAuditedCampPolicy
     {
+        // The Salisbury spirit spawn is surrounded within a few hundred units
+        // by aggressive undead druids and filidh above the spirit's level.
+        // Keep the real target available to formed parties, but do not send a
+        // solo leveler into the pack for a nominally green spirit goal.
+        public static bool CanAssignToParty(string campId, int partySize) =>
+            !string.Equals(campId, "capnbry:1:1:3:spirit", StringComparison.OrdinalIgnoreCase) ||
+            partySize >= 4;
+
         public static bool UsesLiveAnchor(ushort region, string name) =>
             (region == 200 && name?.ToLowerInvariant() is
                 "orchard nipper" or "lugradan whelp" or "luricaduane" or "hill toad" or "feccan") ||
