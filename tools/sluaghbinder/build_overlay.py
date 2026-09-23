@@ -1,9 +1,9 @@
 """Build the small, static SQLite overlay used by the optional Sluaghbinder patch.
 
 The source database is read-only.  Only rows owned by class 63, the named
-Sluaghbinder lines/spells/styles/pet templates, and Muirenn's two world rows
-are copied.  Accounts, characters, inventory, bots, settings, logs, and any
-other save data never enter the overlay.
+Sluaghbinder lines/spells/styles/pet templates, Muirenn's two world rows, and
+the feature's own NPC equipment templates are copied. Accounts, characters,
+inventory, bots, settings, logs, and any other save data never enter the overlay.
 
 Usage:
     python build_overlay.py --source-db <new-class-test-db> --output <overlay.json>
@@ -35,6 +35,13 @@ PET_TEMPLATE_IDS = tuple(range(60170001, 60170008))
 MOB_IDS = (
     "sluaghbinder_trainer_tir_na_nog",
     "sluaghbinder_bound_wisp_tir_na_nog",
+)
+EQUIPMENT_TEMPLATE_IDS = (
+    "sluagh_zombie_magician_staff",
+    "sluagh_zombie_guardian_mace_shield",
+    "sluagh_zombie_priest_mace_buckler",
+    "sluagh_cairn_dullahan_flail_shield",
+    "SluaghbinderMuirennBlack",
 )
 
 
@@ -72,6 +79,8 @@ def select_rows(db: sqlite3.Connection, table: str) -> list[dict[str, object]]:
         ]
     if table == "NpcTemplate":
         return [r for r in rows if r.get("TemplateId") in PET_TEMPLATE_IDS]
+    if table == "NPCEquipment":
+        return [r for r in rows if r.get("TemplateID") in EQUIPMENT_TEMPLATE_IDS]
     if table == "Mob":
         return [r for r in rows if r.get("Mob_ID") in MOB_IDS]
     raise RuntimeError(f"No selector is defined for {table}")
@@ -106,6 +115,7 @@ def main() -> None:
                     "Style",
                     "Spell",
                     "NpcTemplate",
+                    "NPCEquipment",
                     "Mob",
                 )
             },
@@ -113,7 +123,9 @@ def main() -> None:
     for table, value in payload["tables"].items():
         if not value["rows"]:
             raise SystemExit(f"No Sluaghbinder rows selected from {table}")
-    output.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    # Write deterministic LF bytes on Windows too. Text-mode newline conversion
+    # would otherwise rewrite the whole tracked overlay as CRLF on each build.
+    output.write_bytes((json.dumps(payload, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
     print(f"Wrote {output}")
     for table, value in payload["tables"].items():
         print(f"{table}: {len(value['rows'])} rows")

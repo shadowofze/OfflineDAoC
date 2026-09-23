@@ -23,10 +23,9 @@ namespace DOL.GS
                 ? spec
                 : Choose(seed, deterministic);
 
-            // Every new helper receives a usable mace first.  Scythes are
-            // added as the Bane/Covenant plan's preferred upgrade path, while
-            // the shield is supplied by the class career in GameBot.  This
-            // keeps low-level spawns safe before their first weapon upgrade.
+            // The selected weapon plan is visible at creation. Bulwark and
+            // mace Covenant use a mace and shield; Bane and scythe Covenant
+            // start with a scythe rather than waiting for a loot upgrade.
             WeaponOneType = eObjectType.Blunt;
             WeaponTwoType = 0;
             Is2H = false;
@@ -45,8 +44,8 @@ namespace DOL.GS
 
                 case eSpecType.SluaghbinderCovenant:
                     // Covenant is deliberately flexible: its priority is pet
-                    // upkeep, so it may stay with mace/shield or earn a
-                    // scythe without changing the spell plan.
+                    // upkeep, so it may roll mace/shield or scythe without
+                    // changing the spell plan.
                     if (ChooseCovenantScythe(seed, deterministic))
                     {
                         WeaponTwoType = eObjectType.Scythe;

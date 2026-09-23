@@ -30,7 +30,11 @@ For a v0.31 fork, keep the ordinary release and source versioned together. Do no
 commit runtime saves, accounts, logs, or private backups. If you want the old
 baseline, branch from the `v0.3` tag instead of deleting or rewriting v0.31.
 
-For the optional class, use the `v0.31b` tag/release. The patcher is copy-first:
+For the optional class, use the `v0.31b` playable release and the
+`release/v0.31b-sluaghbinder` branch for its latest maintenance source. The
+original `v0.31b` Git tag records the first publication and is not rewritten
+for later pet updates; the release's explicit updated-source ZIP and that
+branch carry the matching current source. The patcher is copy-first:
 it accepts only a clean v0.3/v0.31 installation, validates hashes and the DB
 schema, writes a rollback backup, and leaves the selected base untouched. The
 public launcher label is 0.31b; the private local 0.4 label is not part of this
@@ -49,6 +53,7 @@ repository.
 | Active meshes | `playable/runtime/server/navmesh` |
 | World definitions and local saves | `playable/runtime/data/opendaoc.sqlite3.db` — never commit after playing |
 | Texture tool source | `tools/asset-tool` |
+| Sluaghbinder private pet texture handoff | [`docs/LLM-SLUAGHBINDER-PET-TEXTURES.md`](LLM-SLUAGHBINDER-PET-TEXTURES.md) |
 | Ready-to-run texture tool | `playable/OFFLINE DAOC ASSET TOOL` |
 | Native raid UI builder | `tools/build-client-raid.py` and `source/server/tools` |
 

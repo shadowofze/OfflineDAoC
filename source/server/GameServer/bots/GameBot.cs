@@ -3742,7 +3742,12 @@ namespace DOL.GS
                 // Equipment generators read Level. Temporarily exposing the rolled
                 // gear level keeps the character fully trained at its real level.
                 Level = IsTemporaryGroupHelper ? characterLevel : equipmentLevel;
-                bool mayUseOffhand = BotSpec?.SpecType is eSpecType.DualWield or eSpecType.DualWieldAndShield or eSpecType.LeftAxe || BestShieldLevel > 0;
+                // A Bane or scythe-leaning Covenant plan has no offhand even
+                // though the Sluaghbinder class can use shields generally.
+                bool sluaghbinderScythePlan = SluaghbinderUsesScythe;
+                bool mayUseOffhand = !sluaghbinderScythePlan &&
+                    (BotSpec?.SpecType is eSpecType.DualWield or eSpecType.DualWieldAndShield or eSpecType.LeftAxe ||
+                     BestShieldLevel > 0);
                 bool includeOffhand = TemporaryCompanionBalance.EquipOffhand(IsTemporaryGroupHelper, characterLevel, mayUseOffhand, Random.Shared.NextDouble());
                 SetWeapons(includeOffhand);
                 if (includeOffhand)
@@ -3815,19 +3820,12 @@ namespace DOL.GS
                 case eSpecType.SluaghbinderBulwark:
                 case eSpecType.SluaghbinderBane:
                 case eSpecType.SluaghbinderCovenant:
-                    // All Sluaghbinder bots receive a legal one-handed mace
-                    // first.  Bane and scythe-leaning Covenant plans also
-                    // carry their preferred scythe; the normal active-slot
-                    // selection below chooses it only for those plans.
-                    BotEquipment.SetMeleeWeapon(this, eObjectType.Blunt, eHand.oneHand);
-                    // The class career always begins with the generated mace
-                    // and shield.  A planned Bane/Covenant scythe becomes the
-                    // active weapon only after a real loot upgrade has been
-                    // acquired; this applies equally to persistent world bots
-                    // and temporary companion helpers.
-                    if (BotSpec.WeaponTwoType == eObjectType.Scythe &&
-                        SluaghbinderScytheUpgradeAvailable)
+                    // Show the chosen build immediately, not only after a
+                    // future loot upgrade supplies its preferred weapon.
+                    if (SluaghbinderUsesScythe)
                         BotEquipment.SetMeleeWeapon(this, eObjectType.Scythe, eHand.twoHand);
+                    else
+                        BotEquipment.SetMeleeWeapon(this, eObjectType.Blunt, eHand.oneHand);
                     break;
 
                 case eSpecType.DualWield:
@@ -3916,17 +3914,15 @@ namespace DOL.GS
             int level, bool plannedTwoHanded, eObjectType plannedWeapon = 0) =>
             plannedTwoHanded && level >= PlannedTwoHandedUnlockLevel(classId, plannedWeapon);
 
-        private bool SluaghbinderScytheUpgradeAvailable =>
+        private bool SluaghbinderUsesScythe =>
             CharacterClass?.ID == (int)eCharacterClass.Sluaghbinder &&
             BotSpec?.WeaponTwoType == eObjectType.Scythe &&
-            Inventory?.AllItems?.Any(item =>
-                item != null && (eObjectType)item.Object_Type == eObjectType.Scythe &&
-                !string.Equals(item.Creator, nameof(GameBot), StringComparison.Ordinal)) == true;
+            BotSpec?.Is2H == true;
 
         private bool PrimaryWeaponUsesTwoHands =>
             (CharacterClass?.ID == (int)eCharacterClass.Sluaghbinder &&
              BotSpec?.WeaponTwoType == eObjectType.Scythe
-                ? SluaghbinderScytheUpgradeAvailable
+                ? SluaghbinderUsesScythe
                 : ShouldUsePlannedTwoHandedPrimary((eCharacterClass)(CharacterClass?.ID ?? 0),
                     Level, BotSpec?.Is2H == true, BotSpec?.WeaponTwoType ?? 0)) ||
             CharacterClass?.ClassType == eClassType.ListCaster ||
@@ -4176,11 +4172,10 @@ namespace DOL.GS
             bool hasSluaghbinderShield = Inventory.AllItems.Any(item =>
                 item != null && (eObjectType)item.Object_Type == eObjectType.Shield);
             if (CharacterClass.ID == (int)eCharacterClass.Sluaghbinder &&
-                BestShieldLevel > 0 && !hasSluaghbinderShield)
+                !SluaghbinderUsesScythe && BestShieldLevel > 0 && !hasSluaghbinderShield)
             {
-                // The shield is a class-career item, not a weapon-plan
-                // choice.  Keep it present even while a Bane/Covenant bot is
-                // still using its starter mace.
+                // Bulwark and mace-and-shield Covenant use the class-career
+                // shield. A scythe plan intentionally has no active offhand.
                 BotEquipment.SetShield(this, BestShieldLevel);
                 changed = true;
             }

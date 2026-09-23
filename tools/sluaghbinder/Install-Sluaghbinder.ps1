@@ -28,6 +28,16 @@ function Get-Value($row, [string]$column) {
     return $property.Value
 }
 
+function Resolve-PatchPath([string]$root, [string]$relative) {
+    if ([string]::IsNullOrWhiteSpace($relative) -or [IO.Path]::IsPathRooted($relative) -or
+        $relative.Contains(':')) { throw "Unsafe patch path: $relative" }
+    $base = [IO.Path]::GetFullPath($root).TrimEnd([char[]]@('\','/'))
+    $resolved = [IO.Path]::GetFullPath((Join-Path $base $relative))
+    if (!$resolved.StartsWith($base + [IO.Path]::DirectorySeparatorChar,
+            [StringComparison]::OrdinalIgnoreCase)) { throw "Patch path escapes its folder: $relative" }
+    return $resolved
+}
+
 function Invoke-Db($connection, $transaction, [string]$sql, [hashtable]$parameters = @{}) {
     $command = $connection.CreateCommand()
     $command.CommandText = $sql
@@ -95,6 +105,15 @@ function Apply-Overlay($connection, $overlay) {
         Invoke-Db $connection $transaction 'DELETE FROM "Style" WHERE "ClassId"=63' | Out-Null
         Invoke-Db $connection $transaction 'DELETE FROM "Spell" WHERE "Spell_ID" LIKE ''Sluaghbinder_%'' OR "SpellID" BETWEEN 59000 AND 59084' | Out-Null
         Delete-In $connection $transaction 'NpcTemplate' 'TemplateId' @(60170001,60170002,60170003,60170004,60170005,60170006,60170007)
+        if ($overlay.tables.PSObject.Properties['NPCEquipment']) {
+            Delete-In $connection $transaction 'NPCEquipment' 'TemplateID' @(
+                'sluagh_zombie_magician_staff',
+                'sluagh_zombie_guardian_mace_shield',
+                'sluagh_zombie_priest_mace_buckler',
+                'sluagh_cairn_dullahan_flail_shield',
+                'SluaghbinderMuirennBlack'
+            )
+        }
         Delete-In $connection $transaction 'Mob' 'Mob_ID' @('sluaghbinder_trainer_tir_na_nog','sluaghbinder_bound_wisp_tir_na_nog')
 
         foreach ($tableProperty in $overlay.tables.PSObject.Properties) {
@@ -183,26 +202,92 @@ try {
 # the small executable works on the same .NET runtime used by the launcher.
 $patcher = Join-Path $packageRoot 'patcher\OfflineDaoc.SluaghbinderPatch.exe'
 if (!(Test-Path -LiteralPath $patcher)) { throw 'Patch package is missing patcher\OfflineDaoc.SluaghbinderPatch.exe.' }
+$assetDirectory = Join-Path $packageRoot 'client-assets-v0.31b'
+if (!(Test-Path -LiteralPath $assetDirectory -PathType Container)) {
+    throw 'Patch package is missing client-assets-v0.31b.'
+}
+$clientApp = Join-Path $destination 'runtime\client-opendaoc\app'
+$assetStage = Resolve-PatchPath $destination 'runtime\.sluaghbinder-client-stage'
+if (Test-Path -LiteralPath $assetStage) { throw 'Client asset staging folder already exists.' }
+$assetArgs = '--client-app "' + $clientApp + '" --asset-dir "' + $assetDirectory + '" --asset-output "' + $assetStage + '"'
+$assetProcess = Start-Process -FilePath $patcher -ArgumentList $assetArgs -Wait -PassThru -NoNewWindow
+if ($assetProcess.ExitCode -ne 0) { throw 'Sluaghbinder client asset preparation failed; the original installation was not modified.' }
+
 $patcherArgs = '--database "' + $targetDb + '" --overlay "' + $overlayPath + '"'
 $patcherProcess = Start-Process -FilePath $patcher -ArgumentList $patcherArgs -Wait -PassThru -NoNewWindow
 if ($patcherProcess.ExitCode -ne 0) { throw 'The Sluaghbinder database migration failed; the original installation was not modified.' }
 
-$replacements = @()
-foreach ($item in @($patchManifest.Files)) {
+$files = @($patchManifest.Files)
+if (!$files.Count) { throw 'Patch manifest has no payload files.' }
+$seenPaths = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
+$payloadEntries = @()
+foreach ($item in $files) {
     $relative = [string]$item.Path
-    $payload = Join-Path $packageRoot ('payload-v0.31b\' + $relative)
-    $target = Join-Path $destination $relative
-    if (!(Test-Path -LiteralPath $payload)) { throw "Patch payload is missing: $relative" }
-    if (!(Test-Path -LiteralPath $target)) { throw "The selected base is missing patch target: $relative" }
+    if (!$seenPaths.Add($relative)) { throw "Duplicate patch payload path: $relative" }
+    $payload = Resolve-PatchPath (Join-Path $packageRoot 'payload-v0.31b') $relative
+    $target = Resolve-PatchPath $destination $relative
+    if (!(Test-Path -LiteralPath $payload -PathType Leaf)) { throw "Patch payload is missing: $relative" }
     if ((Get-FileHash -LiteralPath $payload -Algorithm SHA256).Hash -ne $item.SHA256) { throw "Patch payload hash mismatch: $relative" }
+    if ((Test-Path -LiteralPath $target) -and !(Test-Path -LiteralPath $target -PathType Leaf)) {
+        throw "Patch target is not a file: $relative"
+    }
+    $existedBefore = Test-Path -LiteralPath $target -PathType Leaf
+    if (!$existedBefore -and !([bool]$item.AllowCreate)) {
+        throw "The selected base is missing patch target: $relative"
+    }
+    $payloadEntries += [pscustomobject]@{
+        Path=$relative; Payload=$payload; Target=$target; ExistedBefore=$existedBefore; SHA256=[string]$item.SHA256
+    }
+}
+
+# Build the two private meshes and three catalog/texture archives from this
+# copied client's own verified base assets. This merges named rows and DDS
+# entries instead of replacing an entire archive from somebody else's game.
+$clientAssetPaths = @(
+    'gamedata.mpk',
+    'figures\skins\skin099.mpk',
+    'figures\skins\skin106.mpk',
+    'figures\Sluaghbinder_ZombieDefender.NIF',
+    'figures\Sluaghbinder_Dullahan.NIF'
+)
+foreach ($assetRelative in $clientAssetPaths) {
+    $relative = 'runtime\client-opendaoc\app\' + $assetRelative
+    if (!$seenPaths.Add($relative)) { throw "Duplicate patch payload path: $relative" }
+    $payload = Resolve-PatchPath $assetStage $assetRelative
+    $target = Resolve-PatchPath $destination $relative
+    if (!(Test-Path -LiteralPath $payload -PathType Leaf)) { throw "Prepared client asset is missing: $assetRelative" }
+    if ((Test-Path -LiteralPath $target) -and !(Test-Path -LiteralPath $target -PathType Leaf)) {
+        throw "Client asset target is not a file: $assetRelative"
+    }
+    $existedBefore = Test-Path -LiteralPath $target -PathType Leaf
+    if (!$existedBefore -and !$assetRelative.EndsWith('.NIF', [StringComparison]::OrdinalIgnoreCase)) {
+        throw "The selected base is missing a required client archive: $assetRelative"
+    }
+    $payloadEntries += [pscustomobject]@{
+        Path=$relative; Payload=$payload; Target=$target; ExistedBefore=$existedBefore
+        SHA256=(Get-FileHash -LiteralPath $payload -Algorithm SHA256).Hash
+    }
+}
+
+$replacements = @()
+foreach ($entry in $payloadEntries) {
+    $relative = [string]$entry.Path
+    $target = [string]$entry.Target
     $backup = Join-Path $backupRoot $relative
-    New-Item -ItemType Directory -Path (Split-Path -Parent $backup) -Force | Out-Null
-    Copy-Item -LiteralPath $target -Destination $backup -Force
-    $before = (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash
-    Copy-Item -LiteralPath $payload -Destination $target -Force
+    $before = $null
+    if ($entry.ExistedBefore) {
+        New-Item -ItemType Directory -Path (Split-Path -Parent $backup) -Force | Out-Null
+        Copy-Item -LiteralPath $target -Destination $backup -Force
+        $before = (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash
+    }
+    New-Item -ItemType Directory -Path (Split-Path -Parent $target) -Force | Out-Null
+    Copy-Item -LiteralPath $entry.Payload -Destination $target -Force
     $after = (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash
-    if ($after -ne $item.SHA256) { throw "Installed payload hash mismatch: $relative" }
-    $replacements += [pscustomobject]@{ Path=$relative; OriginalSHA256=$before; PatchedSHA256=$after }
+    if ($after -ne $entry.SHA256) { throw "Installed payload hash mismatch: $relative" }
+    $replacements += [pscustomobject]@{
+        Path=$relative; ExistedBefore=[bool]$entry.ExistedBefore
+        OriginalSHA256=$before; PatchedSHA256=$after
+    }
 }
 
 $toolRoot = Join-Path $destination 'tools'
@@ -222,6 +307,9 @@ $record = [ordered]@{
     DatabaseBackup='runtime\.sluaghbinder-backup\opendaoc.sqlite3.db'; Files=$replacements
 }
 $record | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $markerRoot 'patch-manifest.json') -Encoding UTF8
+if ($assetStage -eq (Resolve-PatchPath $destination 'runtime\.sluaghbinder-client-stage')) {
+    Remove-Item -LiteralPath $assetStage -Recurse -Force
+}
 Write-Host "Sluaghbinder v0.31b installed into: $destination"
 Write-Host 'The original installation was not modified. Start the new folder with START OFFLINE DAOC.cmd.'
 Write-Host 'Use ROLLBACK SLAUGHBINDER PATCH.cmd in the new folder to restore its pre-patch files and database.'

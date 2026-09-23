@@ -1,5 +1,25 @@
 # Offline DAoC changelog
 
+## 2026-09-22 — v0.31b optional pet appearance and Covenant upkeep
+
+- Zombie Defender is 33% larger and has its own rusty-plate zombie texture and
+  private model. Its prior shield and combat rules remain unchanged. The stock
+  Decaying Marshman appearance is not replaced.
+- Dullahan is 50% larger and has its own dark, battle-worn armored texture and
+  private model. It uses a chain morningstar with the existing dark weapon
+  effect, no offhand shield, and the corresponding shield/block adjustment.
+  The stock Headless Corpse appearance is not replaced.
+- Zombie Priest now carries only a dagger instead of a mace and buckler.
+- Covenant companion and autonomous Sluaghbinder bots allow an active
+  one-minute pet heal-over-time to finish before recasting it. Direct heals,
+  other Sluaghbinder paths, and other classes retain their existing behavior.
+- The optional patch now carries the pet equipment rows and private client
+  assets with copy-first installation and rollback. Normal v0.3 and v0.31
+  releases remain independent and unchanged.
+- Added an [LLM pet-texture workflow](docs/LLM-SLUAGHBINDER-PET-TEXTURES.md)
+  covering the private NIF/DDS catalog chains, legacy MPK ordering, validation,
+  and safe visual testing.
+
 ## 2026-09-21 — v0.31b Sluaghbinder pet model polish
 
 - Moved the former Zombie Magician model to the level-7 Sturdy Zombie.

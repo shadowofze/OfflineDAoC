@@ -90,6 +90,8 @@ or saves. If you do not want the class, download v0.3 or v0.31 as usual.
 - `source/server/tools`: native raid UI / bot-map patch builders and tests, in
   addition to server diagnostics and migration utilities.
 - `tools/asset-tool`: texture-tool source, profiles and tests.
+- [LLM Sluaghbinder pet texture guide](docs/LLM-SLUAGHBINDER-PET-TEXTURES.md): private NIF/DDS catalog chains, old-client MPK rules, visual checks, and rollback.
+- The maintained optional-class source is on the [v0.31b Sluaghbinder branch](https://github.com/shadowofze/OfflineDAoC/tree/release/v0.31b-sluaghbinder); the v0.31b release also provides an explicit updated-source ZIP so its original Git tag can remain unchanged.
 - `source/reference`: additional launcher/portal source snapshots. These are
   reference material, not substitutes for the current launcher.
 - `docs/DEVELOPMENT.md`: build, safety, portability, and dependency notes.

@@ -47,6 +47,23 @@ Zombie uses the former Zombie Magician model without a weapon, while the
 level-12 Zombie Magician uses the existing Murkman model and keeps its staff
 and spell behavior.
 
+The current v0.31b optional patch also gives Zombie Defender a private
+rusted-plate appearance and a 33% larger body, while retaining its previous
+shield. Dullahan has a private dark armored appearance, a 50% larger body,
+a chain morningstar with an existing dark weapon effect, and no offhand shield.
+Zombie Priest now carries a dagger without a buckler. These are pet-specific
+assets and equipment; ordinary monsters keep their original looks. Covenant
+companions and autonomous bots wait for their active one-minute pet
+heal-over-time to end before casting it again. Other heals, builds, and
+classes are not changed by that upkeep fix.
+
+For LLM developers editing the pet art, see
+[`LLM-SLUAGHBINDER-PET-TEXTURES.md`](LLM-SLUAGHBINDER-PET-TEXTURES.md).
+The maintained source for this optional update is the
+`release/v0.31b-sluaghbinder` branch and the explicit updated-source ZIP on
+the v0.31b release. The original v0.31b tag remains a record of the initial
+release; its automatic GitHub source snapshot does not include later fixes.
+
 ## Maintenance fixes included in the current 0.31b source
 
 The optional source carries the same narrow camp, PvE recovery, Reaver Flexible

@@ -22,6 +22,39 @@ modified.
   Murkman model `446` while retaining its staff template. Their spell, stat,
   and damage fields are unchanged.
 
+## 2026-09-22 optional pet refresh
+
+- Current v0.31b server Release build: **0 errors**; full server suite:
+  **1,895 passed, 0 failed**. The Covenant one-minute pet HoT guard has
+  focused tests for active/expired effects, direct heals, and other specs.
+- Static overlay contains 10 whitelisted tables and 12 Sluaghbinder-owned
+  `NPCEquipment` rows; it contains no account, character, inventory, bot,
+  setting, or save tables. Defender template `60170005` uses private model
+  `2494` and size `67`; Dullahan template `60170007` uses model `2495`,
+  size `75`, and no shield slot; Priest template `60170006` has only its dagger.
+- The four packaged private source assets match the isolated build's
+  two NIFs and two DDS entries byte-for-byte. The client-asset merger on a
+  disposable clean public v0.3 client preserved stock catalog rows and every
+  original skin entry, validated archive CRCs and both offset tables, and gave
+  byte-identical results on a second application.
+- Full copy-first installation from a clean public v0.3 distribution passed:
+  14 file receipts matched their installed hashes, the database passed
+  `quick_check`, and the original base retained its recorded hashes.
+  Rollback of that disposable patched copy restored the database and 12
+  original files byte-for-byte and removed the two newly added private NIFs.
+- The public v0.31 update ZIP contains no `runtime/data` or client-app files,
+  so it uses the same v0.3 database and client assets for this merge; its
+  differing launcher/server files are replaced by the explicit v0.31b payload.
+- The final patch ZIP's entries have the expected root, four private assets,
+  and a clean ZIP CRC check. These are static/integration checks; the exact
+  public ZIP has **not** been visually tested in a live game client here.
+
+The disposable rollback test had to bypass the script's global running-process
+guard in its test shell because unrelated game/server processes were open.
+The distributed rollback script retains the guard and requires the game to be
+closed. Neither that test nor this release preparation changed the separate
+original game or the current isolated class-test installation.
+
 The public asset is a small binary/source overlay, not a copy of a player's
 runtime. It contains no account, character, inventory, bot, settings, log, or
 backup data. The game client payload is build-identified and hash-checked by the

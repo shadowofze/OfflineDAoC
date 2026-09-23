@@ -170,8 +170,8 @@ namespace DOL.GS
                     ? _leftWeapon : _weapon;
                 if (!StyleProcessor.CheckEnduranceCost(styleBot, styleWeapon, _combatStyle))
                     _combatStyle = null;
-                else
-                    _weapon = styleWeapon;
+                // A shield validates a shield style but does not become the
+                // damaging weapon. Keep the bot's active main hand for damage.
             }
 
             if (!base.PrepareMeleeAttack())

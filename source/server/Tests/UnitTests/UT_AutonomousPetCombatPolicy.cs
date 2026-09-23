@@ -222,6 +222,62 @@ public sealed class UT_AutonomousPetCombatPolicy
         Assert.That(AutonomousPetSupport.ShouldMaintainRoutinePetBuff(petStats, false), Is.True);
     }
 
+    [Test]
+    public void CovenantLongPetHealOverTimeIsNotRecastWhileItsEffectIsActive()
+    {
+        Spell petHot = new(new DbSpell
+        {
+            SpellID = 59090,
+            Name = "Cairnheart Mending",
+            Target = eSpellTarget.PET.ToString(),
+            Type = eSpellType.HealOverTime.ToString(),
+            Duration = 60,
+        }, 1);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(AutonomousPetSupport.ShouldSkipActiveCovenantPetHot(
+                eCharacterClass.Sluaghbinder, eSpecType.SluaghbinderCovenant, petHot, true), Is.True);
+            Assert.That(AutonomousPetSupport.ShouldSkipActiveCovenantPetHot(
+                eCharacterClass.Sluaghbinder, eSpecType.SluaghbinderCovenant, petHot, false), Is.False);
+            Assert.That(AutonomousPetSupport.ShouldSkipActiveCovenantPetHot(
+                eCharacterClass.Sluaghbinder, eSpecType.SluaghbinderBane, petHot, true), Is.False);
+            Assert.That(AutonomousPetSupport.ShouldSkipActiveCovenantPetHot(
+                eCharacterClass.Sluaghbinder, eSpecType.SluaghbinderBulwark, petHot, true), Is.False);
+            Assert.That(AutonomousPetSupport.ShouldSkipActiveCovenantPetHot(
+                eCharacterClass.Enchanter, eSpecType.SluaghbinderCovenant, petHot, true), Is.False);
+        });
+    }
+
+    [Test]
+    public void CovenantPetHealGuardDoesNotSuppressDirectOrShortHealingSpells()
+    {
+        Spell directHeal = new(new DbSpell
+        {
+            SpellID = 59091,
+            Name = "Pet Direct Heal",
+            Target = eSpellTarget.PET.ToString(),
+            Type = eSpellType.Heal.ToString(),
+            Duration = 60,
+        }, 1);
+        Spell shortHot = new(new DbSpell
+        {
+            SpellID = 59092,
+            Name = "Short Pet HoT",
+            Target = eSpellTarget.PET.ToString(),
+            Type = eSpellType.HealOverTime.ToString(),
+            Duration = 30,
+        }, 1);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(AutonomousPetSupport.ShouldSkipActiveCovenantPetHot(
+                eCharacterClass.Sluaghbinder, eSpecType.SluaghbinderCovenant, directHeal, true), Is.False);
+            Assert.That(AutonomousPetSupport.ShouldSkipActiveCovenantPetHot(
+                eCharacterClass.Sluaghbinder, eSpecType.SluaghbinderCovenant, shortHot, true), Is.False);
+        });
+    }
+
     [TestCase(eCharacterClass.Enchanter)]
     [TestCase(eCharacterClass.Cabalist)]
     [TestCase(eCharacterClass.Spiritmaster)]

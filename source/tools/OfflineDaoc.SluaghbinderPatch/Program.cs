@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text.Json;
 using System.Data.SQLite;
+using OfflineDaoc.SluaghbinderPatch;
 
 static class Program
 {
@@ -9,12 +10,28 @@ static class Program
         "Sluagh Host", "Abhartach's Rot", "Cairn Oath", "Dullahan's Bulwark",
         "Abhartach's Bane", "Sluagh Covenant", "Sluaghbinder's Legacy", "Epic Spells"
     ];
+    private static readonly string[] EquipmentTemplates =
+    [
+        "sluagh_zombie_magician_staff",
+        "sluagh_zombie_guardian_mace_shield",
+        "sluagh_zombie_priest_mace_buckler",
+        "sluagh_cairn_dullahan_flail_shield",
+        "SluaghbinderMuirennBlack"
+    ];
 
     public static int Main(string[] args)
     {
         try
         {
             var values = ParseArgs(args);
+            if (values.TryGetValue("asset-output", out var assetOutput))
+            {
+                if (!values.TryGetValue("client-app", out var clientApp) ||
+                    !values.TryGetValue("asset-dir", out var assetDirectory))
+                    throw new ArgumentException("Usage: --client-app <app> --asset-dir <assets> --asset-output <new folder>");
+                BuildClientAssets(clientApp, assetDirectory, assetOutput);
+                return 0;
+            }
             if (!values.TryGetValue("database", out var database) ||
                 !values.TryGetValue("overlay", out var overlayPath))
                 throw new ArgumentException("Usage: --database <db> --overlay <overlay.json>");
@@ -42,6 +59,8 @@ static class Program
                 Execute(connection, transaction, "DELETE FROM \"Style\" WHERE \"ClassId\"=63");
                 Execute(connection, transaction, "DELETE FROM \"Spell\" WHERE \"Spell_ID\" LIKE 'Sluaghbinder_%' OR \"SpellID\" BETWEEN 59000 AND 59084");
                 DeleteIn(connection, transaction, "NpcTemplate", "TemplateId", Enumerable.Range(60170001, 7).Select(i => i.ToString(CultureInfo.InvariantCulture)).ToArray());
+                if (root.GetProperty("tables").TryGetProperty("NPCEquipment", out _))
+                    DeleteIn(connection, transaction, "NPCEquipment", "TemplateID", EquipmentTemplates);
                 DeleteIn(connection, transaction, "Mob", "Mob_ID", ["sluaghbinder_trainer_tir_na_nog", "sluaghbinder_bound_wisp_tir_na_nog"]);
 
                 foreach (var table in root.GetProperty("tables").EnumerateObject())
@@ -84,6 +103,42 @@ static class Program
             Console.Error.WriteLine("Sluaghbinder patch failed: " + ex.Message);
             return 1;
         }
+    }
+
+    private static void BuildClientAssets(string clientApp, string assetDirectory, string outputDirectory)
+    {
+        if (!Directory.Exists(clientApp) || !Directory.Exists(assetDirectory))
+            throw new DirectoryNotFoundException("Client or Sluaghbinder asset folder is missing.");
+        if (Directory.Exists(outputDirectory) || File.Exists(outputDirectory))
+            throw new IOException("Client asset output folder already exists.");
+
+        // The builder works in memory against a copied installation. The
+        // installer later backs up and installs these five exact outputs.
+        // Never replace a whole public archive with an author's private one.
+        var expected = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "gamedata.mpk",
+            "figures/skins/skin099.mpk",
+            "figures/skins/skin106.mpk",
+            "figures/Sluaghbinder_ZombieDefender.NIF",
+            "figures/Sluaghbinder_Dullahan.NIF"
+        };
+        var outputs = ClientAssetMerge.Build(clientApp, assetDirectory);
+        if (!expected.SetEquals(outputs.Keys.Select(path => path.Replace('\\', '/'))))
+            throw new InvalidDataException("Unexpected Sluaghbinder client asset output set.");
+
+        var root = Path.GetFullPath(outputDirectory);
+        Directory.CreateDirectory(root);
+        foreach (var (relative, bytes) in outputs)
+        {
+            if (bytes.Length == 0) throw new InvalidDataException($"Empty Sluaghbinder client asset: {relative}");
+            var target = Path.GetFullPath(Path.Combine(root, relative));
+            if (!target.StartsWith(root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException($"Unsafe Sluaghbinder client asset path: {relative}");
+            Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+            File.WriteAllBytes(target, bytes);
+        }
+        Console.WriteLine($"Prepared {outputs.Count} merged Sluaghbinder client assets without modifying the base client.");
     }
 
     private static Dictionary<string, string> ParseArgs(string[] args)

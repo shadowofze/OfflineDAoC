@@ -452,8 +452,14 @@ public static class AutonomousPetSupport
             int healBelow = combatTarget == null ? 92 : 65;
             if (petActionReady && pet.HealthPercent < healBelow)
             {
+                eSpecType botSpec = owner is GameBot gameBot
+                    ? gameBot.BotSpec?.SpecType ?? eSpecType.None
+                    : eSpecType.None;
                 (Spell Spell, SpellLine Line) heal = spells
-                    .Where(entry => entry.Spell.IsHealing && entry.Spell.Target == eSpellTarget.PET && CanCast(owner, entry.Spell))
+                    .Where(entry => entry.Spell.IsHealing && entry.Spell.Target == eSpellTarget.PET &&
+                                    CanCast(owner, entry.Spell) &&
+                                    !ShouldSkipActiveCovenantPetHot(
+                                        characterClass, botSpec, entry.Spell, HasEffect(pet, entry.Spell)))
                     .OrderByDescending(entry => entry.Spell.Level)
                     .FirstOrDefault();
                 if (heal.Spell != null && owner.IsWithinRadius(pet, heal.Spell.CalculateEffectiveRange(owner)))
@@ -1707,6 +1713,29 @@ public static class AutonomousPetSupport
             return false;
         return payload.Duration <= 0 || !HasEffect(target, payload);
     }
+
+    /// <summary>
+    /// Covenant's one-minute pet HoTs should run their full duration. They do
+    /// not immediately restore health, so selecting an already-active rank in
+    /// the generic low-health path makes the bot recast it on every upkeep turn.
+    /// This guard is deliberately limited to Covenant Sluaghbinders and long
+    /// pet-targeted HoTs; other classes' heals and urgent direct heals are not
+    /// affected.
+    /// </summary>
+    public static bool ShouldSkipActiveCovenantPetHot(
+        eCharacterClass characterClass,
+        eSpecType specType,
+        Spell spell,
+        bool petHasActiveEffect) =>
+        petHasActiveEffect &&
+        characterClass == eCharacterClass.Sluaghbinder &&
+        specType == eSpecType.SluaghbinderCovenant &&
+        spell is
+        {
+            Target: eSpellTarget.PET,
+            SpellType: eSpellType.HealOverTime,
+            Duration: >= 60_000
+        };
 
     public static bool TryGetNecromancerPetPayload(Spell command, out Spell payload)
     {
