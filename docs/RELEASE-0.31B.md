@@ -7,8 +7,8 @@ Shrouded Isles play.
 ## If you only want to play
 
 Use `DOWNLOAD AND PLAY v0.31b.cmd` from the repository copy, or download the
-`Sluaghbinder-v0.31b-patch.zip` release asset and run `INSTALL SLAUGHBINDER
-PATCH.cmd`. Select your clean v0.3 or v0.31 folder when asked. The installer
+latest `Sluaghbinder-v0.31b-pet-refresh-patch.zip` release asset and run
+`INSTALL SLAUGHBINDER PATCH.cmd`. Select your clean v0.3 or v0.31 folder when asked. The installer
 creates a new sibling folder ending in `-Sluaghbinder-v0.31b`; it never writes
 back to the folder you selected. Start the new copy with its normal
 `START OFFLINE DAOC.cmd`. If the optional class is not wanted, use the ordinary
@@ -41,6 +41,21 @@ only its chosen path's taunts, scythe/life-steal/rot tools, or pet enhancements.
 Persistent autonomous Sluaghbinders retain their existing deterministic build
 choice; this repair only makes the starter and reconciliation equipment honor
 that choice.
+
+The latest optional v0.31b patch also makes Zombie Defender 33% larger with
+its own rusty-plate appearance while keeping its prior shield. Dullahan is
+50% larger with a private dark armored appearance, a chain morningstar and
+existing dark weapon effect, and no offhand shield. Zombie Priest carries a
+dagger rather than mace and buckler. Stock monsters keep their appearances.
+Covenant companion and autonomous bots wait for an active one-minute pet
+heal-over-time to finish before recasting; direct heals and other builds are
+unchanged. The copy-first installer merges the private client assets into the
+new copy and backs them up for rollback.
+
+The maintained optional-class source is on `release/v0.31b-sluaghbinder` and
+in the v0.31b release's explicit updated-source ZIP. The original v0.31b Git
+tag remains an initial-publication record. LLM developers can follow the
+[private pet-texture guide](https://github.com/shadowofze/OfflineDAoC/blob/release/v0.31b-sluaghbinder/docs/LLM-SLUAGHBINDER-PET-TEXTURES.md).
 
 ## Maintenance fixes included in the current 0.31b source
 

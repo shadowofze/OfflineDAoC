@@ -30,7 +30,12 @@ For a v0.31 fork, keep the ordinary release and source versioned together. Do no
 commit runtime saves, accounts, logs, or private backups. If you want the old
 baseline, branch from the `v0.3` tag instead of deleting or rewriting v0.31.
 
-For the optional class, use the `v0.31b` tag/release. The patcher is copy-first:
+For the optional class, use the `v0.31b` playable release and the
+`release/v0.31b-sluaghbinder` branch for its latest maintenance source. The
+original v0.31b tag records the initial publication and is not rewritten;
+the explicit updated-source ZIP on that release matches the maintained branch.
+The [Sluaghbinder pet-texture guide](https://github.com/shadowofze/OfflineDAoC/blob/release/v0.31b-sluaghbinder/docs/LLM-SLUAGHBINDER-PET-TEXTURES.md)
+explains the private models and old-client archives. The patcher is copy-first:
 it accepts only a clean v0.3/v0.31 installation, validates hashes and the DB
 schema, writes a rollback backup, and leaves the selected base untouched. The
 public launcher label is 0.31b; the private local 0.4 label is not part of this

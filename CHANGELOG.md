@@ -1,5 +1,20 @@
 # Offline DAoC changelog
 
+## 2026-09-22 — optional v0.31b pet and Covenant refresh
+
+- Zombie Defender is 33% larger, retains its prior shield, and has a private
+  rusty-plate texture/model that does not replace the stock monster.
+- Dullahan is 50% larger, has a private dark armored texture/model, uses a
+  chain morningstar with an existing dark effect, and has no offhand shield.
+- Zombie Priest carries a dagger instead of mace and buckler.
+- Covenant Sluaghbinder companions and autonomous bots now wait for an active
+  one-minute pet heal-over-time to finish before recasting. Direct heals and
+  other builds/classes are unchanged.
+- The v0.31b installer merges private client entries and pet equipment into a
+  separate game copy and rolls them back there; normal v0.3/v0.31 downloads
+  are unchanged. The [LLM pet-texture guide](https://github.com/shadowofze/OfflineDAoC/blob/release/v0.31b-sluaghbinder/docs/LLM-SLUAGHBINDER-PET-TEXTURES.md)
+  documents the old-client NIF/DDS/MPK workflow.
+
 ## 2026-09-21 — v0.31 / v0.31b maintenance fixes
 
 - Source-empty PvE camps now use small live spawn clusters and a real nearby
