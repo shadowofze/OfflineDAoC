@@ -28,6 +28,20 @@ namespace DOL.GS
             return start;
         }
 
+        /// <summary>A nearby resurrection needs resource recovery, not a trip
+        /// through the town rendezvous. Absorb that death only while the whole
+        /// living party is together; a released or distant member still starts
+        /// the ordinary regroup episode.</summary>
+        public bool TryResumeLocally(Member[] members, bool together)
+        {
+            if (IsRegrouping || !together || members == null || members.Length < 2 ||
+                members.Any(member => !member.Alive || member.Returning || member.Riding))
+                return false;
+            foreach (Member member in members)
+                _deaths[member.Id] = member.Deaths;
+            return true;
+        }
+
         public bool TryComplete(Member[] members, long now)
         {
             if (!IsRegrouping) return false;

@@ -1,5 +1,28 @@
 # Offline DAoC changelog
 
+## 2026-09-23 — v0.31 shared bot progression and route repair
+
+- Savages now keep native instant buffs from interrupting their melee loop and
+  verify a reachable target inside their assigned camp cell before committing
+  to a pull. Other classes and cast-time spells are unchanged.
+- PvE parties recruit nearby available members, and a viable reduced roster
+  can fight after unreachable meetup members are released. Nearby resurrection
+  resumes local recovery; each corpse gets its own bounded resurrection wait.
+- Reduced parties can hand a dungeon corridor blocker to their puller in
+  Koalinth, Vendo, Keltoi, and Tepok. We found no separate broken dungeon
+  geometry, so no dungeon spawn or navmesh data was changed.
+- Small parties skip one repeatedly unproductive Salisbury spirit camp; other
+  spirit camps remain available. Solo bots rest fully after death, temporarily
+  avoid the failed camp/target after repeated no-XP deaths, and back off capped
+  retries instead of immediately repeating a lethal loop.
+- Mularn's audited low stable landing is raised to the walkable surface after
+  arrival. Stable planning checks the first boarding leg and an in-range
+  boarding point, including the Pheuloc hotspot, without changing tickets or
+  horse routes.
+- These shared fixes are published in both the normal v0.31 and optional
+  v0.31b branches. The normal release still contains no optional class code,
+  quests, trainer, or client assets.
+
 ## 2026-09-21 — v0.31 maintenance fixes
 
 - Source-empty PvE camps now use small live spawn clusters and a real nearby

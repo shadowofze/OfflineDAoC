@@ -45,14 +45,15 @@ namespace DOL.GS
 
         // The party member at the front of a formation is not necessarily the
         // designated tank-puller.  A legal corridor blocker may be handed to
-        // that tank only while the locked eight-member PvE party is intact and
-        // actively travelling or grinding.  Resource, casualty and cohesion
-        // gates are still applied by CanInitiateNewPull before combat starts.
+        // that tank while the current PvE roster is viable and actively
+        // travelling or grinding. Attendance may already have removed one or
+        // more no-shows before the dungeon task starts. Resource, casualty and
+        // cohesion gates are still applied by CanInitiateNewPull.
         public static bool CanHandoffRouteBlocker(bool groupPve, string phase,
             int memberCount, bool requiredComposition, bool differentPuller,
             bool pullerAlive, bool sameRegion, bool pullerOnStableRoute) =>
             groupPve && phase is "Traveling" or "Grinding" &&
-            memberCount == 8 && requiredComposition && differentPuller &&
+            memberCount is >= 3 and <= 8 && requiredComposition && differentPuller &&
             pullerAlive && sameRegion && !pullerOnStableRoute;
 
         /// <summary>

@@ -2531,7 +2531,10 @@ namespace DOL.AI.Brain
             // handles real hits, range/LOS loss and death). Do not replace it
             // with a melee/range/pull decision merely because an enemy is near.
             // This also preserves legal uninterruptible casts.
-            if (Body.IsCasting)
+            if (Body.IsCasting &&
+                !SavageBotCombatPolicy.MayAttackDuringActiveCast(
+                    (eCharacterClass)BotBody.CharacterClass.ID,
+                    Body.castingComponent?.SpellHandler?.Spell))
                 return;
 
             GameLiving protectionTarget = FindProtectionTarget();

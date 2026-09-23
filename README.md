@@ -78,7 +78,7 @@ back up saves before installing a build. No zero-regression guarantee is implied
 ## v0.31 scope
 
 v0.31 is the normal Classic/Shrouded Isles maintenance update. It does **not**
-include the experimental Sluaghbinder class, its quests, or its patch. That work
-is intentionally kept outside this public release until it is ready. The source
-and playable download are versioned together, while v0.3 stays downloadable as a
-separate immutable release.
+include the optional Sluaghbinder class, its quests, or its patch. That expansion
+is available only through the separate [v0.31b release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b).
+The normal source and playable download are versioned together, while v0.3
+stays downloadable as a separate immutable release.

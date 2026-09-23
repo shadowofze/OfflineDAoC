@@ -18,6 +18,61 @@ public static class AutonomousStableRouteLifecycle
         !departurePending && !movingOnPath && !hasCurrentPathPoint && reachedFinalWaypoint;
 }
 
+/// <summary>Keep failed first walks out of repeated stable searches while the
+/// same bot is still standing in the same small pocket. Movement or expiry
+/// makes the route eligible for a fresh navmesh check.</summary>
+public sealed class AutonomousStableBoardingFailureCache
+{
+    public const int MaximumNewProbesPerSearch = 2;
+    private const int MaximumEntries = 512;
+    private const int ReuseDistance = 8;
+    private static readonly TimeSpan Lifetime = TimeSpan.FromMinutes(5);
+    private readonly object _lock = new();
+    private readonly Dictionary<Key, Failure> _failures = new();
+
+    public readonly record struct Probe(long BotDatabaseId, ushort BotObjectId,
+        ushort RegionId, ushort ZoneId, Vector3 Boarding, Vector3 Source);
+
+    private readonly record struct Key(long BotDatabaseId, ushort BotObjectId,
+        ushort RegionId, ushort ZoneId, Vector3 Boarding);
+
+    private readonly record struct Failure(Vector3 Source, DateTime ExpiresUtc);
+
+    public bool WasRecentlyUnreachable(Probe probe, DateTime nowUtc)
+    {
+        var key = new Key(probe.BotDatabaseId, probe.BotObjectId, probe.RegionId,
+            probe.ZoneId, probe.Boarding);
+        lock (_lock)
+        {
+            if (!_failures.TryGetValue(key, out Failure failure))
+                return false;
+            if (nowUtc < failure.ExpiresUtc &&
+                Vector3.DistanceSquared(probe.Source, failure.Source) <= ReuseDistance * ReuseDistance)
+                return true;
+            _failures.Remove(key);
+            return false;
+        }
+    }
+
+    public void RememberUnreachable(Probe probe, DateTime nowUtc)
+    {
+        var key = new Key(probe.BotDatabaseId, probe.BotObjectId, probe.RegionId,
+            probe.ZoneId, probe.Boarding);
+        lock (_lock)
+        {
+            if (_failures.Count >= MaximumEntries && !_failures.ContainsKey(key))
+            {
+                foreach (Key expired in _failures.Where(pair => pair.Value.ExpiresUtc <= nowUtc)
+                             .Select(pair => pair.Key).ToArray())
+                    _failures.Remove(expired);
+                if (_failures.Count >= MaximumEntries)
+                    _failures.Remove(_failures.MinBy(pair => pair.Value.ExpiresUtc).Key);
+            }
+            _failures[key] = new Failure(probe.Source, nowUtc + Lifetime);
+        }
+    }
+}
+
 /// <summary>
 /// Scores the complete trip through the live stable network. A route is always
 /// actual waypoint travel: this class only chooses which ticket to board first.
@@ -26,11 +81,13 @@ public static class AutonomousStableRouteLifecycle
 public static class AutonomousStableRoutePlanner
 {
     public const short StableSpeed = 1500;
+    public const int BoardingArrivalRadius = 45;
     private const int MaximumPathPoints = 5000;
     private const int MaximumBoardingDistance = 500;
     private static readonly TimeSpan NetworkCacheLifetime = TimeSpan.FromMinutes(5);
     private static readonly object NetworkCacheLock = new();
     private static readonly Dictionary<(ushort RegionId, eRealm Realm), CandidateCache> NetworkCache = new();
+    private static readonly AutonomousStableBoardingFailureCache FirstBoardingFailures = new();
 
     public readonly record struct LegMetric(
         int Index,
@@ -206,47 +263,76 @@ public static class AutonomousStableRoutePlanner
                         candidates[i].BoardingPoint.X, candidates[i].BoardingPoint.Y), bot.MaxSpeed))
                     (excluded ??= []).Add(i);
 
-        // A stable on another disconnected surface can be closer in straight
-        // line than the reachable stable inside a fortress.  Exclude it only as
-        // this journey's first boarding leg after proving that both points are
-        // in the same zone but have no Detour corridor.  It remains available
-        // as a later horse-network destination.
-        Zone currentZone = bot.CurrentZone;
-        IPathfindingMgr nav = PathfindingProvider.Instance;
-        if (currentZone != null && nav.IsAvailable && nav.HasNavmesh(currentZone) &&
-            AutonomousNavigationSurface.TryFloor(nav, currentZone,
-                new(bot.X, bot.Y, bot.Z), out Vector3 currentFloor))
-        {
-            foreach ((Candidate candidate, int index) in candidates.Select((candidate, index) => (candidate, index)))
-            {
-                Zone boardingZone = bot.CurrentRegion.GetZone(
-                    (int)candidate.BoardingPoint.X, (int)candidate.BoardingPoint.Y);
-                bool sameZone = boardingZone == currentZone;
-                bool completeCorridor = !sameZone || AutonomousZoneItinerary.HasCompleteCorridor(
-                    nav, currentZone, currentFloor, candidate.BoardingPoint);
-                if (CanUseAsFirstBoardingLeg(sameZone, completeCorridor))
-                    continue;
+        // A straight-line cost can choose a remote master across a broken
+        // zone seam. Reuse recent failures only while this bot remains in the
+        // same small pocket, then prove at most two new first walks per search.
+        // The next search advances to other candidates without repeating those
+        // costly probes. Later network legs remain available.
+        Vector3 source = new(bot.X, bot.Y, bot.Z);
+        DateTime nowUtc = DateTime.UtcNow;
+        AutonomousStableBoardingFailureCache.Probe ProbeFor(Candidate candidate) => new(
+            bot.DatabaseID, bot.ObjectID, bot.CurrentRegionID, bot.CurrentZone?.ID ?? 0,
+            candidate.BoardingPoint, source);
+        for (int index = 0; index < candidates.Count; index++)
+            if (FirstBoardingFailures.WasRecentlyUnreachable(ProbeFor(candidates[index]), nowUtc))
                 (excluded ??= []).Add(index);
-            }
-        }
-        RouteDecision? decision = ChooseFirstLeg(
-            bot.X, bot.Y, goal.X, goal.Y, Math.Max(1, (int)bot.MaxSpeed), money, metrics, excluded);
-        if (!decision.HasValue)
-            return null;
 
-        Candidate selected = candidates[decision.Value.FirstLegIndex];
-        return new Choice(
-            selected.Master,
-            selected.Ticket,
-            CloneRoute(selected.Route),
-            TicketDestination(selected.Ticket),
-            selected.RideSeconds,
-            decision.Value.EstimatedSeconds,
-            decision.Value.DirectWalkSeconds,
-            decision.Value.HopCount,
-            decision.Value.PlannedPrice,
-            selected.BoardingPoint,
-            selected.InteractionPoint);
+        for (int attempt = 0; attempt < Math.Min(AutonomousStableBoardingFailureCache.MaximumNewProbesPerSearch,
+                 candidates.Count); attempt++)
+        {
+            RouteDecision? decision = ChooseFirstLeg(
+                bot.X, bot.Y, goal.X, goal.Y, Math.Max(1, (int)bot.MaxSpeed), money, metrics, excluded);
+            if (!decision.HasValue)
+                return null;
+
+            Candidate selected = candidates[decision.Value.FirstLegIndex];
+            if (!CanWalkToFirstBoardingLeg(bot, selected.BoardingPoint))
+            {
+                FirstBoardingFailures.RememberUnreachable(ProbeFor(selected), nowUtc);
+                (excluded ??= []).Add(decision.Value.FirstLegIndex);
+                continue;
+            }
+            return new Choice(
+                selected.Master,
+                selected.Ticket,
+                CloneRoute(selected.Route),
+                TicketDestination(selected.Ticket),
+                selected.RideSeconds,
+                decision.Value.EstimatedSeconds,
+                decision.Value.DirectWalkSeconds,
+                decision.Value.HopCount,
+                decision.Value.PlannedPrice,
+                selected.BoardingPoint,
+                selected.InteractionPoint);
+        }
+        return null;
+    }
+
+    private static bool CanWalkToFirstBoardingLeg(GameBot bot, Vector3 boarding)
+    {
+        Region region = bot.CurrentRegion;
+        Zone currentZone = bot.CurrentZone;
+        Zone boardingZone = region?.GetZone((int)boarding.X, (int)boarding.Y);
+        IPathfindingMgr nav = PathfindingProvider.Instance;
+        if (currentZone == null || boardingZone == null || !nav.IsAvailable ||
+            !AutonomousNavigationSurface.TryFloor(nav, currentZone,
+                new(bot.X, bot.Y, bot.Z), out Vector3 cursor))
+            return false;
+        var visited = new HashSet<Zone>();
+        for (int hop = 0; hop < 16 && currentZone != boardingZone; hop++)
+        {
+            if (!visited.Add(currentZone) ||
+                !AutonomousZoneItinerary.TryNextStep(region, currentZone, boardingZone,
+                    cursor, boarding, nav, out AutonomousZoneBoundaryRouting.Step step,
+                    zone => AutonomousRealmBoundary.Allows(bot.Realm, bot.CurrentRegionID, zone.ID)))
+                return false;
+            cursor = step.Outside;
+            currentZone = region.GetZone((int)cursor.X, (int)cursor.Y);
+            if (currentZone == null)
+                return false;
+        }
+        return currentZone == boardingZone &&
+            AutonomousZoneItinerary.HasCompleteCorridor(nav, currentZone, cursor, boarding);
     }
 
     public static bool CanUseAsFirstBoardingLeg(bool sameZone, bool completeCorridor) =>
@@ -261,6 +347,20 @@ public static class AutonomousStableRoutePlanner
     public static bool MeetupBoardingExpired(bool meetup, long started, long now, long lastProgress = 0) =>
         meetup && now >= started && now - started >= 120_000 &&
         (now - started >= 300_000 || lastProgress <= started || now - lastProgress >= 90_000);
+
+    public static bool MayPlanMeetupHorse(bool meetup, string groupId, string failedGroupId) =>
+        !meetup || string.IsNullOrEmpty(groupId) ||
+        !string.Equals(groupId, failedGroupId, StringComparison.Ordinal);
+
+    /// <summary>The old Nalliten and Svasud Faste tickets end below this Mularn street.
+    /// Match the measured endpoint, not every rider arriving in the town.</summary>
+    public static bool IsAuditedMularnLanding(ushort regionId, Vector3 position) =>
+        regionId == 100 && position.Z is >= 4_660 and <= 4_705 &&
+        Vector2.DistanceSquared(new(position.X, position.Y), new(803743, 722129)) <= 80 * 80;
+
+    public static bool ShouldCorrectAuditedMularnLanding(bool confirmedArrival, bool alive,
+        ushort regionId, Vector3 position) =>
+        confirmedArrival && alive && IsAuditedMularnLanding(regionId, position);
 
     // NpcMovementComponent toggles FiredFlag while traversing even a Once
     // route. Cached topology must therefore be cloned per rider or one horse
@@ -326,9 +426,9 @@ public static class AutonomousStableRoutePlanner
                     continue;
                 if (region.GetZone(endpoint.X, endpoint.Y) == null)
                     continue;
-                // Some old ticket origins are below the installed terrain
-                // (Mularn/Fort Atla was ~220 units low). Normalize only the
-                // walking approach, never the authoritative horse waypoints.
+                // Some old ticket origins are below the installed terrain.
+                // Normalize only the walking approach, never the authoritative
+                // horse waypoints.
                 Zone boardingZone = region.GetZone(route.X, route.Y);
                 IPathfindingMgr nav = PathfindingProvider.Instance;
                 if (boardingZone == null || !TryResolveBoardingPoint(new(route.X, route.Y, route.Z),
@@ -340,10 +440,13 @@ public static class AutonomousStableRoutePlanner
                         p => nav.GetClosestPoint(boardingZone, p, 48, 48, 256, nav.DefaultFilters), out Vector3 interaction) ||
                     region.GetZone((int)boarding.X, (int)boarding.Y) != boardingZone ||
                     region.GetZone((int)interaction.X, (int)interaction.Y) != boardingZone ||
-                    Vector3.Distance(boarding, interaction) > master.InteractDistance ||
-                    !AutonomousZoneItinerary.HasCompleteCorridor(nav, boardingZone, boarding, interaction))
+                    !TryChooseBoardingApproach(boarding, interaction, master.InteractDistance,
+                        point => nav.GetClosestPoint(boardingZone, point, 16, 16, 64, nav.DefaultFilters),
+                        out Vector3 safeBoarding) ||
+                    region.GetZone((int)safeBoarding.X, (int)safeBoarding.Y) != boardingZone ||
+                    !AutonomousZoneItinerary.HasCompleteCorridor(nav, boardingZone, safeBoarding, interaction))
                     continue;
-                candidates.Add(new Candidate(master, ticket, route, endpoint, rideSeconds, boarding, interaction));
+                candidates.Add(new Candidate(master, ticket, route, endpoint, rideSeconds, safeBoarding, interaction));
             }
         }
         return candidates;
@@ -358,6 +461,34 @@ public static class AutonomousStableRoutePlanner
             Vector2.Distance(new(point.X, point.Y), new(snapped.Value.X, snapped.Value.Y)) > 48)
             return false;
         result = snapped.Value;
+        return true;
+    }
+
+    /// <summary>Choose a walkable boarding position inside both the horse's
+    /// start radius and the master's real interaction radius. The normal
+    /// 45-unit arrival tolerance must not strand a bot just outside the
+    /// master's range, as observed at Pheuloc's Howth ticket.</summary>
+    public static bool TryChooseBoardingApproach(Vector3 routeOrigin, Vector3 interaction,
+        float interactionRadius, Func<Vector3, Vector3?> snap, out Vector3 approach)
+    {
+        approach = default;
+        if (!float.IsFinite(interactionRadius) || interactionRadius < BoardingArrivalRadius ||
+            snap == null)
+            return false;
+
+        Vector3 delta = interaction - routeOrigin;
+        float separation = delta.Length();
+        if (!float.IsFinite(separation))
+            return false;
+        float move = Math.Min(44f, Math.Max(0f, separation - (interactionRadius - BoardingArrivalRadius - 1)));
+        Vector3 desired = separation > 0 ? routeOrigin + delta / separation * move : routeOrigin;
+        Vector3? candidate = snap(desired);
+        if (!candidate.HasValue || !float.IsFinite(candidate.Value.X) ||
+            !float.IsFinite(candidate.Value.Y) || !float.IsFinite(candidate.Value.Z) ||
+            Vector3.Distance(candidate.Value, routeOrigin) > BoardingArrivalRadius ||
+            Vector3.Distance(candidate.Value, interaction) > interactionRadius - BoardingArrivalRadius)
+            return false;
+        approach = candidate.Value;
         return true;
     }
 

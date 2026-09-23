@@ -84,7 +84,7 @@ namespace DOL.UnitTests
         }
 
         [Test]
-        public void CorridorBlockerHandoffIsRestrictedToAnIntactEightMemberPveParty()
+        public void CorridorBlockerHandoffRequiresViableCurrentPveRoster()
         {
             Assert.Multiple(() =>
             {
@@ -93,11 +93,15 @@ namespace DOL.UnitTests
                 Assert.That(AutonomousDungeonPolicy.CanHandoffRouteBlocker(
                     true, "Grinding", 8, true, true, true, true, false), Is.True);
                 Assert.That(AutonomousDungeonPolicy.CanHandoffRouteBlocker(
+                    true, "Traveling", 7, true, true, true, true, false), Is.True);
+                Assert.That(AutonomousDungeonPolicy.CanHandoffRouteBlocker(
+                    true, "Traveling", 6, true, true, true, true, false), Is.True);
+                Assert.That(AutonomousDungeonPolicy.CanHandoffRouteBlocker(
                     false, "Traveling", 8, true, true, true, true, false), Is.False);
                 Assert.That(AutonomousDungeonPolicy.CanHandoffRouteBlocker(
                     true, "Meeting up", 8, true, true, true, true, false), Is.False);
                 Assert.That(AutonomousDungeonPolicy.CanHandoffRouteBlocker(
-                    true, "Traveling", 7, true, true, true, true, false), Is.False);
+                    true, "Traveling", 2, true, true, true, true, false), Is.False);
                 Assert.That(AutonomousDungeonPolicy.CanHandoffRouteBlocker(
                     true, "Traveling", 8, false, true, true, true, false), Is.False);
                 Assert.That(AutonomousDungeonPolicy.CanHandoffRouteBlocker(

@@ -1,4 +1,5 @@
 using DOL.GS.Styles;
+using System.Numerics;
 
 namespace DOL.GS;
 
@@ -9,12 +10,51 @@ namespace DOL.GS;
 /// </summary>
 public static class SavageBotCombatPolicy
 {
+    public const int AssignedCampRadius = 2600;
+    public const int FailedSoloPullRouteRetryMilliseconds = 6_000;
+    // A normal short patrol step must not force the same failed native path
+    // probe on the next brain tick. A materially new approach still retries.
+    private const int FailedSoloPullOriginMovement = 512;
+    private const int FailedSoloPullTargetMovement = 64;
+
+    public readonly record struct FailedSoloPullRoute(long FailedAtTick, ushort RegionId,
+        int OriginZoneId, int TargetZoneId, Vector3 Origin, Vector3 Target);
+
+    // Only cache a failed native corridor. A reachable target is always
+    // rechecked before a new pull, and movement or a zone change retries a
+    // failed path immediately instead of trusting an old negative answer.
+    public static bool ShouldDelayFailedSoloPullRetry(FailedSoloPullRoute failure,
+        long nowTick, ushort regionId, int originZoneId, int targetZoneId,
+        Vector3 origin, Vector3 target) =>
+        nowTick >= failure.FailedAtTick &&
+        nowTick - failure.FailedAtTick < FailedSoloPullRouteRetryMilliseconds &&
+        failure.RegionId == regionId &&
+        failure.OriginZoneId == originZoneId &&
+        failure.TargetZoneId == targetZoneId &&
+        Vector3.DistanceSquared(failure.Origin, origin) <=
+            FailedSoloPullOriginMovement * FailedSoloPullOriginMovement &&
+        Vector3.DistanceSquared(failure.Target, target) <=
+            FailedSoloPullTargetMovement * FailedSoloPullTargetMovement;
+
+    public static bool NeedsVerifiedSoloPullRoute(eCharacterClass characterClass, bool dynamicGroup) =>
+        characterClass == eCharacterClass.Savage && !dynamicGroup;
+
+    public static bool IsWithinAssignedCamp(int campX, int campY, int targetX, int targetY)
+    {
+        long dx = (long)campX - targetX;
+        long dy = (long)campY - targetY;
+        return dx * dx + dy * dy <= (long)AssignedCampRadius * AssignedCampRadius;
+    }
+
     public static bool IsInstantCombatAction(Spell spell) => spell != null && spell.CastTime == 0 &&
         spell.SpellType is eSpellType.SavageEnduranceHeal or
             eSpellType.SavageEvadeBuff or eSpellType.SavageParryBuff or
             eSpellType.SavageCombatSpeedBuff or eSpellType.SavageDPSBuff or
             eSpellType.SavageSlashResistanceBuff or eSpellType.SavageCrushResistanceBuff or
             eSpellType.SavageThrustResistanceBuff;
+
+    public static bool MayAttackDuringActiveCast(eCharacterClass characterClass, Spell activeSpell) =>
+        characterClass == eCharacterClass.Savage && IsInstantCombatAction(activeSpell);
 
     /// <summary>
     /// Savage self-buffs are native instant, health-cost combat actions.  The
@@ -27,7 +67,7 @@ public static class SavageBotCombatPolicy
     {
         if (!spellAction || characterClass != eCharacterClass.Savage)
             return false;
-        if (isCasting && !IsInstantCombatAction(activeSpell))
+        if (isCasting && !MayAttackDuringActiveCast(characterClass, activeSpell))
             return false;
         if (hasPendingCast && !IsInstantCombatAction(pendingSpell))
             return false;

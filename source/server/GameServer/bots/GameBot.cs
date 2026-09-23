@@ -691,7 +691,9 @@ namespace DOL.GS
         public bool IsProtectedStableMasterTravel(DateTime nowUtc) =>
             IsOnStableMasterRoute && IsOnHorse && nowUtc <= _stableRouteExpectedArrivalUtc;
 
-        public void CompleteStableMasterRoute()
+        public void CompleteStableMasterRoute() => CompleteStableMasterRoute(false);
+
+        private void CompleteStableMasterRoute(bool confirmedArrival)
         {
             bool wasStableTravel = IsOnStableMasterRoute;
             string completedDestination = StableRouteDestination;
@@ -708,6 +710,15 @@ namespace DOL.GS
             _stableRouteRecoveryCount = 0;
             if (wasStableTravel && IsAutonomousWorldBot)
             {
+                Vector3 arrival = new(X, Y, Z);
+                if (AutonomousStableRoutePlanner.ShouldCorrectAuditedMularnLanding(
+                        confirmedArrival, IsAlive, CurrentRegionID, arrival) &&
+                    AutonomousRouteHotspotRepair.TryResolveFloor(PathfindingProvider.Instance,
+                        CurrentZone, CurrentRegionID, arrival, out Vector3 floor) &&
+                    MoveInRegion(CurrentRegionID, (int)Math.Round(floor.X), (int)Math.Round(floor.Y),
+                        (int)Math.Round(floor.Z), Heading, true))
+                    log.Info($"AUTONOMOUS_STABLE_LANDING_CORRECTION bot=\"{Name}\" id={DatabaseID} " +
+                             $"region={CurrentRegionID} from={arrival} to={floor}");
                 AutonomousStuckWatchdog.MarkProgress(this, eAutonomousProgressKind.StableTravel);
                 log.Info($"AUTONOMOUS_STABLE_ROUTE_ARRIVE bot=\"{Name}\" id={DatabaseID} level={Level} " +
                          $"realm={Realm} destination=\"{completedDestination}\" position={X},{Y},{Z}");
@@ -731,7 +742,7 @@ namespace DOL.GS
                     _stableRouteMount?.CurrentPathPoint != null,
                     atEndpoint))
                 return false;
-            CompleteStableMasterRoute();
+            CompleteStableMasterRoute(true);
             return true;
         }
 
