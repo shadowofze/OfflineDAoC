@@ -7,8 +7,8 @@ Shrouded Isles play.
 ## If you only want to play
 
 Use `DOWNLOAD AND PLAY v0.31b.cmd` from the repository copy, or download the
-`Sluaghbinder-v0.31b-patch.zip` release asset and run `INSTALL SLAUGHBINDER
-PATCH.cmd`. Select your clean v0.3 or v0.31 folder when asked. The installer
+latest `Sluaghbinder-v0.31b-pet-refresh-patch.zip` release asset and run
+`INSTALL SLAUGHBINDER PATCH.cmd`. Select your clean v0.3 or v0.31 folder when asked. The installer
 creates a new sibling folder ending in `-Sluaghbinder-v0.31b`; it never writes
 back to the folder you selected. Start the new copy with its normal
 `START OFFLINE DAOC.cmd`. If the optional class is not wanted, use the ordinary

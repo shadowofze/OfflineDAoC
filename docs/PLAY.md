@@ -45,7 +45,7 @@ play; neither requires Git, an LLM, or programming knowledge.
 For the optional path, double-click **DOWNLOAD AND PLAY v0.31b.cmd** instead of
 `DOWNLOAD AND PLAY.cmd`. It downloads the normal v0.31 baseline first, verifies
 the Sluaghbinder patch, and creates `playable-v0.31b` with the optional class.
-If you already have a clean v0.3/v0.31 folder, use `Sluaghbinder-v0.31b-patch.zip`
+If you already have a clean v0.3/v0.31 folder, use the latest `Sluaghbinder-v0.31b-pet-refresh-patch.zip`
 and `INSTALL SLAUGHBINDER PATCH.cmd`; the installer makes a separate copy and
 places `ROLLBACK SLAUGHBINDER PATCH.cmd` inside it. If you do not want the class,
 never run that optional helper or installer and simply play the normal folder.
@@ -62,7 +62,7 @@ private launcher label is separate from all public release numbers.
 ## Optional Sluaghbinder play path
 
 To play the normal game without the class, follow the steps above and start the
-v0.3 or v0.31 folder. To add Sluaghbinder, download `Sluaghbinder-v0.31b-patch.zip`
+v0.3 or v0.31 folder. To add Sluaghbinder, download the latest `Sluaghbinder-v0.31b-pet-refresh-patch.zip`
 from the v0.31b release, extract it into a new temporary folder, and double-click
 `INSTALL SLAUGHBINDER PATCH.cmd`. Choose the clean v0.3 or v0.31 folder. The
 patcher creates a new `-Sluaghbinder-v0.31b` sibling copy, keeps local progress,
