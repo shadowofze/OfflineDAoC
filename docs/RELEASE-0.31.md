@@ -1,10 +1,29 @@
 # Offline DAoC v0.31 — maintenance update
 
 This is the normal Classic/Shrouded Isles release. It contains no Sluaghbinder
-class, Sluaghbinder quest, or Sluaghbinder patch. That experimental work remains
-private until it is intentionally published in a later, separate update.
+class, Sluaghbinder quest, or Sluaghbinder patch. Players who want that optional
+expansion can choose its separate v0.31b release instead.
 
 ## What changed
+
+### September 23 shared bot fix
+
+- Savages verify reachable camp targets and no longer let native instant buffs
+  stall melee. Other classes' spell scheduling is unchanged.
+- PvE groups recruit available nearby bots, continue with a viable reduced
+  party after meetup no-shows, and recover locally after nearby resurrection.
+  Corpse waits are tracked per member.
+- Reduced parties can clear post-entry dungeon blockers rather than waiting
+  for all eight original members. Koalinth, Vendo, Keltoi and Tepok were
+  audited; no unproven navmesh or spawn relocation was made.
+- Small parties avoid the confirmed unproductive Salisbury spirit cell. Solo
+  bots recover fully and use bounded failed-camp and no-XP death backoff.
+- Mularn's audited stable arrival is lifted to the walkable surface only after
+  a confirmed ride; first-leg and boarding-range checks reduce repeat failures.
+
+The maintained branch and latest release manifest point to the current
+playable update. Older v0.31 assets remain available as historical snapshots,
+and v0.3 remains unchanged.
 
 - Moved Eilwen's two Sentinel Exchange Guards to flanking positions beside her
   in Tir na Nog. The v0.31 launcher applies this narrow repair automatically to
@@ -39,12 +58,12 @@ private until it is intentionally published in a later, separate update.
 
 ## Validation
 
-The normal local build reported zero release-build errors. The full server suite
-passed 1,893/1,893 tests and the launcher suite passed 96/96 tests; the focused
-pet/effect and route-policy checks are included in those totals. The public source
-includes the narrow policy tests and the playable update is hash-verified against a
-clean, non-personal v0.3 seed. Static checks and tests are not a promise that every
-PC or encounter is bug-free; test a disposable copy before importing real progress.
+The September 23 normal source built with zero errors and passed 1,909/1,909
+server tests. The previous launcher-only suite passed 96/96; the launcher was
+not changed by this server-only repair. The playable update is hash-verified;
+no post-fix overnight live run has yet been observed. Static checks and tests
+are not a guarantee that every encounter is bug-free. Test a disposable copy
+before importing real progress.
 
 ## Version and data safety
 

@@ -1,5 +1,15 @@
 # Offline DAoC v0.31b — optional Sluaghbinder expansion
 
+## September 23 shared bot maintenance
+
+The latest optional patch includes the same class-neutral repairs as normal
+v0.31: Savage camp/melee progress, viable reduced PvE groups and local
+resurrection, post-entry dungeon blocker handling, bounded Salisbury spirit
+and solo repeat-death recovery, and Mularn/stable boarding corrections. No
+Sluaghbinder pet, spell, quest, or class rule was changed by this maintenance
+pass. The optional source built with zero errors and passed 1,911/1,911 server
+tests; no post-fix overnight live run has yet been observed.
+
 `v0.31b` is an optional overlay on the normal v0.3/v0.31 playable release. It
 does not replace either baseline and is not required for ordinary Classic +
 Shrouded Isles play.
@@ -7,7 +17,7 @@ Shrouded Isles play.
 ## If you only want to play
 
 Use `DOWNLOAD AND PLAY v0.31b.cmd` from the repository copy, or download the
-latest `Sluaghbinder-v0.31b-pet-refresh-patch.zip` release asset and run
+latest `Sluaghbinder-v0.31b-overnight-fixes-patch.zip` release asset and run
 `INSTALL SLAUGHBINDER PATCH.cmd`. Select your clean v0.3 or v0.31 folder when asked. The installer
 creates a new sibling folder ending in `-Sluaghbinder-v0.31b`; it never writes
 back to the folder you selected. Start the new copy with its normal

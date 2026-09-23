@@ -1,5 +1,24 @@
 # Offline DAoC changelog
 
+## 2026-09-23 — shared bot progression and route repair (v0.31 / v0.31b)
+
+- Savages now keep native instant buffs from interrupting melee and verify a
+  reachable target within their assigned camp. Failed path checks are briefly
+  cached instead of retried every AI tick.
+- PvE parties recruit nearby available bots and can fight as a viable reduced
+  roster after meetup no-shows. Nearby resurrection resumes local recovery;
+  each corpse has its own bounded wait timer.
+- Reduced parties can clear post-entry dungeon corridor blockers. Koalinth,
+  Vendo, Keltoi, and Tepok were audited without speculative navmesh changes.
+- Small parties skip one unproductive Salisbury spirit cell. Solo bots rest
+  fully after death and use temporary failed-camp avoidance and capped no-XP
+  retry delays rather than repeating lethal loops immediately.
+- Mularn's audited low stable landing is corrected after a confirmed ride;
+  first-leg and boarding-range checks address repeated horse-route failures.
+- These class-neutral fixes are in both downloads. The normal v0.31 release
+  remains free of Sluaghbinder class code, quests, trainer and client assets.
+  A post-fix overnight live run has not yet been observed.
+
 ## 2026-09-22 — optional v0.31b pet and Covenant refresh
 
 - Zombie Defender is 33% larger, retains its prior shield, and has a private
