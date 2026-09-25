@@ -12,6 +12,11 @@ removes only rows owned by the feature, inserts the overlay, runs SQLite
 selected installation is never overwritten unless the user explicitly chooses
 an output folder that does not already exist.
 
+The shared Bounty Masters are script-spawned by the updated server. They do
+not require a separate static database overlay or any player's quest data.
+The current patch payload includes the corresponding client map renderer and
+quest-journal XML files; rollback restores the copied client's prior files.
+
 The current optional overlay also exports only named Sluaghbinder
 `NPCEquipment` templates. `client-assets-v0.31b` contains two private NIFs
 and two private DDS atlases. The patch executable merges their catalog rows

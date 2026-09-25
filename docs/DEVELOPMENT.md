@@ -48,7 +48,7 @@ for the source bundled inside that complete download. It never deploys a build.
 
 ## Native client modifications
 
-The native raid and bot-map builders are in source/server/tools, with validation
+The native raid, bot-map, and bounty-marker builders are in source/server/tools, with validation
 tests alongside them. They patch a specific verified x86 binary; they are not the
 original client's C++ source. Their baseline hashes and dependencies matter.
 Historical scripts may refer to backup input paths on the author's PC: these must
@@ -57,6 +57,13 @@ substitute an arbitrary game.dll or remove a failed hash guard. The supported
 `tools/build-client-raid.py` wrapper resolves inputs from `--distribution`, includes
 the exact baseline, and stages into a fresh `--output` directory. In release
 verification this rebuilt the installed game.dll byte-for-byte.
+The bounty marker builder has a separate verified input hash for the existing
+v0.31b client payload with its bot-map hook already present. It cannot be
+applied directly to an arbitrary stock client. The release installer ships a
+prebuilt, hash-checked payload and the two journal XML overlays; build or
+test any altered client in a disposable copy first.
+`source/server/tools/patch_bounty_journal_ui.py` reproduces those two XML
+buttons from verified v0.3/v0.31 UI inputs without modifying the input tree.
 
 Test texture-tool source with `python tools/test-assets.py --distribution playable`
 (or the actual complete-download path). The wrapper resolves the read-only fixtures

@@ -1,5 +1,28 @@
 # Offline DAoC changelog
 
+## 2026-09-25 — repeatable Bounty Master hunts (v0.31 / v0.31b)
+
+- Added a Bounty Master in Mag Mell, Cotswold Village, and Mularn. Each offers
+  one repeatable, realm-appropriate hunt at a time. Levels 1–49 draw a
+  yellow-con monster and ask for 5–50 kills; level 50 draws a named dungeon
+  boss or dragon. The quest journal tracks kills and the return objective.
+- Normal completion grants two XP bulbs measured at the *assigned* level,
+  multiplied by the server XP rate, plus 1–3 class-appropriate equipment
+  pieces. A level-50 boss hunt instead pays 100 gold and 1–3 high-utility
+  class items. Completed hunts can be taken again without a limit.
+- Rerolling is unlimited, but halves the normal XP reward until that bounty
+  is completed. Refreshing a bounty after outleveling its assigned level is
+  free and clears the reroll penalty for the new contract. Normal kill credit
+  uses the monster's name in the assigned zone, not its exact spawn level.
+- The active bounty has one red map marker. Its **BOUNTY MAP** journal button
+  opens the current map; the dot appears only while the character is inside
+  the target's zone or dungeon. `/bountylocation` refreshes the marker and
+  explains where to look. Turning in or replacing the bounty removes its
+  previous marker.
+- Journal text is bounded to the legacy client's 255-byte quest-packet limit,
+  including on relog. The Bounty Master and map UI are shared by both public
+  paths; Sluaghbinder itself remains exclusive to the optional v0.31b patch.
+
 ## 2026-09-23 — shared bot progression and route repair (v0.31 / v0.31b)
 
 - Savages now keep native instant buffs from interrupting their melee loop and

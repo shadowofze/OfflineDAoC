@@ -19,6 +19,12 @@ heal-over-time upkeep fix. Client catalogs and skin archives are merged into
 the new copy; stock monster appearances are not replaced. The optional patch
 does not affect the normal v0.3 or v0.31 releases.
 
+The current update also includes the three-realm Bounty Master system. Find
+the master in Mag Mell, Cotswold Village, or Mularn; the quest journal tracks
+your active hunt. The BOUNTY MAP button opens your current map, and its red
+target dot appears only once you enter the assigned zone or dungeon.
+Older patch assets remain available as historical snapshots.
+
 ROLLBACK
 
 The new folder contains ROLLBACK SLAUGHBINDER PATCH.cmd. Stop the server and

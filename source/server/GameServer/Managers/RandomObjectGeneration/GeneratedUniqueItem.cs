@@ -164,6 +164,9 @@ namespace DOL.GS
             this.AllowAdd = false;
         }
 
+        // Allows a specialized quest reward to verify its promised utility floor.
+        public double BountyUtility => GetTotalUtility();
+
         #endregion
 
         #region generate item properties

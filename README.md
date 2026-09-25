@@ -50,7 +50,7 @@ these two clearly separate paths:
 | What you want | What to download | What happens |
 | --- | --- | --- |
 | Normal Offline DAoC with the public Classic + Shrouded Isles features | The **v0.31** release and its `DOWNLOAD AND PLAY.cmd` helper (or the preserved **v0.3** release) | Creates a clean playable folder with no Sluaghbinder class. Start the included `START OFFLINE DAOC.cmd`. |
-| Normal game **plus** the optional Hibernian Sluaghbinder class | The **v0.31b** release's `DOWNLOAD AND PLAY v0.31b.cmd` helper, or the latest `Sluaghbinder-v0.31b-overnight-fixes-patch.zip` | Downloads a v0.31 baseline, makes a separate copy, and installs Sluaghbinder there. The original v0.3/v0.31 folder is never changed. |
+| Normal game **plus** the optional Hibernian Sluaghbinder class | The **v0.31b** release's `DOWNLOAD AND PLAY v0.31b.cmd` helper, or the latest `Sluaghbinder-v0.31b-bounties-patch.zip` | Downloads a v0.31 baseline, makes a separate copy, and installs Sluaghbinder there. The original v0.3/v0.31 folder is never changed. |
 
 For either path, open the new folder, read `READ ME FIRST.txt`, start the
 launcher, click **START SERVER**, wait for **RUNNING**, then click **ENTER
@@ -61,13 +61,24 @@ Acolyte and discover the Sluaghbinder trainer and quests in-game. The optional
 class is not added to existing v0.3/v0.31 installations unless you deliberately
 run the optional patch installer.
 
+## Bounty Masters (both current play paths)
+
+Visit the Bounty Master in Mag Mell, Cotswold Village, or Mularn for one
+repeatable hunt at a time. At levels 1–49, the target is a yellow-con monster
+in your realm; your journal shows the kill count and where to return. At level
+50, contracts send you after major bosses instead. Rewards include class gear,
+plus experience below 50 or gold at 50. You can reroll a target, or refresh a
+contract you have outleveled. The journal's **BOUNTY MAP** button opens your
+current map: its red dot appears only once you enter the target's zone or
+dungeon. The Bounty Master explains the terms before you accept.
+
 ## Optional Sluaghbinder expansion (v0.31b)
 
 Sluaghbinder is an optional Hibernian player class. The ordinary **v0.3** and
 **v0.31** downloads remain usable without it; it is not silently added to
 either baseline. Players who want the class should use the separate
 [v0.31b download-and-play helper](DOWNLOAD%20AND%20PLAY%20v0.31b.cmd), or download
-the latest `Sluaghbinder-v0.31b-overnight-fixes-patch.zip` asset from the [v0.31b release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b)
+the latest `Sluaghbinder-v0.31b-bounties-patch.zip` asset from the [v0.31b release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b)
 and run `INSTALL SLAUGHBINDER PATCH.cmd`. The installer asks for a clean v0.3
 or v0.31 folder, makes a new sibling copy, verifies the payload, migrates only
 the class's static rows, and leaves your original folder untouched. A rollback

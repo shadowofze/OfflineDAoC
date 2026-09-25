@@ -45,7 +45,7 @@ play; neither requires Git, an LLM, or programming knowledge.
 For the optional path, double-click **DOWNLOAD AND PLAY v0.31b.cmd** instead of
 `DOWNLOAD AND PLAY.cmd`. It downloads the normal v0.31 baseline first, verifies
 the Sluaghbinder patch, and creates `playable-v0.31b` with the optional class.
-If you already have a clean v0.3/v0.31 folder, use the latest `Sluaghbinder-v0.31b-overnight-fixes-patch.zip`
+If you already have a clean v0.3/v0.31 folder, use the latest `Sluaghbinder-v0.31b-bounties-patch.zip`
 and `INSTALL SLAUGHBINDER PATCH.cmd`; the installer makes a separate copy and
 places `ROLLBACK SLAUGHBINDER PATCH.cmd` inside it. If you do not want the class,
 never run that optional helper or installer and simply play the normal folder.
@@ -62,7 +62,7 @@ private launcher label is separate from all public release numbers.
 ## Optional Sluaghbinder play path
 
 To play the normal game without the class, follow the steps above and start the
-v0.3 or v0.31 folder. To add Sluaghbinder, download the latest `Sluaghbinder-v0.31b-overnight-fixes-patch.zip`
+v0.3 or v0.31 folder. To add Sluaghbinder, download the latest `Sluaghbinder-v0.31b-bounties-patch.zip`
 from the v0.31b release, extract it into a new temporary folder, and double-click
 `INSTALL SLAUGHBINDER PATCH.cmd`. Choose the clean v0.3 or v0.31 folder. The
 patcher creates a new `-Sluaghbinder-v0.31b` sibling copy, keeps local progress,
@@ -71,6 +71,24 @@ base folder. Sluaghbinder is Hibernian; new characters begin as Acolytes and
 follow the trainer's level-5 promotion path. The five epic quests and their
 locations are discovered through in-game clues, so the public play guide does
 not spoil them.
+
+## Repeatable bounty hunts
+
+All three realms have a Bounty Master: Mag Mell in Hibernia, Cotswold Village
+in Albion, and Mularn in Midgard. Speak to yours and choose a bounty. The
+quest journal shows the target, kill count, and return objective. Normal
+hunts from levels 1–49 select a yellow-con monster; level-50 hunts seek a
+major boss or dragon. Return to the same master to claim the reward and take
+another contract.
+
+You may reroll a target as often as you wish, but a rerolled normal bounty
+pays half its experience until you finish it. If your character has
+outleveled the current assignment, ask the master to refresh it at no
+penalty. Rewards are calculated for the level at which the bounty was
+assigned, so keeping an old hunt does not become a high-level XP shortcut.
+The journal's **BOUNTY MAP** button opens your current map; its red marker
+is visible only after you enter the target's zone or dungeon. The
+`/bountylocation` command refreshes the marker and explains where to look.
 
 ## First-time requirements
 

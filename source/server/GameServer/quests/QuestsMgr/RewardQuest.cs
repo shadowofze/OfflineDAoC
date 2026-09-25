@@ -426,7 +426,8 @@ namespace DOL.GS.Quests
 						foreach (QuestGoal goal in m_quest.Goals)
 							done &= goal.IsAchieved;
 						
-						if (done && m_quest.QuestGiver.IsWithinRadius(m_quest.QuestPlayer, WorldMgr.VISIBILITY_DISTANCE))
+						if (done && m_quest.QuestGiver != null &&
+							m_quest.QuestGiver.IsWithinRadius(m_quest.QuestPlayer, WorldMgr.VISIBILITY_DISTANCE))
 							m_quest.QuestPlayer.Out.SendNPCsQuestEffect(m_quest.QuestGiver, m_quest.QuestGiver.GetQuestIndicator(m_quest.QuestPlayer));
 					}
 					
@@ -437,6 +438,25 @@ namespace DOL.GS.Quests
 			 * Not quite sure about the meaning of the following locations data,
 			 * but have to provide it for the quest update packet nonetheless.
 			 */
+
+			/// <summary>
+			/// Assign the native journal/map waypoint for this goal. Coordinates
+			/// are zone-local offsets, as encoded by the quest packet.
+			/// Existing quests retain their default zero values.
+			/// </summary>
+			public void SetWaypoint(int zoneId, int xOffset, int yOffset)
+			{
+				if ((uint)zoneId > ushort.MaxValue)
+					throw new ArgumentOutOfRangeException(nameof(zoneId));
+				if ((uint)xOffset > ushort.MaxValue)
+					throw new ArgumentOutOfRangeException(nameof(xOffset));
+				if ((uint)yOffset > ushort.MaxValue)
+					throw new ArgumentOutOfRangeException(nameof(yOffset));
+
+				m_zoneID1 = m_zoneID2 = zoneId;
+				m_xOffset1 = m_xOffset2 = xOffset;
+				m_yOffset1 = m_yOffset2 = yOffset;
+			}
 
 			public int ZoneID1
 			{

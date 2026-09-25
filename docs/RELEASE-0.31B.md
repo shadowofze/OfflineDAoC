@@ -1,5 +1,23 @@
 # Offline DAoC v0.31b — optional Sluaghbinder expansion
 
+## September 25 Bounty Masters
+
+The current optional patch includes the realm-wide Bounty Master system also
+present in maintained normal v0.31. Maelin Greenmantle waits in Mag Mell,
+Dame Elowen Vale in Cotswold Village, and Yrsa Wolfmark in Mularn. Each gives
+one repeatable hunt: a yellow-con monster and increasing kill count below
+level 50, or a named major foe at level 50. The quest journal tracks progress.
+Ordinary hunts grant two XP bulbs measured at the assigned level and scaled
+by the server XP rate, plus 1–3 class items. Level-50 hunts grant 100 gold
+and 1–3 high-utility class items instead. Rerolling a normal target is
+unlimited but cuts its XP in half; refreshing an outleveled assignment is free.
+
+The journal's **BOUNTY MAP** button opens the current map, where a red target
+dot is visible only inside the assigned zone or dungeon. `/bountylocation`
+refreshes it and explains that limitation. The old v0.31b assets remain
+downloadable, but the latest manifest-selected patch includes the system.
+The preserved v0.3 release does not gain these later changes automatically.
+
 ## September 23 shared bot maintenance
 
 The latest optional patch includes the same class-neutral bot repairs as the
@@ -20,7 +38,7 @@ Shrouded Isles play.
 ## If you only want to play
 
 Use `DOWNLOAD AND PLAY v0.31b.cmd` from the repository copy, or download the
-latest `Sluaghbinder-v0.31b-overnight-fixes-patch.zip` release asset and run
+latest `Sluaghbinder-v0.31b-bounties-patch.zip` release asset and run
 `INSTALL SLAUGHBINDER PATCH.cmd`. Select your clean v0.3 or v0.31 folder when asked. The installer
 creates a new sibling folder ending in `-Sluaghbinder-v0.31b`; it never writes
 back to the folder you selected. Start the new copy with its normal

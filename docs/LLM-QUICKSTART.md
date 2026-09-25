@@ -56,11 +56,21 @@ repository.
 | Sluaghbinder private pet texture handoff | [`docs/LLM-SLUAGHBINDER-PET-TEXTURES.md`](LLM-SLUAGHBINDER-PET-TEXTURES.md) |
 | Ready-to-run texture tool | `playable/OFFLINE DAOC ASSET TOOL` |
 | Native raid UI builder | `tools/build-client-raid.py` and `source/server/tools` |
+| Bounty quests, journal progress, and rewards | `source/server/GameServer/scripts/quests/Bounty` and `source/server/Tests/UnitTests/UT_Bounty*.cs` |
+| Bounty map marker and UI patch | `source/server/GameServer/quests/QuestsMgr/BountyMapMarkers.cs`, `source/server/tools/patch_bounty_map_client.py`, and the optional release's two quest-journal XML payloads |
 
 The complete release also includes source for people who downloaded without Git.
 When using a fork, edit the fork's `source/` as the canonical copy and deliberately
 deploy tested outputs to your separate `playable/runtime/`. Do not edit two copies
 and assume they are synchronized.
+
+The Bounty Masters are script-spawned at startup; do not copy a played
+database into a fork to reproduce them. Their normal target pool reads the
+installed world spawns, and completed progress uses the standard quest
+journal rows. The red marker is a client-specific visual patch, not a
+teleport destination. It is visible only on the map for the target's zone
+or dungeon. Use the matching Release client payload and preserve the
+native patch's SHA-256 guard; never run the patch on an arbitrary game.dll.
 
 ## Build and test
 
