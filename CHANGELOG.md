@@ -1,5 +1,28 @@
 # Offline DAoC changelog
 
+## 2026-09-25 — repeatable Bounty Masters (v0.31 / v0.31b)
+
+- Bounty Masters in Cotswold, Mularn, and Mag Mell now offer one repeatable
+  monster hunt at a time. Levels 1–49 get a yellow-con species and a kill count
+  that grows with level; the journal tracks progress and turn-in.
+- A completed normal bounty grants class-appropriate equipment and two XP bulbs
+  measured at the assigned level, scaled by the server's XP rate. Unlimited
+  rerolls change the target but reduce XP to one bulb until completion. Refreshing
+  an outleveled contract is free; an old contract's XP value does not grow with
+  the character. Level-50 contracts instead hunt major bosses for gold and
+  high-quality class gear, with no XP reward.
+- A red bounty marker appears on the target's local zone or dungeon map once
+  you enter that area. The journal's BOUNTY MAP button opens your current map;
+  the Bounty Master and `/bountylocation` explain how to find the marker.
+- Fixed a too-long journal entry that could block a character with an active
+  bounty from logging in. Ordinary bounty kills now count every matching
+  monster name in the assigned zone, regardless of its variable spawn level;
+  level-50 named bosses still require the exact target.
+- The bounty system is shared by the normal v0.31 and optional v0.31b paths.
+  The v0.3 release remains unchanged, and v0.31 still does not contain the
+  Sluaghbinder class. Source tests and package checks are separate from an
+  in-client gameplay verification.
+
 ## 2026-09-23 — shared bot progression and route repair (v0.31 / v0.31b)
 
 - Savages now keep native instant buffs from interrupting melee and verify a

@@ -47,7 +47,7 @@ play; neither requires Git, an LLM, or programming knowledge.
 For the optional path, double-click **DOWNLOAD AND PLAY v0.31b.cmd** instead of
 `DOWNLOAD AND PLAY.cmd`. It downloads the normal v0.31 baseline first, verifies
 the Sluaghbinder patch, and creates `playable-v0.31b` with the optional class.
-If you already have a clean v0.3/v0.31 folder, use the latest `Sluaghbinder-v0.31b-overnight-fixes-patch.zip`
+If you already have a clean v0.3/v0.31 folder, use the latest `Sluaghbinder-v0.31b-bounties-patch.zip`
 and `INSTALL SLAUGHBINDER PATCH.cmd`; the installer makes a separate copy and
 places `ROLLBACK SLAUGHBINDER PATCH.cmd` inside it. If you do not want the class,
 never run that optional helper or installer and simply play the normal folder.
@@ -61,6 +61,20 @@ The v0.31 GitHub launcher says **0.31**. The optional v0.31b launcher says
 **0.31b**. The old v0.3 launcher and release still say **0.3**. The author's
 private launcher label is separate from all public release numbers.
 
+## Repeatable bounties (v0.31 and v0.31b)
+
+Find the Bounty Master in Cotswold (Albion), Mularn (Midgard), or Mag Mell
+(Hibernia). Accept one hunt, then use your quest journal to watch the kill count
+and return to that master for the reward. Ordinary hunts count the named monster
+in its assigned zone even when individual spawns have different levels.
+
+Travel to the target's zone or dungeon before looking for the red map marker.
+**BOUNTY MAP** in the journal opens your *current* map; it cannot show a distant
+zone. Ask the master to **show location** or use `/bountylocation` for directions.
+You may reroll a target as often as you like, but that contract pays half XP;
+refreshing a contract you have outleveled has no penalty. Level-50 bounties
+send you after major bosses for gear and gold rather than XP.
+
 ## Watch the demos
 
 The [Sluaghbinder introduction](https://www.youtube.com/watch?v=EowrCcjigBY)
@@ -71,7 +85,7 @@ video files are downloaded as part of the game setup.
 ## Optional Sluaghbinder play path
 
 To play the normal game without the class, follow the steps above and start the
-v0.3 or v0.31 folder. To add Sluaghbinder, download the latest `Sluaghbinder-v0.31b-overnight-fixes-patch.zip`
+v0.3 or v0.31 folder. To add Sluaghbinder, download the latest `Sluaghbinder-v0.31b-bounties-patch.zip`
 from the v0.31b release, extract it into a new temporary folder, and double-click
 `INSTALL SLAUGHBINDER PATCH.cmd`. Choose the clean v0.3 or v0.31 folder. The
 patcher creates a new `-Sluaghbinder-v0.31b` sibling copy, keeps local progress,
