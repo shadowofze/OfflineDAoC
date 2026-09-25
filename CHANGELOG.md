@@ -14,6 +14,9 @@
 - A red bounty marker appears on the target's local zone or dungeon map once
   you enter that area. The journal's BOUNTY MAP button opens your current map;
   the Bounty Master and `/bountylocation` explain how to find the marker.
+- Added `/stables`, `/stables classic`, `/stables si`, and `/stables <page>` to
+  list your realm's actual Classic and Shrouded Isles stable-ticket routes.
+  These commands are informational; they do not move your character.
 - Fixed a too-long journal entry that could block a character with an active
   bounty from logging in. Ordinary bounty kills now count every matching
   monster name in the assigned zone, regardless of its variable spawn level;
