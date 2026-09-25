@@ -1,5 +1,22 @@
 # Offline DAoC changelog
 
+## 2026-09-25 — Bard combat, companion songs, and Shannon beach rats (v0.31 / v0.31b)
+
+- Solo Bard gamebots engage PvE targets instead of repeatedly casting mez.
+  Grouped Bards reserve PvE mez for a fresh extra monster already attacking
+  their party, never the party's selected kill target; failed attempts have a
+  short retry limit. PvP mez and Bard's secondary-healing role are unchanged.
+- Bard, Skald, and Minstrel `/spawn` companions finish ordinary group buffs
+  while stationary before resuming songs. When their player leader moves,
+  travel songs take priority: Bard uses speed and endurance rather than power;
+  Skald and Minstrel use their available speed/health songs. Autonomous
+  gamebot song behavior is unchanged.
+- Filled out the low-level Shannon Estuary beach-rat camp to eleven spaced
+  level-1/2 rats. The v0.31 downloader and optional v0.31b installer apply a
+  guarded, repeatable world-data patch without copying anyone's save database.
+  The preserved v0.3 release and Sluaghbinder-free normal v0.31 path remain
+  separate.
+
 ## 2026-09-25 — repeatable Bounty Masters (v0.31 / v0.31b)
 
 - Bounty Masters in Cotswold, Mularn, and Mag Mell now offer one repeatable
