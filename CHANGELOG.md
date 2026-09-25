@@ -22,6 +22,9 @@
 - Journal text is bounded to the legacy client's 255-byte quest-packet limit,
   including on relog. The Bounty Master and map UI are shared by both public
   paths; Sluaghbinder itself remains exclusive to the optional v0.31b patch.
+- Added `/stables`, `/stables classic`, `/stables si`, and `/stables <page>` to
+  list the character's realm-specific Classic and Shrouded Isles stable-ticket
+  connections. These commands display routes only; they do not travel.
 
 ## 2026-09-23 — shared bot progression and route repair (v0.31 / v0.31b)
 
