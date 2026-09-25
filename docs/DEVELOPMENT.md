@@ -55,6 +55,22 @@ Test texture-tool source with `python tools/test-assets.py --distribution playab
 (or the actual complete-download path). The wrapper resolves the read-only fixtures
 for the source-checkout layout; modifications happen only in temporary test copies.
 
+The repeatable bounty implementation lives in
+`source/server/GameServer/scripts/quests/Bounty`, with its map marker and
+`/bountylocation` command in the neighboring quest/command folders. The
+`/stables` route viewer reads live stable tickets and is informational only.
+The bounty red-dot client hook is `source/server/tools/patch_bounty_map_client.py`.
+It accepts only the preserved v0.3/v0.31 x86 `game.dll` with the recorded
+SHA-256 and writes a separate output file; run its sibling validation script
+against that exact baseline before considering deployment. Do not use the
+optional Sluaghbinder client DLL or alter the expected hash to make an unknown
+client pass. The guarded `patch_bounty_journal_ui.py` recreates the journal
+button XML for both Isles and Atlantis from that same clean client; the
+resulting XML is included in the playable update. No live database migration
+is required:
+the three masters are script-owned and character progress uses ordinary quest
+rows.
+
 ## World data, navigation, and customization
 
 Keep the clean world definitions and all current navmeshes available to the LLM.

@@ -6,6 +6,29 @@ expansion can choose its separate v0.31b release instead.
 
 ## What changed
 
+### Repeatable realm bounties
+
+Find the Bounty Master near the road in Mag Mell (Hibernia), Cotswold Village
+(Albion), or Mularn (Midgard). Accept one hunt, track its kills in the quest
+journal, then return to the same realm's master for the reward. Levels 1-49
+receive a random same-level/yellow-con monster; every matching monster in its
+assigned zone counts even if nearby spawns vary in level. Required kills rise
+from 5 to 50 as the character levels. Level-50 hunts are major-boss contracts;
+their specific targets are left for players to discover in-game.
+
+A normal completion grants 1-3 class-appropriate items and two XP bulbs at
+the bounty's *assigned level*, multiplied by the server XP rate. Rerolling is
+unlimited but cuts that contract's XP to one bulb until it is completed. If you
+outlevel a contract, you may replace it without that penalty. Level-50 hunts
+grant 100 gold and 1-3 exceptional class items instead of XP. Only one bounty
+can be active at a time.
+
+The journal shows kill progress and a BOUNTY MAP button. Enter the target's
+zone or dungeon first: only then does its red marker appear on your local map.
+The button opens your current map; `/bountylocation` refreshes the marker and
+explains where it is visible. `/stables` lists your realm's real Classic and
+Shrouded Isles stable-ticket connections; it is informational only.
+
 ### September 23 shared bot fix
 
 - Savages verify reachable camp targets and no longer let native instant buffs
@@ -26,6 +49,11 @@ The maintained branch and latest release manifest point to the current
 playable update. Older v0.31 assets remain available as historical snapshots,
 and the v0.3 release is unchanged. These fixes need a restarted server to take
 effect; the published package has not yet had a live overnight rerun.
+
+For this bounty refresh, the latest playable delta is named
+`OfflineDAoC-v0.31-bounties-update.zip` and the matching editable checkout is
+also offered as `OfflineDAoC-v0.31-bounties-source.zip`. The one-click helper
+uses the release manifest rather than relying on the older asset names.
 
 - Fixed level-based spell scaling for player-owned summoned pets, including pets
   whose owner is reached through another controlled pet. Companion/Zealot spell

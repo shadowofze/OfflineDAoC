@@ -39,6 +39,22 @@ The v0.31 GitHub launcher says **0.31**. The old v0.3 launcher and release still
 say **0.3**. The author's private launcher label is separate from both public
 release numbers.
 
+## Optional repeatable bounties within normal v0.31 play
+
+Talk to the Bounty Master in your realm's starting village: Mag Mell,
+Cotswold Village, or Mularn. You can hold one bounty at a time. The quest
+journal shows the monster, its zone, and your kill count. Return to the master
+after finishing it for class-appropriate gear and experience, or a high-level
+gold-and-gear reward at level 50. You may reroll a disliked target, but doing
+so halves that contract's experience; replacing a bounty you have outleveled
+has no penalty.
+
+The red bounty dot is visible **only when you are inside the target's zone or
+dungeon**. The journal's BOUNTY MAP button opens your current map, so it will
+not display a distant zone's dot. `/bountylocation` refreshes the marker and
+explains this limitation. `/stables` shows the stable routes for your realm,
+including Shrouded Isles, without moving your character.
+
 ## First-time requirements
 
 - A compatible 64-bit Windows PC with enough memory and a working graphics driver.

@@ -18,6 +18,8 @@ modifier, create one bot. Start small and increase population for your PC's capa
 | `/mobs X` | List mob names at a level; replace X with the level number. |
 | `/tele mob X` | Teleport to a mob spawn; use the mob's exact name for X. Dungeon targets use the configured entrance approach where applicable. |
 | `/tc` | Teleport to your realm's Realm Exchange NPC. |
+| `/bountylocation` | Refresh your active bounty's red marker and explain where to see it. The dot is visible only on the target zone or dungeon map. |
+| `/stables [page]` | List your realm's actual Classic and Shrouded Isles stable-ticket connections; this does not travel. Use `/stables si` for the Isles section. |
 
 ## Companion groups, grinding, and raids
 

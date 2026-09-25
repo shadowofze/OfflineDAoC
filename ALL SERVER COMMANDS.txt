@@ -1,6 +1,10 @@
 OFFLINE DAOC 0.3 - SERVER COMMAND REFERENCE
 
 285 command registrations read from the shipped server assemblies.
+The count below is the preserved v0.3 snapshot; maintained v0.31 additions
+include /bountylocation (refresh the active bounty marker) and /stables
+(list your realm's Classic and Shrouded Isles stable routes). See
+docs/QUICK-COMMANDS.md for current everyday commands.
 Normal commands can still have level, realm, cooldown or state requirements.
 GM/admin commands can change or delete game data. Back up before using them.
 Descriptions containing a localization key have no matching shipped English text.

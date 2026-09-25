@@ -42,6 +42,11 @@ runnable components, source, and offline development dependencies. Accounts, cha
 inventories, saved bot profiles and personal settings from the author's game are
 not included. Each installation creates its own local account and saves.
 
+The maintained v0.31 update also includes repeatable realm bounties for all
+three factions. Visit the Bounty Master in Mag Mell, Cotswold Village, or
+Mularn; the quest journal tracks progress. See [how bounties and the local
+map marker work](docs/PLAY.md#optional-repeatable-bounties-within-normal-v031-play).
+
 ## Customize with your own LLM
 
 - `source/server`: current server, bot AI, combat, spells, groups, sieges, economy,

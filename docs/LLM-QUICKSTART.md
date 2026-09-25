@@ -43,6 +43,7 @@ baseline, branch from the `v0.3` tag instead of deleting or rewriting v0.31.
 | Texture tool source | `tools/asset-tool` |
 | Ready-to-run texture tool | `playable/OFFLINE DAOC ASSET TOOL` |
 | Native raid UI builder | `tools/build-client-raid.py` and `source/server/tools` |
+| Repeatable realm bounties | `source/server/GameServer/scripts/quests/Bounty`, `source/server/GameServer/quests/QuestsMgr/BountyMapMarkers.cs`, and the SHA-256-guarded client/UI builders in `source/server/tools/patch_bounty_map_client.py` and `patch_bounty_journal_ui.py` |
 
 The complete release also includes source for people who downloaded without Git.
 When using a fork, edit the fork's `source/` as the canonical copy and deliberately

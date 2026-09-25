@@ -1,5 +1,28 @@
 # Offline DAoC changelog
 
+## 2026-09-25 — v0.31 repeatable realm bounties
+
+- Added Bounty Masters in Mag Mell, Cotswold Village, and Mularn. Each player
+  may take one repeatable hunt at a time. Levels 1-49 receive a yellow-con
+  monster in their own realm; the required kills rise from 5 to 50 with level.
+  Any monster of the assigned name in the assigned zone counts, even when
+  individual spawns have different levels.
+- The native quest journal saves and displays kill progress. The red bounty
+  marker appears on the local map only after entering the target's zone or
+  dungeon; BOUNTY MAP opens the current map, and `/bountylocation` refreshes
+  the marker. The accepted quest remains intact across logout.
+- A completed normal bounty pays 1-3 class-appropriate equipment pieces and
+  two XP bulbs at the *assigned quest level*, multiplied by the server XP rate.
+  Unlimited target rerolls lower XP to one bulb until completion; replacing an
+  outleveled bounty has no reroll penalty. Level-50 contracts instead target
+  major bosses and pay 100 gold plus 1-3 high-quality class items, with no XP.
+- Added `/stables` to display the character's own realm's actual Classic and
+  Shrouded Isles ticket connections. This is information only; it does not
+  change travel or teleport the player.
+- Bounty journal text is bounded to the 1.127 client's 255-byte quest-packet
+  limit. The normal client's red-dot hook is SHA-256 guarded and separate from
+  the optional Sluaghbinder client. The preserved v0.3 release is unchanged.
+
 ## 2026-09-23 — v0.31 shared bot progression and route repair
 
 - Savages now keep native instant buffs from interrupting their melee loop and
