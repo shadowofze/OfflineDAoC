@@ -4,6 +4,22 @@ This is the normal Classic/Shrouded Isles release. It contains no Sluaghbinder
 class, Sluaghbinder quest, or Sluaghbinder patch. Players who want that optional
 expansion can choose its separate v0.31b release instead.
 
+## Latest Bard and world-camp repair
+
+Companion and autonomous Bard bots no longer repeatedly mez their ordinary PvE
+kill target. They keep fighting and can still heal when needed; grouped Bards
+can reserve mez for a separate, full-health add attacking the party. Companion
+Bards, Skalds, and Minstrels finish ordinary buffs before stationary song
+twisting. Traveling companion Bards favor speed/endurance; Skalds and
+Minstrels favor speed/health regeneration. Autonomous song
+scheduling and other classes are unchanged.
+
+The Shannon Estuary beach-rat camp now has eleven spaced level-1/2 rats in
+place of one incorrectly high-level rat. The latest playable update applies
+this narrow, repeat-safe world change inside the new installation it creates;
+it does not ship or overwrite anyone's saved accounts, characters, or bots.
+The v0.3 release and earlier v0.31 update ZIPs remain available unchanged.
+
 ## What changed
 
 ### Repeatable realm bounties
@@ -50,9 +66,9 @@ playable update. Older v0.31 assets remain available as historical snapshots,
 and the v0.3 release is unchanged. These fixes need a restarted server to take
 effect; the published package has not yet had a live overnight rerun.
 
-For this bounty refresh, the latest playable delta is named
-`OfflineDAoC-v0.31-bounties-update.zip` and the matching editable checkout is
-also offered as `OfflineDAoC-v0.31-bounties-source.zip`. The one-click helper
+The latest playable delta is named
+`OfflineDAoC-v0.31-bard-beach-rats-update.zip` and the matching editable
+checkout is `OfflineDAoC-v0.31-bard-beach-rats-source.zip`. The one-click helper
 uses the release manifest rather than relying on the older asset names.
 
 - Fixed level-based spell scaling for player-owned summoned pets, including pets

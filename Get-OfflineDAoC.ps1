@@ -67,6 +67,18 @@ if ($manifest.Mode -eq 'delta') {
             [IO.Compression.ZipFileExtensions]::ExtractToFile($entry,$resolved,$true)
         }
     } finally { $zip.Dispose() }
+    $worldPatcher = Join-Path $target 'runtime\world-patches\OfflineDaoc.WorldPatch.exe'
+    $beachRatSql = Join-Path $target 'tools\world-patches\shannon-beach-rat-camp.sql'
+    $worldDatabase = Join-Path $target 'runtime\data\opendaoc.sqlite3.db'
+    if (!(Test-Path -LiteralPath $worldPatcher -PathType Leaf) -or
+        !(Test-Path -LiteralPath $beachRatSql -PathType Leaf)) {
+        throw 'The v0.31 update is missing its Shannon Estuary world patch. Use the latest release manifest and update asset.'
+    }
+    $worldPatchArgs = '--database "' + $worldDatabase + '" --sql "' + $beachRatSql + '"'
+    $worldPatchProcess = Start-Process -FilePath $worldPatcher -ArgumentList $worldPatchArgs -Wait -PassThru -NoNewWindow
+    if ($worldPatchProcess.ExitCode -ne 0) {
+        throw 'The Shannon Estuary world patch failed in the new copy. The original installation was not changed.'
+    }
     Write-Host "Verified v0.31 update and applied it to $target"
     Write-Host 'Read the included README.md and docs, then open START OFFLINE DAOC.cmd. Nothing was started automatically.'
     exit 0

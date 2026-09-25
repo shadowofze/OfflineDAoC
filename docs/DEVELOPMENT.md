@@ -66,10 +66,13 @@ against that exact baseline before considering deployment. Do not use the
 optional Sluaghbinder client DLL or alter the expected hash to make an unknown
 client pass. The guarded `patch_bounty_journal_ui.py` recreates the journal
 button XML for both Isles and Atlantis from that same clean client; the
-resulting XML is included in the playable update. No live database migration
-is required:
-the three masters are script-owned and character progress uses ordinary quest
-rows.
+resulting XML is included in the playable update. The three Bounty Masters are
+script-owned and character progress uses ordinary quest rows. A separate,
+idempotent Shannon Estuary beach-rat camp correction is in
+`tools/world-patches/shannon-beach-rat-camp.sql`. The v0.31 download helper
+applies it to its newly extracted world database with the generic
+`source/tools/OfflineDaoc.WorldPatch` executable. The SQL touches only one
+known rat row and ten fixed-ID additions; no live/private database is shipped.
 
 ## World data, navigation, and customization
 

@@ -46,6 +46,9 @@ The maintained v0.31 update also includes repeatable realm bounties for all
 three factions. Visit the Bounty Master in Mag Mell, Cotswold Village, or
 Mularn; the quest journal tracks progress. See [how bounties and the local
 map marker work](docs/PLAY.md#optional-repeatable-bounties-within-normal-v031-play).
+The latest `OfflineDAoC-v0.31-bard-beach-rats-update.zip` also corrects Bard
+bot PvE mez use and the low-level Shannon Estuary beach-rat camp; the helper
+selects it automatically through the release manifest.
 
 ## Customize with your own LLM
 

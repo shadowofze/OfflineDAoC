@@ -1,5 +1,23 @@
 # Offline DAoC changelog
 
+## 2026-09-25 — v0.31 Bard combat and Shannon camp repair
+
+- Bard companions and autonomous gamebots no longer repeatedly mesmerize their
+  ordinary PvE kill target. They keep engaging in combat and retain their
+  existing secondary-healer role. A grouped Bard may control a separate,
+  full-health monster that is attacking the party, with a bounded retry delay.
+- Stationary companion Bards, Skalds, and Minstrels finish their ordinary
+  buffs before song twisting can take the cast slot. While following a moving
+  player, Bard travel songs favor speed/endurance; Skald and Minstrel songs
+  favor speed/health regeneration. Autonomous gamebot song scheduling and
+  other classes' combat rules are unchanged.
+- Corrected the Shannon Estuary beach-rat camp: its original rat and ten
+  spaced neighbors are level 1–2, with normal respawns. A guarded,
+  idempotent migration changes only that camp in the newly downloaded copy;
+  no account, character, bot, or setting data is shipped or replaced.
+- These shared fixes are also in the optional v0.31b update. Normal v0.31
+  remains free of Sluaghbinder source, class data, and client assets.
+
 ## 2026-09-25 — v0.31 repeatable realm bounties
 
 - Added Bounty Masters in Mag Mell, Cotswold Village, and Mularn. Each player

@@ -575,6 +575,7 @@ namespace DOL.AI.Brain
         private long _nextCombatProgressTick;
         private long _nextMaintenanceBuffTick;
         private long _nextSongTwistTick;
+        private bool _companionPerformerBuffBatch;
         private long _lastPerformerFollowTick = long.MinValue;
         private long _nextInstrumentKitCheck;
         private long _nextNecromancerCommandTick;
@@ -1250,6 +1251,16 @@ namespace DOL.AI.Brain
             // therefore keeps its real instrument, power and interruption rules.
             // Grouped performers favor this support job; solo levelers never let
             // twisting displace their own immediate combat response.
+            // A parked /spawn performer completes its ordinary buff pass before
+            // another song can consume the cast slot. The batch flag below
+            // keeps the song paused across the normal 1.75s buff backoff; a
+            // moving owner releases it immediately for travel songs instead.
+            bool companionPerformerBuffPriority = IsStationaryTemporaryCompanionPerformer();
+            if (companionPerformerBuffPriority &&
+                !BotRestRecovery.DeferOptionalCasterUpkeep(BotBody) &&
+                TryMaintainTravelAndClassBuffs())
+                return;
+
             FollowTravelingCompanionPerformer();
             if (TryMaintainClassicSongTwist())
                 return;
@@ -1297,7 +1308,8 @@ namespace DOL.AI.Brain
             // conservative maintenance pass. It uses only learned spells and
             // real equipment, and never refreshes routine buffs in combat.
             bool deferCasterUpkeep = BotRestRecovery.DeferOptionalCasterUpkeep(BotBody);
-            if (!movementFirstPetClass && !deferCasterUpkeep && TryMaintainTravelAndClassBuffs())
+            if (!companionPerformerBuffPriority && !movementFirstPetClass && !deferCasterUpkeep &&
+                TryMaintainTravelAndClassBuffs())
                 return;
 
             // Adopt a live target from our own pet before optional pet upkeep.
@@ -1743,7 +1755,10 @@ namespace DOL.AI.Brain
                 .DistinctBy(spell => spell.ID)
                 .ToList();
             if (known.Count == 0)
+            {
+                CompleteCompanionPerformerBuffBatch(bot);
                 return false;
+            }
 
             bool traveling = IsMaintenanceTraveling();
 
@@ -1774,6 +1789,9 @@ namespace DOL.AI.Brain
                 if (target == null)
                     continue;
 
+                bool companionPerformerBuff = IsStationaryTemporaryCompanionPerformer();
+                if (companionPerformerBuff)
+                    StopTwistedSong();
                 GameObject previousTarget = bot.TargetObject;
                 if (spell.CastTime > 0)
                 {
@@ -1783,6 +1801,8 @@ namespace DOL.AI.Brain
                 bot.TargetObject = target;
                 bool cast = CastCoordinatedBuff(spell, false);
                 bot.TargetObject = previousTarget;
+                if (cast && companionPerformerBuff)
+                    _companionPerformerBuffBatch = true;
                 bool isMainPetTarget = target == bot.ControlledBrain?.Body;
                 // Pet effects can be applied asynchronously. A short retry
                 // window prevents a delayed/missing effect from monopolizing
@@ -1807,7 +1827,26 @@ namespace DOL.AI.Brain
             // A complete scan found nothing missing. Avoid rescanning the whole
             // spellbook on every lightweight AI tick.
             _nextMaintenanceBuffTick = GameLoop.GameLoopTime + 8_000;
+            CompleteCompanionPerformerBuffBatch(bot);
             return false;
+        }
+
+        private bool IsStationaryTemporaryCompanionPerformer() =>
+            IsTemporaryCompanionPerformer(BotBody) &&
+            AssistedPlayer is { IsAlive: true, IsMoving: false } &&
+            !BotBody.InCombat && !HasAggro && !BotBody.IsAttacking &&
+            !CompanionFollowPolicy.WaitingForLeaderToStop(BotBody);
+
+        private static bool IsTemporaryCompanionPerformer(GameBot bot) =>
+            bot is { IsTemporaryGroupHelper: true, IsAutonomousWorldBot: false, IsPlayerLedGroup: true } &&
+            IsClassicSongClass(bot);
+
+        private void CompleteCompanionPerformerBuffBatch(GameBot bot)
+        {
+            if (!_companionPerformerBuffBatch || !IsTemporaryCompanionPerformer(bot))
+                return;
+            _companionPerformerBuffBatch = false;
+            _nextSongTwistTick = 0;
         }
 
         private bool TryMaintainClassicSongTwist()
@@ -1815,6 +1854,16 @@ namespace DOL.AI.Brain
             GameBot bot = BotBody;
             if (!IsClassicSongClass(bot) || !bot.IsAlive)
                 return false;
+
+            bool temporaryCompanion = IsTemporaryCompanionPerformer(bot);
+            bool ownerMoving = temporaryCompanion && AssistedPlayer?.IsMoving == true;
+            if (_companionPerformerBuffBatch && temporaryCompanion)
+            {
+                if (ownerMoving || bot.InCombat || HasAggro || bot.IsAttacking)
+                    CompleteCompanionPerformerBuffBatch(bot);
+                else
+                    return false;
+            }
 
             if (bot.IsOnStableMasterRoute || bot.IsCasting ||
                 bot.castingComponent.HasPendingSkillRequests ||
@@ -1855,13 +1904,20 @@ namespace DOL.AI.Brain
                              bot.PersistentRecord?.Activity?.Contains("travel", StringComparison.OrdinalIgnoreCase) == true ||
                              bot.PersistentRecord?.Activity?.Contains("walking", StringComparison.OrdinalIgnoreCase) == true;
 
-            List<Spell> songs = (bot.MiscSpells ?? [])
+            IEnumerable<Spell> songCandidates = (bot.MiscSpells ?? [])
                 .Concat(bot.InstantMiscSpells ?? [])
                 .Where(spell => spell != null && spell.IsPulsing && !spell.IsHarmful &&
                                 spell.Level <= bot.Level && IsMaintainableClassBuff(spell) &&
-                                bot.Mana >= bot.PowerCost(spell))
+                                bot.Mana >= bot.PowerCost(spell) &&
+                                (!ownerMoving || BotSongTwistPolicy.IsCompanionTravelSong(
+                                    (eCharacterClass)bot.CharacterClass.ID, spell.SpellType)))
                 .DistinctBy(spell => spell.ID)
-                .Where(spell => spell.SpellType != eSpellType.SpeedEnhancement || !immediateCombat && (traveling || groupedSupport))
+                .Where(spell => spell.SpellType != eSpellType.SpeedEnhancement || !immediateCombat && (traveling || groupedSupport));
+            if (ownerMoving)
+                songCandidates = songCandidates.GroupBy(spell => spell.SpellType)
+                    .Select(group => group.OrderByDescending(spell => spell.Level)
+                        .ThenByDescending(spell => spell.Value).First());
+            List<Spell> songs = songCandidates
                 .OrderByDescending(spell => spell.SpellType == eSpellType.SpeedEnhancement && !immediateCombat)
                 .ThenByDescending(spell => groupedSupport && spell.Target is eSpellTarget.GROUP or eSpellTarget.REALM)
                 .ThenByDescending(spell => spell.Value)
@@ -3213,6 +3269,7 @@ namespace DOL.AI.Brain
             else if (!casted && type == eCheckSpellType.Offensive)
             {
                 if (TryPvpCrowdControl()) return true;
+                if (TryBardPveAddMez()) return true;
                 if (BotBody.CharacterClass.ID == (int)eCharacterClass.Cleric)
                 {
                     if (!Util.Chance(Math.Max(5, Body.ManaPercent - 50)))
@@ -3419,6 +3476,7 @@ namespace DOL.AI.Brain
         protected bool CanCastOffensiveSpell(Spell spell)
         {
             if (spell == null || spell.Level > Body.Level || Body.TargetObject is not GameLiving target || !target.IsAlive ||
+                !BardBotCrowdControlPolicy.AllowsOrdinaryOffense((eCharacterClass)BotBody.CharacterClass.ID, spell.SpellType) ||
                 BotSpellPower.BlocksAttackerRotation(BotBody, spell) ||
                 !NeedsOffensiveSpellApplication(target, spell) ||
                 Body.GetSkillDisabledDuration(spell) > 0 || Body.Mana < BotBody.PowerCost(spell))
@@ -3535,6 +3593,7 @@ namespace DOL.AI.Brain
         protected virtual bool CheckInstantOffensiveSpells(Spell spell)
         {
             if (spell == null || Body.Mana < BotBody.PowerCost(spell) ||
+                !BardBotCrowdControlPolicy.AllowsOrdinaryOffense((eCharacterClass)BotBody.CharacterClass.ID, spell.SpellType) ||
                 spell.HasRecastDelay && Body.GetSkillDisabledDuration(spell) > 0)
                 return false;
 

@@ -433,6 +433,59 @@ namespace DOL.UnitTests
             Assert.That(bot.castingComponent.SpellHandler?.Spell, Is.SameAs(song));
         }
 
+        [TestCase(typeof(ClassBard))]
+        [TestCase(typeof(ClassSkald))]
+        [TestCase(typeof(ClassMinstrel))]
+        public void StationaryCompanionFinishesOrdinaryBuffBatchBeforeResumingSongs(Type type)
+        {
+            Bot bot = NewBot(type); Player player = Actor<Player>(); player.Moving = false;
+            CompanionGroup(bot, player);
+            bot.CaptureCasts = true;
+            Field(typeof(BotBrain), bot.Brain, "_nextInstrumentKitCheck", long.MaxValue);
+            Spell buff = new(new DbSpell { SpellID = 99980, Type = "StrengthBuff", Target = "Group",
+                Range = 1500, Duration = 600, Value = 10, CastTime = 3 }, 1);
+            Spell song = Song(id: 99981);
+            bot.MiscSpells = new List<Spell> { song, buff };
+            MethodInfo maintain = typeof(BotBrain).GetMethod("TryMaintainTravelAndClassBuffs", Hidden);
+            MethodInfo twist = typeof(BotBrain).GetMethod("TryMaintainClassicSongTwist", Hidden);
+            Assert.That(maintain.Invoke(bot.Brain, null), Is.EqualTo(true));
+            Assert.That(bot.LastRequested, Is.SameAs(buff));
+            bot.LastRequested = null;
+            twist.Invoke(bot.Brain, null);
+            Assert.That(bot.LastRequested, Is.Null, "The song cannot interleave during the buff backoff.");
+
+            bot.MiscSpells = new List<Spell> { song };
+            typeof(GameLoop).GetProperty(nameof(GameLoop.GameLoopTime)).SetValue(null, 102_000L);
+            Assert.That(maintain.Invoke(bot.Brain, null), Is.EqualTo(false));
+            twist.Invoke(bot.Brain, null);
+            Assert.That(bot.LastRequested, Is.SameAs(song), "The song resumes after the last buff is done.");
+        }
+
+        [TestCase(typeof(ClassBard))]
+        [TestCase(typeof(ClassSkald))]
+        [TestCase(typeof(ClassMinstrel))]
+        public void MovingOwnerBreaksBuffBatchAndStartsSpeedInsteadOfPower(Type type)
+        {
+            Bot bot = NewBot(type); Player player = Actor<Player>(); player.Moving = false;
+            CompanionGroup(bot, player);
+            bot.CaptureCasts = true;
+            Field(typeof(BotBrain), bot.Brain, "_nextInstrumentKitCheck", long.MaxValue);
+            Spell buff = new(new DbSpell { SpellID = 99982, Type = "StrengthBuff", Target = "Group",
+                Range = 1500, Duration = 600, Value = 10, CastTime = 3 }, 1);
+            bot.MiscSpells = new List<Spell> { buff };
+            MethodInfo maintain = typeof(BotBrain).GetMethod("TryMaintainTravelAndClassBuffs", Hidden);
+            Assert.That(maintain.Invoke(bot.Brain, null), Is.EqualTo(true));
+
+            Spell speed = Song("SpeedEnhancement", id: 99983);
+            Spell secondary = Song(type == typeof(ClassBard) ? "EnduranceRegenBuff" : "HealthRegenBuff", id: 99984);
+            Spell power = Song("PowerRegenBuff", id: 99985);
+            bot.MiscSpells = new List<Spell> { power, secondary, speed };
+            bot.LastRequested = null;
+            player.Moving = true;
+            typeof(BotBrain).GetMethod("TryMaintainClassicSongTwist", Hidden).Invoke(bot.Brain, null);
+            Assert.That(bot.LastRequested, Is.SameAs(speed), "Owner movement releases the buff batch immediately.");
+        }
+
         [TestCase(8)] [TestCase(40)] [TestCase(80)]
         public void FormationPolicyCoversEveryCompanionSizeAndExcludesGamebots(int size)
         {
