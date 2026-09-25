@@ -16,9 +16,9 @@
   Unlimited target rerolls lower XP to one bulb until completion; replacing an
   outleveled bounty has no reroll penalty. Level-50 contracts instead target
   major bosses and pay 100 gold plus 1-3 high-quality class items, with no XP.
-- Added `/stables` to display the character's own realm's actual Classic and
-  Shrouded Isles ticket connections. This is information only; it does not
-  change travel or teleport the player.
+- Added `/stables`, `/stables classic`, `/stables si`, and `/stables <page>` to
+  display the character's own realm's actual Classic and Shrouded Isles
+  ticket connections. This is information only; it does not teleport.
 - Bounty journal text is bounded to the 1.127 client's 255-byte quest-packet
   limit. The normal client's red-dot hook is SHA-256 guarded and separate from
   the optional Sluaghbinder client. The preserved v0.3 release is unchanged.
