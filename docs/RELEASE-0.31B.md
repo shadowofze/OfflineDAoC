@@ -1,5 +1,21 @@
 # Offline DAoC v0.31b — optional Sluaghbinder expansion
 
+## Latest shared Bard and Shannon camp repair
+
+Both maintained play paths now stop Bard companions and gamebots from
+repeatedly mesmerizing their ordinary PvE attack target. Bards continue
+fighting, remain secondary healers, and may use mez on a separate full-health
+add attacking the group. Companion Bards, Skalds, and Minstrels finish normal
+buffs before stationary song twisting. Traveling companion Bards favor
+speed/endurance; Skalds and Minstrels favor speed/health regeneration.
+Autonomous song scheduling and non-Bard combat are unchanged.
+
+The Shannon Estuary beach-rat camp gains ten spaced level-1/2 rats, and its
+original rat becomes level 1. This optional installer applies the same narrow
+world patch to its copied database; its existing pre-patch backup and rollback
+restore the copy if the expansion is removed. The original selected game is
+untouched. Older v0.31b assets and the preserved v0.3 release stay available.
+
 ## September 25 Bounty Masters
 
 The current optional patch includes the realm-wide Bounty Master system also
@@ -38,7 +54,7 @@ Shrouded Isles play.
 ## If you only want to play
 
 Use `DOWNLOAD AND PLAY v0.31b.cmd` from the repository copy, or download the
-latest `Sluaghbinder-v0.31b-bounties-patch.zip` release asset and run
+latest `Sluaghbinder-v0.31b-bard-beach-rats-patch.zip` release asset and run
 `INSTALL SLAUGHBINDER PATCH.cmd`. Select your clean v0.3 or v0.31 folder when asked. The installer
 creates a new sibling folder ending in `-Sluaghbinder-v0.31b`; it never writes
 back to the folder you selected. Start the new copy with its normal

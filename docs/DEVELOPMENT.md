@@ -64,6 +64,11 @@ prebuilt, hash-checked payload and the two journal XML overlays; build or
 test any altered client in a disposable copy first.
 `source/server/tools/patch_bounty_journal_ui.py` reproduces those two XML
 buttons from verified v0.3/v0.31 UI inputs without modifying the input tree.
+The shared Shannon Estuary beach-rat correction is recorded in
+`tools/world-patches/shannon-beach-rat-camp.sql`. The optional installer applies
+it through the .NET patcher to the copied database, in the same transaction as
+its static class overlay. Its pre-patch database backup remains available to
+the existing rollback command; the selected original installation is untouched.
 
 Test texture-tool source with `python tools/test-assets.py --distribution playable`
 (or the actual complete-download path). The wrapper resolves the read-only fixtures

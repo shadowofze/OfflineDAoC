@@ -170,7 +170,12 @@ if ($labelText -notmatch '0\.3') { throw 'This optional patch accepts only the p
 $packageRoot = [IO.Path]::GetFullPath($PSScriptRoot)
 $patchManifestPath = Join-Path $packageRoot 'patch-manifest.json'
 $overlayPath = Join-Path $packageRoot 'overlay.json'
-if (!(Test-Path -LiteralPath $patchManifestPath) -or !(Test-Path -LiteralPath $overlayPath)) { throw 'Patch package is incomplete. Download the Sluaghbinder v0.31b release asset, not the repository source ZIP.' }
+$worldPatchPath = Join-Path $packageRoot 'world-patches\shannon-beach-rat-camp.sql'
+if (!(Test-Path -LiteralPath $patchManifestPath) -or
+    !(Test-Path -LiteralPath $overlayPath) -or
+    !(Test-Path -LiteralPath $worldPatchPath)) {
+    throw 'Patch package is incomplete. Download the latest Sluaghbinder v0.31b release asset, not the repository source ZIP.'
+}
 $patchManifest = Get-Content -LiteralPath $patchManifestPath -Raw | ConvertFrom-Json
 $overlay = Get-Content -LiteralPath $overlayPath -Raw | ConvertFrom-Json
 if ($patchManifest.Version -ne '0.31b' -or $overlay.feature -ne 'Sluaghbinder') { throw 'Unexpected Sluaghbinder patch metadata.' }
@@ -213,7 +218,7 @@ $assetArgs = '--client-app "' + $clientApp + '" --asset-dir "' + $assetDirectory
 $assetProcess = Start-Process -FilePath $patcher -ArgumentList $assetArgs -Wait -PassThru -NoNewWindow
 if ($assetProcess.ExitCode -ne 0) { throw 'Sluaghbinder client asset preparation failed; the original installation was not modified.' }
 
-$patcherArgs = '--database "' + $targetDb + '" --overlay "' + $overlayPath + '"'
+$patcherArgs = '--database "' + $targetDb + '" --overlay "' + $overlayPath + '" --world-patch "' + $worldPatchPath + '"'
 $patcherProcess = Start-Process -FilePath $patcher -ArgumentList $patcherArgs -Wait -PassThru -NoNewWindow
 if ($patcherProcess.ExitCode -ne 0) { throw 'The Sluaghbinder database migration failed; the original installation was not modified.' }
 

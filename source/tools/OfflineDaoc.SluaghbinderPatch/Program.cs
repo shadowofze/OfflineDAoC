@@ -34,9 +34,12 @@ static class Program
             }
             if (!values.TryGetValue("database", out var database) ||
                 !values.TryGetValue("overlay", out var overlayPath))
-                throw new ArgumentException("Usage: --database <db> --overlay <overlay.json>");
+                throw new ArgumentException("Usage: --database <db> --overlay <overlay.json> [--world-patch <sql>]");
             if (!File.Exists(database) || !File.Exists(overlayPath))
                 throw new FileNotFoundException("Database or overlay file was not found.");
+            values.TryGetValue("world-patch", out var worldPatchPath);
+            if (worldPatchPath != null && !File.Exists(worldPatchPath))
+                throw new FileNotFoundException("World patch SQL file was not found.", worldPatchPath);
 
             using var connection = new SQLiteConnection($"Data Source={database};Version=3;foreign keys=false;");
             connection.Open();
@@ -51,6 +54,19 @@ static class Program
             try
             {
                 Execute(connection, transaction, "PRAGMA foreign_keys=OFF");
+                if (worldPatchPath != null)
+                {
+                    const string seedQuery = "SELECT COUNT(*) FROM Mob WHERE Mob_ID='11caef62-3c17-4e0a-8399-fccb46fa3fa6' " +
+                        "AND Name='beach rat' AND Region=200 AND Model=567 AND X=306949 AND Y=627062 AND Z=6520";
+                    if (Convert.ToInt32(Scalar(connection, transaction, seedQuery), CultureInfo.InvariantCulture) != 1)
+                        throw new InvalidDataException("The base world lacks the expected Shannon Estuary beach-rat seed.");
+
+                    Execute(connection, transaction, File.ReadAllText(worldPatchPath));
+                    const string campQuery = "SELECT COUNT(*) FROM Mob WHERE Name='beach rat' AND Region=200 " +
+                        "AND Level IN (1,2) AND X BETWEEN 306640 AND 307890 AND Y BETWEEN 626640 AND 627760";
+                    if (Convert.ToInt32(Scalar(connection, transaction, campQuery), CultureInfo.InvariantCulture) < 11)
+                        throw new InvalidDataException("The Shannon Estuary beach-rat camp was not fully installed.");
+                }
                 DeleteIn(connection, transaction, "Specialization", "KeyName", Lines.Append("SluaghbinderCareer").ToArray());
                 DeleteIn(connection, transaction, "SpellLine", "KeyName", Lines);
                 DeleteIn(connection, transaction, "LineXSpell", "LineName", Lines);

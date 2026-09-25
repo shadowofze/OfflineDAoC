@@ -25,6 +25,13 @@ your active hunt. The BOUNTY MAP button opens your current map, and its red
 target dot appears only once you enter the assigned zone or dungeon.
 Older patch assets remain available as historical snapshots.
 
+This latest patch also fixes Bard companion/gamebot PvE mez loops without
+changing their secondary-healer role. Companion Bards, Skalds, and Minstrels
+finish normal buffs before stationary song twisting; while traveling, Bards
+favor speed/endurance and Skalds/Minstrels favor speed/health regeneration.
+Shannon Estuary now has eleven spaced level-1/2 beach rats. The camp change is
+applied only to the new copied world database and is covered by rollback.
+
 ROLLBACK
 
 The new folder contains ROLLBACK SLAUGHBINDER PATCH.cmd. Stop the server and

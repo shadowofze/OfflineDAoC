@@ -34,23 +34,33 @@
     },
     {
       "Path": "runtime\\client-opendaoc\\app\\game.dll",
-      "Bytes": 5963776,
-      "SHA256": "691a457c0eb564c7ca6964e39015bd5df35c2a7965729d1572add2211c37ac78"
+      "Bytes": 5967872,
+      "SHA256": "01b1848e79b31d2822811effb3d3b098e07015db2d3db1178df5ba31ed805e96"
     },
     {
       "Path": "runtime\\server\\GameServer.dll",
-      "Bytes": 12300288,
-      "SHA256": "f7f6ef51cf52d1c0ec76a07ec4e4208c0e3d52991e8edafc47315bb7e9e2abc1"
+      "Bytes": 12376576,
+      "SHA256": "c5582afc4d03a14fe5b77a894ea61c18d7f23ba400350d7d01c827e5142fb2cc"
     },
     {
       "Path": "runtime\\server\\lib\\GameServer.dll",
-      "Bytes": 12300288,
-      "SHA256": "f7f6ef51cf52d1c0ec76a07ec4e4208c0e3d52991e8edafc47315bb7e9e2abc1"
+      "Bytes": 12376576,
+      "SHA256": "c5582afc4d03a14fe5b77a894ea61c18d7f23ba400350d7d01c827e5142fb2cc"
     },
     {
       "Path": "runtime\\server\\win-x64\\GameServer.dll",
-      "Bytes": 12300288,
-      "SHA256": "f7f6ef51cf52d1c0ec76a07ec4e4208c0e3d52991e8edafc47315bb7e9e2abc1"
+      "Bytes": 12376576,
+      "SHA256": "c5582afc4d03a14fe5b77a894ea61c18d7f23ba400350d7d01c827e5142fb2cc"
+    },
+    {
+      "Path": "runtime\\client-opendaoc\\app\\ui\\isles\\new_quest_journal_window.xml",
+      "Bytes": 6034,
+      "SHA256": "3f8860992a69a52b844da0124dbb4a9d3679fadd5dc237f1406d0d756841024d"
+    },
+    {
+      "Path": "runtime\\client-opendaoc\\app\\ui\\atlantis\\new_quest_journal_window.xml",
+      "Bytes": 6487,
+      "SHA256": "22cd92759fa101263c7f6076b91f640a9e89a833d49bc7c320560628313545e6"
     }
   ]
 }
