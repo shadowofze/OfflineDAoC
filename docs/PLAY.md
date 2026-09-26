@@ -51,10 +51,11 @@ downloads remain available as legacy versions.
 For the optional path, use **DOWNLOAD-AND-PLAY-v0.32b.cmd**. It assembles the
 normal v0.32 game first, checks the optional patch, and makes the Sluaghbinder
 copy. If you already have a clean v0.32 folder, use the v0.32b release's
-`Sluaghbinder-v0.32b-darkness-falls-beta-patch.zip` and its included install
+`Sluaghbinder-v0.32b-beta-maintenance-patch.zip` and its included install
 command, following that archive's instructions. The patcher leaves the selected
 base untouched and writes a rollback command into the optional copy. If you do
-not want the class, simply play the normal v0.32 folder.
+not want the class, simply play the normal v0.32 folder. The original
+v0.32b beta patch ZIP is historical and superseded by the current one.
 
 Never point an installer at an existing destination. If you handle an archive
 yourself, extract the **entire** archive into a normal folder; never run files

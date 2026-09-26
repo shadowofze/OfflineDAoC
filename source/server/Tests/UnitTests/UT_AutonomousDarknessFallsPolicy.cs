@@ -232,6 +232,43 @@ public class UT_AutonomousDarknessFallsPolicy
     }
 
     [Test]
+    public void RaidEventManifest_AllowsOnlyHighLordOrosTemplatedStartupLevel()
+    {
+        AutonomousDarknessFallsGoalScope.RaidEventSpawn[] raid =
+            AutonomousDarknessFallsGoalScope.SnapshotRaidEventRows();
+        DbMob[] live = raid.Select(row => new DbMob
+        {
+            ObjectId = row.Id, Name = row.Name, Level = (byte)row.Level,
+            ClassType = row.ClassType, Region = 249, Realm = 0,
+            X = row.Spawn[0], Y = row.Spawn[1], Z = row.Spawn[2]
+        }).ToArray();
+        const string oroId = "504d573f-deab-4cb2-9dbc-d9d053d7af2f";
+        int oroIndex = Array.FindIndex(raid, row => row.Id == oroId);
+        Assert.That(oroIndex, Is.GreaterThanOrEqualTo(0));
+        Assert.That(raid[oroIndex].AllowedLevels, Is.EqualTo(new[] { 65, 66, 67, 68, 69, 70 }));
+
+        foreach (byte level in new byte[] { 65, 66, 67, 68, 69, 70 })
+        {
+            live[oroIndex].Level = level;
+            Assert.That(AutonomousDarknessFallsGoalScope.HasExactRaidEventRows(live, raid), Is.True,
+                $"The scripted boss's original NPC template can save level {level} at startup.");
+        }
+        foreach (byte level in new byte[] { 64, 71 })
+        {
+            live[oroIndex].Level = level;
+            Assert.That(AutonomousDarknessFallsGoalScope.HasExactRaidEventRows(live, raid), Is.False);
+        }
+        live[oroIndex].Level = 68;
+        live[oroIndex].X++;
+        Assert.That(AutonomousDarknessFallsGoalScope.HasExactRaidEventRows(live, raid), Is.False,
+            "The level allowance must not mask a moved boss.");
+        live[oroIndex].X--;
+        live[0].Level++;
+        Assert.That(AutonomousDarknessFallsGoalScope.HasExactRaidEventRows(live, raid), Is.False,
+            "Other raid monsters keep their exact frozen level.");
+    }
+
+    [Test]
     public void ExitCertificate_RequiresRealMatchingRealmPortalAndLanding()
     {
         var proof = new AutonomousDarknessFallsNavigation.SpawnProof

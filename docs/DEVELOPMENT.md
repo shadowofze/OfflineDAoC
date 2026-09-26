@@ -29,6 +29,11 @@ unreachable flying targets, and unverified targets. Darkness Falls raid AI
 is not implemented. Read `docs/RELEASE-0.32.md` and
 `docs/VERIFICATION-0.32.md` before changing those boundaries; do not treat
 policy tests as a long live gameplay test.
+The raid-event manifest freezes 85 exact NPC IDs. High Lord Oro alone has an
+explicit 65–70 startup-template level allowance; his saved level may change
+on restart, but any other level, moved spawn, or changed identity must still
+close the ordinary-goal certificate. Do not widen this to a general raid
+level tolerance or add those bosses to grind goals.
 
 The runnable release also bundles tools/dotnet and tools/nuget-feed for offline C#
 development, the navigation builder/native dependencies, and the texture tool's

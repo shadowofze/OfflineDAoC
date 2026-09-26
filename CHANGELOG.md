@@ -1,5 +1,22 @@
 # Offline DAoC changelog
 
+## 2026-09-26 — v0.32b Darkness Falls Beta maintenance
+
+- Fixed a solo Bard bot null-group error in the newly added grouped-PvE mez
+  check. Solo Bards no longer leave and re-enter the world repeatedly while
+  choosing combat actions; grouped add control and other classes are unchanged.
+- Darkness Falls' raid-goal safety check now accepts only High Lord Oro's
+  original level-65–70 template range after the game saves its randomized
+  level at startup. The boss remains excluded from normal bot grinding. All
+  other raid NPCs still require an exact level, identity, and location match.
+- Level-1–49 Bounty Masters may now assign ordinary Darkness Falls monsters
+  from certified floor-reachable camps. Unverified, flying, and raid targets
+  remain excluded; existing home-realm dungeon and level-50 bounty pools are
+  unchanged.
+- These are source and beta-package maintenance fixes, not Darkness Falls raid
+  behavior. Raids remain unimplemented and the hardest encounters remain out
+  of normal bot goals.
+
 ## 2026-09-25 — v0.32 Darkness Falls Beta (normal release)
 
 - Added the Darkness Falls region to the normal Classic + Shrouded Isles

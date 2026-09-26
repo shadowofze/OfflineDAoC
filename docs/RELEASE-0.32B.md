@@ -20,6 +20,15 @@ goals. The [normal release notes](RELEASE-0.32.md)
 explain this implementation in detail; the optional class does not remove
 these beta limits.
 
+The September 26 beta maintenance update also fixes solo Bard bot
+disconnect/re-entry churn caused by a null group in the PvE add-mez check.
+Its Darkness Falls safety certificate accepts High Lord Oro's original
+randomized level-65–70 template range without making that raid boss a
+normal grind goal. Level-1–49 Bounty Masters can also assign certified,
+floor-reachable ordinary Darkness Falls monsters. Unverified, flying, and
+raid targets are excluded; home-realm dungeon targets and the level-50
+epic bounty list are unchanged. No Darkness Falls raids were added.
+
 ## Optional class included
 
 Sluaghbinder is a Hibernian player class. New characters start as Acolytes
@@ -36,10 +45,13 @@ See the [legacy v0.31b notes](RELEASE-0.31B.md) for the original class detail.
 From the [v0.32b release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b),
 download `DOWNLOAD-AND-PLAY-v0.32b.cmd` and `Get-OfflineDAoC.ps1` into one new
 folder. Double-click the helper. It verifies and assembles the normal v0.32
-game, then applies `Sluaghbinder-v0.32b-darkness-falls-beta-patch.zip` in a
+game, then applies the current
+`Sluaghbinder-v0.32b-beta-maintenance-patch.zip` in a
 new sibling copy. The normal v0.32 base stays intact. If you already have a
 clean v0.32 folder, use the patch archive's included installer and its
-instructions. The optional copy receives a rollback command; keep the base
+instructions. The original v0.32b beta patch ZIP is superseded because it
+predates the Bard and Darkness Falls fixes. The optional copy receives a
+rollback command; keep the base
 and earlier versions until you have checked the new installation. Stop both
 servers before importing saves or applying the patch.
 

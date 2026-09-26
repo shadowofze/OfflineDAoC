@@ -19,6 +19,7 @@ public static class AutonomousDarknessFallsGoalScope
     public const int TotalCombatRows = 2460;
     public const int RaidEventRows = 85;
     public const int OrdinaryCombatRows = 2375;
+    private const string TemplatedHighLordOroId = "504d573f-deab-4cb2-9dbc-d9d053d7af2f";
     private const string ResourceSuffix = "darkness_falls_raid_event_mobs.json";
     private static readonly Lazy<Manifest> Data = new(Load, true);
     private static readonly Lazy<HashSet<string>> RaidIds = new(() =>
@@ -29,6 +30,9 @@ public static class AutonomousDarknessFallsGoalScope
         public string Id { get; set; }
         public string Name { get; set; }
         public int Level { get; set; }
+        // This one boss's NPC template selects level 65-70 at startup and
+        // persists that value. No other raid entry may vary its level.
+        public int[] AllowedLevels { get; set; }
         public string ClassType { get; set; }
         public int[] Spawn { get; set; }
         public string[] Reasons { get; set; }
@@ -53,6 +57,7 @@ public static class AutonomousDarknessFallsGoalScope
     public static RaidEventSpawn[] SnapshotRaidEventRows() => Data.Value?.Rows.Select(row => new RaidEventSpawn
     {
         Id = row.Id, Name = row.Name, Level = row.Level, ClassType = row.ClassType,
+        AllowedLevels = row.AllowedLevels == null ? null : (int[])row.AllowedLevels.Clone(),
         Spawn = (int[])row.Spawn.Clone(), Reasons = (string[])row.Reasons.Clone()
     }).ToArray() ?? [];
 
@@ -82,7 +87,8 @@ public static class AutonomousDarknessFallsGoalScope
         return expected.All(row => live.TryGetValue(row.Id, out DbMob[] matches) && matches.Length == 1 &&
             string.Equals(matches[0].Name, row.Name, StringComparison.Ordinal) &&
             string.Equals(matches[0].ClassType, row.ClassType, StringComparison.Ordinal) &&
-            matches[0].Level == row.Level && matches[0].Realm == 0 &&
+            (matches[0].Level == row.Level || row.AllowedLevels?.Contains(matches[0].Level) == true) &&
+            matches[0].Realm == 0 &&
             matches[0].Region == AutonomousDarknessFallsPolicy.RegionId &&
             matches[0].X == row.Spawn[0] && matches[0].Y == row.Spawn[1] && matches[0].Z == row.Spawn[2]);
     }
@@ -94,6 +100,12 @@ public static class AutonomousDarknessFallsGoalScope
             rows.Any(row => row == null || string.IsNullOrWhiteSpace(row.Id) ||
                 string.IsNullOrWhiteSpace(row.Name) || string.IsNullOrWhiteSpace(row.ClassType) ||
                 row.Level <= 0 || row.Spawn?.Length != 3 || row.Reasons?.Length is not > 0 ||
+                (row.Id == TemplatedHighLordOroId
+                    ? row.Name != "High Lord Oro" || row.ClassType != "DOL.GS.HighLordOro" ||
+                        row.AllowedLevels == null ||
+                        !row.AllowedLevels.SequenceEqual(new[] { 65, 66, 67, 68, 69, 70 }) ||
+                        !row.AllowedLevels.Contains(row.Level)
+                    : row.AllowedLevels is { Length: > 0 }) ||
                 row.Reasons.Distinct(StringComparer.Ordinal).Count() != row.Reasons.Length)) return false;
 
         Dictionary<string, int> counts = rows.SelectMany(row => row.Reasons)
