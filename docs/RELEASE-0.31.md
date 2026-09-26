@@ -13,6 +13,9 @@ Bards, Skalds, and Minstrels finish ordinary buffs before stationary song
 twisting. Traveling companion Bards favor speed/endurance; Skalds and
 Minstrels favor speed/health regeneration. Autonomous song
 scheduling and other classes are unchanged.
+The September 26 maintenance update fixes a null-group error in that
+grouped-PvE mez check so solo Bard gamebots no longer leave and re-enter the
+world during combat. Grouped Bard add control is unchanged.
 
 The Shannon Estuary beach-rat camp now has eleven spaced level-1/2 rats in
 place of one incorrectly high-level rat. The latest playable update applies

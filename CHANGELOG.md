@@ -1,5 +1,12 @@
 # Offline DAoC changelog
 
+## 2026-09-26 — v0.31 Bard stability maintenance
+
+- Fixed a null-group error in the grouped-PvE mez check. Solo Bard bots now
+  continue ordinary combat instead of being removed and repeatedly re-entering
+  the world. Grouped add control, other bot classes, and bounty hunts are
+  unchanged.
+
 ## 2026-09-25 — v0.31 Bard combat and Shannon camp repair
 
 - Bard companions and autonomous gamebots no longer repeatedly mesmerize their
