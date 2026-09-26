@@ -7,6 +7,26 @@ quests, or optional client assets. Choose the separate
 The beta label stays until the owner has had time to test the bots in the
 dungeon more thoroughly.
 
+## Beta maintenance correction
+
+The first v0.32 bot-goal certificate assumed High Lord Oro always kept the
+same level. His existing level-65–70 template chooses a new level and saves
+it when the server starts, which could close all ordinary Darkness Falls
+bot goals. The certificate now accepts only that exact level range for his
+specific spawn while retaining its strict checks for all other monsters,
+locations, and routes. No boss balance or database values were changed.
+Solo Bard gamebots also cannot use group-only PvE add mez when no actual
+group exists. These repairs still require live bot observation after
+installation; the Darkness Falls beta and raid limits below remain.
+Ordinary level-1–49 Bounty Master hunts may also select monsters from
+certified, reachable Darkness Falls camps. The existing home-realm dungeon
+hunts and level-50 boss list are unchanged; unverified and raid spawns cannot
+give bounty credit.
+
+The original `OfflineDAoC-v0.32-darkness-falls-beta-update.zip` and
+`OfflineDAoC-v0.32-darkness-falls-beta-source.zip` remain as historical
+assets. The 2026-09-26 hotfix ZIPs named below supersede them.
+
 ## Darkness Falls implementation
 
 - Albion, Midgard, and Hibernia can all enter in this offline setup. Bots
@@ -48,7 +68,7 @@ in this download; they are not claimed as new Darkness Falls mechanics.
 On the [v0.32 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32),
 download `DOWNLOAD-AND-PLAY-v0.32.cmd` and `Get-OfflineDAoC.ps1` into one new
 folder and double-click the helper. It obtains and verifies the preserved
-v0.31 base and `OfflineDAoC-v0.32-darkness-falls-beta-update.zip`, then builds
+v0.31 base and `OfflineDAoC-v0.32-darkness-falls-beta-hotfix-20260926-update.zip`, then builds
 a **new** v0.32 playable folder. It keeps the v0.31 sibling available. Read
 `READ ME FIRST.txt` in the new game folder and use `START OFFLINE DAOC.cmd`.
 No Git or LLM is needed. [Detailed player instructions](PLAY.md) cover the

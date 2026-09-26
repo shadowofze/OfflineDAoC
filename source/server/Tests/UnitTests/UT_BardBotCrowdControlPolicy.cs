@@ -6,6 +6,16 @@ namespace DOL.UnitTests
     [TestFixture]
     public class UT_BardBotCrowdControlPolicy
     {
+        [TestCase(null, false)]
+        [TestCase(0, false)]
+        [TestCase(1, false)]
+        [TestCase(2, true)]
+        [TestCase(8, true)]
+        public void PveAddMezRequiresAnActualParty(int? memberCount, bool expected)
+        {
+            Assert.That(BardBotCrowdControlPolicy.HasGroupForPveAdd(memberCount), Is.EqualTo(expected));
+        }
+
         [TestCase(eSpellType.Mez)]
         [TestCase(eSpellType.Mesmerize)]
         public void BardMezDoesNotReplaceOrdinaryCombat(eSpellType spellType)

@@ -44,6 +44,9 @@ The current downloads are [v0.32 Darkness Falls Beta](https://github.com/shadowo
 for normal play and [v0.32b Darkness Falls Beta](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b)
 for the optional Sluaghbinder class. They contain all shared fixes through v0.31,
 including Bounty Masters, Bard and companion song repairs, and bot route fixes.
+The v0.32 beta maintenance update also permits eligible Bounty Master hunts
+in certified Darkness Falls camps and fixes Oro's restart level check and
+solo Bard add-mez gating. Live Darkness Falls bot behavior still needs testing.
 **Beta** means the owner has not yet completed a long live bot test in Darkness
 Falls. Darkness Falls raid AI is not implemented; Legion, the hardest
 level-70+ encounters, and unreachable flying targets are excluded from

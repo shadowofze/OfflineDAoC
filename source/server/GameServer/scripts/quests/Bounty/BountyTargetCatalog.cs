@@ -5,7 +5,7 @@ using DOL.Database;
 
 namespace DOL.GS
 {
-    /// <summary>A repeatable bounty targets a home-realm species, or one named epic spawn.</summary>
+    /// <summary>A repeatable bounty targets a home-realm or certified DF species, or one named epic spawn.</summary>
     public sealed class BountyTargetCandidate
     {
         public string Name { get; init; }
@@ -30,8 +30,12 @@ namespace DOL.GS
                 return npc.Realm == eRealm.None && npc.CurrentRegionID == RegionId &&
                        string.Equals(npc.InternalID, RepresentativeMobId, StringComparison.Ordinal);
 
+            bool certifiedDarknessFallsSpawn = RegionId == AutonomousDarknessFallsPolicy.RegionId &&
+                AutonomousDungeonGoalCatalog.TryGet(npc, out _);
             return MatchesOrdinaryMonster(npc.Name, npc.Realm, npc.CurrentRegionID,
-                npc.CurrentZone?.ID, npc.CurrentZone?.IsDungeon == true);
+                npc.CurrentZone?.ID,
+                npc.CurrentZone?.IsDungeon == true || npc.CurrentRegionID == AutonomousDarknessFallsPolicy.RegionId,
+                certifiedDarknessFallsSpawn);
         }
 
         /// <summary>
@@ -41,10 +45,12 @@ namespace DOL.GS
         /// same-named outdoor or different-dungeon mob cannot replace the hunt.
         /// </summary>
         public bool MatchesOrdinaryMonster(string monsterName, eRealm monsterRealm,
-            ushort monsterRegionId, ushort? monsterZoneId, bool monsterIsDungeon = false) =>
+            ushort monsterRegionId, ushort? monsterZoneId, bool monsterIsDungeon = false,
+            bool certifiedDarknessFallsSpawn = false) =>
             !IsEpic && monsterRealm == eRealm.None &&
             monsterZoneId.HasValue &&
             string.Equals(monsterName, Name, StringComparison.OrdinalIgnoreCase) &&
+            (RegionId != AutonomousDarknessFallsPolicy.RegionId || certifiedDarknessFallsSpawn) &&
             (IsDungeon
                 ? monsterIsDungeon && monsterRegionId == RegionId && monsterZoneId == ZoneId
                 : !monsterIsDungeon && BountyTargetCatalog.AreRegionsInSameHomeRealm(RegionId, monsterRegionId));
@@ -91,7 +97,10 @@ namespace DOL.GS
             if (level is < 1 or > 49)
                 return Array.Empty<BountyTargetCandidate>();
 
-            var candidates = GetCachedSpawns(realm);
+            // Home-realm spawns are stable and cached. DF is intentionally read
+            // from its live certificate on every assignment: startup before
+            // certificate readiness must not cache an empty DF pool forever.
+            var candidates = GetCachedSpawns(realm).Concat(GetCertifiedDarknessFallsSpawns(realm)).ToArray();
             int preferredSpawns = level >= 40 ? 5 : 3;
             var exact = candidates.Where(target => target.Level == level).ToArray();
             var pool = exact.Where(target => target.SpawnCount >= preferredSpawns).ToArray();
@@ -107,7 +116,10 @@ namespace DOL.GS
             // Prefer camps with a real, currently alive example at the requested
             // level. The database pool remains available when every matching camp
             // is briefly dead and waiting for its normal respawn.
-            var liveKeys = GetRegions(realm)
+            var liveRegions = candidates.Any(target => target.RegionId == AutonomousDarknessFallsPolicy.RegionId)
+                ? GetRegions(realm).Append(AutonomousDarknessFallsPolicy.RegionId)
+                : GetRegions(realm).AsEnumerable();
+            var liveKeys = liveRegions
                 .SelectMany(WorldMgr.GetNPCsFromRegion)
                 .Where(npc => npc != null && npc.GetType() == typeof(GameNPC) &&
                               npc.IsAlive && npc.Realm == eRealm.None &&
@@ -142,7 +154,8 @@ namespace DOL.GS
 
             // Resolve against the permanent spawn catalog, never the live-only
             // assignment preference: an existing bounty survives a camp wipe.
-            var pool = assignedLevel == 50 ? GetEpicCandidates(realm) : GetCachedSpawns(realm);
+            var pool = assignedLevel == 50 ? GetEpicCandidates(realm) :
+                GetCachedSpawns(realm).Concat(GetCertifiedDarknessFallsSpawns(realm)).ToArray();
             // A ranged template can make one Mob_ID represent several possible
             // levels. The quest saves the exact assigned level/zone/name; return
             // null in that ambiguous case so it restores that saved snapshot.
@@ -202,6 +215,52 @@ namespace DOL.GS
                 })
                 .ToArray();
         }
+
+        /// <summary>The source list must be the exact, currently valid DF
+        /// navigation certificate, never the unfiltered Mob table.</summary>
+        private static IReadOnlyList<BountyTargetCandidate> GetCertifiedDarknessFallsSpawns(eRealm realm)
+        {
+            if (AutonomousDarknessFallsPolicy.HomeRegion(realm) == 0)
+                return Array.Empty<BountyTargetCandidate>();
+
+            var region = WorldMgr.GetRegion(AutonomousDarknessFallsPolicy.RegionId);
+            if (region == null)
+                return Array.Empty<BountyTargetCandidate>();
+
+            var certified = AutonomousDarknessFallsNavigation.SnapshotCertifiedProofs()
+                .Where(proof => IsOrdinaryBountyDarknessFallsProof(realm, proof))
+                .Select(proof => (Proof: proof, Zone: region.GetZone(proof.Spawn[0], proof.Spawn[1])))
+                .Where(entry => entry.Zone != null)
+                .ToArray();
+
+            return certified.GroupBy(entry => (entry.Zone.ID, entry.Proof.Level, entry.Proof.Name))
+                .Select(group =>
+                {
+                    var representative = group.OrderBy(entry => entry.Proof.Id, StringComparer.Ordinal).First();
+                    var proof = representative.Proof;
+                    return new BountyTargetCandidate
+                    {
+                        Name = proof.Name,
+                        Level = (byte)proof.Level,
+                        RegionId = AutonomousDarknessFallsPolicy.RegionId,
+                        ZoneId = representative.Zone.ID,
+                        ZoneName = representative.Zone.Description,
+                        X = proof.Spawn[0], Y = proof.Spawn[1], Z = proof.Spawn[2],
+                        RepresentativeMobId = proof.Id,
+                        SpawnCount = group.Count(),
+                        IsDungeon = true
+                    };
+                }).ToArray();
+        }
+
+        public static bool IsOrdinaryBountyDarknessFallsProof(eRealm realm,
+            AutonomousDarknessFallsNavigation.SpawnProof proof) =>
+            AutonomousDarknessFallsPolicy.HomeRegion(realm) != 0 &&
+            proof is { Level: >= 1 and <= 49, AttackableFromApproach: true } &&
+            proof.Spawn?.Length == 3 &&
+            (proof.Flags & (uint)GameNPC.eFlags.FLYING) == 0 &&
+            AutonomousDarknessFallsGoalScope.IsOrdinaryCatalogId(proof.Id) &&
+            proof.Routes?.Any(route => route?.Realm == realm) == true;
 
         private static IEnumerable<byte> EffectiveLevels(DbMob mob,
             Dictionary<int, DbNpcTemplate[]> templates)
