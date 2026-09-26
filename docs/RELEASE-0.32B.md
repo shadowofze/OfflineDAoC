@@ -36,8 +36,8 @@ See the [legacy v0.31b notes](RELEASE-0.31B.md) for the original class detail.
 From the [v0.32b release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b),
 download `DOWNLOAD-AND-PLAY-v0.32b.cmd` and `Get-OfflineDAoC.ps1` into one new
 folder. Double-click the helper. It verifies and assembles the normal v0.32
-game, then applies `Sluaghbinder-v0.32b-darkness-falls-beta-patch.zip` in a
-new sibling copy. The normal v0.32 base stays intact. If you already have a
+game, then applies the current v0.32b patch ZIP linked on that release page
+in a new sibling copy. The normal v0.32 base stays intact. If you already have a
 clean v0.32 folder, use the patch archive's included installer and its
 instructions. The optional copy receives a rollback command; keep the base
 and earlier versions until you have checked the new installation. Stop both
