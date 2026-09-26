@@ -1,5 +1,26 @@
 # v0.31b verification
 
+## 2026-09-26 Bard companion/gamebot hotfix
+
+- The refreshed v0.31b Release server build succeeded and the full server
+  suite passed: **1,981 passed, 0 failed**. Focused Bard tests cover solo,
+  grouped, and null-group combat paths.
+- The optional patch ZIP, `Sluaghbinder-v0.31b-bard-guard-patch.zip`, is
+  **15,205,764 bytes** with SHA-256
+  `0DBFFF1DB00D517D38545235817FF3C7094E2FCB28F8E44EDB188CEE1CC59A6E`.
+  All 31 entries passed the archive CRC check and have the expected patch root.
+- The exact ZIP installed successfully into a disposable copy of the refreshed
+  normal v0.31 release. Its three server DLL locations match the new optional
+  payload (SHA-256 `1AB2F99B2B4FC8DEDEF23AA1D9A5CD5C54AB983A8BC5AD5D58502A103B48F91D`)
+  and the static Sluaghbinder database overlay was applied. The normal base
+  installation remained unchanged.
+- Rollback on that disposable installed copy exited successfully: all 16 file
+  receipts matched their original hashes, both private NIF files were removed,
+  and the database returned byte-for-byte to its pre-patch SHA-256
+  `F837C08A663BDE2A0E710EB5337F5187779B1039BFAD4F968CB9BA3923B81733`.
+- This is a copy-first installer/rollback test, **not** a live-client visual or
+  long-running gamebot test. Existing release tags and assets were not changed.
+
 This optional release was checked in the public GitHub publication checkout;
 the private local 0.4 installation and the isolated test database were not
 modified.

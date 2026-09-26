@@ -15,7 +15,8 @@ namespace DOL.AI.Brain
             GameBot bard = BotBody;
             Group group = bard?.Group;
             if (bard?.CharacterClass?.ID != (int)eCharacterClass.Bard ||
-                group?.MemberCount < 2 || bard.CanCastCrowdControlSpells != true ||
+                !BardBotCrowdControlPolicy.HasGroupForPveAdd(group?.MemberCount) ||
+                bard.CanCastCrowdControlSpells != true ||
                 bard.IsIncapacitated || bard.IsCasting ||
                 bard.castingComponent?.HasPendingSkillRequests == true)
                 return false;

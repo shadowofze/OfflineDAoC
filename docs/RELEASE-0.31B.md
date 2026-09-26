@@ -1,5 +1,12 @@
 # Offline DAoC v0.31b — optional Sluaghbinder expansion
 
+## Bard maintenance correction
+
+The refreshed optional patch prevents a solo Bard gamebot from trying
+group-only PvE add mez when no party exists. Grouped add control and PvP
+mez are unchanged. This does not alter Sluaghbinder, monster data, or the
+legacy v0.31b release asset.
+
 ## Latest shared Bard and Shannon camp repair
 
 Both maintained play paths now stop Bard companions and gamebots from
@@ -45,7 +52,8 @@ changed by this maintenance pass. The older patch assets remain available as
 historical snapshots; use the latest manifest-selected patch for a new install.
 
 The refreshed optional source built with zero errors and passed 1,911/1,911
-server tests. No post-fix overnight live run has been observed yet.
+server tests at that point. The current Bard-guard maintenance source passes
+1,981/1,981 server tests. No post-fix overnight live run has been observed yet.
 
 `v0.31b` is an optional overlay on the normal v0.3/v0.31 playable release. It
 does not replace either baseline and is not required for ordinary Classic +
@@ -54,7 +62,7 @@ Shrouded Isles play.
 ## If you only want to play
 
 Use `DOWNLOAD AND PLAY v0.31b.cmd` from the repository copy, or download the
-latest `Sluaghbinder-v0.31b-bard-beach-rats-patch.zip` release asset and run
+latest `Sluaghbinder-v0.31b-bard-guard-patch.zip` release asset and run
 `INSTALL SLAUGHBINDER PATCH.cmd`. Select your clean v0.3 or v0.31 folder when asked. The installer
 creates a new sibling folder ending in `-Sluaghbinder-v0.31b`; it never writes
 back to the folder you selected. Start the new copy with its normal

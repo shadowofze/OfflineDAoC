@@ -8,6 +8,8 @@ namespace DOL.GS
     /// </summary>
     public static class BardBotCrowdControlPolicy
     {
+        public static bool HasGroupForPveAdd(int? memberCount) => memberCount >= 2;
+
         public static bool AllowsOrdinaryOffense(eCharacterClass characterClass, eSpellType spellType) =>
             characterClass != eCharacterClass.Bard ||
             spellType is not (eSpellType.Mez or eSpellType.Mesmerize);

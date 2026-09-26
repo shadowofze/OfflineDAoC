@@ -1,5 +1,14 @@
 # Offline DAoC changelog
 
+## 2026-09-26 — v0.31b Bard maintenance correction
+
+- Corrected a solo-Bard gamebot guard in the maintained v0.31b source:
+  a Bard with no group can no longer treat that missing group as a valid
+  party add-mez target. Actual grouped add control and PvP mez remain
+  available; Bard healing, songs, and other classes are unchanged.
+- This is a focused fix for the refreshed optional v0.31b patch. Older
+  immutable release assets and tags remain historical snapshots.
+
 ## 2026-09-25 — Bard combat and Shannon camp repair (v0.31 / v0.31b)
 
 - Bard companions and autonomous gamebots no longer repeatedly mesmerize
