@@ -6,11 +6,11 @@ if not exist "%~dp0Get-OfflineDAoC.ps1" (
   pause
   exit /b 1
 )
-echo This downloads the official shadowofze/OfflineDAoC v0.31 release.
+echo This downloads Offline DAoC v0.32 - Darkness Falls Beta, without Sluaghbinder.
 echo It verifies download hashes and extracts into a NEW playable folder.
 echo No game is started, and existing games or saves are not overwritten.
 echo PowerShell's script policy is set only for this process, not for Windows.
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0Get-OfflineDAoC.ps1" -ReleaseVersion 0.31
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0Get-OfflineDAoC.ps1" -ReleaseVersion 0.32
 if errorlevel 1 (
   echo Download or extraction failed. Read the error above. Existing games were not replaced.
   pause

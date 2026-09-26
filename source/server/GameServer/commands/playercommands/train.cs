@@ -18,23 +18,6 @@ namespace DOL.GS.Commands
 
         public TrainCommandHandler() { }
 
-        // The classic client normally opens the trainer window for /train.
-        // The isolated Sluaghbinder test copy deliberately supports the
-        // command as a direct training path, matching the old custom-class
-        // workflow without changing /train for any existing class.
-        private static bool IsSluaghbinderTrainingPath(GameClient client)
-        {
-            if (client?.Player?.CharacterClass == null)
-                return false;
-
-            if (client.Player.CharacterClass.ID == (int)eCharacterClass.Sluaghbinder)
-                return true;
-
-            return client.Player.CharacterClass.ID == (int)eCharacterClass.Acolyte &&
-                   client.Player.Realm == eRealm.Hibernia &&
-                   client.Player.Level < 5;
-        }
-
         public void OnCommand(GameClient client, string[] args)
         {
             if (IsSpammingCommand(client.Player, "train"))
@@ -43,7 +26,7 @@ namespace DOL.GS.Commands
             // No longer used since 1.105, except if we explicitly want.
             if (client.Version >= GameClient.eClientVersion.Version1105)
             {
-                if (!ServerProperties.Properties.CUSTOM_TRAIN && !IsSluaghbinderTrainingPath(client))
+                if (!ServerProperties.Properties.CUSTOM_TRAIN)
                 {
                     client.Out.SendTrainerWindow();
                     return;
@@ -69,11 +52,8 @@ namespace DOL.GS.Commands
 
             // Get the specialization line.
             string line = string.Join(' ', args, 1, args.Length - 2).Trim();
-
-            // Resolve the live specialization first.  This matters for the
-            // apostrophe-bearing Sluaghbinder lines (for example
-            // "Dullahan's Bulwark"): SQL escaping the display name before the
-            // in-memory lookup turns a valid custom line into a miss.
+            // Resolve a live line before escaping its display name for SQL.
+            // Escaping an apostrophe must not turn a valid line into a miss.
             Specialization spec = client.Player.GetSpecializationByName(line);
             if (spec == null)
             {

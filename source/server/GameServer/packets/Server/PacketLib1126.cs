@@ -24,7 +24,7 @@ namespace DOL.GS.PacketHandler
 			eInventorySlot.TorsoArmor,
 			eInventorySlot.Cloak,
 			eInventorySlot.LegsArmor,
-			 eInventorySlot.ArmsArmor,
+			eInventorySlot.ArmsArmor,
 		];
 
 		public PacketLib1126(GameClient client) : base(client) { }
@@ -157,8 +157,8 @@ namespace DOL.GS.PacketHandler
 
 					string className = string.Empty;
 
-			if (character.Class != 0)
-						className = GetClientOverviewClassName(character.Class, character.Realm);
+					if (character.Class != 0)
+						className = ((eCharacterClass) character.Class).ToString();
 
 					string raceName = m_gameClient.RaceToTranslatedName(character.Race, character.Gender);
 
@@ -269,7 +269,7 @@ namespace DOL.GS.PacketHandler
 					pak.WriteByte((byte) character.Empathy);
 					pak.WriteByte((byte) character.Charisma);
 
-					pak.WriteByte(GetClientOverviewClassId(character.Class, character.Realm));
+					pak.WriteByte((byte) character.Class);
 					pak.WriteByte((byte) character.Realm);
 					pak.WriteByte((byte) ((((character.Race & 0x10) << 2) + (character.Race & 0x0F)) | (character.Gender << 7)));
 

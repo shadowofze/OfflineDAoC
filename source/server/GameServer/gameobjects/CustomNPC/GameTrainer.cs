@@ -98,9 +98,8 @@ namespace DOL.GS
 					break;
 			}
 
-			// Some data-driven NPCs do not use the conventional "<Class> Trainer"
-			// guild label.  Resolve the registered class as a safe fallback so new
-			// player classes (including Sluaghbinder) still appear correctly.
+			// Data-driven trainers may not use the conventional class-trainer
+			// guild label. Use their registered class for the examine message.
 			if (string.IsNullOrEmpty(TrainerClassName) && TrainedClass != eCharacterClass.Unknown)
 			{
 				TrainerClassName = ScriptMgr.FindCharacterClass((int)TrainedClass)?.Name ?? TrainedClass.ToString();

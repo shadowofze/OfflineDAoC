@@ -376,14 +376,6 @@ namespace DOL.GS
 					GenerateWeapon(player, charClass, eObjectType.LargeWeapons, eInventorySlot.TwoHandWeapon);
 					break;
 
-				case eCharacterClass.Sluaghbinder:
-					// Keep generated class kits aligned with the Sluaghbinder's
-					// actual weapon lines: one-handed blunt, scythe, and shields.
-					GenerateWeapon(player, charClass, eObjectType.Blunt, eInventorySlot.RightHandWeapon);
-					GenerateWeapon(player, charClass, eObjectType.Shield, eInventorySlot.LeftHandWeapon);
-					GenerateWeapon(player, charClass, eObjectType.Scythe, eInventorySlot.TwoHandWeapon);
-					break;
-
 				case eCharacterClass.Ranger:
 					GenerateWeapon(player, charClass, eObjectType.RecurvedBow, eInventorySlot.DistanceWeapon);
 					goto case eCharacterClass.Nightshade;
@@ -568,7 +560,6 @@ namespace DOL.GS
 				case eCharacterClass.Warden:
 				case eCharacterClass.Blademaster:
 				case eCharacterClass.Champion:
-				case eCharacterClass.Sluaghbinder:
 				case eCharacterClass.Mercenary:
 				case eCharacterClass.Cleric:
 					return 2;

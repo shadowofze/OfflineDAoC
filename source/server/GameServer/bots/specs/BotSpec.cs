@@ -57,7 +57,6 @@ namespace DOL.GS
                 case eCharacterClass.Ranger: return new RangerBotSpec();
                 case eCharacterClass.Valewalker: return new ValewalkerBotSpec();
                 case eCharacterClass.Warden: return new WardenBotSpec(spec);
-                case eCharacterClass.Sluaghbinder: return new SluaghbinderBotSpec(spec);
 
                 case eCharacterClass.Berserker: return new BerserkerBotSpec();
                 case eCharacterClass.Bonedancer: return new BonedancerBotSpec(spec);
@@ -97,7 +96,6 @@ namespace DOL.GS
             eCharacterClass.Mentalist => [eSpecType.LightMenta, eSpecType.ManaMenta, eSpecType.MentaMenta],
             eCharacterClass.Animist => [eSpecType.ArborealAnimist, eSpecType.CreepingAnimist, eSpecType.VerdantAnimist],
             eCharacterClass.Warden => [eSpecType.RegrowthWarden, eSpecType.NurtureWarden, eSpecType.BattleWarden],
-            eCharacterClass.Sluaghbinder => [eSpecType.SluaghbinderBulwark, eSpecType.SluaghbinderBane, eSpecType.SluaghbinderCovenant],
             eCharacterClass.Bonedancer => [eSpecType.DarkBone, eSpecType.SuppBone, eSpecType.ArmyBone],
             eCharacterClass.Healer => [eSpecType.MendHealer, eSpecType.AugHealer, eSpecType.PacHealer],
             eCharacterClass.Runemaster => [eSpecType.DarkRune, eSpecType.SuppRune, eSpecType.RuneRune],

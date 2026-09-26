@@ -149,29 +149,13 @@ namespace DOL.GS
 			{
 
 				GamePlayer player = (GamePlayer)living;
-				int spellClassId = player.CharacterClass.ID;
 
-				// The experimental Sluaghbinder is stored as Hibernian Acolyte
-				// through level 4.  Its three baseline lines still use the real
-				// class-63 spell-line hints so promotion and post-promotion skill
-				// loading share exactly the same spell data.  The three optional
-				// specialization lines are deliberately not exposed before promotion.
-				if (spellClassId == (int)eCharacterClass.Acolyte &&
-					player.Realm == eRealm.Hibernia &&
-					(KeyName == "Sluagh Host" || KeyName == "Abhartach's Rot" || KeyName == "Cairn Oath"))
-				{
-					spellClassId = (int)eCharacterClass.Sluaghbinder;
-				}
-
-				// Select non-baseline lines only for an advanced class.  The novice
-				// exception is limited to class-hint resolution for the three
-				// baseline lines; it must not leak the level-5 paths early.
-				var tmp = spsl.Where(item => (item.Item1.IsBaseLine ||
-					player.CharacterClass.HasAdvancedFromBaseClass()))
+				// select only spec line if is advanced class...
+				var tmp = spsl.Where(item => (item.Item1.IsBaseLine || player.CharacterClass.HasAdvancedFromBaseClass()))
 					.OrderBy(item => (item.Item1.IsBaseLine ? 0 : 1)).ThenBy(item => item.Item1.ID);
 
 				// try with class hint
-				var baseline = tmp.Where(item => item.Item1.IsBaseLine && item.Item2 == spellClassId);
+				var baseline = tmp.Where(item => item.Item1.IsBaseLine && item.Item2 == player.CharacterClass.ID);
 				if (baseline.Any())
 				{
 					foreach (Tuple<SpellLine, int> ls in baseline)
@@ -190,7 +174,7 @@ namespace DOL.GS
 				}
 
 				// try spec with class hint
-				var specline = tmp.Where(item => !item.Item1.IsBaseLine && item.Item2 == spellClassId);
+				var specline = tmp.Where(item => !item.Item1.IsBaseLine && item.Item2 == player.CharacterClass.ID);
 				if (specline.Any())
 				{
 					foreach (Tuple<SpellLine, int> ls in specline)

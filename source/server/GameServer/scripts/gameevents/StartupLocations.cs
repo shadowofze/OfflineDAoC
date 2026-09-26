@@ -141,7 +141,7 @@ namespace DOL.GS.GameEvents
 		
 		public static IList<StartupLocation> GetAllStartupLocationForCharacter(DbCoreCharacter ch, GameClient.eClientVersion cli)
 		{
-			var locations = m_cachedLocations.Where(sl => sl.MinVersion <= (int)cli)
+			return m_cachedLocations.Where(sl => sl.MinVersion <= (int)cli)
 				.Where(sl => sl.ClassID == 0 || sl.ClassID == ch.Class)
 				.Where(sl => sl.RaceID == 0 || sl.RaceID == ch.Race)
 				.Where(sl => sl.RealmID == 0 || sl.RealmID == ch.Realm)
@@ -149,33 +149,6 @@ namespace DOL.GS.GameEvents
 				.OrderByDescending(sl => sl.MinVersion).ThenByDescending(sl => sl.ClientRegionID)
 				.ThenByDescending(sl => sl.RealmID).ThenByDescending(sl => sl.ClassID)
 				.ThenByDescending(sl => sl.RaceID).ToList();
-
-			// The experimental Hibernian Sluaghbinder is stored as Acolyte until
-			// its level-five promotion.  The stock database has no generic Hibernian
-			// Acolyte startup row, so a fresh character otherwise keeps region and
-			// coordinates at zero and cannot enter the world.  Reuse an existing
-			// Hibernian starting point instead of inventing another coordinate set.
-			// This fallback is deliberately limited to the isolated class's base
-			// record and cannot change startup placement for any normal class.
-			if (locations.Count == 0 && ch.Realm == (int)eRealm.Hibernia && ch.Class == (int)eCharacterClass.Acolyte)
-			{
-				locations = m_cachedLocations
-					.Where(sl => sl.MinVersion <= (int)cli)
-					.Where(sl => sl.RealmID == 0 || sl.RealmID == (int)eRealm.Hibernia)
-					.Where(sl => sl.RaceID == 0 || sl.RaceID == ch.Race)
-					.Where(sl => sl.ClientRegionID == 0 || sl.ClientRegionID == ch.Region)
-					.Where(sl => sl.ClientRegionID != TUTORIAL_REGIONID)
-					.Where(sl => IsClassicOrSiStartRegion(eRealm.Hibernia, sl.Region))
-					.Where(sl => sl.XPos != 0 || sl.YPos != 0 || sl.ZPos != 0)
-					.OrderByDescending(sl => sl.MinVersion).ThenByDescending(sl => sl.ClientRegionID)
-					.ThenByDescending(sl => sl.RealmID).ThenByDescending(sl => sl.ClassID)
-					.ThenByDescending(sl => sl.RaceID).ToList();
-
-				if (locations.Count > 0 && log.IsInfoEnabled)
-					log.InfoFormat("Using Hibernian Acolyte startup fallback for experimental Sluaghbinder (race={0})", ch.Race);
-			}
-
-			return locations;
 		}
 
 		/// <summary>

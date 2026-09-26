@@ -86,7 +86,6 @@ PlayerClass.Name.Ranger:			        Ranger
 PlayerClass.Name.Valewalker:			    Valewalker
 PlayerClass.Name.Vampiir:			        Vampiir
 PlayerClass.Name.Warden:			        Warden
-PlayerClass.Name.Sluaghbinder:              Sluaghbinder
 
 ### Midgard
 #### Base

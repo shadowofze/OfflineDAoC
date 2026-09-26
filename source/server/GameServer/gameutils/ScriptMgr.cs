@@ -691,58 +691,6 @@ namespace DOL.GS
         }
 
         /// <summary>
-        /// Finds a player class by its script/display name.  This is intentionally
-        /// separate from the numeric lookup used by the character database so
-        /// data-driven NPCs can safely refer to a class by name (for example,
-        /// "Sluaghbinder") without maintaining a second class-ID table.
-        /// </summary>
-        public static ICharacterClass FindCharacterClass(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-                return null;
-
-            string wanted = NormalizeCharacterClassName(name);
-
-            foreach (Assembly asm in GameServerScripts)
-            {
-                foreach (Type type in asm.GetTypes())
-                {
-                    if (!type.IsClass || type.IsAbstract || type.GetInterface("DOL.GS.ICharacterClass") == null)
-                        continue;
-
-                    try
-                    {
-                        object[] attrs = type.GetCustomAttributes(typeof(CharacterClassAttribute), false);
-                        foreach (CharacterClassAttribute attr in attrs)
-                        {
-                            string enumName = Enum.GetName(typeof(eCharacterClass), attr.ID);
-                            if (NormalizeCharacterClassName(attr.Name) == wanted ||
-                                NormalizeCharacterClassName(enumName) == wanted)
-                            {
-                                return FindCharacterClass(attr.ID);
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        if (log.IsErrorEnabled)
-                            log.Error("FindCharacterClass(string)", e);
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        private static string NormalizeCharacterClassName(string name)
-        {
-            if (string.IsNullOrEmpty(name))
-                return string.Empty;
-
-            return new string(name.Where(char.IsLetterOrDigit).Select(char.ToLowerInvariant).ToArray());
-        }
-
-        /// <summary>
         /// Return a CharacterClass "Base" Class (or current Class if already base)
         /// </summary>
         /// <param name="id">the classid to search</param>

@@ -95,8 +95,5 @@ namespace DOL.GS
 		Vampiir = 58,
 		Warden = 46,
 		MaulerHib = 62,
-		// Experimental Hibernian class; only enabled by the isolated Sluaghbinder
-		// test-copy bot catalog (never by the main Offline DAoC installation).
-		Sluaghbinder = 63,
 	}
 }

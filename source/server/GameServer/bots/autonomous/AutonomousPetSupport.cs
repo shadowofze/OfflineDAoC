@@ -88,8 +88,7 @@ public static class AutonomousPetSupport
     /// buffs and can starve FOLLOW forever after the army is summoned).
     /// </summary>
     public static bool OwnsPetUpkeep(eCharacterClass characterClass) =>
-        characterClass is eCharacterClass.Bonedancer or eCharacterClass.Necromancer or eCharacterClass.Minstrel or
-            eCharacterClass.Sluaghbinder ||
+        characterClass is eCharacterClass.Bonedancer or eCharacterClass.Necromancer or eCharacterClass.Minstrel ||
         UsesIndependentOwnerPetCombat(characterClass);
 
     /// <summary>
@@ -858,8 +857,7 @@ public static class AutonomousPetSupport
         if (!persistentWorldBot || temporaryHelper || playerLed || inCombat ||
             characterClass is not (eCharacterClass.Bonedancer or eCharacterClass.Enchanter or eCharacterClass.Cabalist or
                                     eCharacterClass.Spiritmaster or eCharacterClass.Sorcerer or
-                                    eCharacterClass.Mentalist or eCharacterClass.Minstrel or
-                                    eCharacterClass.Sluaghbinder))
+                                    eCharacterClass.Mentalist or eCharacterClass.Minstrel))
         {
             return false;
         }
@@ -893,7 +891,7 @@ public static class AutonomousPetSupport
             eCharacterClass.Bonedancer or eCharacterClass.Enchanter or eCharacterClass.Cabalist or
             eCharacterClass.Spiritmaster or eCharacterClass.Sorcerer or eCharacterClass.Mentalist or
             eCharacterClass.Necromancer or eCharacterClass.Hunter or eCharacterClass.Druid or
-            eCharacterClass.Minstrel or eCharacterClass.Sluaghbinder;
+            eCharacterClass.Minstrel;
     }
 
     /// <summary>
@@ -1105,9 +1103,13 @@ public static class AutonomousPetSupport
 
     public static bool IsCharmBodyTypeAllowed(Spell spell, ushort bodyType)
     {
-        if (spell == null || bodyType is < 1 or > 11)
+        return spell != null && IsCharmBodyTypeAllowed((CharmSpellHandler.eCharmType)spell.AmnesiaChance, bodyType);
+    }
+
+    public static bool IsCharmBodyTypeAllowed(CharmSpellHandler.eCharmType charmType, ushort bodyType)
+    {
+        if (bodyType is < 1 or > 11)
             return false;
-        CharmSpellHandler.eCharmType charmType = (CharmSpellHandler.eCharmType)spell.AmnesiaChance;
         return charmType switch
         {
             CharmSpellHandler.eCharmType.All => true,
@@ -1161,13 +1163,15 @@ public static class AutonomousPetSupport
     }
 
     public static bool IsGeneratedCharmTemplateRegion(eCharacterClass characterClass, ushort region) =>
-        characterClass switch
+        (region == DarknessFallsCharmPolicy.RegionId && characterClass is
+            eCharacterClass.Sorcerer or eCharacterClass.Mentalist or eCharacterClass.Minstrel or eCharacterClass.Hunter) ||
+        (characterClass switch
         {
             eCharacterClass.Sorcerer or eCharacterClass.Minstrel => region is 1 or 10 or 20 or 21 or 22 or 23 or 24 or 50 or 51 or 60 or 61 or 62,
             eCharacterClass.Mentalist => region is 180 or 181 or 190 or 191 or 192 or 193 or 194 or 200 or 201 or 220 or 221 or 222 or 223 or 224,
             eCharacterClass.Hunter => region is 100 or 101 or 102 or 125 or 126 or 127 or 128 or 129 or 150 or 151 or 160 or 161,
             _ => false
-        };
+        });
 
     public static DbMob[] GetPlayerCharmChoices(GamePlayer owner, Spell spell)
     {
@@ -1185,7 +1189,9 @@ public static class AutonomousPetSupport
                         IsGeneratedCharmTemplateRegion(key.Class, mob.Region) &&
                         !string.IsNullOrWhiteSpace(mob.Name) &&
                         (Properties.SPELL_CHARM_NAMED_CHECK == 0 || char.IsLower(mob.Name[0])) &&
-                        IsCharmBodyTypeAllowed(spell, (ushort)mob.BodyType)), key.Level));
+                        (mob.Region == DarknessFallsCharmPolicy.RegionId
+                            ? DarknessFallsCharmPolicy.AllowsPlayerChoice(mob, spell, key.Class)
+                            : IsCharmBodyTypeAllowed(spell, (ushort)mob.BodyType))), key.Level));
     }
 
     private static bool TryCreateCharmCandidate(GameLiving owner, Spell spell,
@@ -1205,7 +1211,9 @@ public static class AutonomousPetSupport
                               IsGeneratedCharmTemplateRegion(key.Class, mob.Region) &&
                               !string.IsNullOrWhiteSpace(mob.Name) &&
                               (Properties.SPELL_CHARM_NAMED_CHECK == 0 || char.IsLower(mob.Name[0])) &&
-                              IsCharmBodyTypeAllowed(spell, (ushort)mob.BodyType))
+                              (mob.Region == DarknessFallsCharmPolicy.RegionId
+                                  ? DarknessFallsCharmPolicy.AllowsBotChoice(mob, spell, key.Class, owner.Level)
+                                  : IsCharmBodyTypeAllowed(spell, (ushort)mob.BodyType)))
                 .ToArray());
         if (owner is GamePlayer player && placeInFront)
         {
@@ -1219,6 +1227,14 @@ public static class AutonomousPetSupport
         DbMob template = selectedTemplate ?? templates[Random.Shared.Next(templates.Length)];
         GameNPC mob = new();
         mob.LoadFromDatabase(template);
+        if (template.Region == DarknessFallsCharmPolicy.RegionId &&
+            DarknessFallsCharmPolicy.TryGetCharmBodyType(template, out ushort dfBodyType))
+        {
+            // The synthetic pet must retain the exact selected familiar form,
+            // even if an older multi-model NPC template is still installed.
+            mob.Model = template.Model;
+            mob.BodyType = dfBodyType;
+        }
         mob.InternalID = null;
         mob.LoadedFromScript = true;
         mob.CurrentRegion = owner.CurrentRegion;
@@ -1280,9 +1296,7 @@ public static class AutonomousPetSupport
         if (owner is GameBot bot)
         {
             bool bonedancer = bot.CharacterClass?.ID == (int)eCharacterClass.Bonedancer;
-            foreach (Spell spell in bot.Spells?
-                .Where(spell => spell != null && !SluaghbinderBotPolicy.IsPlayerOnlyServiceSpell(spell)) ??
-                Enumerable.Empty<Spell>())
+            foreach (Spell spell in bot.Spells?.Where(spell => spell != null) ?? Enumerable.Empty<Spell>())
                 yield return (spell, bot.ResolvePowerSpellLine(spell, MobSpellLine));
 
             // SetCasterSpells intentionally retains only the highest rank per

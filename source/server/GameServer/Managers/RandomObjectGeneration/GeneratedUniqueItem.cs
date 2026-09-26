@@ -164,6 +164,9 @@ namespace DOL.GS
             this.AllowAdd = false;
         }
 
+        // Allows a specialized quest reward to verify its promised utility floor.
+        public double BountyUtility => GetTotalUtility();
+
         #endregion
 
         #region generate item properties
@@ -1264,7 +1267,6 @@ namespace DOL.GS
 
                 case eCharacterClass.Champion:
                 case eCharacterClass.Valewalker:
-                case eCharacterClass.Sluaghbinder:
                     if (Util.Chance(10))
                         return eProperty.MaxMana;
                     if (rand <= 22)
@@ -1631,16 +1633,6 @@ namespace DOL.GS
                         property == eProperty.Skill_Valor ||
                         property == eProperty.Skill_Large_Weapon ||
                         property == eProperty.AllMeleeWeaponSkills ||
-                        property == eProperty.AllSkills
-                        )
-                        return true;
-                    return false;
-                case eCharacterClass.Sluaghbinder:
-                    if (property == eProperty.Skill_Blunt ||
-                        property == eProperty.Skill_Shields ||
-                        property == eProperty.Skill_Scythe ||
-                        property == eProperty.AllMeleeWeaponSkills ||
-                        property == eProperty.AllMagicSkills ||
                         property == eProperty.AllSkills
                         )
                         return true;
@@ -2081,8 +2073,7 @@ namespace DOL.GS
                             charClass != eCharacterClass.Ranger &&
                             charClass != eCharacterClass.Nightshade &&
                             charClass != eCharacterClass.Blademaster &&
-                            charClass != eCharacterClass.Warden &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Warden)
                         {
                             return false;
                         }
@@ -2095,8 +2086,7 @@ namespace DOL.GS
                             charClass != eCharacterClass.Hero &&
                             charClass != eCharacterClass.Bard &&
                             charClass != eCharacterClass.Blademaster &&
-                            charClass != eCharacterClass.Warden &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Warden)
                         {
                             return false;
                         }
@@ -2339,8 +2329,7 @@ namespace DOL.GS
                 case eProperty.Skill_Large_Weapon:
                     {
                         if (charClass != eCharacterClass.Champion &&
-                            charClass != eCharacterClass.Hero &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Hero)
                         {
                             return false;
                         }
@@ -2397,7 +2386,6 @@ namespace DOL.GS
                             charClass != eCharacterClass.Valewalker &&
                             charClass != eCharacterClass.Blademaster &&
                             charClass != eCharacterClass.Warden &&
-                            charClass != eCharacterClass.Sluaghbinder &&
                             charClass != eCharacterClass.Armsman && //albion
                             charClass != eCharacterClass.Friar &&
                             charClass != eCharacterClass.Mercenary &&
@@ -2415,8 +2403,7 @@ namespace DOL.GS
                             charClass != eCharacterClass.Hero &&
                             charClass != eCharacterClass.Nightshade &&
                             charClass != eCharacterClass.Blademaster &&
-                            charClass != eCharacterClass.Ranger &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Ranger)
                         {
                             return false;
                         }
@@ -2443,8 +2430,7 @@ namespace DOL.GS
                     }
                 case eProperty.Skill_Scythe:
                     {
-                        if (charClass != eCharacterClass.Valewalker &&
-                            charClass != eCharacterClass.Sluaghbinder) { return false; }
+                        if (charClass != eCharacterClass.Valewalker) { return false; }
                         return true;
                     }
                 case eProperty.Skill_Shields:
@@ -2458,8 +2444,7 @@ namespace DOL.GS
                             charClass != eCharacterClass.Mercenary &&
                             charClass != eCharacterClass.Paladin &&
                             charClass != eCharacterClass.Reaver &&
-                            charClass != eCharacterClass.Scout &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Scout)
                         {
                             return false;
                         }
@@ -2634,7 +2619,6 @@ namespace DOL.GS
                             charClass != eCharacterClass.Ranger &&
                             charClass != eCharacterClass.Valewalker &&
                             charClass != eCharacterClass.Warden &&
-                            charClass != eCharacterClass.Sluaghbinder &&
                             charClass != eCharacterClass.Armsman && //albion
                             charClass != eCharacterClass.Friar &&
                             charClass != eCharacterClass.Infiltrator &&
@@ -2769,8 +2753,7 @@ namespace DOL.GS
                             charClass != eCharacterClass.Nightshade &&
                             charClass != eCharacterClass.Bard &&
                             charClass != eCharacterClass.Blademaster &&
-                            charClass != eCharacterClass.Warden &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Warden)
                         {
                             return false;
                         }
@@ -2785,8 +2768,7 @@ namespace DOL.GS
                             charClass != eCharacterClass.Hero &&
                             charClass != eCharacterClass.Bard &&
                             charClass != eCharacterClass.Blademaster &&
-                            charClass != eCharacterClass.Warden &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Warden)
                         {
                             return false;
                         }
@@ -3167,8 +3149,7 @@ namespace DOL.GS
                 case eProperty.Skill_Large_Weapon:
                     {
                         if (charClass != eCharacterClass.Champion &&
-                            charClass != eCharacterClass.Hero &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Hero)
                         {
                             return false;
                         }
@@ -3307,7 +3288,6 @@ namespace DOL.GS
                             charClass != eCharacterClass.Hero &&
                             charClass != eCharacterClass.Valewalker &&
                             charClass != eCharacterClass.Warden &&
-                            charClass != eCharacterClass.Sluaghbinder &&
                             charClass != eCharacterClass.Blademaster &&
                             charClass != eCharacterClass.Armsman && //albion
                             charClass != eCharacterClass.Friar &&
@@ -3342,8 +3322,7 @@ namespace DOL.GS
                         if (charClass != eCharacterClass.Champion &&
                             charClass != eCharacterClass.Hero &&
                             charClass != eCharacterClass.Nightshade &&
-                            charClass != eCharacterClass.Ranger &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Ranger)
                         {
                             return false;
                         }
@@ -3399,12 +3378,8 @@ namespace DOL.GS
                     }
                 case eProperty.Skill_Scythe:
                     {
-                        if (charClass != eCharacterClass.Valewalker &&
-                            charClass != eCharacterClass.Sluaghbinder) { return false; }
-                        if (charClass == eCharacterClass.Valewalker && type == eObjectType.Cloth)
-                            return true;
-                        if (charClass == eCharacterClass.Sluaghbinder &&
-                            (type == eObjectType.Reinforced || type == eObjectType.Scale))
+                        if (charClass != eCharacterClass.Valewalker) { return false; }
+                        if (type == eObjectType.Cloth)
                             return true;
                         break;
                     }
@@ -3419,8 +3394,7 @@ namespace DOL.GS
                             charClass != eCharacterClass.Mercenary &&
                             charClass != eCharacterClass.Paladin &&
                             charClass != eCharacterClass.Reaver &&
-                            charClass != eCharacterClass.Scout &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Scout)
                         {
                             return false;
                         }
@@ -3937,8 +3911,7 @@ namespace DOL.GS
                             charClass != eCharacterClass.Ranger &&
                             charClass != eCharacterClass.Nightshade &&
                             charClass != eCharacterClass.Blademaster &&
-                            charClass != eCharacterClass.Warden &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Warden)
                         {
                             return false;
                         }
@@ -3953,8 +3926,7 @@ namespace DOL.GS
                             charClass != eCharacterClass.Hero &&
                             charClass != eCharacterClass.Bard &&
                             charClass != eCharacterClass.Blademaster &&
-                            charClass != eCharacterClass.Warden &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Warden)
                         {
                             return false;
                         }
@@ -4079,8 +4051,7 @@ namespace DOL.GS
                 case eProperty.Skill_Large_Weapon:
                     {
                         if (charClass != eCharacterClass.Champion &&
-                            charClass != eCharacterClass.Hero &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Hero)
                         {
                             return false;
                         }
@@ -4138,7 +4109,6 @@ namespace DOL.GS
                             charClass != eCharacterClass.Hero &&
                             charClass != eCharacterClass.Valewalker &&
                             charClass != eCharacterClass.Warden &&
-                            charClass != eCharacterClass.Sluaghbinder &&
                             charClass != eCharacterClass.Armsman && //albion
                             charClass != eCharacterClass.Friar &&
                             charClass != eCharacterClass.Mercenary &&
@@ -4164,8 +4134,7 @@ namespace DOL.GS
                             charClass != eCharacterClass.Hero &&
                             charClass != eCharacterClass.Nightshade &&
                             charClass != eCharacterClass.Blademaster &&
-                            charClass != eCharacterClass.Ranger &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Ranger)
                         {
                             return false;
                         }
@@ -4189,8 +4158,7 @@ namespace DOL.GS
                     }
                 case eProperty.Skill_Scythe:
                     {
-                        if (charClass != eCharacterClass.Valewalker &&
-                            charClass != eCharacterClass.Sluaghbinder) { return false; }
+                        if (charClass != eCharacterClass.Valewalker) { return false; }
                         if (type == eObjectType.Scythe)
                             return true;
                         break;
@@ -4215,8 +4183,7 @@ namespace DOL.GS
                             charClass != eCharacterClass.Mercenary &&
                             charClass != eCharacterClass.Paladin &&
                             charClass != eCharacterClass.Reaver &&
-                            charClass != eCharacterClass.Scout &&
-                            charClass != eCharacterClass.Sluaghbinder)
+                            charClass != eCharacterClass.Scout)
                         {
                             return false;
                         }
@@ -5934,18 +5901,6 @@ namespace DOL.GS
                     weaponTypes.Add(eObjectType.LargeWeapons);
                     weaponTypes.Add(eObjectType.Shield);
                     break;
-                case eCharacterClass.Sluaghbinder:
-                    // Sluaghbinder ROGs follow the three usable equipment
-                    // lines: one-handed blunt, scythe, and shields.  Do not
-                    // generate blades, piercing, or large-weapon items that
-                    // the class cannot train or equip through its trees.
-                    weaponTypes.Add(eObjectType.Blunt);
-                    weaponTypes.Add(eObjectType.Blunt);
-                    weaponTypes.Add(eObjectType.Scythe);
-                    weaponTypes.Add(eObjectType.Scythe);
-                    weaponTypes.Add(eObjectType.Shield);
-                    weaponTypes.Add(eObjectType.Shield);
-                    break;
                 case eCharacterClass.Hero:
                     weaponTypes.Add(eObjectType.Blades);
                     weaponTypes.Add(eObjectType.Piercing);
@@ -6064,16 +6019,6 @@ namespace DOL.GS
                     }
 
                 case eCharacterClass.Champion:
-                    if (level < 20)
-                    {
-                        return eObjectType.Reinforced;
-                    }
-                    else { return eObjectType.Scale; }
-
-                // Sluaghbinder uses the existing Hibernian heavy progression:
-                // reinforced while leveling, then scale at level 20+.  No plate
-                // armor type is introduced for Hibernia.
-                case eCharacterClass.Sluaghbinder:
                     if (level < 20)
                     {
                         return eObjectType.Reinforced;
@@ -6256,11 +6201,6 @@ namespace DOL.GS
                 case eCharacterClass.Mercenary:
                 case eCharacterClass.Cleric:
                     return 2;
-
-                // Sluaghbinder can use small, medium, and large shields.  The
-                // damage-type field on a shield is the classic size marker.
-                case eCharacterClass.Sluaghbinder:
-                    return 3;
 
                 case eCharacterClass.Warrior:
                 case eCharacterClass.Hero:

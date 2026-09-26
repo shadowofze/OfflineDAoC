@@ -30,13 +30,24 @@ namespace DOL.GS.PacketHandler.Client.v168
 
             WhereClause whereClause = DB.Column("Id").IsEqualTo(zonePointId);
 
-            if (client.Account.PrivLevel == 1)
+            DbZonePoint zonePoint;
+            if (DarknessFallsExitPolicy.IsExitRequest(client.Player.CurrentRegionID, zonePointId))
             {
-                WhereClause realmFilter = DB.Column("Realm").IsEqualTo((byte) playerRealm).Or(DB.Column("Realm").IsEqualTo(0)).Or(DB.Column("Realm").IsNull());
-                whereClause = whereClause.And(realmFilter);
+                // DF exit IDs have three realm-specific rows. GM privilege must
+                // not turn an ID-only lookup into a cross-realm exit.
+                zonePoint = DarknessFallsExitPolicy.SelectRealmExit(
+                    DOLDB<DbZonePoint>.SelectObjects(whereClause), playerRealm, zonePointId);
             }
+            else
+            {
+                if (client.Account.PrivLevel == 1)
+                {
+                    WhereClause realmFilter = DB.Column("Realm").IsEqualTo((byte) playerRealm).Or(DB.Column("Realm").IsEqualTo(0)).Or(DB.Column("Realm").IsNull());
+                    whereClause = whereClause.And(realmFilter);
+                }
 
-            DbZonePoint zonePoint = DOLDB<DbZonePoint>.SelectObject(whereClause);
+                zonePoint = DOLDB<DbZonePoint>.SelectObject(whereClause);
+            }
 
             if (zonePoint == null)
             {

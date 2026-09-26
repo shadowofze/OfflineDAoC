@@ -36,6 +36,19 @@ namespace DOL.GS
                 (spell.IsInstantCast || spell.NeedInstrument || spell.MoveCast);
         }
 
+        // Only temporary player companions use this travel pool. Bards have
+        // a real endurance song; Skalds and Minstrels do not, so their useful
+        // second travel song is health regeneration. Power and combat chants
+        // must not take the speed anchor while the owner is moving.
+        public static bool IsCompanionTravelSong(eCharacterClass characterClass, eSpellType type) =>
+            characterClass switch
+            {
+                eCharacterClass.Bard => type is eSpellType.SpeedEnhancement or eSpellType.EnduranceRegenBuff,
+                eCharacterClass.Skald or eCharacterClass.Minstrel =>
+                    type is eSpellType.SpeedEnhancement or eSpellType.HealthRegenBuff,
+                _ => false
+            };
+
         // Only one helpful pulse source is legal. Generic buff selection must
         // not independently replace a tank's anchor with a resist/endurance
         // pulse; those are deliberately not part of the chosen core rotation.

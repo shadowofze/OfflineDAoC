@@ -18,9 +18,13 @@ namespace DOL.Tests
         [TestCase(true, 160, EDtPolyFlags.Jump, EDtPolyFlags.Walk, true)]
         [TestCase(true, 160, EDtPolyFlags.Walk, EDtPolyFlags.Jump, true)]
         [TestCase(true, 160, EDtPolyFlags.Walk, EDtPolyFlags.Walk, false)]
+        [TestCase(true, 249, EDtPolyFlags.Jump, EDtPolyFlags.Walk, true)]
+        [TestCase(true, 249, EDtPolyFlags.Walk, EDtPolyFlags.Jump, true)]
+        [TestCase(true, 249, EDtPolyFlags.Walk, EDtPolyFlags.Walk, false)]
         [TestCase(true, 60, EDtPolyFlags.Jump, EDtPolyFlags.Walk, false)]
         [TestCase(false, 160, EDtPolyFlags.Jump, EDtPolyFlags.Walk, false)]
-        public void OnlyGlacierBotClimbsDisableFloorOnlyCornerSkipping(bool bot, int zone,
+        [TestCase(false, 249, EDtPolyFlags.Jump, EDtPolyFlags.Walk, false)]
+        public void OnlyGlacierAndDarknessFallsBotClimbsDisableFloorOnlyCornerSkipping(bool bot, int zone,
             EDtPolyFlags current, EDtPolyFlags next, bool expected) =>
             Assert.That(Pathfinder.RequiresExactClimbNode(bot, (ushort)zone, current, next), Is.EqualTo(expected));
         [TestCase(2000, 100, 600, 0)]

@@ -60,6 +60,8 @@
         <EmbeddedResource Include=".\bots\autonomous\data\classic165_restored_spawn_ids.txt" />
         <EmbeddedResource Include=".\bots\autonomous\data\classic165_period_restored_spawn_ids.txt" />
         <EmbeddedResource Include=".\bots\autonomous\data\dungeon_navigation_points.json" />
+        <EmbeddedResource Include=".\bots\autonomous\data\darkness_falls_raid_event_mobs.json" />
+        <EmbeddedResource Include=".\bots\autonomous\data\darkness_falls_navigation_proofs.json" />
         <TranslationFiles Include=".\language\**\*.txt" />
         <APIDocs Include=".\API\docs\*" />
         <Content Include="API\docs\index.css" />

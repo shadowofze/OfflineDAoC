@@ -7,6 +7,21 @@ namespace DOL.UnitTests
     [TestFixture]
     public class UT_BotSongTwistPolicy
     {
+        [TestCase(eCharacterClass.Bard, eSpellType.SpeedEnhancement, true)]
+        [TestCase(eCharacterClass.Bard, eSpellType.EnduranceRegenBuff, true)]
+        [TestCase(eCharacterClass.Bard, eSpellType.PowerRegenBuff, false)]
+        [TestCase(eCharacterClass.Bard, eSpellType.HealthRegenBuff, false)]
+        [TestCase(eCharacterClass.Skald, eSpellType.SpeedEnhancement, true)]
+        [TestCase(eCharacterClass.Skald, eSpellType.HealthRegenBuff, true)]
+        [TestCase(eCharacterClass.Skald, eSpellType.DamageAdd, false)]
+        [TestCase(eCharacterClass.Minstrel, eSpellType.SpeedEnhancement, true)]
+        [TestCase(eCharacterClass.Minstrel, eSpellType.HealthRegenBuff, true)]
+        [TestCase(eCharacterClass.Minstrel, eSpellType.PowerRegenBuff, false)]
+        [TestCase(eCharacterClass.Paladin, eSpellType.SpeedEnhancement, false)]
+        public void CompanionTravelPoolPreservesSpeedAndOnlyUsefulClassSecondary(
+            eCharacterClass characterClass, eSpellType type, bool allowed) =>
+            Assert.That(BotSongTwistPolicy.IsCompanionTravelSong(characterClass, type), Is.EqualTo(allowed));
+
         [Test] public void SkaldKeepsSpeedUntilReuseExpiresThenReturnsImmediatelyAfterSecondary()
         {
             Assert.That(BotSongTwistPolicy.Choose(3608, 3608,

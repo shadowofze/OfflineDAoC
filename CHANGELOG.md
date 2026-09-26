@@ -1,5 +1,48 @@
 # Offline DAoC changelog
 
+## 2026-09-25 — v0.32 Darkness Falls Beta (normal release)
+
+- Added the Darkness Falls region to the normal Classic + Shrouded Isles
+  release. Albion, Midgard, and Hibernia can enter in the offline setup;
+  the shared center permits opposing-realm bot PvP under server rules.
+- Autonomous bots have staged, floor-aware paths for ordinary dungeon
+  grinding. Entrance and exit checks preserve actual region edges; routes
+  treat ledges and descents as one-way and return through each bot's own
+  realm exit. Corridor threats, party staging, recovery, and failed-camp
+  fallback use the shared bot systems. Players can use the existing seal
+  vendors; automated bot purchases are not claimed.
+- Darkness Falls raid AI is **not implemented**. Legion, the hardest
+  level-70+ encounters, unreachable flying targets, and unverified content
+  are excluded from ordinary bot goals. The owner has not
+  completed a long live Darkness Falls bot test, so both 0.32 releases are
+  labeled **Darkness Falls Beta** until that testing is done.
+- This is the fully current normal build: it also contains the earlier
+  Bounty Master, Bard, companion-song, Shannon beach-rat, and shared bot
+  progression/navigation repairs listed below. It contains **no**
+  Sluaghbinder class, quests, or optional client assets.
+- Shared combat and training fixes carried into both 0.32 editions correct
+  shield-style damage calculation, trainer examine behavior, and `/train`
+  names containing apostrophes. No class-specific training was added to the
+  normal edition.
+- The [v0.32 release notes](docs/RELEASE-0.32.md),
+  [verification record](docs/VERIFICATION-0.32.md), and
+  [player guide](docs/PLAY.md) explain implementation, limits, download,
+  and rollback. The new downloader layers over v0.31 into a separate
+  folder and keeps that legacy base intact.
+
+## 2026-09-25 — v0.32b Darkness Falls Beta (optional Sluaghbinder)
+
+- Includes every current v0.32 shared and Darkness Falls change, then adds
+  the optional Hibernian Sluaghbinder class, quests, pets, class-specific
+  companion/autonomous bot support, and private client visuals. These class
+  features were introduced in v0.31b and remain optional.
+- The v0.32b patch makes a new copy from a verified v0.32 normal base, so
+  the normal installation stays available. The optional copy has a rollback
+  command. [v0.32b release notes](docs/RELEASE-0.32B.md) and
+  [verification record](docs/VERIFICATION-0.32B.md) cover its separate
+  source and package.
+- v0.3, v0.31, and v0.31b remain unchanged as legacy tags and releases.
+
 ## 2026-09-25 — Bard combat, companion songs, and Shannon beach rats (v0.31 / v0.31b)
 
 - Solo Bard gamebots engage PvE targets instead of repeatedly casting mez.

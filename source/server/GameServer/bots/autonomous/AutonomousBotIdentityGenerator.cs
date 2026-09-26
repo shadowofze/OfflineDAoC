@@ -65,9 +65,6 @@ namespace DOL.GS
                     new(eCharacterClass.Ranger, eRace.Celt, eRace.Elf, eRace.Lurikeen),
                     new(eCharacterClass.Animist, eRace.Celt, eRace.Firbolg, eRace.Sylvan),
                     new(eCharacterClass.Valewalker, eRace.Celt, eRace.Firbolg, eRace.Sylvan),
-                    // Experimental Sluaghbinder: the isolated class has the
-                    // same two legal races as its player character creator.
-                    new(eCharacterClass.Sluaghbinder, eRace.Celt, eRace.Firbolg),
                 ],
             };
 

@@ -56,9 +56,6 @@ namespace DOL.GS
         {
             if (type == spec.WeaponOneType && type != 0) return true;
             if (type != spec.WeaponTwoType || type == 0) return false;
-            if ((spec.SpecType is eSpecType.SluaghbinderBane or eSpecType.SluaghbinderCovenant) &&
-                type == eObjectType.Scythe)
-                return true;
             if (spec.SpecType == eSpecType.LeftAxe && type is eObjectType.Axe or eObjectType.LeftAxe) return true;
             string line = SkillBase.ObjectTypeToSpec(type);
             foreach (BotSpecLine planned in spec.SpecLines)
@@ -95,8 +92,7 @@ namespace DOL.GS
 
         public static eObjectType PrimaryType(eObjectType first, eObjectType second, bool twoHanded) =>
             twoHanded && second is eObjectType.TwoHandedWeapon or eObjectType.PolearmWeapon or
-                eObjectType.LargeWeapons or eObjectType.CelticSpear or eObjectType.Scythe ? second :
-                first != 0 ? first : second;
+                eObjectType.LargeWeapons or eObjectType.CelticSpear ? second : first != 0 ? first : second;
 
         public static bool FitsConfiguredSlot(GameBot bot, DbInventoryItem item, eInventorySlot slot)
         {

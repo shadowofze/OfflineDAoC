@@ -11,27 +11,31 @@ The bundled modern .NET runtime does not replace this legacy connector requireme
 
 ## Get the GitHub download
 
-Choose one path before downloading. Both paths are ordinary point-and-click
+Choose one beta path before downloading. Both are ordinary point-and-click
 play; neither requires Git, an LLM, or programming knowledge.
 
-- **Normal play (no Sluaghbinder):** choose **v0.31** for the current public
-  maintenance build, or **v0.3** for the preserved original public baseline.
-  Use that release's `DOWNLOAD AND PLAY.cmd` helper.
-- **Optional Sluaghbinder play:** choose **v0.31b** and use the
-  `DOWNLOAD AND PLAY v0.31b.cmd` helper. This installs the class into a new
-  sibling copy and leaves the normal v0.31 game available separately.
+- **Normal play:** choose [v0.32 Darkness Falls Beta](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32)
+  and `DOWNLOAD-AND-PLAY-v0.32.cmd`. This includes the current shared fixes
+  and Darkness Falls, without Sluaghbinder.
+- **Optional Sluaghbinder play:** choose [v0.32b Darkness Falls Beta](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b)
+  and `DOWNLOAD-AND-PLAY-v0.32b.cmd`. It adds the class to a separate v0.32
+  copy. The normal base stays available.
 
-1. Open the project's **Releases** page and download the helper for the path you
-   chose plus `Get-OfflineDAoC.ps1` from the selected tag into the **same new
-   folder**. For normal play this is `DOWNLOAD AND PLAY.cmd`; for Sluaghbinder
-   play it is `DOWNLOAD AND PLAY v0.31b.cmd`.
-   GitHub may display those uploaded helpers with dots instead of spaces,
-   such as `DOWNLOAD.AND.PLAY.v0.31b.cmd`; that is the same file.
-2. Double-click that helper. The normal helper downloads the preserved v0.3 seed,
-   checks its hashes, applies the small v0.31 update, and creates `playable`.
-   The v0.31b helper also downloads v0.31, verifies the optional class patch, and
-   creates `playable-v0.31b`. Allow roughly 35 GB of free disk space for the
-   downloads, extracted game, and working room.
+The [v0.3](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3),
+[v0.31](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31), and
+[v0.31b](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b)
+downloads remain available as legacy versions.
+
+1. On your chosen **Releases** page, download its named `.cmd` helper and
+   `Get-OfflineDAoC.ps1` into the **same new folder**. Use files from the same
+   release; an older helper may select an older version.
+2. Double-click the helper. It downloads and hash-checks the required assets.
+   The v0.32 path layers the new update over the preserved v0.31 game into a
+   **new** playable folder and keeps the v0.31 sibling intact. The v0.32b path
+   then installs Sluaghbinder in another **new** sibling copy. Allow generous
+   disk space: roughly **40 GB free for normal v0.32** or **55 GB for optional
+   v0.32b**, plus headroom for saves and future updates. No earlier copy is
+   deleted automatically.
 3. Open the new playable folder, read **READ ME FIRST.txt**, and run
    **START OFFLINE DAOC.cmd**.
 4. In the launcher, click **START SERVER** and wait until it reports **RUNNING**.
@@ -44,24 +48,34 @@ play; neither requires Git, an LLM, or programming knowledge.
 7. This version starts with an empty bot roster. Use the launcher's **+ Lv.1** or
    **+ Lv.50** buttons under each faction to generate playerbots.
 
-For the optional path, double-click **DOWNLOAD AND PLAY v0.31b.cmd** instead of
-`DOWNLOAD AND PLAY.cmd`. It downloads the normal v0.31 baseline first, verifies
-the Sluaghbinder patch, and creates `playable-v0.31b` with the optional class.
-If you already have a clean v0.3/v0.31 folder, use the latest `Sluaghbinder-v0.31b-bounties-patch.zip`
-and `INSTALL SLAUGHBINDER PATCH.cmd`; the installer makes a separate copy and
-places `ROLLBACK SLAUGHBINDER PATCH.cmd` inside it. If you do not want the class,
-never run that optional helper or installer and simply play the normal folder.
+For the optional path, use **DOWNLOAD-AND-PLAY-v0.32b.cmd**. It assembles the
+normal v0.32 game first, checks the optional patch, and makes the Sluaghbinder
+copy. If you already have a clean v0.32 folder, use the v0.32b release's
+`Sluaghbinder-v0.32b-darkness-falls-beta-patch.zip` and its included install
+command, following that archive's instructions. The patcher leaves the selected
+base untouched and writes a rollback command into the optional copy. If you do
+not want the class, simply play the normal v0.32 folder.
 
-The downloader verifies and extracts the v0.3 seed, then applies the verified v0.31
-update without overwriting an existing destination. If you handle an archive
-yourself, extract the **entire** archive into a normal folder; never run files from
-inside a ZIP. Always keep older installations in separate folders.
+Never point an installer at an existing destination. If you handle an archive
+yourself, extract the **entire** archive into a normal folder; never run files
+from inside a ZIP. Keep earlier installations in separate folders.
 
-The v0.31 GitHub launcher says **0.31**. The optional v0.31b launcher says
-**0.31b**. The old v0.3 launcher and release still say **0.3**. The author's
-private launcher label is separate from all public release numbers.
+The v0.32 launcher says **0.32** and the optional launcher says **0.32b**.
+Legacy v0.3, v0.31, and v0.31b launchers keep their own version labels.
 
-## Repeatable bounties (v0.31 and v0.31b)
+## Darkness Falls Beta
+
+All three realms can enter Darkness Falls in this offline release. Autonomous
+bots have staged dungeon paths for ordinary XP grinding, their own realm
+exits, and opposing-realm fights near the shared center. Players can use the
+existing seal vendors. Some descents are one-way, so plan a return via your
+realm exit instead of retracing a ledge. The owner has not yet completed a
+long live bot test there. Darkness Falls raid AI is not implemented; Legion,
+the hardest level-70+ encounters, unreachable flying targets, and unverified
+content are excluded from ordinary bot goals. See the
+[v0.32 release notes](RELEASE-0.32.md) for the design and exact limits.
+
+## Repeatable bounties (v0.31 onward)
 
 Find the Bounty Master in Cotswold (Albion), Mularn (Midgard), or Mag Mell
 (Hibernia). Accept one hunt, then use your quest journal to watch the kill count
@@ -84,16 +98,14 @@ video files are downloaded as part of the game setup.
 
 ## Optional Sluaghbinder play path
 
-To play the normal game without the class, follow the steps above and start the
-v0.3 or v0.31 folder. To add Sluaghbinder, download the latest `Sluaghbinder-v0.31b-bounties-patch.zip`
-from the v0.31b release, extract it into a new temporary folder, and double-click
-`INSTALL SLAUGHBINDER PATCH.cmd`. Choose the clean v0.3 or v0.31 folder. The
-patcher creates a new `-Sluaghbinder-v0.31b` sibling copy, keeps local progress,
-and writes a rollback command into that new copy. It never modifies the selected
-base folder. Sluaghbinder is Hibernian; new characters begin as Acolytes and
+To play the normal game without the class, start the v0.32 folder. To add
+Sluaghbinder, use the v0.32b helper or patch above. The installer creates a
+separate optional copy and leaves the selected normal base intact. Sluaghbinder
+is Hibernian; new characters begin as Acolytes and
 follow the trainer's level-5 promotion path. The five epic quests and their
 locations are discovered through in-game clues, so the public play guide does
-not spoil them.
+not spoil them. For an older install, follow the preserved
+[v0.31b release instructions](RELEASE-0.31B.md).
 
 ## First-time requirements
 
@@ -133,7 +145,7 @@ manually with an old database.
 
 Skip this if you want to start fresh. You can transfer before your first launch.
 
-1. Keep your old folder intact. Extract/download the new version into a different folder.
+1. Keep your old folder intact. Download the new version into a different folder.
 2. Stop the server and close the game and launcher for **both** versions.
 3. Inside the **NEW game folder**, double-click **IMPORT PROGRESS FROM OLD OFFLINE DAOC.cmd**.
 4. Click **Choose OLD folder...** and select your old portable Offline DAoC folder.
@@ -145,7 +157,10 @@ Skip this if you want to start fresh. You can transfer before your first launch.
    click **ENTER REALM**. Imported credentials are used automatically.
 
 The importer makes a recovery backup. Keep your old installation until you have
-checked your characters and progress in the new one.
+checked your characters and progress in the new one. For a simple rollback,
+stop both versions and launch the untouched older folder. If you applied the
+v0.32b patch, use its rollback command only for the optional copy, then verify
+your saves before continuing.
 
 Only run one local DAoC server at a time. Stop it normally and wait for saves to
 finish before moving folders, importing progress, or installing a changed build.
@@ -153,10 +168,12 @@ There is no automatic update that overwrites somebody's installation or custom f
 
 ## Interrupted download / errors
 
-Run the download again. Already verified parts in `.downloads` are reused; failed
-parts are downloaded again. The destination must not already exist. If extraction
-was interrupted, choose another new destination with the PowerShell script's
-`-Destination` option; do not point it at an existing game or save folder.
+After a caught download or install error, run the helper again. Verified parts
+in `.downloads` are reused, and any incomplete new copy is preserved under a
+sibling `.failed-<id>` name for inspection. That folder can use substantial
+disk space. If Windows or the machine stopped before the helper could handle
+the error, rename the incomplete destination yourself or choose a different
+new `-Destination`; never point the helper at an existing game or save folder.
 
 GitHub's **Code > Download ZIP** button downloads editable source, not the large
 playable release. Players should use **Releases**, as with many other GitHub projects.

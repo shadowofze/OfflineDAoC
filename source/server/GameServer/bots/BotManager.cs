@@ -113,7 +113,6 @@ namespace DOL.GS
                 eCharacterClass.Bonedancer => "Bonedancer",
                 eCharacterClass.Berserker => "Berserker",
                 eCharacterClass.Savage => "Savage",
-                eCharacterClass.Sluaghbinder => "Sluaghbinder",
 
                 _ => "Fighter"
             };

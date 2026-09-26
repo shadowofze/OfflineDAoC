@@ -2,6 +2,7 @@ using DOL.GS;
 using DOL.GS.Styles;
 using DOL.Database;
 using NUnit.Framework;
+using System.Numerics;
 
 namespace DOL.UnitTests.Gameserver;
 
@@ -26,6 +27,10 @@ public class UT_SavageBotCombat
 
         Assert.Multiple(() =>
         {
+            Assert.That(SavageBotCombatPolicy.MayAttackDuringActiveCast(eCharacterClass.Savage, instant), Is.True,
+                "The early combat cast guard must permit the native instant buff to reach melee");
+            Assert.That(SavageBotCombatPolicy.MayAttackDuringActiveCast(eCharacterClass.Savage, castTime), Is.False);
+            Assert.That(SavageBotCombatPolicy.MayAttackDuringActiveCast(eCharacterClass.Berserker, instant), Is.False);
             Assert.That(SavageBotCombatPolicy.ContinueMeleeAfterSpell(
                 eCharacterClass.Savage, true, false, null, true, instant), Is.True,
                 "A queued instant health-cost buff must not cancel the pull or swing");
@@ -106,6 +111,50 @@ public class UT_SavageBotCombat
                 eBotStance.Auto, false, true), Is.False);
             Assert.That(BotRangedCombat.AllowsAutomaticNpcRangedSwitch(
                 true, eCharacterClass.Savage, true), Is.False);
+        });
+    }
+
+    [Test]
+    public void SoloSavageOnlyPullsReachableTargetsInsideTheAssignedCampCell()
+    {
+        Assert.Multiple(() =>
+        {
+            Assert.That(SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(eCharacterClass.Savage, false), Is.True);
+            Assert.That(SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(eCharacterClass.Savage, true), Is.False);
+            Assert.That(SavageBotCombatPolicy.NeedsVerifiedSoloPullRoute(eCharacterClass.Berserker, false), Is.False);
+            Assert.That(SavageBotCombatPolicy.IsWithinAssignedCamp(554470, 562177, 557070, 562177), Is.True);
+            Assert.That(SavageBotCombatPolicy.IsWithinAssignedCamp(554470, 562177, 557071, 562177), Is.False);
+        });
+    }
+
+    [Test]
+    public void FailedSoloPullRouteIsCachedOnlyBrieflyWhileBothActorsStayPut()
+    {
+        Vector3 origin = new(554470, 562177, 5100);
+        Vector3 target = new(555000, 562600, 5100);
+        var failed = new SavageBotCombatPolicy.FailedSoloPullRoute(
+            1_000, 100, 5, 5, origin, target);
+
+        bool Delayed(long tick, ushort region, int originZone, int targetZone,
+            Vector3 from, Vector3 to) =>
+            SavageBotCombatPolicy.ShouldDelayFailedSoloPullRetry(
+                failed, tick, region, originZone, targetZone, from, to);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(Delayed(1_000, 100, 5, 5, origin, target), Is.True);
+            Assert.That(Delayed(6_999, 100, 5, 5, origin, target), Is.True);
+            Assert.That(Delayed(7_000, 100, 5, 5, origin, target), Is.False,
+                "A stationary unreachable NPC gets a fresh route check after six seconds");
+            Assert.That(Delayed(999, 100, 5, 5, origin, target), Is.False,
+                "A clock reset cannot preserve stale failures");
+            Assert.That(Delayed(2_000, 100, 5, 5, origin + new Vector3(500, 0, 0), target), Is.True,
+                "An ordinary short camp patrol should not re-probe the same failed path each scan");
+            Assert.That(Delayed(2_000, 100, 5, 5, origin + new Vector3(513, 0, 0), target), Is.False);
+            Assert.That(Delayed(2_000, 100, 5, 5, origin, target + new Vector3(65, 0, 0)), Is.False);
+            Assert.That(Delayed(2_000, 101, 5, 5, origin, target), Is.False);
+            Assert.That(Delayed(2_000, 100, 6, 5, origin, target), Is.False);
+            Assert.That(Delayed(2_000, 100, 5, 6, origin, target), Is.False);
         });
     }
 

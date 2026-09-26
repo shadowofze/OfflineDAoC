@@ -797,17 +797,55 @@ namespace DOL.GS
 		public override string MoneyKey { get { return "BloodSeal"; } }
 	}
 
-	public class GameDiamondSealsMerchant : GameItemCurrencyMerchant
+	/// <summary>
+	/// The three original Darkness Falls seal merchants trade only with their own
+	/// realm. Keep this check on the buy request as well as interaction: a client
+	/// can send a buy packet while merely targeting a merchant.
+	/// </summary>
+	public abstract class GameDarknessFallsSealsMerchant : GameItemCurrencyMerchant
+	{
+		public static bool CanTrade(eRealm merchantRealm, eRealm playerRealm)
+		{
+			return merchantRealm != eRealm.None && merchantRealm == playerRealm;
+		}
+
+		private bool CanTrade(GamePlayer player)
+		{
+			return player != null && CanTrade(Realm, player.Realm);
+		}
+
+		public override bool Interact(GamePlayer player)
+		{
+			if (!CanTrade(player))
+				return false;
+
+			return base.Interact(player);
+		}
+
+		public override void SendMerchantWindow(GamePlayer player)
+		{
+			if (CanTrade(player))
+				base.SendMerchantWindow(player);
+		}
+
+		public override void OnPlayerBuy(GamePlayer player, int item_slot, int number)
+		{
+			if (CanTrade(player))
+				base.OnPlayerBuy(player, item_slot, number);
+		}
+	}
+
+	public class GameDiamondSealsMerchant : GameDarknessFallsSealsMerchant
 	{
 		public override string MoneyKey { get { return "DiamondSeal"; } }
 	}
 
-	public class GameSapphireSealsMerchant : GameItemCurrencyMerchant
+	public class GameSapphireSealsMerchant : GameDarknessFallsSealsMerchant
 	{
 		public override string MoneyKey { get { return "SapphireSeal"; } }
 	}
 
-	public class GameEmeraldSealsMerchant : GameItemCurrencyMerchant
+	public class GameEmeraldSealsMerchant : GameDarknessFallsSealsMerchant
 	{
 		public override string MoneyKey { get { return "EmeraldSeal"; } }
 	}

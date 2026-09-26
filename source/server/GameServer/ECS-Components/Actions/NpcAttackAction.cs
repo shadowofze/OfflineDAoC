@@ -170,12 +170,8 @@ namespace DOL.GS
                     ? _leftWeapon : _weapon;
                 if (!StyleProcessor.CheckEnduranceCost(styleBot, styleWeapon, _combatStyle))
                     _combatStyle = null;
-                // A shield is only the required item for validating a shield
-                // style.  It is not the damaging weapon for the swing.  Keep
-                // _weapon on the bot's active main-hand weapon so shield styles
-                // do not feed a zero-DPS shield into WeaponAction and report
-                // an apparent 0-damage attack.  This applies to both temporary
-                // companions and autonomous GameBots.
+                // A shield validates a shield style, but the active main-hand
+                // remains the damaging weapon for the swing.
             }
 
             if (!base.PrepareMeleeAttack())

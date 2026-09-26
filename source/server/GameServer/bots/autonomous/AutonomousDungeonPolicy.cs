@@ -18,7 +18,8 @@ namespace DOL.GS
             19 or 21 or 22 or 23 or 24 or 60 or 61 or 62 or
             125 or 126 or 127 or 128 or 129 or 150 or 160 or 161 or
             180 or 190 or 191 or 220 or 221 or 222 or 223 or 224 or
-            246 or 248 or 276 or 277;
+            246 or 248 or 276 or 277 ||
+            zone == 249 && AutonomousDarknessFallsNavigation.IsReady;
 
         public static bool IsStarterDungeonRegion(ushort region) => region is 21 or 129 or 221;
 
@@ -28,7 +29,7 @@ namespace DOL.GS
         // They remain real monsters and normal route threats, but are not a
         // reliable autonomous camp objective.
         public static bool IsReliableAutonomousGoal(ushort region, string name) =>
-            region != AutonomousDarknessFallsPolicy.RegionId &&
+            (region != AutonomousDarknessFallsPolicy.RegionId || AutonomousDarknessFallsNavigation.IsReady) &&
             !(region == 129 && string.Equals(name, "haunt", StringComparison.OrdinalIgnoreCase)) &&
             // Installed entrance-to-husk corridors cross aggressive level
             // 36-43 packs. Level 10-11 husks cannot be safe XP goals for the
@@ -45,14 +46,15 @@ namespace DOL.GS
 
         // The party member at the front of a formation is not necessarily the
         // designated tank-puller.  A legal corridor blocker may be handed to
-        // that tank only while the locked eight-member PvE party is intact and
-        // actively travelling or grinding.  Resource, casualty and cohesion
-        // gates are still applied by CanInitiateNewPull before combat starts.
+        // that tank while the current PvE roster is viable and actively
+        // travelling or grinding. Attendance may already have removed one or
+        // more no-shows before the dungeon task starts. Resource, casualty and
+        // cohesion gates are still applied by CanInitiateNewPull.
         public static bool CanHandoffRouteBlocker(bool groupPve, string phase,
             int memberCount, bool requiredComposition, bool differentPuller,
             bool pullerAlive, bool sameRegion, bool pullerOnStableRoute) =>
             groupPve && phase is "Traveling" or "Grinding" &&
-            memberCount == 8 && requiredComposition && differentPuller &&
+            memberCount is >= 3 and <= 8 && requiredComposition && differentPuller &&
             pullerAlive && sameRegion && !pullerOnStableRoute;
 
         /// <summary>

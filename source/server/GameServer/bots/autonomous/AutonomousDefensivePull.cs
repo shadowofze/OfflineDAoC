@@ -38,35 +38,110 @@ namespace DOL.GS
         private static Spell PullSpell(GameBot bot) => bot.Spells?.Where(spell => IsPullSpell(spell, bot.Level))
             .OrderByDescending(spell => spell.Range).ThenByDescending(spell => spell.Level).FirstOrDefault();
 
+        // Flying-target handoff must choose a spell that can be fired now.
+        // This is deliberately separate from the established level-50 pull
+        // selection so ordinary targets retain their original behavior.
+        public static Spell SelectReadyPullSpell(IEnumerable<Spell> spells, int level, int mana,
+            Func<Spell, int> powerCost, Func<Spell, int> disabledDuration) =>
+            spells?.Where(spell => IsPullSpell(spell, level) &&
+                    powerCost(spell) <= mana && disabledDuration(spell) == 0)
+                .OrderByDescending(spell => spell.Range).ThenByDescending(spell => spell.Level)
+                .FirstOrDefault();
+
+        private static Spell ReadyPullSpell(GameBot bot) => bot == null ? null :
+            SelectReadyPullSpell(bot.Spells, bot.Level, bot.Mana, bot.PowerCost, bot.GetSkillDisabledDuration);
+
+        private static bool HasUsableDistanceWeapon(GameBot bot) =>
+            BotRangedCombat.CanUse(bot, bot.Inventory?.GetItem(eInventorySlot.DistanceWeapon));
+
         public static bool HasRangedPull(GameBot bot) => bot != null &&
             (PullSpell(bot) != null || BotRangedCombat.CanUse(bot, bot.Inventory?.GetItem(eInventorySlot.DistanceWeapon)));
 
         public static bool OwnsRangedPosition(GameNPC npc) => npc is GameBot bot && bot.Group != null &&
             States.TryGetValue(bot.Group, out State state) && state.Active && state.Shooter == bot;
 
+        public static bool IsScopedFlyingHandoff(ushort region, GameNPC.eFlags flags,
+            bool designatedHasMeleeApproach, bool groupCanPull) =>
+            region is 249 or 60 or 160 or 191 &&
+            (flags & GameNPC.eFlags.FLYING) != 0 && !designatedHasMeleeApproach && groupCanPull;
+
+        /// <summary>Only a DF/epic-dungeon flyer unreachable by the normal
+        /// tank receives a temporary ranged group shooter.  The designated
+        /// puller and all ordinary camps retain their existing behavior.</summary>
+        public static bool TryBeginFlyingHandoff(GameBot designated, GameNPC target, bool corridorBlocker = false)
+            => TryChooseFlyingHandoffShooter(designated, target, corridorBlocker, out GameBot shooter) &&
+               TryBeginCore(shooter, target, flyingHandoff: true);
+
+        public static bool CanAttemptFlyingHandoff(GameBot designated, GameNPC target, bool corridorBlocker = false)
+            => TryChooseFlyingHandoffShooter(designated, target, corridorBlocker, out _);
+
+        private static bool TryChooseFlyingHandoffShooter(GameBot designated, GameNPC target,
+            bool corridorBlocker, out GameBot shooter)
+        {
+            shooter = null;
+            if (designated?.Group == null || target?.IsAlive != true ||
+                !IsScopedFlyingHandoff(target.CurrentRegionID, target.Flags, false,
+                    designated.CurrentRegion == target.CurrentRegion &&
+                    AutonomousBotGroupCoordinator.CanInitiateNewPull(designated, corridorBlocker))) return false;
+            var nav = PathfindingProvider.Instance;
+            Zone zone = designated.CurrentZone;
+            if (zone == null || !nav.IsAvailable || !nav.HasNavmesh(zone)) return false;
+            Vector3 from = new(designated.X, designated.Y, designated.Z);
+            Vector3 enemy = new(target.X, target.Y, target.Z);
+            if (AutonomousDungeonTargetRoute.CanReach(nav, zone, from, enemy)) return false;
+            GameBot[] members = designated.Group.GetMembersInTheGroup().OfType<GameBot>()
+                .Where(member => member.IsAlive && member.Group == designated.Group &&
+                    member.CurrentRegion == designated.CurrentRegion && !member.IsOnStableMasterRoute &&
+                    GameServer.ServerRules.IsAllowedToAttack(member, target, true))
+                .ToArray();
+            if (members.Length < 2) return false;
+            shooter = members.Where(member => member != designated &&
+                    (ReadyPullSpell(member) != null || HasUsableDistanceWeapon(member)))
+                .OrderBy(member => member.GetDistanceTo(target))
+                .FirstOrDefault(member =>
+                {
+                    Spell spell = ReadyPullSpell(member);
+                    // Do not switch several candidates' equipped weapons just
+                    // to inspect their range. 1000 is a conservative preflight
+                    // for a stowed bow; the actual range is checked after the
+                    // chosen shooter switches in TryBeginCore.
+                    int range = spell?.Range ?? (member.ActiveWeaponSlot == eActiveWeaponSlot.Distance
+                        ? member.attackComponent.AttackRange : 1000);
+                    return TryFiringPoint(nav, member.CurrentZone,
+                        new(member.X, member.Y, member.Z), enemy, range, out _);
+                });
+            return shooter != null;
+        }
+
         // True means this party's pull is handled, including a failed approach.
         // Never fall through into a melee charge merely because a ranged pull failed.
         public static bool TryBegin(GameBot shooter, GameLiving target)
+            => TryBeginCore(shooter, target, flyingHandoff: false);
+
+        private static bool TryBeginCore(GameBot shooter, GameLiving target, bool flyingHandoff)
         {
             // Suppress only a new scripted pull of this expedition's dragon.
             // Attacked-by-enemy and shared defense paths are unchanged.
             if (AutonomousRealmRaid.IsPendingDragonTarget(shooter,target)) return true;
-            if (!AutonomousBotGroupCoordinator.IsLevelFiftyPveGroup(shooter?.Group)) return false;
+            if (shooter?.Group == null ||
+                !flyingHandoff && !AutonomousBotGroupCoordinator.IsLevelFiftyPveGroup(shooter.Group)) return false;
             State state = States.GetOrCreateValue(shooter.Group);
             lock (state)
             {
                 if (state.Active || GameLoop.GameLoopTime < state.RetryAfter) return true;
                 GameBot[] members = shooter.Group.GetMembersInTheGroup().OfType<GameBot>().ToArray();
-                if (members.Length != 8 || target?.IsAlive != true || shooter.CurrentRegion != target.CurrentRegion)
+                if (members.Length < (flyingHandoff ? 2 : 8) ||
+                    !flyingHandoff && members.Length != 8 ||
+                    target?.IsAlive != true || shooter.CurrentRegion != target.CurrentRegion)
                     return true;
                 // An enemy already in the party is a real defensive fight, not a ranged pull.
-                if (members.Any(member => member.IsWithinRadius(target, ContactRadius))) return false;
+                if (!flyingHandoff && members.Any(member => member.IsWithinRadius(target, ContactRadius))) return false;
                 state.RetryAfter = GameLoop.GameLoopTime + TimeoutMilliseconds;
-                Spell spell = PullSpell(shooter);
+                Spell spell = flyingHandoff ? ReadyPullSpell(shooter) : PullSpell(shooter);
                 eActiveWeaponSlot previous = shooter.ActiveWeaponSlot;
                 if (spell == null)
                 {
-                    if (!HasRangedPull(shooter)) return true;
+                    if (flyingHandoff ? !HasUsableDistanceWeapon(shooter) : !HasRangedPull(shooter)) return true;
                     shooter.SwitchWeapon(eActiveWeaponSlot.Distance);
                 }
                 int range = spell?.Range ?? shooter.attackComponent.AttackRange;
