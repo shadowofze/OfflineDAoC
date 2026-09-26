@@ -128,6 +128,53 @@ namespace DOL.UnitTests
         public void OnlyFullLevelFiftyPvePartiesChange(bool pve, int size, bool fifty, bool expected) =>
             Assert.That(AutonomousDefensivePull.UsesDefensivePull(pve, size, fifty), Is.EqualTo(expected));
 
+        [Test]
+        public void FlyingHandoff_IsLimitedToUnreachableFlyersInDfOrEpicDungeons()
+        {
+            foreach (ushort region in new ushort[] { 249, 60, 160, 191 })
+                Assert.That(AutonomousDefensivePull.IsScopedFlyingHandoff(
+                    region, GameNPC.eFlags.FLYING, false, true), Is.True);
+            Assert.Multiple(() =>
+            {
+                Assert.That(AutonomousDefensivePull.IsScopedFlyingHandoff(
+                    21, GameNPC.eFlags.FLYING, false, true), Is.False,
+                    "Ordinary dungeons retain their existing pulls.");
+                Assert.That(AutonomousDefensivePull.IsScopedFlyingHandoff(
+                    249, 0, false, true), Is.False,
+                    "Ground targets retain their designated puller.");
+                Assert.That(AutonomousDefensivePull.IsScopedFlyingHandoff(
+                    249, GameNPC.eFlags.FLYING, true, true), Is.False,
+                    "A tank with a legal melee approach retains the pull.");
+                Assert.That(AutonomousDefensivePull.IsScopedFlyingHandoff(
+                    249, GameNPC.eFlags.FLYING, false, false), Is.False,
+                    "Regrouping, dead, or unready parties cannot start a handoff.");
+            });
+        }
+
+        [Test]
+        public void FlyingHandoff_SelectsAnAvailableSpellInsteadOfHoldingForAnUnusableOne()
+        {
+            Spell longRange = new(new DbSpell
+                { Type = "DirectDamage", Target = "Enemy", Damage = 100, Radius = 0, Range = 1800 }, 50);
+            Spell fallback = new(new DbSpell
+                { Type = "DirectDamage", Target = "Enemy", Damage = 60, Radius = 0, Range = 1500 }, 35);
+            Spell[] spells = [longRange, fallback];
+            Assert.That(AutonomousDefensivePull.IsPullSpell(fallback, 50), Is.True,
+                $"Fallback data: level={fallback.Level}, type={fallback.SpellType}, range={fallback.Range}, radius={fallback.Radius}, damage={fallback.Damage}, instrument={fallback.NeedInstrument}");
+            Assert.Multiple(() =>
+            {
+                Assert.That(AutonomousDefensivePull.SelectReadyPullSpell(spells, 50, 20,
+                    spell => ReferenceEquals(spell, longRange) ? 30 : 10, _ => 0), Is.SameAs(fallback),
+                    "A lower-ranked learned spell is better than a selected spell with insufficient power.");
+                Assert.That(AutonomousDefensivePull.SelectReadyPullSpell(spells, 50, 50,
+                    _ => 10, spell => ReferenceEquals(spell, longRange) ? 1500 : 0), Is.SameAs(fallback),
+                    "A disabled high-rank spell cannot stall an available party shooter.");
+                Assert.That(AutonomousDefensivePull.SelectReadyPullSpell(spells, 50, 5,
+                    _ => 10, _ => 0), Is.Null,
+                    "No uncastable spell is treated as an available ranged handoff.");
+            });
+        }
+
         [TestCase("DirectDamage", 0, 1500, 50, true)]
         [TestCase("Lifedrain", 0, 1500, 50, true)]
         [TestCase("DamageOverTime", 0, 1500, 50, true)]

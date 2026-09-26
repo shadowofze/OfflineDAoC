@@ -58,7 +58,7 @@ namespace DOL.GS.WeeklyQuest.Hibernia
 			}
 		}
 		
-		[ScriptLoadedEvent]
+		// Atlas-only Darkness Falls weekly quest: not registered in the Classic 1.65 world.
 		public static void ScriptLoaded(DOLEvent e, object sender, EventArgs args)
 		{
 			if (!ServerProperties.Properties.LOAD_QUESTS)

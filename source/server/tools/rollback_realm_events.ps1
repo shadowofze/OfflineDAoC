@@ -2,7 +2,7 @@ $ErrorActionPreference = 'Stop'
 if (Get-Process CoreServer,game,camelot,OfflineDAoC,connect -ErrorAction SilentlyContinue) {
     throw 'Close the server, client and launcher before rollback.'
 }
-$runtime = 'C:\Users\thedo\Desktop\Offline DAoC\runtime'
+$runtime = 'C:\Users\thedo\Desktop\new class test\runtime'
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'manifest.json') -Raw | ConvertFrom-Json
 foreach ($entry in $manifest.Entries) {
     $target = [IO.Path]::GetFullPath((Join-Path $runtime $entry.Relative))

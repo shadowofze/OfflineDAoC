@@ -196,6 +196,12 @@ namespace DOL.GS
 
         public static bool HasCompleteCorridor(IPathfindingMgr nav, Zone zone, Vector3 start, Vector3 end)
         {
+            // DF's stacked floors can yield DT_PARTIAL_RESULT with a fake
+            // numerical endpoint after a multi-thousand-unit Z leap.  Its
+            // route checks must use the strict complete 3-D validator; other
+            // dungeons retain the existing bounded partial continuation.
+            if (zone?.ZoneRegion?.ID == AutonomousDarknessFallsPolicy.RegionId)
+                return AutonomousDarknessFallsNavigation.HasStrictSegment(nav, zone, start, end);
             // Opt-in memoization/yielding for keep planning ONLY. Every other
             // caller and the ordinary PvE corridor cache retain their behavior.
             if (nav is RvrPlanningNavigation work)

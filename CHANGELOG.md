@@ -1,99 +1,124 @@
 # Offline DAoC changelog
 
-## 2026-09-25 — Bard combat and Shannon camp repair (v0.31 / v0.31b)
+## 2026-09-25 — v0.32 Darkness Falls Beta (normal release)
 
-- Bard companions and autonomous gamebots no longer repeatedly mesmerize
-  their ordinary PvE kill target. They continue normal combat and keep their
-  existing secondary-healer role. A grouped Bard may mez a separate,
-  full-health add attacking the party, with a bounded retry delay.
-- Stationary companion Bards, Skalds, and Minstrels complete normal buffs
-  before song twisting takes the cast slot. A moving player's companion Bard
-  favors speed/endurance; companion Skalds and Minstrels favor speed/health
-  regeneration. Autonomous gamebot song scheduling is unchanged.
-- The Shannon Estuary beach-rat camp now has its original rat plus ten spaced
-  level-1/2 rats. The optional patch applies the same guarded, idempotent
-  correction to its copied database inside the existing transaction; its
-  pre-patch database backup and rollback remain intact.
-- The Sluaghbinder class, pets, quests, and art stay confined to v0.31b.
-  Normal v0.31 receives only the shared Bard and world-camp repairs.
+- Added the Darkness Falls region to the normal Classic + Shrouded Isles
+  release. Albion, Midgard, and Hibernia can enter in the offline setup;
+  the shared center permits opposing-realm bot PvP under server rules.
+- Autonomous bots have staged, floor-aware paths for ordinary dungeon
+  grinding. Entrance and exit checks preserve actual region edges; routes
+  treat ledges and descents as one-way and return through each bot's own
+  realm exit. Corridor threats, party staging, recovery, and failed-camp
+  fallback use the shared bot systems. Players can use the existing seal
+  vendors; automated bot purchases are not claimed.
+- Darkness Falls raid AI is **not implemented**. Legion, the hardest
+  level-70+ encounters, unreachable flying targets, and unverified content
+  are excluded from ordinary bot goals. The owner has not
+  completed a long live Darkness Falls bot test, so both 0.32 releases are
+  labeled **Darkness Falls Beta** until that testing is done.
+- This is the fully current normal build: it also contains the earlier
+  Bounty Master, Bard, companion-song, Shannon beach-rat, and shared bot
+  progression/navigation repairs listed below. It contains **no**
+  Sluaghbinder class, quests, or optional client assets.
+- Shared combat and training fixes carried into both 0.32 editions correct
+  shield-style damage calculation, trainer examine behavior, and `/train`
+  names containing apostrophes. No class-specific training was added to the
+  normal edition.
+- The [v0.32 release notes](docs/RELEASE-0.32.md),
+  [verification record](docs/VERIFICATION-0.32.md), and
+  [player guide](docs/PLAY.md) explain implementation, limits, download,
+  and rollback. The new downloader layers over v0.31 into a separate
+  folder and keeps that legacy base intact.
 
-## 2026-09-25 — repeatable Bounty Master hunts (v0.31 / v0.31b)
+## 2026-09-25 — v0.32b Darkness Falls Beta (optional Sluaghbinder)
 
-- Added a Bounty Master in Mag Mell, Cotswold Village, and Mularn. Each offers
-  one repeatable, realm-appropriate hunt at a time. Levels 1–49 draw a
-  yellow-con monster and ask for 5–50 kills; level 50 draws a named dungeon
-  boss or dragon. The quest journal tracks kills and the return objective.
-- Normal completion grants two XP bulbs measured at the *assigned* level,
-  multiplied by the server XP rate, plus 1–3 class-appropriate equipment
-  pieces. A level-50 boss hunt instead pays 100 gold and 1–3 high-utility
-  class items. Completed hunts can be taken again without a limit.
-- Rerolling is unlimited, but halves the normal XP reward until that bounty
-  is completed. Refreshing a bounty after outleveling its assigned level is
-  free and clears the reroll penalty for the new contract. Normal kill credit
-  uses the monster's name in the assigned zone, not its exact spawn level.
-- The active bounty has one red map marker. Its **BOUNTY MAP** journal button
-  opens the current map; the dot appears only while the character is inside
-  the target's zone or dungeon. `/bountylocation` refreshes the marker and
-  explains where to look. Turning in or replacing the bounty removes its
-  previous marker.
-- Journal text is bounded to the legacy client's 255-byte quest-packet limit,
-  including on relog. The Bounty Master and map UI are shared by both public
-  paths; Sluaghbinder itself remains exclusive to the optional v0.31b patch.
+- Includes every current v0.32 shared and Darkness Falls change, then adds
+  the optional Hibernian Sluaghbinder class, quests, pets, class-specific
+  companion/autonomous bot support, and private client visuals. These class
+  features were introduced in v0.31b and remain optional.
+- The v0.32b patch makes a new copy from a verified v0.32 normal base, so
+  the normal installation stays available. The optional copy has a rollback
+  command. [v0.32b release notes](docs/RELEASE-0.32B.md) and
+  [verification record](docs/VERIFICATION-0.32B.md) cover its separate
+  source and package.
+- v0.3, v0.31, and v0.31b remain unchanged as legacy tags and releases.
+
+## 2026-09-25 — Bard combat, companion songs, and Shannon beach rats (v0.31 / v0.31b)
+
+- Solo Bard gamebots engage PvE targets instead of repeatedly casting mez.
+  Grouped Bards reserve PvE mez for a fresh extra monster already attacking
+  their party, never the party's selected kill target; failed attempts have a
+  short retry limit. PvP mez and Bard's secondary-healing role are unchanged.
+- Bard, Skald, and Minstrel `/spawn` companions finish ordinary group buffs
+  while stationary before resuming songs. When their player leader moves,
+  travel songs take priority: Bard uses speed and endurance rather than power;
+  Skald and Minstrel use their available speed/health songs. Autonomous
+  gamebot song behavior is unchanged.
+- Filled out the low-level Shannon Estuary beach-rat camp to eleven spaced
+  level-1/2 rats. The v0.31 downloader and optional v0.31b installer apply a
+  guarded, repeatable world-data patch without copying anyone's save database.
+  The preserved v0.3 release and Sluaghbinder-free normal v0.31 path remain
+  separate.
+
+## 2026-09-25 — repeatable Bounty Masters (v0.31 / v0.31b)
+
+- Bounty Masters in Cotswold, Mularn, and Mag Mell now offer one repeatable
+  monster hunt at a time. Levels 1–49 get a yellow-con species and a kill count
+  that grows with level; the journal tracks progress and turn-in.
+- A completed normal bounty grants class-appropriate equipment and two XP bulbs
+  measured at the assigned level, scaled by the server's XP rate. Unlimited
+  rerolls change the target but reduce XP to one bulb until completion. Refreshing
+  an outleveled contract is free; an old contract's XP value does not grow with
+  the character. Level-50 contracts instead hunt major bosses for gold and
+  high-quality class gear, with no XP reward.
+- A red bounty marker appears on the target's local zone or dungeon map once
+  you enter that area. The journal's BOUNTY MAP button opens your current map;
+  the Bounty Master and `/bountylocation` explain how to find the marker.
 - Added `/stables`, `/stables classic`, `/stables si`, and `/stables <page>` to
-  list the character's realm-specific Classic and Shrouded Isles stable-ticket
-  connections. These commands display routes only; they do not travel.
+  list your realm's actual Classic and Shrouded Isles stable-ticket routes.
+  These commands are informational; they do not move your character.
+- Fixed a too-long journal entry that could block a character with an active
+  bounty from logging in. Ordinary bounty kills now count every matching
+  monster name in the assigned zone, regardless of its variable spawn level;
+  level-50 named bosses still require the exact target.
+- The bounty system is shared by the normal v0.31 and optional v0.31b paths.
+  The v0.3 release remains unchanged, and v0.31 still does not contain the
+  Sluaghbinder class. Source tests and package checks are separate from an
+  in-client gameplay verification.
 
 ## 2026-09-23 — shared bot progression and route repair (v0.31 / v0.31b)
 
-- Savages now keep native instant buffs from interrupting their melee loop and
-  verify a reachable target inside their assigned camp cell before committing
-  to a pull. Other classes and cast-time spells are unchanged.
-- PvE parties recruit nearby available members, and a viable reduced roster
-  can fight after unreachable meetup members are released. Nearby resurrection
-  resumes local recovery; each corpse gets its own bounded resurrection wait.
-- Reduced parties can hand a dungeon corridor blocker to their puller in
-  Koalinth, Vendo, Keltoi, and Tepok. We found no separate broken dungeon
-  geometry, so no dungeon spawn or navmesh data was changed.
-- Small parties skip one repeatedly unproductive Salisbury spirit camp; other
-  spirit camps remain available. Solo bots rest fully after death, temporarily
-  avoid the failed camp/target after repeated no-XP deaths, and back off capped
-  retries instead of immediately repeating a lethal loop.
-- Mularn's audited low stable landing is raised to the walkable surface after
-  arrival. Stable planning checks the first boarding leg and an in-range
-  boarding point, including the Pheuloc hotspot, without changing tickets or
-  horse routes.
-- These class-neutral fixes are shared with normal v0.31. The normal package
-  still has no Sluaghbinder code or assets; the optional class remains confined
-  to v0.31b.
+- Savages now keep native instant buffs from interrupting melee and verify a
+  reachable target within their assigned camp. Failed path checks are briefly
+  cached instead of retried every AI tick.
+- PvE parties recruit nearby available bots and can fight as a viable reduced
+  roster after meetup no-shows. Nearby resurrection resumes local recovery;
+  each corpse has its own bounded wait timer.
+- Reduced parties can clear post-entry dungeon corridor blockers. Koalinth,
+  Vendo, Keltoi, and Tepok were audited without speculative navmesh changes.
+- Small parties skip one unproductive Salisbury spirit cell. Solo bots rest
+  fully after death and use temporary failed-camp avoidance and capped no-XP
+  retry delays rather than repeating lethal loops immediately.
+- Mularn's audited low stable landing is corrected after a confirmed ride;
+  first-leg and boarding-range checks address repeated horse-route failures.
+- These class-neutral fixes are in both downloads. The normal v0.31 release
+  remains free of Sluaghbinder class code, quests, trainer and client assets.
+  A post-fix overnight live run has not yet been observed.
 
-## 2026-09-22 — v0.31b optional pet appearance and Covenant upkeep
+## 2026-09-22 — optional v0.31b pet and Covenant refresh
 
-- Zombie Defender is 33% larger and has its own rusty-plate zombie texture and
-  private model. Its prior shield and combat rules remain unchanged. The stock
-  Decaying Marshman appearance is not replaced.
-- Dullahan is 50% larger and has its own dark, battle-worn armored texture and
-  private model. It uses a chain morningstar with the existing dark weapon
-  effect, no offhand shield, and the corresponding shield/block adjustment.
-  The stock Headless Corpse appearance is not replaced.
-- Zombie Priest now carries only a dagger instead of a mace and buckler.
-- Covenant companion and autonomous Sluaghbinder bots allow an active
-  one-minute pet heal-over-time to finish before recasting it. Direct heals,
-  other Sluaghbinder paths, and other classes retain their existing behavior.
-- The optional patch now carries the pet equipment rows and private client
-  assets with copy-first installation and rollback. Normal v0.3 and v0.31
-  releases remain independent and unchanged.
-- Added an [LLM pet-texture workflow](docs/LLM-SLUAGHBINDER-PET-TEXTURES.md)
-  covering the private NIF/DDS catalog chains, legacy MPK ordering, validation,
-  and safe visual testing.
-
-## 2026-09-21 — v0.31b Sluaghbinder pet model polish
-
-- Moved the former Zombie Magician model to the level-7 Sturdy Zombie.
-- Changed the level-12 Zombie Magician to use the existing Murkman model.
-- The Sturdy Zombie remains unarmed; the Zombie Magician keeps its staff,
-  spells, stats, and damage unchanged.
-- This is an optional v0.31b visual-only patch change. The normal v0.3/v0.31
-  releases are unchanged.
+- Zombie Defender is 33% larger, retains its prior shield, and has a private
+  rusty-plate texture/model that does not replace the stock monster.
+- Dullahan is 50% larger, has a private dark armored texture/model, uses a
+  chain morningstar with an existing dark effect, and has no offhand shield.
+- Zombie Priest carries a dagger instead of mace and buckler.
+- Covenant Sluaghbinder companions and autonomous bots now wait for an active
+  one-minute pet heal-over-time to finish before recasting. Direct heals and
+  other builds/classes are unchanged.
+- The v0.31b installer merges private client entries and pet equipment into a
+  separate game copy and rolls them back there; normal v0.3/v0.31 downloads
+  are unchanged. The [LLM pet-texture guide](https://github.com/shadowofze/OfflineDAoC/blob/release/v0.31b-sluaghbinder/docs/LLM-SLUAGHBINDER-PET-TEXTURES.md)
+  documents the old-client NIF/DDS/MPK workflow.
 
 ## 2026-09-21 — v0.31 / v0.31b maintenance fixes
 

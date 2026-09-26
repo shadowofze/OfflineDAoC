@@ -156,6 +156,83 @@ namespace DOL.UnitTests
         }
 
         [Test]
+        public void BlockedFortySlotBackpack_IsClearedOnlyAfterMerchantArrival_WithoutTouchingEquipmentOrMoney()
+        {
+            ExchangeBot bot = Bot(9901, 12345);
+            DbInventoryItem equipped = Item("worn gloves");
+            Assert.That(bot.Inventory.AddItem(eInventorySlot.HandsArmor, equipped), Is.True);
+            List<DbInventoryItem> backpack = FillBackpack(bot);
+            foreach (DbInventoryItem item in backpack)
+            {
+                item.IsDropable = false;
+                item.IsTradable = false;
+            }
+            // Musical bots keep spare instruments in the backpack while
+            // twisting; a carried shield can be part of a weapon swap too.
+            backpack[0].Object_Type = (int)eObjectType.Instrument;
+            backpack[1].Object_Type = (int)eObjectType.Shield;
+
+            Assert.That(AutonomousBotEconomy.TryClearBlockedBackpackAtMerchant(bot, false, out int premature), Is.False);
+            Assert.That(premature, Is.Zero);
+            Assert.That(AutonomousBotEconomy.IsBackpackFull(bot), Is.True);
+
+            Assert.That(AutonomousBotEconomy.TryClearBlockedBackpackAtMerchant(bot, true, out int removed), Is.True);
+            Assert.That(removed, Is.EqualTo(38));
+            Assert.That(AutonomousBotEconomy.IsBackpackFull(bot), Is.False);
+            Assert.That(bot.Inventory.GetItem(eInventorySlot.HandsArmor), Is.SameAs(equipped));
+            Assert.That(bot.PersistentRecord.MoneyCopper, Is.EqualTo(12345));
+            Assert.That(bot.Inventory.AllItems, Does.Contain(backpack[0]));
+            Assert.That(bot.Inventory.AllItems, Does.Contain(backpack[1]));
+            Assert.That(backpack.Skip(2).All(item => !bot.Inventory.AllItems.Contains(item)), Is.True);
+        }
+
+        [Test]
+        public void BlockedBackpackRecovery_WaitsForOrdinarySaleAndNeverClearsPartlyFilledBag()
+        {
+            ExchangeBot bot = Bot(9902, 100);
+            List<DbInventoryItem> backpack = FillBackpack(bot);
+            foreach (DbInventoryItem item in backpack)
+                item.IsDropable = false;
+            DbInventoryItem sale = backpack[0];
+            sale.IsDropable = true;
+            sale.IsTradable = false;
+            sale.Price = 1;
+            sale.Item_Type = (int)eInventorySlot.FirstBackpack;
+            sale.Object_Type = (int)eObjectType.GenericItem;
+
+            Assert.That(AutonomousBotEconomy.FindVendorTrashCandidate(bot), Is.SameAs(sale));
+            Assert.That(AutonomousBotEconomy.TryClearBlockedBackpackAtMerchant(bot, true, out int removed), Is.False);
+            Assert.That(removed, Is.Zero);
+            Assert.That(AutonomousBotEconomy.IsBackpackFull(bot), Is.True);
+
+            Assert.That(bot.Inventory.RemoveItem(backpack[1]), Is.True);
+            sale.IsDropable = false;
+            Assert.That(AutonomousBotEconomy.TryClearBlockedBackpackAtMerchant(bot, true, out removed), Is.False);
+            Assert.That(removed, Is.Zero);
+            Assert.That(bot.Inventory.AllItems.Count(item => item.SlotPosition >= (int)eInventorySlot.FirstBackpack &&
+                item.SlotPosition <= (int)eInventorySlot.LastBackpack), Is.EqualTo(39));
+        }
+
+        [Test]
+        public void SpareInstrumentsAndShields_AreNotOfferedToVendorOrExchange()
+        {
+            ExchangeBot bot = Bot(9903, 100);
+            DbInventoryItem instrument = Item("spare lute");
+            instrument.Object_Type = (int)eObjectType.Instrument;
+            instrument.Price = 1;
+            DbInventoryItem shield = Item("spare shield");
+            shield.Object_Type = (int)eObjectType.Shield;
+            shield.Price = 1;
+            Assert.That(bot.Inventory.AddItem(eInventorySlot.FirstBackpack, instrument), Is.True);
+            Assert.That(bot.Inventory.AddItem((eInventorySlot)((int)eInventorySlot.FirstBackpack + 1), shield), Is.True);
+
+            Assert.That(AutonomousBotEconomy.FindVendorTrashCandidate(bot), Is.Null);
+            Assert.That(AutonomousBotEconomy.FindValuableListingCandidate(bot), Is.Null);
+            Assert.That(bot.Inventory.AllItems, Does.Contain(instrument));
+            Assert.That(bot.Inventory.AllItems, Does.Contain(shield));
+        }
+
+        [Test]
         public void ListingRepairsStalePersistenceFlagWithoutDuplicateInsert()
         {
             ExchangeBot seller = Bot(901, 500);

@@ -115,13 +115,17 @@ namespace DOL.GS.Commands
 					{
 						GameNPC[] npcs = WorldMgr.GetNPCsByName(args[2], eRealm.None);
 
-						// Realm trainers, including Muirenn, may not appear in the
-						// neutral-only lookup used by the short NPC jump form.
+						// The short NPC form historically searched only realm-neutral
+						// objects.  Realm trainers (including Muirenn) correctly carry
+						// their home realm, so fall back to all player realms when the
+						// neutral lookup is empty.  The existing current-region choice
+						// below still keeps duplicate names deterministic for the player.
 						if (npcs.Length == 0)
 						{
 							var realmNpcs = new List<GameNPC>();
 							foreach (eRealm realm in new[] { eRealm.Albion, eRealm.Midgard, eRealm.Hibernia })
 								realmNpcs.AddRange(WorldMgr.GetNPCsByName(args[2], realm));
+
 							npcs = realmNpcs.ToArray();
 						}
 

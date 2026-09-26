@@ -76,10 +76,10 @@ namespace DOL.GS
         /// <summary>
         /// Reavers can have a real Flexible specialization while their
         /// generated ability list is still catching up after a persisted
-        /// build is loaded. The server's normal item check keys off the
+        /// build is loaded.  The server's normal item check keys off the
         /// ability object, so that short load window made a legal one-handed
         /// flexible weapon look unusable and caused repeated starter-weapon
-        /// warnings. Keep the normal ability gate for every other class and
+        /// warnings.  Keep the normal ability gate for every other class and
         /// accept Flexible only when the Reaver has actually trained the line.
         /// </summary>
         public static bool HasConfiguredWeaponProficiency(GameBot bot, DbItemTemplate item)

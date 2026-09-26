@@ -1,5 +1,5 @@
 $ErrorActionPreference = 'Stop'
-$runtime = 'C:\Users\thedo\Desktop\Offline DAoC\runtime'
+$runtime = 'C:\Users\thedo\Desktop\new class test\runtime'
 function Assert-Stopped {
     if (Get-Process CoreServer,game,camelot,OfflineDAoC,connect -ErrorAction SilentlyContinue) {
         throw 'Close server, game and launcher before rollback.'

@@ -205,11 +205,12 @@ namespace DOL.GS;
         public static bool TryGetEquipmentUpgrade(GameBot bot, DbInventoryItem item, out eInventorySlot equipSlot)
         {
             equipSlot = eInventorySlot.Invalid;
-            if (bot?.Inventory == null || item?.Template == null || item.LevelRequirement > bot.Level ||
+            if (bot?.Inventory == null || item?.Template == null ||
+                (eObjectType)item.Object_Type == eObjectType.GenericItem || item.LevelRequirement > bot.Level ||
                 !BotWeaponStats.HasFunctionalMeleeStats(item) ||
                 (BotWeaponStats.IsMeleeWeapon((eObjectType)item.Object_Type) &&
-                (!BotWeaponStats.IsConfiguredMeleeWeapon(bot, item.Template) ||
-                 !BotWeaponStats.HasConfiguredWeaponProficiency(bot, item.Template))) ||
+                 (!BotWeaponStats.IsConfiguredMeleeWeapon(bot, item.Template) ||
+                  !BotWeaponStats.HasConfiguredWeaponProficiency(bot, item.Template))) ||
                 (BotRangedCombat.IsRangedWeaponType((eObjectType)item.Object_Type) && !BotRangedCombat.IsUsableWeapon(item)) ||
                 (!BotWeaponStats.IsMeleeWeapon((eObjectType)item.Object_Type) &&
                  !GameServer.ServerRules.CheckAbilityToUseItem(bot, item.Template)))
@@ -308,6 +309,13 @@ namespace DOL.GS;
             if (FindVendorTrashCandidate(bot) != null)
                 return eWorldServiceKind.Vendor;
 
+            // A backpack filled entirely with quest/reputation tokens or other
+            // non-vendorable objects still needs a real merchant visit. The
+            // arrived-service path may clear that blocked backpack only after
+            // confirming that no ordinary sale is possible.
+            if (IsBackpackFull(bot))
+                return eWorldServiceKind.Vendor;
+
             // The vendor phase has now made room. If the bot arrived with its
             // one listing slot already occupied, it naturally skipped the first
             // branch and reaches this realm-local upgrade appraisal directly.
@@ -319,6 +327,70 @@ namespace DOL.GS;
         public static bool IsBackpackFull(GameBot bot) =>
             bot?.Inventory != null &&
             bot.Inventory.FindFirstEmptySlot(eInventorySlot.FirstBackpack, eInventorySlot.LastBackpack) == eInventorySlot.Invalid;
+
+        /// <summary>
+        /// Last-resort recovery for a persistent world bot that has physically
+        /// reached a merchant with all 40 backpack slots occupied and nothing
+        /// the merchant phase can sell. Only expendable backpack items are
+        /// removed: worn and spare combat equipment (including bard/minstrel
+        /// instruments), vaults, exchange listings, and saved copper remain.
+        /// A caller must establish the live merchant/range and between-task
+        /// service guards before passing arrivedAtMerchant=true.
+        /// </summary>
+        public static bool TryClearBlockedBackpackAtMerchant(GameBot bot, bool arrivedAtMerchant, out int removed)
+        {
+            removed = 0;
+            if (!arrivedAtMerchant || bot?.IsAutonomousWorldBot != true || bot.IsTemporaryGroupHelper ||
+                bot.IsPlayerLedGroup || bot.Inventory == null || bot.DatabaseID <= 0 ||
+                !IsBackpackFull(bot) || FindVendorTrashCandidate(bot) != null ||
+                HasListingSpace(bot) && FindValuableListingCandidate(bot) != null)
+                return false;
+
+            DbInventoryItem[] backpack = bot.Inventory.AllItems
+                .Where(item => item != null && item.OwnerLot == 0 &&
+                               item.SlotPosition >= (int)eInventorySlot.FirstBackpack &&
+                               item.SlotPosition <= (int)eInventorySlot.LastBackpack)
+                .ToArray();
+            int capacity = (int)eInventorySlot.LastBackpack - (int)eInventorySlot.FirstBackpack + 1;
+            if (backpack.Length != capacity || !IsBackpackFull(bot))
+                return false;
+
+            foreach (DbInventoryItem item in backpack.Where(item => !IsOperationalLoadoutItem(bot, item)))
+            {
+                if (bot.Inventory.RemoveItem(item))
+                    removed++;
+            }
+            if (removed == 0)
+                return false;
+
+            bot.MarkAutonomousStateDirty();
+            MarkInventoryChanged(bot);
+            AutonomousBotStatusPersistence.Queue(bot, true);
+            try
+            {
+                Log.Warn($"AUTONOMOUS_BLOCKED_BACKPACK_CLEARED bot=\"{bot.Name}\" id={bot.DatabaseID} removed={removed} capacity={capacity}");
+            }
+            catch { } // A diagnostics failure must not interrupt the persisted cleanup.
+            return true;
+        }
+
+        private static bool IsOperationalLoadoutItem(GameBot bot, DbInventoryItem item)
+        {
+            if (item == null)
+                return false;
+            if (item is GameInventoryRelic || BotSiegeRuntime.IsSupply(item.Id_nb))
+                return true;
+            eObjectType type = (eObjectType)item.Object_Type;
+            // Song twisting pulls instruments directly out of backpack slots.
+            // Weapons can also be displaced there when a different kit is worn.
+            if (type is eObjectType.Instrument or eObjectType.Shield)
+                return true;
+            if (BotWeaponStats.IsMeleeWeapon(type))
+                return BotWeaponStats.CanUseMelee(bot, item);
+            if (BotRangedCombat.IsRangedWeaponType(type))
+                return BotRangedCombat.CanUse(bot, item);
+            return false;
+        }
 
     private static eInventorySlot ResolveEquipmentSlot(GameBot bot, DbInventoryItem item)
     {
@@ -359,11 +431,12 @@ namespace DOL.GS;
             (!IsBackpackFull(bot) && !AutonomousObjectiveAssignments.IsBetweenPveTasks(bot)))
             return null;
 
-        return bot.Inventory.AllItems
+            return bot.Inventory.AllItems
             .Where(item => item != null && item.IsTradable && !string.IsNullOrWhiteSpace(item.Name) &&
                            item.OwnerLot == 0 && item.SlotPosition >= (int)eInventorySlot.FirstBackpack &&
                            item.SlotPosition <= (int)eInventorySlot.LastBackpack &&
-                           !BotSiegeRuntime.IsSupply(item.Id_nb) && !TryGetEquipmentUpgrade(bot, item, out _))
+                           !BotSiegeRuntime.IsSupply(item.Id_nb) && !IsOperationalLoadoutItem(bot, item) &&
+                           !TryGetEquipmentUpgrade(bot, item, out _))
             .Select(item => new ListingCandidate(item, RecommendListingPrice(item)))
             .Where(candidate => candidate.PriceCopper >= Math.Max(50, candidate.Item.Level * candidate.Item.Level * 4))
             .OrderByDescending(candidate => candidate.PriceCopper)
@@ -390,7 +463,8 @@ namespace DOL.GS;
 
         private static bool IsProtectedFromVendor(GameBot bot, DbInventoryItem item, bool trainedCrafter, bool canList)
         {
-            if (item is GameInventoryRelic || BotSiegeRuntime.IsSupply(item.Id_nb))
+            if (item is GameInventoryRelic || BotSiegeRuntime.IsSupply(item.Id_nb) ||
+                IsOperationalLoadoutItem(bot, item))
                 return true;
             if (TryGetEquipmentUpgrade(bot, item, out _))
                 return true;

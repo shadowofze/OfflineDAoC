@@ -1,7 +1,7 @@
 param([switch]$Apply)
 $ErrorActionPreference = 'Stop'
 $sourceRoot = Split-Path $PSScriptRoot -Parent
-$runtimeRoot = 'C:\Users\thedo\Desktop\Offline DAoC\runtime'
+$runtimeRoot = 'C:\Users\thedo\Desktop\new class test\runtime'
 $clientRoot = Join-Path $runtimeRoot 'client-opendaoc\app'
 $serverRoot = Join-Path $runtimeRoot 'server'
 $probeBackup = Join-Path $clientRoot 'rollback-native-raid-probe'

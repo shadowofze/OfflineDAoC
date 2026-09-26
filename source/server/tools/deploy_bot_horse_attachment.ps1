@@ -1,8 +1,8 @@
 param([switch]$Apply)
 $ErrorActionPreference = 'Stop'
 $sourceRoot = Split-Path $PSScriptRoot -Parent
-$runtime = 'C:\Users\thedo\Desktop\Offline DAoC\runtime'
-$backup = 'C:\Users\thedo\Desktop\Offline DAoC\deployment-backups\bot-horse-attachment-20260913'
+$runtime = 'C:\Users\thedo\Desktop\new class test\runtime'
+$backup = 'C:\Users\thedo\Desktop\new class test\deployment-backups\bot-horse-attachment-20260913'
 function Assert-Stopped {
     if (Get-Process CoreServer,game,camelot,OfflineDAoC,connect -ErrorAction SilentlyContinue) {
         throw 'Close server, game and launcher before deployment.'

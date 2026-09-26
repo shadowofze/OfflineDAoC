@@ -237,9 +237,11 @@ public sealed class UT_AutonomousPetCombatPolicy
         Assert.Multiple(() =>
         {
             Assert.That(AutonomousPetSupport.ShouldSkipActiveCovenantPetHot(
-                eCharacterClass.Sluaghbinder, eSpecType.SluaghbinderCovenant, petHot, true), Is.True);
+                eCharacterClass.Sluaghbinder, eSpecType.SluaghbinderCovenant, petHot, true), Is.True,
+                "Do not restart the one-minute pet HoT while its effect is still running");
             Assert.That(AutonomousPetSupport.ShouldSkipActiveCovenantPetHot(
-                eCharacterClass.Sluaghbinder, eSpecType.SluaghbinderCovenant, petHot, false), Is.False);
+                eCharacterClass.Sluaghbinder, eSpecType.SluaghbinderCovenant, petHot, false), Is.False,
+                "Expiration or dispel must allow the HoT to be applied again");
             Assert.That(AutonomousPetSupport.ShouldSkipActiveCovenantPetHot(
                 eCharacterClass.Sluaghbinder, eSpecType.SluaghbinderBane, petHot, true), Is.False);
             Assert.That(AutonomousPetSupport.ShouldSkipActiveCovenantPetHot(

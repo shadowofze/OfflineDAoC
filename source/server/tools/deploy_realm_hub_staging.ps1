@@ -1,7 +1,7 @@
 param([switch]$Apply)
 $ErrorActionPreference = 'Stop'
 $sourceRoot = Split-Path $PSScriptRoot -Parent
-$runtime = 'C:\Users\thedo\Desktop\Offline DAoC\runtime'
+$runtime = 'C:\Users\thedo\Desktop\new class test\runtime'
 function Assert-Stopped {
     if (Get-Process CoreServer,game,camelot,OfflineDAoC,connect -ErrorAction SilentlyContinue) {
         throw 'Close the server, client and launcher first.'

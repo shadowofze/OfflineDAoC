@@ -1,0 +1,12 @@
+OFFLINE DAOC v0.32b - DARKNESS FALLS BETA + SLUAGHBINDER VERIFICATION
+
+The optional server source builds in Release and passed 2,047 automated tests.
+The v0.32b launcher passed 96 automated tests. The clean public world preflight
+checks all 85 reserved raid/event spawns, 2,492 Darkness Falls spawns, all-
+realm access, familiar templates, and absence of player accounts and saves.
+
+These are static/build/package checks, not evidence of a long live run with
+bots inside Darkness Falls. Raid AI there is not implemented; Legion, the
+hardest level-70+ enemies, unreachable flyers, and unverified targets remain
+outside ordinary grind goals. See docs/VERIFICATION-0.32.md for final package
+and installation results and docs/RELEASE-0.32B.md for gameplay limits.

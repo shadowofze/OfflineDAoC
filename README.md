@@ -21,14 +21,40 @@ Follow the included component licenses when modifying or redistributing code.
 - **Players:** [Download and play instructions](docs/PLAY.md).
 - **Everyday commands:** [Quick commands and bot-generation shortcuts](docs/QUICK-COMMANDS.md).
 - **Developers and LLM users:** [Fork and customize instructions](docs/LLM-QUICKSTART.md).
-- **Changelog:** [Version history and the v0.31/v0.31b scope](CHANGELOG.md).
+- **Changelog:** [Full version history and Darkness Falls Beta notes](CHANGELOG.md).
+- **Current release notes:** [v0.32 normal](docs/RELEASE-0.32.md) and
+  [v0.32b with Sluaghbinder](docs/RELEASE-0.32B.md).
 
-Use the [v0.31 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31)
-for the complete playable download. **Code > Download ZIP** contains the editable
-source; it is not the complete game download. The release's small download helper
-fetches, verifies and extracts the large parts automatically. The original
-[v0.3 release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3) remains
-available and is never replaced; use it when you want the unmodified v0.3 baseline.
+## Video demos
+
+These are linked previews, not large files stored in the repository. Click a
+thumbnail to watch on YouTube:
+
+[![Offline DAoC V3.1b — Optional Hibernian Sluaghbinder Class Expansion](https://i.ytimg.com/vi/EowrCcjigBY/hqdefault.jpg)](https://www.youtube.com/watch?v=EowrCcjigBY)
+
+**[Offline DAoC V3.1b — Optional Hibernian Sluaghbinder Class Expansion](https://www.youtube.com/watch?v=EowrCcjigBY)**
+Short introduction to the optional class.
+
+[![Offline DAoC v0.3 — Introduction to Raids & Realm Events](https://i.ytimg.com/vi/zmh7YkajRx0/hqdefault.jpg)](https://www.youtube.com/watch?v=zmh7YkajRx0)
+
+**[Offline DAoC v0.3 — Introduction to Raids & Realm Events](https://www.youtube.com/watch?v=zmh7YkajRx0)**
+Dragon raid demonstration for the normal v0.3 feature set.
+
+The current downloads are [v0.32 Darkness Falls Beta](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32)
+for normal play and [v0.32b Darkness Falls Beta](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b)
+for the optional Sluaghbinder class. They contain all shared fixes through v0.31,
+including Bounty Masters, Bard and companion song repairs, and bot route fixes.
+**Beta** means the owner has not yet completed a long live bot test in Darkness
+Falls. Darkness Falls raid AI is not implemented; Legion, the hardest
+level-70+ encounters, and unreachable flying targets are excluded from
+ordinary bot goals. [Read the implementation and limits](docs/RELEASE-0.32.md).
+
+Use the release's download helper and `Get-OfflineDAoC.ps1` for the complete
+playable game. **Code > Download ZIP** contains editable source, not the full game.
+The [v0.3](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.3),
+[v0.31](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31), and
+[v0.31b](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b)
+releases stay available as legacy versions.
 
 The intended supported target is a compatible **64-bit Windows PC**. The launcher
 uses Windows Forms and the legacy game client has Windows/graphics prerequisites;
@@ -37,7 +63,12 @@ uses Windows Forms and the legacy game client has Windows/graphics prerequisites
 System requirements: CPUs without AVX2 support will not work. 16 GB RAM is the
 recommended minimum; 8 GB may work but is untested.
 
-The v0.31 release includes clean world data, current navigation meshes, the
+The copy-first download keeps rollback folders and verified download parts.
+Budget roughly **40 GB free for v0.32** or **55 GB for v0.32b**, with extra
+headroom for your saves and future updates. Existing installations are not
+deleted automatically.
+
+The current complete download includes clean world data, navigation meshes, the
 runnable components, source, and offline development dependencies. Accounts, characters,
 inventories, saved bot profiles and personal settings from the author's game are
 not included. Each installation creates its own local account and saves.
@@ -49,52 +80,54 @@ these two clearly separate paths:
 
 | What you want | What to download | What happens |
 | --- | --- | --- |
-| Normal Offline DAoC with the public Classic + Shrouded Isles features | The **v0.31** release and its `DOWNLOAD AND PLAY.cmd` helper (or the preserved **v0.3** release) | Creates a clean playable folder with no Sluaghbinder class. Start the included `START OFFLINE DAOC.cmd`. |
-| Normal game **plus** the optional Hibernian Sluaghbinder class | The **v0.31b** release's `DOWNLOAD AND PLAY v0.31b.cmd` helper, or the latest `Sluaghbinder-v0.31b-bard-beach-rats-patch.zip` | Downloads a v0.31 baseline, makes a separate copy, and installs Sluaghbinder there. The original v0.3/v0.31 folder is never changed. |
+| Normal Classic + Shrouded Isles with Darkness Falls | The **v0.32 Darkness Falls Beta** release's `DOWNLOAD-AND-PLAY-v0.32.cmd` and `Get-OfflineDAoC.ps1` | Builds a fresh normal v0.32 game from the preserved v0.31 base. No Sluaghbinder class is installed. |
+| The same game **plus** optional Hibernian Sluaghbinder | The **v0.32b Darkness Falls Beta** release's `DOWNLOAD-AND-PLAY-v0.32b.cmd` and `Get-OfflineDAoC.ps1` | Builds a fresh v0.32 base, then applies the optional class patch into a separate v0.32b copy. |
 
-For either path, open the new folder, read `READ ME FIRST.txt`, start the
+Download both files from the same release into one new folder, then double-click
+the helper. The download verifies its parts and refuses to overwrite an existing
+installation. Keep the earlier version's folder as a rollback path. See the
+[step-by-step play guide](docs/PLAY.md) before transferring an existing save.
+
+For either path, open the new playable folder, read `READ ME FIRST.txt`, start the
 launcher, click **START SERVER**, wait for **RUNNING**, then click **ENTER
 REALM**. The launcher creates a local offline account automatically; no online
-account or LLM is required. Choose the ordinary v0.3/v0.31 path if you do not
-want Sluaghbinder. Choose v0.31b only when you want to create a Hibernian
-Acolyte and discover the Sluaghbinder trainer and quests in-game. The optional
-class is not added to existing v0.3/v0.31 installations unless you deliberately
-run the optional patch installer.
+account or LLM is required. Choose v0.32b only when you want a Hibernian
+Acolyte and the Sluaghbinder trainer and quests in-game.
 
-## Bounty Masters (both current play paths)
+Both new versions retain repeatable Bounty Masters in Cotswold,
+Mularn, and Mag Mell. Take one hunt, follow its journal kill count, and return
+for a reward. The red target marker appears on the local map after you enter
+the assigned zone or dungeon.
 
-Visit the Bounty Master in Mag Mell, Cotswold Village, or Mularn for one
-repeatable hunt at a time. At levels 1–49, the target is a yellow-con monster
-in your realm; your journal shows the kill count and where to return. At level
-50, contracts send you after major bosses instead. Rewards include class gear,
-plus experience below 50 or gold at 50. You can reroll a target, or refresh a
-contract you have outleveled. The journal's **BOUNTY MAP** button opens your
-current map: its red dot appears only once you enter the target's zone or
-dungeon. The Bounty Master explains the terms before you accept.
+## Darkness Falls Beta in v0.32 and v0.32b
 
-The latest maintained v0.31 and v0.31b packages also correct Bard bot PvE
-mez use and restore a level-1/2 beach-rat camp in Shannon Estuary. Those
-shared repairs do not make Sluaghbinder part of the normal release.
+Characters and autonomous bots from Albion, Midgard, and Hibernia can enter
+Darkness Falls in this offline setup. Bots have staged, floor-aware routes for
+ordinary dungeon grinding, their own realm exits, and opposing-realm fights
+near the shared center. Players can use the existing seal vendors. The routes
+account for one-way drops and ledges; a bot should not try to walk back up a
+drop. These are staged intended behaviors, not a claim of live bot success.
+Darkness Falls raid AI is not implemented. Legion, the hardest level-70+
+encounters, unreachable flying targets, and unverified routes are excluded
+from ordinary bot goals. Other Classic/SI raid features shown in the v0.3
+demo are separate.
 
-## Optional Sluaghbinder expansion (v0.31b)
+## Optional Sluaghbinder expansion (v0.32b)
 
-Sluaghbinder is an optional Hibernian player class. The ordinary **v0.3** and
-**v0.31** downloads remain usable without it; it is not silently added to
-either baseline. Players who want the class should use the separate
-[v0.31b download-and-play helper](DOWNLOAD%20AND%20PLAY%20v0.31b.cmd), or download
-the latest `Sluaghbinder-v0.31b-bard-beach-rats-patch.zip` asset from the [v0.31b release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.31b)
-and run `INSTALL SLAUGHBINDER PATCH.cmd`. The installer asks for a clean v0.3
-or v0.31 folder, makes a new sibling copy, verifies the payload, migrates only
-the class's static rows, and leaves your original folder untouched. A rollback
-command is placed in the new copy; it restores that copy's pre-patch files and
-database without deleting the original.
+Sluaghbinder is an optional Hibernian player class. Normal v0.32 does not include
+its class, quests, or client assets. For the current optional version, use the
+[v0.32b release](https://github.com/shadowofze/OfflineDAoC/releases/tag/v0.32b)
+and its `DOWNLOAD-AND-PLAY-v0.32b.cmd` helper. The optional installer verifies
+the v0.32 base and patch, makes a new sibling copy, and places a rollback
+command in that copy. Older [v0.31b instructions](docs/RELEASE-0.31B.md) remain
+available for legacy installations.
 
 The expansion includes the Sluaghbinder character path (Acolyte through level
 5 promotion), its three core lines and three trainable paths, dedicated player,
 companion, and autonomous gamebot behavior, Muirenn in Tir na Nog, and the
 five chained epic quests that unlock the Epic Spells service summons. It does
 not export or import the author's accounts, characters, bot roster, settings,
-or saves. If you do not want the class, download v0.3 or v0.31 as usual.
+or saves. If you do not want the class, use normal v0.32.
 
 ## Customize with your own LLM
 
@@ -105,8 +138,8 @@ or saves. If you do not want the class, download v0.3 or v0.31 as usual.
 - `source/server/tools`: native raid UI / bot-map patch builders and tests, in
   addition to server diagnostics and migration utilities.
 - `tools/asset-tool`: texture-tool source, profiles and tests.
-- [LLM Sluaghbinder pet texture guide](docs/LLM-SLUAGHBINDER-PET-TEXTURES.md): private NIF/DDS catalog chains, old-client MPK rules, visual checks, and rollback.
-- The maintained optional-class source is on the [v0.31b Sluaghbinder branch](https://github.com/shadowofze/OfflineDAoC/tree/release/v0.31b-sluaghbinder); the v0.31b release also provides an explicit updated-source ZIP so its original Git tag can remain unchanged.
+- [Normal v0.32 source](https://github.com/shadowofze/OfflineDAoC/tree/release/v0.32-darkness-falls) contains Darkness Falls without Sluaghbinder. [Optional v0.32b source](https://github.com/shadowofze/OfflineDAoC/tree/release/v0.32b-sluaghbinder-darkness-falls) contains both.
+- [LLM guide to the optional Sluaghbinder pet textures](https://github.com/shadowofze/OfflineDAoC/blob/release/v0.32b-sluaghbinder-darkness-falls/docs/LLM-SLUAGHBINDER-PET-TEXTURES.md): private NIF/DDS registrations, legacy MPK rules, visual testing, and rollback. The older v0.31b source remains on its [legacy branch](https://github.com/shadowofze/OfflineDAoC/tree/release/v0.31b-sluaghbinder).
 - `source/reference`: additional launcher/portal source snapshots. These are
   reference material, not substitutes for the current launcher.
 - `docs/DEVELOPMENT.md`: build, safety, portability, and dependency notes.
@@ -131,10 +164,9 @@ That statement does not relicense upstream OpenDAoC or third-party client assets
 AI-generated code can contain bugs: review changes, test a disposable copy, and
 back up saves before installing a build. No zero-regression guarantee is implied.
 
-## v0.31 scope
+## Current version scope
 
-v0.31 is the normal Classic/Shrouded Isles maintenance update. It does **not**
-include the Sluaghbinder class, its quests, or its patch. Those are available only
-through the clearly separate optional v0.31b overlay above. The source and
-playable download are versioned together, while v0.3 stays downloadable as a
-separate immutable release.
+v0.32 is the normal Darkness Falls Beta and contains no Sluaghbinder class,
+quests, or patch. v0.32b adds that optional class to the same current feature
+set. Their source and playable downloads are versioned together. The v0.3,
+v0.31, and v0.31b tags and releases remain separate legacy downloads.

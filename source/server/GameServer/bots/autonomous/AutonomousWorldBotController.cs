@@ -22,7 +22,7 @@ namespace DOL.GS
     public sealed partial class AutonomousWorldBotController
     {
         private const int CampCellSize = 4200;
-        // Source-empty CapnBry zones are rebuilt from live NPCs. Their live
+        // Source-empty CapnBry zones are rebuilt from live NPCs.  Their live
         // clusters are intentionally smaller than the ordinary 4,200-unit
         // catalog cell so two nearby spawns cannot be averaged into a wall,
         // river, or empty ground between them.
@@ -58,6 +58,9 @@ namespace DOL.GS
         private long _nextFailedSoloPullRoutePruneTick;
         private readonly Dictionary<ushort, SavageBotCombatPolicy.FailedSoloPullRoute> _failedSoloPullRoutes = new();
         private long _nextMoveOrderTick;
+        private long _nextDarknessFallsEvacuationProbeTick;
+        private Vector3 _lastDarknessFallsEvacuationPosition;
+        private long _lastDarknessFallsEvacuationProgressTick;
         private long _nextStatusSaveTick;
         private long _nextStableCheckTick;
         private AutonomousStableRoutePlanner.Choice _pendingStableChoice;
@@ -148,7 +151,11 @@ namespace DOL.GS
             Zone Zone,
             bool IsDungeon,
             bool IsFrontier,
-            bool NeedsProjection = true);
+            bool NeedsProjection = true,
+            eRealm DarknessFallsWing = eRealm.None,
+            float DarknessFallsAlbionDistance = float.PositiveInfinity,
+            float DarknessFallsMidgardDistance = float.PositiveInfinity,
+            float DarknessFallsHiberniaDistance = float.PositiveInfinity);
 
         private static CampCatalogCell[] _campCatalog = [];
 
@@ -297,6 +304,9 @@ namespace DOL.GS
                         SetStatus(bot, $"Fighting {target.Name}", GoalText(), $"Engaged level {target.EffectiveLevel} {target.Name}", target.Name);
                     return false;
                 }
+
+                if (RetireStaleDarknessFallsGoalAndEvacuate(bot))
+                    return true;
 
                 // Roadside combat pauses the entire formation. Once it ends,
                 // every member holds while the coordinator waits for the whole
@@ -540,6 +550,25 @@ namespace DOL.GS
                         "Holding the party's connected raid staging point; ordinary defense and upkeep remain active");
                     return true;
                 }
+                bool certifiedDarknessFallsCamp = _camp.RegionId == AutonomousDarknessFallsPolicy.RegionId &&
+                    bot.CurrentRegionID == AutonomousDarknessFallsPolicy.RegionId && raidOrder == null;
+                if (certifiedDarknessFallsCamp)
+                {
+                    // All group members, not only the leader, use the same
+                    // exact-spawn 3D chain. Following the leader with one long
+                    // generic path can silently end at a DF cliff or wall.
+                    if (_groupDirective?.IsDynamic == true && _groupDirective.Leader == bot &&
+                        !AutonomousBotGroupCoordinator.IsCohesive(_groupDirective))
+                    {
+                        bot.StopMovingOnPath();
+                        bot.StopMoving();
+                        SetStatus(bot, "Waiting for group members", GoalText(),
+                            "Holding the certified route until every living bot is back in formation",
+                            _camp.MonsterName, _camp.ZoneName);
+                        return true;
+                    }
+                    if (FollowDarknessFallsCampRoute(bot)) return true;
+                }
                 int campDistance = Distance(bot.X, bot.Y, _camp.X, _camp.Y);
                 // Intercept before walking onto the spawn's camp coordinate.
                 // The old arrival-first order placed melee tanks inside packs
@@ -551,6 +580,13 @@ namespace DOL.GS
                 {
                     _nextTargetSearchTick = GameLoop.GameLoopTime + 1500;
                     GameNPC nearbyGoal = FindCampTarget(bot);
+                    if (nearbyGoal != null && AutonomousDefensivePull.TryBeginFlyingHandoff(bot, nearbyGoal))
+                    {
+                        SetStatus(bot, $"Ranged pulling {nearbyGoal.Name}", GoalText(),
+                            "The designated puller handed an unreachable flying target to a ranged party member",
+                            nearbyGoal.Name, _camp.ZoneName);
+                        return true;
+                    }
                     if (nearbyGoal != null && AutonomousDefensivePull.TryBegin(bot, nearbyGoal))
                     {
                         SetStatus(bot, $"Ranged pulling {nearbyGoal.Name}", GoalText(),
@@ -559,12 +595,17 @@ namespace DOL.GS
                         return true;
                     }
                 }
-                bool physicallyAtDungeonCampPoint = campDistance <= 120 && Math.Abs(bot.Z - _camp.Z) <= 100;
+                bool physicallyAtDungeonCampPoint = certifiedDarknessFallsCamp ||
+                    campDistance <= 120 && Math.Abs(bot.Z - _camp.Z) <= 100;
                 bool dungeonApproach = bot.CurrentZone?.IsDungeon == true && !physicallyAtDungeonCampPoint &&
                     (campDistance > 220 || Math.Abs(bot.Z - _camp.Z) > 100 ||
                      !PathfindingProvider.Instance.HasLineOfSight(bot.CurrentZone, new(bot.X, bot.Y, bot.Z),
                          new(_camp.X, _camp.Y, _camp.Z), PathfindingProvider.Instance.DefaultFilters));
-                if (campDistance > CampArrivalRadius || dungeonApproach)
+                // DF arrival is the certified attackable floor position. The
+                // authored monster coordinate may be farther away or above
+                // that floor; never replace the ordered chain with a generic
+                // direct PathTo merely because raw spawn distance is large.
+                if (!certifiedDarknessFallsCamp && (campDistance > CampArrivalRadius || dungeonApproach))
                 {
                     _emptyCampSinceTick = 0;
                     _patrolDestination = null;
@@ -631,6 +672,8 @@ namespace DOL.GS
                 AbandonCamp(bot, $"No legal region route to {camp.ZoneName}");
                 return true;
             }
+
+            if (FollowDarknessFallsHomeExit(bot, crossing)) return true;
 
             if (TryRepairAuditedCrossingSource(bot, crossing))
                 return true;
@@ -944,6 +987,8 @@ namespace DOL.GS
                 return false;
             }
 
+            if (FollowDarknessFallsHomeExit(bot, crossing)) return true;
+
             if (TryRepairAuditedCrossingSource(bot, crossing))
                 return true;
 
@@ -1238,6 +1283,8 @@ namespace DOL.GS
                     $"No legal region connection currently reaches the party's {destinationLabel}");
                 return true;
             }
+
+            if (FollowDarknessFallsHomeExit(bot, crossing)) return true;
 
             if (TryRepairAuditedCrossingSource(bot, crossing))
                 return true;
@@ -2049,6 +2096,13 @@ namespace DOL.GS
             GameNPC target = FindCampTarget(bot);
             if (target != null)
             {
+                if (AutonomousDefensivePull.TryBeginFlyingHandoff(bot, target))
+                {
+                    SetStatus(bot, $"Ranged pulling {target.Name}", GoalText(),
+                        "The designated puller handed an unreachable flying target to a ranged party member",
+                        target.Name, _camp.ZoneName);
+                    return true;
+                }
                 if (GuardDungeonTravel(bot, new(target.X, target.Y, target.Z)))
                     return !brain.HasAggro;
                 _emptyCampSinceTick = 0;
@@ -2128,6 +2182,11 @@ namespace DOL.GS
         {
             anchor = default;
             if (_camp == null || bot?.CurrentRegion == null)
+                return false;
+            // A DF goal is one certified room/wing, not every creature of the
+            // same name in the entire shared dungeon.  Never roam through the
+            // center into an enemy entrance wing after its local pack dies.
+            if (_camp.RegionId == AutonomousDarknessFallsPolicy.RegionId)
                 return false;
             long now = GameLoop.GameLoopTime;
             if (now < _nextSameGoalAnchorSearchTick) return false;
@@ -2320,6 +2379,11 @@ namespace DOL.GS
             }
             GameNPC FindWithin(ushort radius) => bot.GetNPCsInRadius(radius)
                 .Where(npc => IsExperienceMonster(npc) && npc.IsAlive && npc.CurrentRegionID == _camp.RegionId)
+                .Where(npc => _camp.RegionId != AutonomousDarknessFallsPolicy.RegionId ||
+                    AutonomousDarknessFallsNavigation.TryGetProof(npc.InternalID, out _))
+                .Where(npc => _camp.RegionId != AutonomousDarknessFallsPolicy.RegionId ||
+                    AutonomousDarknessFallsNavigation.IsInAssignedRoom(
+                        new(_camp.X, _camp.Y, _camp.Z), new(npc.X, npc.Y, npc.Z)))
                 // Planning owns level selection. Once assigned, neither solo
                 // nor group execution may reject that named monster by level.
                 .Where(npc => AutonomousPveTargetPolicy.IsAssignedTarget(
@@ -2358,6 +2422,9 @@ namespace DOL.GS
 
                     bool reachable = AutonomousDungeonTargetRoute.CanReach(
                         PathfindingProvider.Instance, bot.CurrentZone, origin, target);
+                    if (!reachable && (npc.Flags & GameNPC.eFlags.FLYING) != 0 &&
+                        AutonomousDefensivePull.CanAttemptFlyingHandoff(bot, npc))
+                        reachable = true;
                     if (soloSavage)
                     {
                         if (reachable)
@@ -2449,6 +2516,7 @@ namespace DOL.GS
                 _recentFailedSoloTargets.Remove(name);
             rejectedDungeons.UnionWith(_rejectedDungeonCamps.Keys);
             Dictionary<string, CampDestination> destinations = new(StringComparer.OrdinalIgnoreCase);
+            Dictionary<string, (eRealm Wing, float Distance)> darknessFallsRoutes = new(StringComparer.OrdinalIgnoreCase);
             List<AutonomousBotDecisionEngine.Camp> camps = new();
 
             // The live world used to be regrouped by every individual bot.
@@ -2478,6 +2546,19 @@ namespace DOL.GS
                     .ToArray();
                 if (validLevels.Length == 0)
                     continue;
+
+                if (cell.RegionId == AutonomousDarknessFallsPolicy.RegionId)
+                {
+                    float entryDistance = bot.Realm switch
+                    {
+                        eRealm.Albion => cell.DarknessFallsAlbionDistance,
+                        eRealm.Midgard => cell.DarknessFallsMidgardDistance,
+                        eRealm.Hibernia => cell.DarknessFallsHiberniaDistance,
+                        _ => float.PositiveInfinity
+                    };
+                    if (!float.IsFinite(entryDistance)) continue;
+                    darknessFallsRoutes[cell.Id] = (cell.DarknessFallsWing, entryDistance);
+                }
 
                 ConColor[] cons = validLevels
                     .Select(level => ConLevels.GetConColor(ConLevels.GetConLevel(bot.EffectiveLevel, level)))
@@ -2543,6 +2624,21 @@ namespace DOL.GS
                     ? camp.IsDungeon : !camp.IsDungeon);
             }
             AutonomousBotDecisionEngine.Camp[] legalCells = legal.ToArray();
+            if (darknessFallsRoutes.Count > 0 &&
+                legalCells.Any(camp => camp.RegionId == AutonomousDarknessFallsPolicy.RegionId))
+            {
+                // Only DF changes its camp weighting: first keep own-wing
+                // copies of a same-name monster, then choose nearby verified
+                // rooms by actual navigated distance from this realm's entry.
+                // All other dungeons retain their existing uniform draw.
+                var df = AutonomousDarknessFallsNavigation.PreferEntranceSide(
+                    legalCells.Where(camp => camp.RegionId == AutonomousDarknessFallsPolicy.RegionId),
+                    bot.Realm, camp => camp.MonsterName, camp => camp.AverageMobLevel,
+                    camp => darknessFallsRoutes[camp.Id].Wing,
+                    camp => darknessFallsRoutes[camp.Id].Distance);
+                legalCells = legalCells.Where(camp => camp.RegionId != AutonomousDarknessFallsPolicy.RegionId)
+                    .Concat(df).ToArray();
+            }
             // This is the deployed selection point. Each distinct verified
             // location has one entry, and the selector draws uniformly with no
             // distance, density, or name preference.
@@ -3746,7 +3842,7 @@ namespace DOL.GS
                                    !PathfindingProvider.Instance.HasNavmesh(zone)))
                 return false;
             if (zone.ZoneRegion.ID == AutonomousDarknessFallsPolicy.RegionId)
-                return false; // Temporarily disabled as an autonomous goal, not as player content.
+                return AutonomousDungeonGoalCatalog.HasCompleteDarknessFallsCatalog;
             eRealm owner = ProtectedRealm(zone.ZoneRegion.ID, zone.ID);
             return owner == eRealm.None || owner == realm;
         }
@@ -3764,6 +3860,117 @@ namespace DOL.GS
                 return false;
             Zone zone = region.GetZone(x, y) ?? region.Zones.FirstOrDefault();
             return IsZoneAccessible(realm, zone);
+        }
+
+        private static bool IsCrossingSourceAccessible(eRealm realm, ushort currentRegion, DbZonePoint point) =>
+            AutonomousDarknessFallsPolicy.CanEvacuateThroughHomeExit(realm, currentRegion, point) ||
+            IsRegionPointAccessible(realm, point.SourceRegion, point.SourceX, point.SourceY);
+
+        private bool RetireStaleDarknessFallsGoalAndEvacuate(GameBot bot)
+        {
+            if (AutonomousDungeonGoalCatalog.HasCompleteDarknessFallsCatalog ||
+                AutonomousRealmRaid.GetView(bot.Group) != null)
+                return false;
+
+            if (_groupDirective?.IsDynamic == true &&
+                _groupDirective.ObjectiveKind == eAutonomousObjectiveKind.GroupPve &&
+                _groupDirective.Camp != null &&
+                AutonomousDarknessFallsPolicy.MustRetireOrdinaryGoal(_groupDirective.Camp.RegionId, false))
+            {
+                AutonomousBotGroupCoordinator.RejectUnreachableCamp(bot, _groupDirective.Camp.Id,
+                    "Darkness Falls ordinary-goal certificate is unavailable");
+                _groupDirective = AutonomousBotGroupCoordinator.Pulse(bot);
+            }
+            if (_camp != null && AutonomousDarknessFallsPolicy.MustRetireOrdinaryGoal(_camp.RegionId, false))
+                AbandonCamp(bot, "Darkness Falls ordinary-goal certificate is unavailable");
+
+            return bot.CurrentRegionID == AutonomousDarknessFallsPolicy.RegionId &&
+                EvacuateUncertifiedDarknessFalls(bot);
+        }
+
+        private bool EvacuateUncertifiedDarknessFalls(GameBot bot)
+        {
+            DbZonePoint ownExit = ZonePoints().FirstOrDefault(point =>
+                AutonomousDarknessFallsPolicy.CanEvacuateThroughHomeExit(bot.Realm,
+                    bot.CurrentRegionID, point));
+            if (ownExit == null)
+            {
+                bot.StopMoving();
+                SetStatus(bot, "Holding inside Darkness Falls", "Reach own realm exit",
+                    "No authoritative home-realm exit is available; no other faction portal will be used");
+                return true;
+            }
+
+            int distance = Distance(bot.X, bot.Y, ownExit.SourceX, ownExit.SourceY);
+            if (AtRegionCrossing(bot, ownExit, distance))
+            {
+                bot.StopMovingOnPath();
+                bot.StopMoving();
+                if (AutonomousZonePointArrival.TryResolve(ownExit, out Vector3 arrival) &&
+                    bot.MoveTo(ownExit.TargetRegion, (int)arrival.X, (int)arrival.Y,
+                        (int)arrival.Z, ownExit.TargetHeading))
+                {
+                    _nextDarknessFallsEvacuationProbeTick = 0;
+                    _lastDarknessFallsEvacuationProgressTick = 0;
+                    ResetRouteOrderState();
+                    AutonomousStuckWatchdog.MarkProgress(bot, eAutonomousProgressKind.Movement);
+                    SetStatus(bot, "Left Darkness Falls", "Return to own realm",
+                        "Used the authoritative home-side exit after the ordinary-goal proof closed");
+                }
+                return true;
+            }
+
+            long now = GameLoop.GameLoopTime;
+            if (bot.IsCasting || bot.IsCrowdControlled || bot.IsRecoveryResting)
+                return true;
+            if (_lastDarknessFallsEvacuationProgressTick == 0 && bot.IsMoving)
+                bot.StopMoving(); // Discard a saved goal's old route first.
+            Vector3 current = new(bot.X, bot.Y, bot.Z);
+            if (bot.IsMoving)
+            {
+                if (_lastDarknessFallsEvacuationProgressTick == 0 ||
+                    Vector3.DistanceSquared(current, _lastDarknessFallsEvacuationPosition) >= 96 * 96)
+                {
+                    _lastDarknessFallsEvacuationPosition = current;
+                    _lastDarknessFallsEvacuationProgressTick = now;
+                    return true;
+                }
+                if (now - _lastDarknessFallsEvacuationProgressTick < 12_000)
+                    return true;
+                // Replot only after a real stall. Never relocate through a
+                // wall or accept a partial corridor as an evacuation shortcut.
+                bot.StopMoving();
+            }
+            if (now < _nextDarknessFallsEvacuationProbeTick)
+                return true;
+
+            Vector3 target = new(ownExit.SourceX, ownExit.SourceY, ownExit.SourceZ);
+            IPathfindingMgr nav = PathfindingProvider.Instance;
+            Zone sourceZone = bot.CurrentZone;
+            Zone targetZone = bot.CurrentRegion?.GetZone(ownExit.SourceX, ownExit.SourceY);
+            Span<WrappedPathfindingNode> nodes = stackalloc WrappedPathfindingNode[256];
+            bool safe = nav.IsAvailable && sourceZone != null && sourceZone == targetZone &&
+                nav.HasNavmesh(sourceZone) &&
+                AutonomousDarknessFallsNavigation.MayQueueOwnExitGroundPath(bot.Realm,
+                    nav.GetPathStraight(sourceZone, current, target, nav.DefaultFilters, nodes),
+                    nodes, current, target);
+            if (!safe)
+            {
+                bot.StopMoving();
+                _nextDarknessFallsEvacuationProbeTick = now + 15_000;
+                SetStatus(bot, "Holding inside Darkness Falls", "Reach own realm exit",
+                    "No complete walk-only route to the home exit is proven; avoiding partial paths and cliff jumps");
+                return true;
+            }
+
+            bot.ForcePathReplot();
+            bot.PathTo(target, bot.MaxSpeed);
+            _nextDarknessFallsEvacuationProbeTick = now + 3_000;
+            _lastDarknessFallsEvacuationPosition = current;
+            _lastDarknessFallsEvacuationProgressTick = now;
+            SetStatus(bot, "Leaving Darkness Falls", "Return to own realm",
+                $"Walking to the home-side exit; {distance:N0} units remain");
+            return true;
         }
 
         public static eRealm ProtectedRealm(ushort regionId, ushort zoneId)
@@ -3824,8 +4031,9 @@ namespace DOL.GS
                 ushort region = queue.Dequeue();
                 foreach (DbZonePoint point in points.Where(point => point.SourceRegion == region &&
                                                                     (point.Realm == 0 || point.Realm == (ushort)realm) &&
+                                                                    AutonomousDarknessFallsPolicy.CanUsePortalRow(realm, point) &&
                                                                     IsRegionEdgeAccessible(realm, point.SourceRegion, point.TargetRegion) &&
-                                                                    IsRegionPointAccessible(realm, point.SourceRegion, point.SourceX, point.SourceY) &&
+                                                                    IsCrossingSourceAccessible(realm, startRegion, point) &&
                                                                     IsRegionPointAccessible(realm, point.TargetRegion, point.TargetX, point.TargetY)))
                 {
                     if (seen.Add(point.TargetRegion))
@@ -3850,8 +4058,9 @@ namespace DOL.GS
                 .Where(point => IsAuthoritativeZonePointEdge(point) &&
                                 AutonomousDungeonGoalCatalog.CanUseEntrance(point, targetRegion, targetX, targetY) &&
                                 (point.Realm == 0 || point.Realm == (ushort)realm) &&
+                                AutonomousDarknessFallsPolicy.CanUsePortalRow(realm, point) &&
                                 IsRegionEdgeAccessible(realm, point.SourceRegion, point.TargetRegion) &&
-                                IsRegionPointAccessible(realm, point.SourceRegion, point.SourceX, point.SourceY) &&
+                                IsCrossingSourceAccessible(realm, currentRegion, point) &&
                                 IsRegionPointAccessible(realm, point.TargetRegion, point.TargetX, point.TargetY))
                 .ToArray();
 

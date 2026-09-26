@@ -68,6 +68,41 @@ namespace DOL.UnitTests
                 }
 
                 var nav = PathfindingProvider.LocalPathfindingMgr;
+                ProbeAuditedOutdoorTargets("large dragonfly", regions[51], nav,
+                    new(529936, 537808, 3104),
+                    [new(528150, 539061, 3140), new(529168, 539735, 3141), new(530832, 536774, 3087)]);
+                ProbeAuditedOutdoorTargets("boobrie hatchling", regions[151], nav,
+                    new(285151, 346544, 3085),
+                    [new(282972, 344890, 3456), new(286527, 346846, 3163), new(288755, 343565, 3477)]);
+                ProbeAuditedOutdoorTargets("feccan", regions[200], nav,
+                    new(337977, 479973, 5234),
+                    [new(337734, 478720, 5325), new(337942, 479912, 5237), new(339331, 476773, 5247)]);
+                ProbeAuditedOutdoorTargets("huldu outcast", regions[100], nav,
+                    new(812733, 722524, 5152),
+                    [new(810855, 719902, 5034), new(811550, 721706, 5104), new(812680, 724343, 5336)]);
+                ProbeAuditedOutdoorTargets("green serpent", regions[100], nav,
+                    new(759936, 751403, 4625),
+                    [new(757921, 743637, 4410), new(759817, 749618, 4568), new(760120, 751345, 4623)]);
+                ProbeAuditedOutdoorFailure("large dragonfly raised pocket", regions[51], nav,
+                    new(526102, 543403, 3434), new(526091, 543349, 3665));
+                ProbeAuditedOutdoorFailure("boobrie hatchling ledge", regions[151], nav,
+                    new(285151, 346544, 3085), new(285161, 346544, 3084));
+                ProbeAuditedOutdoorFailure("feccan pocket", regions[200], nav,
+                    new(337977, 479973, 5234), new(337913, 479981, 5235));
+                ProbeAuditedOutdoorFailure("huldu outcast pocket", regions[100], nav,
+                    new(812733, 722524, 5152), new(812738, 722572, 5235));
+                ProbeAuditedOutdoorFailure("green serpent pocket", regions[100], nav,
+                    new(759936, 751403, 4625), new(760047, 751365, 4623));
+                VerifyAuditedCampEscape("large dragonfly", regions[51], nav,
+                    new(526102, 543403, 3434));
+                VerifyAuditedCampEscape("boobrie hatchling", regions[151], nav,
+                    new(285151, 346544, 3085));
+                VerifyAuditedCampEscape("feccan", regions[200], nav,
+                    new(337977, 479973, 5234));
+                VerifyAuditedCampEscape("huldu outcast", regions[100], nav,
+                    new(812733, 722524, 5152));
+                VerifyAuditedCampEscape("green serpent", regions[100], nav,
+                    new(759936, 751403, 4625));
                 VerifyNearbyUsable("Connacht/Shannon isolated source", 200, regions[200], nav,
                     new(318807, 629660, 4959), new(296110, 642245, 4853), true);
                 VerifyNearbyUsable("Salisbury elevated source", 1, regions[1], nav,
@@ -629,6 +664,46 @@ namespace DOL.UnitTests
                     TestContext.WriteLine($"GRID,{startZone.ID},{floor.Value.X},{floor.Value.Y},{floor.Value.Z},{island},{road}");
                 }
             }
+        }
+
+        private static void ProbeAuditedOutdoorTargets(string name, Region region, IPathfindingMgr nav,
+            Vector3 start, IEnumerable<Vector3> targets)
+        {
+            Zone zone = region.GetZone((int)start.X, (int)start.Y);
+            Assert.That(zone, Is.Not.Null, name + " start zone");
+            foreach (Vector3 target in targets)
+            {
+                bool reachable = region.GetZone((int)target.X, (int)target.Y) == zone &&
+                    AutonomousDungeonTargetRoute.CanReach(nav, zone, start, target);
+                TestContext.WriteLine($"AUDITED_OUTDOOR_TARGET {name}: start={start} target={target} reachable={reachable}");
+            }
+        }
+
+        private static void ProbeAuditedOutdoorFailure(string name, Region region,
+            IPathfindingMgr nav, Vector3 start, Vector3 target)
+        {
+            Zone zone = region.GetZone((int)start.X, (int)start.Y);
+            Assert.That(zone, Is.Not.Null, name + " zone");
+            Assert.That(region.GetZone((int)target.X, (int)target.Y), Is.EqualTo(zone), name + " target zone");
+            bool reachable = AutonomousDungeonTargetRoute.CanReach(nav, zone, start, target);
+            TestContext.WriteLine($"AUDITED_OUTDOOR_FAILURE {name}: start={start} target={target} reachable={reachable}");
+        }
+
+        private static void VerifyAuditedCampEscape(string name, Region region,
+            IPathfindingMgr nav, Vector3 failure)
+        {
+            Assert.That(AutonomousRouteHotspotRepair.TryGetAuditedCampEscape(nav, region,
+                region.ID, name, failure, out Vector3 escape), Is.True, name + " audited escape");
+            Zone zone = region.GetZone((int)escape.X, (int)escape.Y);
+            Assert.That(zone, Is.Not.Null, name + " escape zone");
+            Assert.That(AutonomousRendezvousNavigation.HasLocalExit(nav, zone, escape), Is.True,
+                name + " escape local exit");
+            Assert.That(AutonomousRouteHotspotRepair.TryGetAuditedCampEscape(nav, region,
+                region.ID, "unrelated creature", failure, out _), Is.False,
+                name + " must not affect another objective");
+            Assert.That(AutonomousRouteHotspotRepair.TryGetAuditedCampEscape(nav, region,
+                region.ID, name, failure + new Vector3(5_000, 5_000, 0), out _), Is.False,
+                name + " must stay inside audited footprint");
         }
 
         private static void PrintNearestConnectedFloor(string name, Region region, IPathfindingMgr nav,

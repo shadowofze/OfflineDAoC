@@ -1,0 +1,488 @@
+﻿{
+    "Version":  "0.32b",
+    "BaseVersion":  "0.32",
+    "Feature":  "Sluaghbinder",
+    "Overlay":  "overlay.json",
+    "OverlaySHA256":  "451760BC2FB12F3CC1B365CD0946245F88B6B0BD8750B0B4B695D970E20BE7A0",
+    "PatcherSHA256":  "1F624506262810F08A4FED7FA6B59EB9E90991350E290F136D55F3FF89308196",
+    "BaseFiles":  [
+                      {
+                          "Path":  "runtime\\OfflineDAoC.dll",
+                          "Bytes":  1371136,
+                          "SHA256":  "C637B8765C26FD184E4267AAE2DF08E3F649ADD0DEFA0B095A384507E454D29F"
+                      },
+                      {
+                          "Path":  "runtime\\server\\GameServer.dll",
+                          "Bytes":  27934208,
+                          "SHA256":  "9BB22CFC53BA21A8B94CF858DDF8708B57DD44C3005A6911324796B7C742B090"
+                      }
+                  ],
+    "ClientAssets":  [
+                         {
+                             "Name":  "Sluaghbinder_ZombieDefender.NIF",
+                             "Bytes":  71865,
+                             "SHA256":  "3C57BF7C7396566ADCD8085FC55DCFDDDDA47E70080E5241252111F0DE89F042"
+                         },
+                         {
+                             "Name":  "Sluaghbinder_Dullahan.NIF",
+                             "Bytes":  57683,
+                             "SHA256":  "904A135E510E39181627706030527103C957ADD0CFA791ADF03C7C76A93EBA6A"
+                         },
+                         {
+                             "Name":  "sluagh_zombie_defender_body.dds",
+                             "Bytes":  174904,
+                             "SHA256":  "897569E263325B03B10D298CC67764E3168345913DB8C85093D604A9DEFA0BBF"
+                         },
+                         {
+                             "Name":  "sluagh_dullahan_body.dds",
+                             "Bytes":  174904,
+                             "SHA256":  "461A7F36DB951B00A489B9536FC9F8B94BCCD6288FD3DAE6BABB4F355B0AFDAB"
+                         }
+                     ],
+    "Files":  [
+                  {
+                      "Path":  "DEVELOPMENT - START HERE.md",
+                      "Bytes":  627,
+                      "SHA256":  "D69994E472D514D4A1AF9C95F667A0B33D6140A3368859381C3612D67BD42BA1",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "docs\\LLM-SLUAGHBINDER-PET-TEXTURES.md",
+                      "Bytes":  7799,
+                      "SHA256":  "A3EF5A942EF8EB2F595D859B3D37DEBDBF61739D5659F76DCB3371511186A38B",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "docs\\VERIFICATION-0.32.md",
+                      "Bytes":  3076,
+                      "SHA256":  "2AAB03B19B4001BE9FDFAC5D69719A91DE9D6BBF6D0AF59DC19619AFFAECB7C0",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "docs\\VERIFICATION-0.32B.md",
+                      "Bytes":  2980,
+                      "SHA256":  "297CDCFEBC9CEC2008E90E957A4B30D372FBE5639F9F829CF9F5596BA723722E",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "DOWNLOAD AND PLAY.cmd",
+                      "Bytes":  839,
+                      "SHA256":  "9F983F2E8D8B43DD55A729A1365689E561E67BED63B2D357A8E57828E03155E9",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "Get-OfflineDAoC.ps1",
+                      "Bytes":  21743,
+                      "SHA256":  "C5932480EACA801E673897FBE2105C92A103CE9E6E2574B47EF98E642E76840E",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "READ ME FIRST.txt",
+                      "Bytes":  2212,
+                      "SHA256":  "CF78746D93F1B76570453DEA7A49E82D1C63CCE6FB6B2D6EA0176500B27C9AC7",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "RELEASE VERIFICATION.txt",
+                      "Bytes":  760,
+                      "SHA256":  "61CC1B767F690A5EBDEEA2226A0E6918843EA8EFD0FC8BB44157DEDF0487A8A8",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "runtime\\client-opendaoc\\app\\game.dll",
+                      "Bytes":  5967872,
+                      "SHA256":  "01B1848E79B31D2822811EFFB3D3B098E07015DB2D3DB1178DF5BA31ED805E96",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "runtime\\OfflineDAoC.deps.json",
+                      "Bytes":  2414,
+                      "SHA256":  "2FA51C1751E016CB308A7D22E47779F36DB5BEC041EAF145B8E88B37969BDDC5",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "runtime\\OfflineDAoC.dll",
+                      "Bytes":  1369600,
+                      "SHA256":  "49011B42074292CFCE2084827CFF2429525F2FFD449FF017C32C929136216812",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "runtime\\OfflineDAoC.exe",
+                      "Bytes":  162816,
+                      "SHA256":  "91DEC5543F5F750579003FE7BCDED29BE43B0DB57B134FE82D8DFD54DA6A9534",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "runtime\\OfflineDAoC.pdb",
+                      "Bytes":  68180,
+                      "SHA256":  "AB4E7E2CC4D6E8508B97A858C4BB442BC9274DE322AA5574FFB4B4EFD68220AA",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "runtime\\OfflineDAoC.runtimeconfig.json",
+                      "Bytes":  519,
+                      "SHA256":  "96BC2946DFF8790400D652EC7F8DE7BB043E954980D59470C112788B68A1FBD3",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "runtime\\server\\GameServer.dll",
+                      "Bytes":  27972608,
+                      "SHA256":  "E5E3C775203F11FA5768380B2B39489DBB8A57F6BE9C1604654D67CD3A2E1AE4",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "runtime\\server\\lib\\GameServer.dll",
+                      "Bytes":  27972608,
+                      "SHA256":  "E5E3C775203F11FA5768380B2B39489DBB8A57F6BE9C1604654D67CD3A2E1AE4",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "runtime\\server\\win-x64\\GameServer.dll",
+                      "Bytes":  27972608,
+                      "SHA256":  "E5E3C775203F11FA5768380B2B39489DBB8A57F6BE9C1604654D67CD3A2E1AE4",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\ai\\brain\\Sluaghbinder\\SluaghbinderPetBrain.cs",
+                      "Bytes":  1130,
+                      "SHA256":  "92C98DC3ED48FE57EF590AE51A08B759034026B49FFC708F61AE3D442E63E69F",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\bots\\autonomous\\AutonomousBotIdentityGenerator.cs",
+                      "Bytes":  12055,
+                      "SHA256":  "ADAC217922F3115F8596107939332968CF7BE22A5E731D2CC97519AA3D5A8B86",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\bots\\autonomous\\AutonomousPetSupport.cs",
+                      "Bytes":  82566,
+                      "SHA256":  "E8759DEA5655C8AD2B1CF2989708CA2E1E35821C39BCF1E2A5BE1395F0F5D4A2",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\bots\\BotManager.cs",
+                      "Bytes":  10572,
+                      "SHA256":  "B9AE7B95CA660D29303C777606DB7383E6483B7BEE8E021E22046B4282A5FB1A",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\bots\\BotPartyRoles.cs",
+                      "Bytes":  4694,
+                      "SHA256":  "DE9397D21FEBB8B799C3BE486EC7D0B69D751667E5E1CA1F385EB6E8DB819EBA",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\bots\\BotWeaponStats.cs",
+                      "Bytes":  7505,
+                      "SHA256":  "7890C73FDB5C0BA090586DAB9AE1CDAE2D9C371B32CB17906D57370359E0AEAE",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\bots\\GameBot.cs",
+                      "Bytes":  201697,
+                      "SHA256":  "30C05F2367E669EE63DCBCD59BD4746B9A24EBCB36FD11389BC53B909A009C9F",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\bots\\Sluaghbinder\\SluaghbinderBotBrain.cs",
+                      "Bytes":  1461,
+                      "SHA256":  "6A10CAE8CF0E8AFF145D766856145C23751B799A73EB1FB7137B1E7C90CF4125",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\bots\\SluaghbinderBotPolicy.cs",
+                      "Bytes":  1283,
+                      "SHA256":  "FD7A40D861DE6FD439EEE060A98E62C1560D40A32725929F163C60E986905A9F",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\bots\\specs\\BotSpec.cs",
+                      "Bytes":  8129,
+                      "SHA256":  "AB2B7C5305EEB6A41730B6E4AFC141B2636EEE730F42A2CB1E48F050FBEB1A33",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\bots\\specs\\BotSpecType.cs",
+                      "Bytes":  1983,
+                      "SHA256":  "7E79A183E94B89A9D51931C163B58971F76AC9491F03B4FC750748217DF35FFA",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\bots\\specs\\Hibernia\\Sluaghbinder.cs",
+                      "Bytes":  3456,
+                      "SHA256":  "78554FB03D34511B46FB74E4D80B033826C85D4E06460E88A642B7ABE205BA5F",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\commands\\playercommands\\TemporaryGroupCommands.cs",
+                      "Bytes":  13713,
+                      "SHA256":  "4F9ABF3BB7ED6C118947F28DE5321F34D9842B8FAE57C9F5DB7CEBD104DDDE9F",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\commands\\playercommands\\train.cs",
+                      "Bytes":  8654,
+                      "SHA256":  "F83D9BD29AA2076C3C2C05F2E3D262EA67D8EF2C01AF5B979DA08408833452EC",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\ECS-Components\\Actions\\NpcAttackAction.cs",
+                      "Bytes":  14069,
+                      "SHA256":  "D8A87D700EA7CFC9BC3D654773DB6217C9094A4F4B7BE52BECE5A52D9E2CA0A7",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\Enums\\eCharacterClass.cs",
+                      "Bytes":  2316,
+                      "SHA256":  "9E1752AEED44DF04054DF8BD1C47B9C4A80982297678C27125B3C5660D38058C",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\Enums\\eSpellType.cs",
+                      "Bytes":  11036,
+                      "SHA256":  "05D8E36CCFDB3DB88595FCEF29C988C640E908CDFB80D1454312B782BECFC3B8",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\gameobjects\\CustomNPC\\GameTrainer.cs",
+                      "Bytes":  16395,
+                      "SHA256":  "EFF0ACDC83CAB74551B53ED0FC74A0B268FF79937584A6CA56E4C08B971907F7",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\gameobjects\\GameLiving.cs",
+                      "Bytes":  122059,
+                      "SHA256":  "C28B8B710CA5E5FF3217CED907917BF7329E45A5566D09E2BD7B36B997F4CAB6",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\gameobjects\\GamePlayer.cs",
+                      "Bytes":  549679,
+                      "SHA256":  "EDE674122ADA70E26E56FAB0E7D4F869934B37B47497982F8B8744D01AD77677",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\gameobjects\\GameSummonedPet.cs",
+                      "Bytes":  8868,
+                      "SHA256":  "D2FEEFF5A2350062C976DF486A0BDAEC5E41602EC00E03AB0A993405E2833FB6",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\gameobjects\\Sluaghbinder\\SluaghbinderPet.cs",
+                      "Bytes":  2900,
+                      "SHA256":  "9899F333785B8267814894A18FF1E6202C5054FEADBE4E7764703C87C0A5484F",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\gameutils\\ScriptMgr.cs",
+                      "Bytes":  48039,
+                      "SHA256":  "74A70DD36C7421C4CFFE4B75F5A4A89204D18E43EE965B3DC3527CFC19CB1795",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\gameutils\\Specialization.cs",
+                      "Bytes":  16791,
+                      "SHA256":  "AD7FBD2A0F90313A2FD39D5E9B15AE727DB56D564003E8748D6C79006773F9E0",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\GlobalConstants.cs",
+                      "Bytes":  42323,
+                      "SHA256":  "A6DF99B9C830F516BADCFD7CE2A79B0284019E1BF0E77BFDEE330BABC7FF6D13",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\language\\DE\\PlayerClasses.txt",
+                      "Bytes":  3724,
+                      "SHA256":  "3B570F62ECD18B61F1ADD9FE7E5D2C0754A35FB6D4E9D62D04C7076CEE883189",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\language\\EN\\PlayerClasses.txt",
+                      "Bytes":  4440,
+                      "SHA256":  "F4C04D8C118ABC82AE60CEAF5D52B79C9581A74D8B125579FAA1D2703E91D533",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\language\\FR\\PlayerClasses.txt",
+                      "Bytes":  3780,
+                      "SHA256":  "1FFE844A3C8B5A939D82A7248C98E269D3554B4C717D906BA8D93BCFD2383EC2",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\Managers\\RandomObjectGeneration\\GeneratedUniqueItem.cs",
+                      "Bytes":  485437,
+                      "SHA256":  "C13649C1AE81A81C9145F6AC564AF0595159A990433EE8DF92244C69D9169395",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\packets\\Client\\168\\CharacterCreateRequestHandler.cs",
+                      "Bytes":  46205,
+                      "SHA256":  "3779DF38339F569B4A35437B714A2CB5B12A2146C7F1CEA93F75B2C1D9307D0A",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\packets\\Server\\PacketLib1104.cs",
+                      "Bytes":  12452,
+                      "SHA256":  "83AB5B25EB6804892DB673BAFBA713EEF03C3F588BFF7610F4C761A7F65A8DC2",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\packets\\Server\\PacketLib1110.cs",
+                      "Bytes":  11355,
+                      "SHA256":  "8BB552F00562B2C6AFACB22D940E2468A190BFF16745AC19C5DA04458CB803C0",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\packets\\Server\\PacketLib1125.cs",
+                      "Bytes":  28946,
+                      "SHA256":  "4AD4FDDF1939285C0C9F3F3A3851BCD53C5F1FD27517F873A4B1DE0D15E791E3",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\packets\\Server\\PacketLib1126.cs",
+                      "Bytes":  15496,
+                      "SHA256":  "63F481833507F95ECC7F7B8A052D97F42B32A236A050F30875E7F4EE00E33157",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\packets\\Server\\PacketLib168.cs",
+                      "Bytes":  138926,
+                      "SHA256":  "B98CDFE59A9407731A8D6AFA1B668E3EA1C10A201A9DD799B910D9CB3AA80557",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\playerclasses\\hibernia\\ClassSluaghbinder.cs",
+                      "Bytes":  1654,
+                      "SHA256":  "8E09F6F587C1080C4BA85050A120DBFEF92D19289F181E4E61C7A6E70BC4F0AB",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\scripts\\gameevents\\StartupLocations.cs",
+                      "Bytes":  10451,
+                      "SHA256":  "C04F842626CD4B7DD91E4C3EC5E79517A8102741F1EB4668309A46997DF95B00",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\scripts\\gameevents\\UniqueItemLootGenerator.cs",
+                      "Bytes":  28179,
+                      "SHA256":  "99135B5825D906DC74C86649899DE03B3D10532BD582C57A2717C0BBB5D735AC",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\scripts\\quests\\Hibernia\\SluaghbinderEpicQuests.cs",
+                      "Bytes":  28709,
+                      "SHA256":  "A8B0AD98D9131898C7D29E7E3874FC051D6230CD93F7E788E00F70A54D15E9C0",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\scripts\\quests\\Hibernia\\SluaghbinderEpicServices.cs",
+                      "Bytes":  5899,
+                      "SHA256":  "776A6177061870A0BE35BE5482AA249598F39262F77B7CB7854FFAB54AFFE3EE",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\scripts\\startup\\script\\StartupEquipment.cs",
+                      "Bytes":  9841,
+                      "SHA256":  "99641232F50B9F04905F6300BE6798B23F6B96CB93E2A00E71D533FC899CE106",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\spells\\Druid\\SummonDruidPet.cs",
+                      "Bytes":  3135,
+                      "SHA256":  "55C325D55E36AA4C3D86DC441757C370654F69B580387EBBA5586FA8BA745D4E",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\spells\\Sluaghbinder\\SluaghbinderEpicSummon.cs",
+                      "Bytes":  1312,
+                      "SHA256":  "64185B71D4857FF914E579C0485304BE999B402311B6DF9B5B8CF108A7B794CD",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\GameServer\\trainer\\hibernia\\SluaghbinderTrainer.cs",
+                      "Bytes":  3216,
+                      "SHA256":  "7DDBCC1785C4FAA86419F883B7D7FDF93637DF0CA08D7E48AB1B230ED0F6DCE7",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\Tests\\UnitTests\\UT_AutonomousLootFlow.cs",
+                      "Bytes":  43474,
+                      "SHA256":  "E9018C5135874EE04539CCE43969B60AC78064087102D835E919D2CD5A9D349D",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\Tests\\UnitTests\\UT_AutonomousPetCombatPolicy.cs",
+                      "Bytes":  20053,
+                      "SHA256":  "9EC5FDFDEDE65E7C20AADD2903C9438D3FA22D3F073ECB17F4B8BF0A8ECFB640",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\tools\\patch_bounty_journal_ui.py",
+                      "Bytes":  4605,
+                      "SHA256":  "1C09A843C0070114AFBCCE45F251BF1EB088E547277044718E3A16A94D05264E",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\tools\\patch_bounty_map_client.py",
+                      "Bytes":  5651,
+                      "SHA256":  "EB27F800C7E862776F3AFB89135EAE79B74A0025A1E96C5507818D06F1DA8675",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\tools\\patch_sluaghbinder_client_label.py",
+                      "Bytes":  3776,
+                      "SHA256":  "2CF0A3F206269A367A7C3495A6C64F34AC2BEC4F2BCFB39871A33B4A939C7B94",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\tools\\patch_sluaghbinder_client_races.py",
+                      "Bytes":  4463,
+                      "SHA256":  "7968BF2B5DC61CBC8599606733A2EC49C41F81FB6B41C0E9D18A6EED97A2C356",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\server\\tools\\provision_level50_roster.py",
+                      "Bytes":  10491,
+                      "SHA256":  "AB03B5BE73E7BC382A08E5B243CE9C5EFD9F8DCD0FA1D591915C502CD3CDE577",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\server\\tools\\test_bounty_map_client.py",
+                      "Bytes":  2623,
+                      "SHA256":  "3A04606F51A358D3028B1F46E7AAD24F19EAA7A8D45C067C66E7179114DFF14D",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\tools\\OfflineDaoc.Launcher.Tests\\LauncherPresentationTests.cs",
+                      "Bytes":  24624,
+                      "SHA256":  "7B1B73882660D5A617AB36454E416131B787A5FDCF228CED818EB647AE0D17D0",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\tools\\OfflineDaoc.Launcher\\MainForm.cs",
+                      "Bytes":  157957,
+                      "SHA256":  "04CC22C823432E21B360F05A1F5C37882A58A730337FFFCFA8503FEABD289C63",
+                      "AllowCreate":  false
+                  },
+                  {
+                      "Path":  "source\\tools\\OfflineDaoc.SluaghbinderPatch\\ClientAssetMerge.cs",
+                      "Bytes":  24553,
+                      "SHA256":  "557584D46745429C0A2BA59C869FA9F465549C424D4747C00398C084AF1483B7",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\tools\\OfflineDaoc.SluaghbinderPatch\\OfflineDaoc.SluaghbinderPatch.csproj",
+                      "Bytes":  419,
+                      "SHA256":  "5CAD949718E3AC52D26E4CA17BF13AF578D9E4039C68C0AF69F1382D8D065251",
+                      "AllowCreate":  true
+                  },
+                  {
+                      "Path":  "source\\tools\\OfflineDaoc.SluaghbinderPatch\\Program.cs",
+                      "Bytes":  14357,
+                      "SHA256":  "7F58B327F7AC07959782CFF819D767E1FA507E27480E467904F6DDD1E3A4382F",
+                      "AllowCreate":  true
+                  }
+              ]
+}

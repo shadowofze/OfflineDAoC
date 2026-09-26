@@ -1690,6 +1690,21 @@ namespace DOL.AI.Brain
                 }
             }
 
+            // An old character may carry 40 non-vendorable quest/reputation
+            // objects indefinitely. Clear expendable backpack items only
+            // after it reaches a merchant and no ordinary sale exists.
+            // Equipped and swappable gear, instruments and money stay intact.
+            if (usedSlots >= capacity &&
+                AutonomousBotEconomy.TryClearBlockedBackpackAtMerchant(bot, true, out int discarded))
+            {
+                SetMerchantStatus(bot, $"Cleared {discarded} blocked backpack items at {merchant.Name}",
+                    "No backpack item could be sold; combat gear, instruments and saved copper were kept");
+                AutonomousStuckWatchdog.MarkProgress(bot, eAutonomousProgressKind.Inventory);
+                AutonomousObjectiveAssignments.TryCompleteBetweenTaskServicesIfSatisfied(bot);
+                _nextMerchantServiceTick = now + 30_000;
+                return true;
+            }
+
             if (_lastBetweenTaskPurchaseAssignment != bot.PersistentRecord.ObjectiveAssignmentId &&
                 AutonomousBotEconomy.TryBuyUsefulVendorUpgrade(bot, merchant, out DbInventoryItem purchased, out long spent))
             {

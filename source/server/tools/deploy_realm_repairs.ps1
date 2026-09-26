@@ -1,14 +1,14 @@
 param([switch]$Apply)
 $ErrorActionPreference = 'Stop'
 $sourceRoot = Split-Path $PSScriptRoot -Parent
-$runtime = 'C:\Users\thedo\Desktop\Offline DAoC\runtime'
+$runtime = 'C:\Users\thedo\Desktop\new class test\runtime'
 function Assert-Stopped {
     if (Get-Process CoreServer,game,camelot,OfflineDAoC,connect -ErrorAction SilentlyContinue) {
         throw 'Close the server, client and launcher first.'
     }
 }
 Assert-Stopped
-[xml]$tests = Get-Content -LiteralPath 'C:\Users\thedo\Desktop\Offline DAoC\reports\realm-repairs-tests\realm-repairs-server.trx' -Raw
+[xml]$tests = Get-Content -LiteralPath 'C:\Users\thedo\Desktop\new class test\reports\realm-repairs-tests\realm-repairs-server.trx' -Raw
 if ([int]$tests.TestRun.ResultSummary.Counters.failed -ne 0 -or [int]$tests.TestRun.ResultSummary.Counters.passed -lt 1676) { throw 'Repair tests have not passed.' }
 foreach ($dependency in @('CoreBase.dll','CoreDatabase.dll')) {
     if ((Get-FileHash -LiteralPath (Join-Path $runtime "server\lib\$dependency")).Hash -ne

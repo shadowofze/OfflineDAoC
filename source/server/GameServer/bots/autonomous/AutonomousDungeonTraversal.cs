@@ -186,6 +186,7 @@ namespace DOL.GS
                         new(blocker.X, blocker.Y, blocker.Z),
                         new(other.X, other.Y, other.Z), nav.DefaultFilters);
             });
+            if (AutonomousDefensivePull.TryBeginFlyingHandoff(bot, blocker, corridorBlocker: true)) return true;
             if (AutonomousDefensivePull.TryBegin(bot, blocker)) return true;
             bot.TargetObject = blocker;
             _lastEngagedCon = con;

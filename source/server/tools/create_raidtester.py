@@ -10,7 +10,7 @@ from pathlib import Path
 parser = argparse.ArgumentParser()
 parser.add_argument('--apply', action='store_true')
 args = parser.parse_args()
-database = Path(r'C:\Users\thedo\Desktop\Offline DAoC\runtime\data\opendaoc.sqlite3.db')
+database = Path(r'C:\Users\thedo\Desktop\new class test\runtime\data\opendaoc.sqlite3.db')
 processes = subprocess.check_output(['powershell', '-NoProfile', '-Command',
     "Get-Process CoreServer,game,camelot -ErrorAction SilentlyContinue | Select-Object -ExpandProperty ProcessName; exit 0"], text=True)
 assert not processes.strip(), 'Stop the server and game before provisioning.'

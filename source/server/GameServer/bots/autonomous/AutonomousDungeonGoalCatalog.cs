@@ -32,11 +32,28 @@ namespace DOL.GS
         private static readonly Lazy<Catalog> Data = new(Load, true);
         public static int VerifiedSpawnCount => Data.Value.Spawns.Count;
         public static int VerifiedSpawnCountForRegion(ushort region) =>
-            Data.Value.Spawns.Values.Count(point => point.Region == region);
+            region == AutonomousDarknessFallsPolicy.RegionId
+                ? AutonomousDarknessFallsNavigation.SnapshotCertifiedProofs().Length
+                : Data.Value.Spawns.Values.Count(point => point.Region == region);
         public static bool HasVerifiedSpawn(string id) =>
-            !string.IsNullOrWhiteSpace(id) && Data.Value.Spawns.ContainsKey(id);
+            !string.IsNullOrWhiteSpace(id) && (Data.Value.Spawns.ContainsKey(id) ||
+                AutonomousDarknessFallsNavigation.TryGetProof(id, out _));
         public static Point[] VerifiedPointsForRegion(ushort region) =>
-            Data.Value.Spawns.Values.Where(point => point.Region == region).ToArray();
+            region == AutonomousDarknessFallsPolicy.RegionId
+                ? AutonomousDarknessFallsNavigation.SnapshotCertifiedProofs().Select(FromDarknessFallsProof).ToArray()
+                : Data.Value.Spawns.Values.Where(point => point.Region == region).ToArray();
+        public static bool HasCompleteDarknessFallsCatalog =>
+            AutonomousDarknessFallsNavigation.IsReady;
+
+        private static Point FromDarknessFallsProof(AutonomousDarknessFallsNavigation.SpawnProof proof) => new()
+        {
+            Id = proof.Id, Zone = 249, Region = AutonomousDarknessFallsPolicy.RegionId,
+            Name = proof.Name, Spawn = (int[])proof.Spawn.Clone(),
+            Coordinates = (float[])proof.Approach.Clone(),
+            Entries = proof.Routes.Select(route => route.InWaypoints[0])
+                .Select(point => new[] { (int)Math.Round(point[0]), (int)Math.Round(point[1]),
+                    (int)Math.Round(point[2]) }).ToArray()
+        };
 
         private static Catalog Load()
         {
@@ -48,7 +65,12 @@ namespace DOL.GS
             var entries = new Dictionary<(ushort, int, int), HashSet<(int, int, int)>>();
             foreach (Point point in document.Spawns)
             {
-                if (!AutonomousDungeonPolicy.IsSupportedDungeonZone(point.Zone) || point.Coordinates?.Length != 3 ||
+                // Historical general-dungeon JSON has only three DF samples.
+                // Never mix them with the staged exact-spawn certificate or
+                // cache an incomplete DF catalog during early world startup.
+                if (point.Region == AutonomousDarknessFallsPolicy.RegionId ||
+                    !AutonomousDungeonPolicy.IsSupportedDungeonZone(point.Zone) ||
+                    point.Coordinates?.Length != 3 ||
                     point.Spawn?.Length != 3 || point.Entries?.Length == 0) continue;
                 points[point.Id] = point;
                 Vector3 position = point.Position;
@@ -67,6 +89,17 @@ namespace DOL.GS
         public static bool TryGet(GameNPC npc, out Point point)
         {
             point = null;
+            if (npc?.CurrentRegionID == AutonomousDarknessFallsPolicy.RegionId)
+            {
+                if (!AutonomousDarknessFallsNavigation.TryGetProof(npc.InternalID, out var proof))
+                    return false;
+                Point certified = FromDarknessFallsProof(proof);
+                if (!MatchesSpawn(certified, npc.InternalID, npc.CurrentRegionID,
+                    npc.CurrentZone?.ID ?? 0, npc.Name,
+                    new(npc.SpawnPoint.X, npc.SpawnPoint.Y, npc.SpawnPoint.Z))) return false;
+                point = certified;
+                return true;
+            }
             if (npc?.InternalID == null || !Data.Value.Spawns.TryGetValue(npc.InternalID, out Point candidate) ||
                 !MatchesSpawn(candidate, npc.InternalID, npc.CurrentRegionID, npc.CurrentZone.ID, npc.Name,
                     new(npc.SpawnPoint.X, npc.SpawnPoint.Y, npc.SpawnPoint.Z))) return false;
@@ -82,6 +115,9 @@ namespace DOL.GS
             Math.Abs(authored.Z - proven.Z) <= 32;
 
         public static bool CanUseEntrance(DbZonePoint edge, ushort goalRegion, int goalX, int goalY) =>
+            goalRegion == AutonomousDarknessFallsPolicy.RegionId && edge?.TargetRegion == goalRegion
+                ? AutonomousDarknessFallsNavigation.HasCertifiedEntrance(edge, goalX, goalY)
+                :
             edge.TargetRegion != goalRegion || !Data.Value.Entrances.TryGetValue((goalRegion, goalX, goalY), out var entrances) ||
             entrances.Contains((edge.TargetX, edge.TargetY, edge.TargetZ)) ||
             entrances.Any(entry => MatchesEntrance(new(edge.TargetX, edge.TargetY, edge.TargetZ),
@@ -101,7 +137,9 @@ namespace DOL.GS
                 if (!AutonomousDungeonPolicy.IsReliableAutonomousGoal(zone.ZoneRegion.ID, pair.Key.Name)) continue;
                 var verified = pair.Value.Select(npc => (Npc: npc,
                         Point: npc.DungeonPoint))
-                    .Where(item => item.Point != null && item.Npc.EffectiveLevel > 0).ToArray();
+                    .Where(item => item.Point != null && item.Npc.EffectiveLevel > 0 &&
+                        (zone.ZoneRegion.ID != AutonomousDarknessFallsPolicy.RegionId ||
+                         AutonomousDarknessFallsGoalScope.IsOrdinaryCatalogId(item.Point.Id))).ToArray();
                 if (verified.Length == 0) continue;
                 if (AutonomousDungeonPolicy.IsStarterDungeonRegion(zone.ZoneRegion.ID))
                 {
@@ -158,6 +196,44 @@ namespace DOL.GS
         {
             if (!AutonomousDungeonPolicy.IsReliableAutonomousGoal(zone.ZoneRegion.ID, normalizedName))
                 return;
+
+            if (zone.ZoneRegion.ID == AutonomousDarknessFallsPolicy.RegionId)
+            {
+                // A same-named creature can be present in all three wings.
+                // Keep the certified entrance-distance/wing for each room so
+                // a Midgard bot is not sent through the center to an Albion
+                // copy merely because the monster names match.
+                var proved = verified.Select(item =>
+                {
+                    AutonomousDarknessFallsNavigation.TryGetProof(item.Point.Id, out var proof);
+                    return (item.Npc, item.Point, Proof: proof);
+                }).Where(item => item.Proof != null);
+                foreach (var room in proved.GroupBy(item =>
+                         (X: (int)item.Point.Position.X / 900,
+                          Y: (int)item.Point.Position.Y / 900,
+                          Z: (int)item.Point.Position.Z / 200,
+                          Level: item.Npc.EffectiveLevel,
+                          Wing: AutonomousDarknessFallsNavigation.ClosestWing(item.Proof))))
+                {
+                    var first = room.OrderBy(item => AutonomousDarknessFallsNavigation.DistanceFromEntrance(
+                        item.Proof, room.Key.Wing)).First();
+                    Vector3 position = first.Point.Position;
+                    // Group directives retain only the camp ID, not the
+                    // catalog Point. Carry the exact certified spawn key so
+                    // every member can recover its own realm's waypoint
+                    // chain after a restart or a shared-goal handoff.
+                    string id = $"df-live:{first.Point.Id}:{zone.ID}:{room.Key}:{normalizedName}";
+                    cells.Add(new(id, first.Npc.Name, zone.Description, zone.ZoneRegion.ID,
+                        (int)position.X, (int)position.Y, (int)position.Z,
+                        [room.Key.Level], room.Count(), zone, true,
+                        IsFrontierZone(zone.ZoneRegion.ID, zone.ID), NeedsProjection: false,
+                        DarknessFallsWing: room.Key.Wing,
+                        DarknessFallsAlbionDistance: AutonomousDarknessFallsNavigation.DistanceFromEntrance(first.Proof, eRealm.Albion),
+                        DarknessFallsMidgardDistance: AutonomousDarknessFallsNavigation.DistanceFromEntrance(first.Proof, eRealm.Midgard),
+                        DarknessFallsHiberniaDistance: AutonomousDarknessFallsNavigation.DistanceFromEntrance(first.Proof, eRealm.Hibernia)));
+                }
+                return;
+            }
 
             foreach (var room in verified.GroupBy(item => ((int)item.Point.Position.X / 900,
                          (int)item.Point.Position.Y / 900, (int)item.Point.Position.Z / 200)))

@@ -1,6 +1,6 @@
 $ErrorActionPreference = 'Stop'
 $sourceRoot = Split-Path $PSScriptRoot -Parent
-$runtime = 'C:\Users\thedo\Desktop\Offline DAoC\runtime'
+$runtime = 'C:\Users\thedo\Desktop\new class test\runtime'
 $client = Join-Path $runtime 'client-opendaoc\app'
 $server = Join-Path $runtime 'server'
 $stage = Join-Path $sourceRoot 'build\native-raid80'

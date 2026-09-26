@@ -24,6 +24,16 @@ static class Program
         try
         {
             var values = ParseArgs(args);
+            if (values.TryGetValue("verify-v032-world", out var verificationLevel))
+            {
+                if (verificationLevel != "69" || !values.TryGetValue("database", out var worldDatabase))
+                    throw new ArgumentException("Usage: --verify-v032-world 69 --database <normal-v0.32-db>");
+                using var readOnly = new SQLiteConnection($"Data Source={worldDatabase};Version=3;Read Only=True;Pooling=False;");
+                readOnly.Open();
+                ValidateV032World(readOnly);
+                Console.WriteLine("Verified the public level-69 High Lord Oro row without changing the world database.");
+                return 0;
+            }
             if (values.TryGetValue("asset-output", out var assetOutput))
             {
                 if (!values.TryGetValue("client-app", out var clientApp) ||
@@ -40,9 +50,13 @@ static class Program
             values.TryGetValue("world-patch", out var worldPatchPath);
             if (worldPatchPath != null && !File.Exists(worldPatchPath))
                 throw new FileNotFoundException("World patch SQL file was not found.", worldPatchPath);
+            bool requireV032World = values.TryGetValue("require-v032-world", out var bossLevel);
+            if (requireV032World && (bossLevel != "69" || worldPatchPath != null))
+                throw new ArgumentException("v0.32b requires the unchanged public v0.32 world and High Lord Oro at level 69.");
 
             using var connection = new SQLiteConnection($"Data Source={database};Version=3;foreign keys=false;");
             connection.Open();
+            if (requireV032World) ValidateV032World(connection);
             using var document = JsonDocument.Parse(File.ReadAllText(overlayPath));
             var root = document.RootElement;
             if (root.GetProperty("format").GetInt32() != 1 ||
@@ -111,6 +125,7 @@ static class Program
             var check = Convert.ToString(Scalar(connection, null, "PRAGMA quick_check"), CultureInfo.InvariantCulture);
             if (!string.Equals(check, "ok", StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException($"SQLite quick_check returned '{check}'.");
+            if (requireV032World) ValidateV032World(connection);
             Console.WriteLine("Sluaghbinder static data applied and SQLite quick_check passed.");
             return 0;
         }
@@ -228,5 +243,13 @@ static class Program
         command.Transaction = transaction;
         command.CommandText = sql;
         return command.ExecuteScalar();
+    }
+
+    private static void ValidateV032World(SQLiteConnection connection)
+    {
+        const string query = "SELECT COUNT(*) FROM Mob WHERE Mob_ID='504d573f-deab-4cb2-9dbc-d9d053d7af2f' " +
+            "AND Name='High Lord Oro' AND Region=249 AND ClassType='DOL.GS.HighLordOro' AND Level=69";
+        if (Convert.ToInt32(Scalar(connection, null, query), CultureInfo.InvariantCulture) != 1)
+            throw new InvalidDataException("The v0.32 public High Lord Oro row must remain at level 69; refusing an older or isolated world database.");
     }
 }

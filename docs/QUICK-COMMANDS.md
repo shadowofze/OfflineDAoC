@@ -35,6 +35,10 @@ modifier, create one bot. Start small and increase population for your PC's capa
 
 `/spawn 40` and `/spawn 80` are **not** the raid-size commands. Use `/raid` first.
 The aggressive/defensive commands control your companions, not autonomous gamebots.
+The `/raid` command does not implement Darkness Falls raid AI. In the v0.32/
+v0.32b Darkness Falls Beta, Legion, the hardest level-70+ encounters,
+unreachable flying targets, and unverified routes are excluded from ordinary
+autonomous bot goals.
 
 For the complete advanced reference, see **ALL SERVER COMMANDS.txt** inside the
 download. That file separates normal-player, GM and administrator registrations.

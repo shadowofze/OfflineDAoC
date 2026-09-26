@@ -1,7 +1,7 @@
 """Move only the never-loaded September 4 level-50 cohort to realm capitals."""
 import sqlite3
 
-db = r'C:\Users\thedo\Desktop\Offline DAoC\runtime\data\opendaoc.sqlite3.db'
+db = r'C:\Users\thedo\Desktop\new class test\runtime\data\opendaoc.sqlite3.db'
 with sqlite3.connect(db) as connection:
     connection.execute('BEGIN IMMEDIATE')
     where = "BotId BETWEEN 48128 AND 53627 AND Level=50 AND IsOnline=0 AND COALESCE(LastSavedUtc,'')=''"

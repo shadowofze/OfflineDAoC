@@ -2,23 +2,33 @@
 
 ## Baseline and layout
 
-This is a separate sharing copy of the current normal Offline DAoC installation,
-whose launcher displays 0.4 locally. The public v0.31 source and playable release
-carry the normal maintenance fixes described in `docs/RELEASE-0.31.md`; the
-experimental Sluaghbinder class is intentionally not included. The old v0.3 tag
-and release remain immutable and usable. Portable account bootstrap and default
-settings are release-specific differences.
+The current normal source branch is `release/v0.32-darkness-falls`; its matching
+v0.32 Darkness Falls Beta download includes the shared maintenance fixes and
+no Sluaghbinder class, quests, or optional client assets. The matching optional
+branch, `release/v0.32b-sluaghbinder-darkness-falls`, adds Sluaghbinder on top
+of v0.32. The v0.3, v0.31, and v0.31b tags and releases stay available as
+legacy versions. Portable account bootstrap and default settings are
+release-specific differences.
 
-The release's runtime/server contains the reference installed binaries and 99
+The complete release's runtime/server contains the installed binaries and
 navigation meshes. Runtime/data contains a cleaned world database. Runtime/client-opendaoc/app
 contains the compatible game installation. Never use the author's old absolute paths.
 
-The optional v0.31b Sluaghbinder expansion is an overlay on the v0.3/v0.31
-baseline. Its class source is in the same `source/server` tree, its client
+The optional v0.32b Sluaghbinder expansion is a copy-first overlay on a
+verified v0.32 baseline. Its class source is in the optional `source/server`
+tree, its client
 build-identifying helpers are under `source/server/tools`, and its static data
 overlay builder/installer sources are under `tools/sluaghbinder` and
-`source/tools/OfflineDaoc.SluaghbinderPatch`. The public 0.31b launcher label is
-deliberate; the local 0.4 label is private and must not be copied into a fork.
+`source/tools/OfflineDaoc.SluaghbinderPatch`. The public launcher labels are
+0.32 and 0.32b; a private local label must not be copied into a fork.
+
+Darkness Falls uses region 249. Entrance access, one-way ledges, realm exits,
+shared-center PvP, and autonomous bot routes have separate authority checks.
+The bot catalog must exclude Legion, the hardest level-70+ encounters,
+unreachable flying targets, and unverified targets. Darkness Falls raid AI
+is not implemented. Read `docs/RELEASE-0.32.md` and
+`docs/VERIFICATION-0.32.md` before changing those boundaries; do not treat
+policy tests as a long live gameplay test.
 
 The runnable release also bundles tools/dotnet and tools/nuget-feed for offline C#
 development, the navigation builder/native dependencies, and the texture tool's
@@ -40,35 +50,24 @@ For offline restore, use the release's NuGet.Config and set NUGET_PACKAGES to a
 local developer-state directory. Some launcher tests require that no DAoC server
 is listening locally; a running server can correctly trigger the save lock.
 
-If the complete download is in `playable`, its SDK is
-`playable/tools/dotnet/dotnet.exe` and its offline configuration is
-`playable/NuGet.Config`. These are explicit alternatives to a globally installed SDK.
+If the complete download is in `<playable-folder>`, its SDK is
+`<playable-folder>/tools/dotnet/dotnet.exe` and its offline configuration is
+`<playable-folder>/NuGet.Config`. These are explicit alternatives to a globally installed SDK.
 The release's BUILD AND TEST SOURCE.cmd is the ready-made offline build entrypoint
 for the source bundled inside that complete download. It never deploys a build.
 
 ## Native client modifications
 
-The native raid, bot-map, and bounty-marker builders are in source/server/tools, with validation
+The native raid and bot-map builders are in source/server/tools, with validation
 tests alongside them. They patch a specific verified x86 binary; they are not the
 original client's C++ source. Their baseline hashes and dependencies matter.
 Historical scripts may refer to backup input paths on the author's PC: these must
 be parameterized and the required baseline supplied before rerunning. Do not
 substitute an arbitrary game.dll or remove a failed hash guard. The supported
 `tools/build-client-raid.py` wrapper resolves inputs from `--distribution`, includes
-the exact baseline, and stages into a fresh `--output` directory. In release
-verification this rebuilt the installed game.dll byte-for-byte.
-The bounty marker builder has a separate verified input hash for the existing
-v0.31b client payload with its bot-map hook already present. It cannot be
-applied directly to an arbitrary stock client. The release installer ships a
-prebuilt, hash-checked payload and the two journal XML overlays; build or
-test any altered client in a disposable copy first.
-`source/server/tools/patch_bounty_journal_ui.py` reproduces those two XML
-buttons from verified v0.3/v0.31 UI inputs without modifying the input tree.
-The shared Shannon Estuary beach-rat correction is recorded in
-`tools/world-patches/shannon-beach-rat-camp.sql`. The optional installer applies
-it through the .NET patcher to the copied database, in the same transaction as
-its static class overlay. Its pre-patch database backup remains available to
-the existing rollback command; the selected original installation is untouched.
+the exact baseline, and stages into a fresh `--output` directory. The older
+v0.31 release verification recorded a byte-for-byte rebuild of its installed
+game.dll; this is not a v0.32 verification claim.
 
 Test texture-tool source with `python tools/test-assets.py --distribution playable`
 (or the actual complete-download path). The wrapper resolves the read-only fixtures

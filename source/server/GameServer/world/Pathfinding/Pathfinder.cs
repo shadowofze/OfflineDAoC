@@ -87,6 +87,19 @@ namespace DOL.GS
                 pathBuffer.Clear();
                 pathBuffer.Origin = position;
 
+                if (Owner is GameBot { IsAutonomousWorldBot: true } &&
+                    zone.ZoneRegion?.ID == AutonomousDarknessFallsPolicy.RegionId &&
+                    !AutonomousDarknessFallsNavigation.MayQueueRuntimePath(pathfindingResult,
+                        rentedNodeBuffer, position, target) &&
+                    !AutonomousDarknessFallsNavigation.MayQueueOwnExitGroundPath(Owner.Realm,
+                        pathfindingResult, rentedNodeBuffer, position, target))
+                {
+                    // DF navigation is only safe as a complete certified 3D
+                    // corridor. Do not advance along a partial route or an
+                    // uncertified Jump/fall while looking for a better path.
+                    return PathfindingStatus.NoPathFound;
+                }
+
                 if (pathfindingResult.Status is PathfindingStatus.BufferTooSmall)
                 {
                     if (log.IsWarnEnabled)
@@ -251,7 +264,8 @@ namespace DOL.GS
             if (!_activePath.Nodes.TryPeek(0, out WrappedPathfindingNode current) || !Owner.IsWithinRadius(current.Position, NODE_REACHED_DISTANCE))
                 return;
 
-            // Glacier climb links follow the original rock surface in 3D.
+            // Glacier and Darkness Falls climb links follow the original
+            // surfaces in 3D.
             // A floor-only LOS shortcut must not skip their intermediate nodes.
             // All ordinary walking, other zones, horses and players retain their
             // existing movement smoothing and cadence.
@@ -305,7 +319,7 @@ namespace DOL.GS
         }
 
         public static bool RequiresExactClimbNode(bool bot, ushort zone, EDtPolyFlags current, EDtPolyFlags next) =>
-            bot && zone == 160 && ((current | next) & EDtPolyFlags.Jump) != 0;
+            bot && (zone is 160 or 249) && ((current | next) & EDtPolyFlags.Jump) != 0;
 
         public bool TryGetClosestReachableNode(Zone zone, Vector3 position, Vector3 target, out Vector3? node)
         {

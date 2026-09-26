@@ -1,7 +1,7 @@
 param([switch]$Apply)
 $ErrorActionPreference = 'Stop'
 $sourceRoot = Split-Path $PSScriptRoot -Parent
-$runtime = 'C:\Users\thedo\Desktop\Offline DAoC\runtime'
+$runtime = 'C:\Users\thedo\Desktop\new class test\runtime'
 function Assert-Stopped {
     if (Get-Process CoreServer,game,camelot,OfflineDAoC,connect -ErrorAction SilentlyContinue) {
         throw 'Close the server, client and launcher first.'
@@ -28,7 +28,7 @@ if ((Get-FileHash -LiteralPath (Join-Path $sourceRoot 'Release\lib\GameServer.dl
 $testRoot = Join-Path (Split-Path $sourceRoot -Parent) 'tools\OfflineDaoc.Launcher.Tests\bin\Release\net10.0-windows'
 if ((Get-FileHash -LiteralPath (Join-Path $launcher 'OfflineDAoC.dll')).Hash -ne (Get-FileHash -LiteralPath (Join-Path $testRoot 'OfflineDAoC.dll')).Hash) { throw 'Launcher differs from tested assembly.' }
 foreach ($suite in @(@('launcher',89),@('server',1672))) {
-    [xml]$result = Get-Content -LiteralPath ("C:\Users\thedo\Desktop\Offline DAoC\reports\realm-event-records-tests\realm-event-records-" + $suite[0] + ".trx") -Raw
+    [xml]$result = Get-Content -LiteralPath ("C:\Users\thedo\Desktop\new class test\reports\realm-event-records-tests\realm-event-records-" + $suite[0] + ".trx") -Raw
     if ([int]$result.TestRun.ResultSummary.Counters.failed -ne 0 -or [int]$result.TestRun.ResultSummary.Counters.passed -lt $suite[1]) { throw 'Test verification failed.' }
 }
 $entries = foreach ($pair in $map) {

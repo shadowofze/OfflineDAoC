@@ -3753,8 +3753,13 @@ namespace DOL.GS
                 // Equipment generators read Level. Temporarily exposing the rolled
                 // gear level keeps the character fully trained at its real level.
                 Level = IsTemporaryGroupHelper ? characterLevel : equipmentLevel;
-                // A Bane or scythe-leaning Covenant plan has no offhand even
-                // though the Sluaghbinder class can use shields generally.
+                // A Sluaghbinder Bane build, and a Covenant build that rolled
+                // its scythe option, is a two-handed weapon plan.  The class
+                // can use shields, but that does not make a shield part of
+                // this build.  Do not let the generic Shield career grant it
+                // an offhand on creation; doing so made every /spawn result
+                // look like the default mace-and-shield loadout even when the
+                // selected plan was supposed to use a scythe.
                 bool sluaghbinderScythePlan = SluaghbinderUsesScythe;
                 bool mayUseOffhand = !sluaghbinderScythePlan &&
                     (BotSpec?.SpecType is eSpecType.DualWield or eSpecType.DualWieldAndShield or eSpecType.LeftAxe ||
@@ -3831,8 +3836,12 @@ namespace DOL.GS
                 case eSpecType.SluaghbinderBulwark:
                 case eSpecType.SluaghbinderBane:
                 case eSpecType.SluaghbinderCovenant:
-                    // Show the chosen build immediately, not only after a
-                    // future loot upgrade supplies its preferred weapon.
+                    // The selected Sluaghbinder plan is part of the bot's
+                    // identity.  Bane always starts with a usable scythe and
+                    // Covenant may start with the scythe it rolled; they must
+                    // not wait for a future loot drop before their build is
+                    // reflected in the active weapon.  Bulwark (and a
+                    // mace-and-shield Covenant) keeps the class's legal mace.
                     if (SluaghbinderUsesScythe)
                         BotEquipment.SetMeleeWeapon(this, eObjectType.Scythe, eHand.twoHand);
                     else
@@ -4186,7 +4195,7 @@ namespace DOL.GS
                 !SluaghbinderUsesScythe && BestShieldLevel > 0 && !hasSluaghbinderShield)
             {
                 // Bulwark and mace-and-shield Covenant use the class-career
-                // shield. A scythe plan intentionally has no active offhand.
+                // shield.  A scythe plan intentionally has no active offhand.
                 BotEquipment.SetShield(this, BestShieldLevel);
                 changed = true;
             }

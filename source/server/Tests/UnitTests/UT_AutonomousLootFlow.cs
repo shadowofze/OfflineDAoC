@@ -303,7 +303,9 @@ namespace DOL.UnitTests
                 (eRealm.Hibernia, eCharacterClass.Naturalist, eObjectType.Leather, new[] { eObjectType.Blunt, eObjectType.Shield }),
                 (eRealm.Hibernia, eCharacterClass.Stalker, eObjectType.Leather, new[] { eObjectType.Piercing }),
                 (eRealm.Hibernia, eCharacterClass.Magician, eObjectType.Cloth, new[] { eObjectType.Staff }),
-                (eRealm.Hibernia, eCharacterClass.Forester, eObjectType.Cloth, new[] { eObjectType.Staff })
+                (eRealm.Hibernia, eCharacterClass.Forester, eObjectType.Cloth, new[] { eObjectType.Staff }),
+                (eRealm.Hibernia, eCharacterClass.Sluaghbinder, eObjectType.Reinforced,
+                    new[] { eObjectType.Blunt, eObjectType.Scythe, eObjectType.Shield })
             };
 
             foreach (var entry in cases)
@@ -327,6 +329,37 @@ namespace DOL.UnitTests
                     };
                     Assert.That(validWeapons, Does.Contain(weapon), $"{classId} generated {weapon}");
                 }
+            }
+        }
+
+        [Test]
+        public void SluaghbinderRogArmorProgressesAndAllowsAllShieldSizes()
+        {
+            Assert.That(GeneratedUniqueItem.GetHiberniaArmorType(eCharacterClass.Sluaghbinder, 19),
+                Is.EqualTo(eObjectType.Reinforced));
+            Assert.That(GeneratedUniqueItem.GetHiberniaArmorType(eCharacterClass.Sluaghbinder, 20),
+                Is.EqualTo(eObjectType.Scale));
+
+            MethodInfo shieldSize = typeof(GeneratedUniqueItem).GetMethod("GetMaxShieldSizeFromClass",
+                BindingFlags.NonPublic | BindingFlags.Static);
+            Assert.That(shieldSize, Is.Not.Null);
+            Assert.That(shieldSize.Invoke(null, new object[] { eCharacterClass.Sluaghbinder }),
+                Is.EqualTo(3));
+        }
+
+        [Test]
+        public void SluaghbinderRandomRogsNeverFallBackToClothOrUnsupportedWeapons()
+        {
+            var valid = new[] { eObjectType.Blunt, eObjectType.Scythe, eObjectType.Shield,
+                eObjectType.Reinforced, eObjectType.Scale, eObjectType.Magical };
+
+            for (int i = 0; i < 256; i++)
+            {
+                var item = new GeneratedUniqueItem(eRealm.Hibernia, eCharacterClass.Sluaghbinder, 50);
+                Assert.That(valid, Does.Contain((eObjectType)item.Object_Type),
+                    $"Unexpected Sluaghbinder ROG type {(eObjectType)item.Object_Type}");
+                if ((eObjectType)item.Object_Type == eObjectType.Shield)
+                    Assert.That(item.Type_Damage, Is.InRange(1, 3), "Sluaghbinder shield size");
             }
         }
 

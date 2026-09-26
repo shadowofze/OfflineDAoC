@@ -14,7 +14,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 import pefile
 
-CLIENT = Path(r'C:\Users\thedo\Desktop\Offline DAoC\runtime\client-opendaoc\app')
+CLIENT = Path(r'C:\Users\thedo\Desktop\new class test\runtime\client-opendaoc\app')
 OUTPUT = Path(__file__).resolve().parents[1] / 'build/native-raid-probe'
 HOOK = 0x4DA938
 EXPECTED = bytes.fromhex('51 d9 ee 51 d9 5c 24 04')

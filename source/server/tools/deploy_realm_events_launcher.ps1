@@ -1,5 +1,5 @@
 $ErrorActionPreference = 'Stop'
-$runtime = 'C:\Users\thedo\Desktop\Offline DAoC\runtime'
+$runtime = 'C:\Users\thedo\Desktop\new class test\runtime'
 $sourceRoot = Split-Path $PSScriptRoot -Parent
 $build = Join-Path (Split-Path $sourceRoot -Parent) 'tools\OfflineDaoc.Launcher\bin\Release\net10.0-windows'
 function Assert-Stopped {

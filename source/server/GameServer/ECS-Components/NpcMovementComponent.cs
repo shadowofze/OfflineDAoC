@@ -42,8 +42,42 @@ namespace DOL.GS
         private Vector3 _autonomousPathFailureDestination;
         private bool _autonomousTravelArrival;
         private SeamContinuation _seamContinuation;
+        private FallContinuation _fallContinuation;
+        private enum FallStage { WalkOffLip, Descend }
+        private sealed record FallContinuation(Vector3 Air, Vector3 Landing, Vector3 Final,
+            ushort Region, Group Group, string Assignment, short Speed, FallStage Stage);
         private sealed record SeamContinuation(Vector3 At, Vector3 Next, Vector3? Final,
             ushort Region, Group Group, string Assignment, bool Walk);
+
+        private bool TryContinueCertifiedFall()
+        {
+            FallContinuation fall = _fallContinuation;
+            if (fall == null) return false;
+            Vector3 expected = fall.Stage == FallStage.WalkOffLip ? fall.Air : fall.Landing;
+            if (Owner is not GameBot { IsAutonomousWorldBot: true } bot ||
+                bot.CurrentRegionID != fall.Region || bot.Group != fall.Group ||
+                bot.PersistentRecord?.ObjectiveAssignmentId != fall.Assignment || !bot.IsAlive ||
+                bot.IsOnStableMasterRoute || Vector3.DistanceSquared(_ownerPosition, expected) > 16 * 16)
+            {
+                _fallContinuation = null;
+                return false;
+            }
+
+            if (fall.Stage == FallStage.WalkOffLip)
+            {
+                // Autonomous NPC movement has no gravity. Ordinary XYZ
+                // interpolation from the lip straight to the lower floor
+                // would cut through DF's vertical stone wall.
+                _fallContinuation = fall with { Stage = FallStage.Descend };
+                WalkToInternal(fall.Landing, fall.Speed);
+            }
+            else
+            {
+                _fallContinuation = null;
+                PathToInternal(fall.Final, fall.Speed);
+            }
+            return IsFlagSet(MovementState.WalkTo);
+        }
 
         public void PathAcrossValidatedSeam(Vector3 inside, Vector3 outside, Vector3? final, short speed)
         {
@@ -230,6 +264,7 @@ namespace DOL.GS
         public void WalkTo(Vector3 destination, short speed)
         {
             _seamContinuation = null;
+            _fallContinuation = null;
             _movementRequest.Set(MovementRequestType.Walk, destination, speed);
             SetFlag(MovementState.Request);
             AddToServiceObjectStore();
@@ -237,7 +272,15 @@ namespace DOL.GS
 
         public void PathTo(Vector3 destination, short speed)
         {
+            // The controller may reissue the same travel order every tick.
+            // Do not restart a certified fall between its lip and landing.
+            if (_fallContinuation is { } fall &&
+                Owner is GameBot { IsAutonomousWorldBot: true } &&
+                Owner.CurrentRegionID == fall.Region &&
+                Vector3.DistanceSquared(destination, fall.Final) <= 64 * 64)
+                return;
             _seamContinuation = null;
+            _fallContinuation = null;
             _movementRequest.Set(MovementRequestType.Path, destination, speed);
             SetFlag(MovementState.Request);
             AddToServiceObjectStore();
@@ -261,6 +304,7 @@ namespace DOL.GS
         public void StopMoving()
         {
             _seamContinuation = null;
+            _fallContinuation = null;
             _movementState = MovementState.None;
             StopFollowing();
             StopMovingOnPath();
@@ -276,6 +320,7 @@ namespace DOL.GS
                 return;
 
             _seamContinuation = null;
+            _fallContinuation = null;
 
             if (target != FollowTarget)
                 _nextFollowTick = 0;
@@ -491,6 +536,7 @@ namespace DOL.GS
         public void ForceUpdatePosition()
         {
             _seamContinuation = null;
+            _fallContinuation = null;
             // Must be called every time the NPC is teleported or moved by other means than this component.
             _ownerPosition = new(Owner.RealX, Owner.RealY, Owner.RealZ);
             _positionForClient = _ownerPosition;
@@ -651,6 +697,18 @@ namespace DOL.GS
             if (_pathfinder.TryGetNextNode(zone, _ownerPosition, destination, out Vector3? _nextNode))
             {
                 ClearAutonomousPathFailure();
+                if (Owner is GameBot { IsAutonomousWorldBot: true } bot &&
+                    zone.ID == AutonomousDarknessFallsPolicy.RegionId &&
+                    _pathfinder.PathfindingStatus == PathfindingStatus.PathFound &&
+                    AutonomousDarknessFallsNavigation.TryGetCertifiedFall(_ownerPosition,
+                        _nextNode.Value, out Vector3 air, out Vector3 landing))
+                {
+                    _fallContinuation = new(air, landing, destination, bot.CurrentRegionID,
+                        bot.Group, bot.PersistentRecord?.ObjectiveAssignmentId, speed, FallStage.WalkOffLip);
+                    UnsetFlag(MovementState.Pathfinding);
+                    WalkToInternal(air, speed);
+                    return;
+                }
                 // Continue to the next node, even on partial paths.
                 _movementRequest.Set(MovementRequestType.Path, destination, speed);
                 SetFlag(MovementState.Pathfinding);
@@ -921,6 +979,7 @@ namespace DOL.GS
         private void OnArrival()
         {
             if (!AllowPosition(_destination)) return;
+            if (TryContinueCertifiedFall()) return;
             if (_seamContinuation != null && Vector3.DistanceSquared(_ownerPosition, _seamContinuation.At) <= 16 * 16 &&
                 TryContinueValidatedSeam()) return;
             if (IsFlagSet(MovementState.Pathfinding))

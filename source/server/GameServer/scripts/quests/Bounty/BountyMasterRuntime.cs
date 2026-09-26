@@ -227,6 +227,8 @@ namespace DOL.GS
                     master.SayTo(player, "The journal counts kills. Enter the target's zone or dungeon, then press BOUNTY MAP " +
                         "to open its local map and see the red dot; it cannot show another zone. " +
                         "Reroll freely, but XP is halved until you finish. Outleveled contracts refresh free.");
+                    master.SayTo(player, "For an outdoor hunt, the marked camp is a lead: the same-named hostile monster " +
+                        "elsewhere in your realm counts too. Dungeon contracts still require their assigned dungeon.");
                     break;
 
                 case "show location":
@@ -236,6 +238,9 @@ namespace DOL.GS
                         master.SayTo(player, $"Seek {active.Target?.Name} in {active.Target?.ZoneName}. " +
                             "Enter that zone or dungeon, then open its local map to see the red bounty dot. " +
                             "The journal's BOUNTY MAP button opens your current map; /bountylocation refreshes the marker.");
+                        if (active.Target?.IsDungeon == false && active.Target.IsEpic == false)
+                            master.SayTo(player, "This mark is one likely camp. The same-named hostile monster " +
+                                "in another outdoor part of your realm counts as well.");
                     }
                     break;
 

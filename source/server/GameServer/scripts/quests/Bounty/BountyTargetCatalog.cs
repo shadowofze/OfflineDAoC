@@ -5,7 +5,7 @@ using DOL.Database;
 
 namespace DOL.GS
 {
-    /// <summary>A repeatable bounty targets a species in one zone, or one named epic spawn.</summary>
+    /// <summary>A repeatable bounty targets a home-realm species, or one named epic spawn.</summary>
     public sealed class BountyTargetCandidate
     {
         public string Name { get; init; }
@@ -30,19 +30,24 @@ namespace DOL.GS
                 return npc.Realm == eRealm.None && npc.CurrentRegionID == RegionId &&
                        string.Equals(npc.InternalID, RepresentativeMobId, StringComparison.Ordinal);
 
-            return MatchesOrdinaryMonster(npc.Name, npc.Realm, npc.CurrentRegionID, npc.CurrentZone?.ID);
+            return MatchesOrdinaryMonster(npc.Name, npc.Realm, npc.CurrentRegionID,
+                npc.CurrentZone?.ID, npc.CurrentZone?.IsDungeon == true);
         }
 
         /// <summary>
-        /// A normal bounty is for a named monster species in the assigned zone,
-        /// not only members of that species with the representative spawn's level.
-        /// Ranged-level camps therefore grant credit for every matching variant.
+        /// A normal outdoor bounty is for a named monster species anywhere in
+        /// the player's home realm, not just the representative camp or level.
+        /// Dungeon contracts stay within their assigned dungeon zone so a
+        /// same-named outdoor or different-dungeon mob cannot replace the hunt.
         /// </summary>
         public bool MatchesOrdinaryMonster(string monsterName, eRealm monsterRealm,
-            ushort monsterRegionId, ushort? monsterZoneId) =>
-            !IsEpic && monsterRealm == eRealm.None && monsterRegionId == RegionId &&
-            monsterZoneId == ZoneId &&
-            string.Equals(monsterName, Name, StringComparison.OrdinalIgnoreCase);
+            ushort monsterRegionId, ushort? monsterZoneId, bool monsterIsDungeon = false) =>
+            !IsEpic && monsterRealm == eRealm.None &&
+            monsterZoneId.HasValue &&
+            string.Equals(monsterName, Name, StringComparison.OrdinalIgnoreCase) &&
+            (IsDungeon
+                ? monsterIsDungeon && monsterRegionId == RegionId && monsterZoneId == ZoneId
+                : !monsterIsDungeon && BountyTargetCatalog.AreRegionsInSameHomeRealm(RegionId, monsterRegionId));
 
         /// <summary>Checks whether a matching spawn is currently alive in the world.</summary>
         public bool IsCurrentlySpawned() => WorldMgr.GetNPCsByNameFromRegion(Name, RegionId, eRealm.None)
@@ -56,6 +61,14 @@ namespace DOL.GS
         private static readonly ushort[] AlbionRegions = { 1, 20, 21, 22, 23, 24, 50, 51, 60, 61 };
         private static readonly ushort[] MidgardRegions = { 100, 125, 126, 127, 128, 129, 150, 151, 160, 161 };
         private static readonly ushort[] HiberniaRegions = { 180, 181, 190, 191, 200, 220, 221, 222, 223, 224 };
+
+        // Match only within one faction's known Classic/SI home regions. The
+        // monster's Realm is normally None, so that field cannot distinguish
+        // Albion, Midgard, and Hibernia hostile spawn catalogs by itself.
+        internal static bool AreRegionsInSameHomeRealm(ushort assignedRegion, ushort killedRegion) =>
+            (AlbionRegions.Contains(assignedRegion) && AlbionRegions.Contains(killedRegion)) ||
+            (MidgardRegions.Contains(assignedRegion) && MidgardRegions.Contains(killedRegion)) ||
+            (HiberniaRegions.Contains(assignedRegion) && HiberniaRegions.Contains(killedRegion));
 
         private static readonly (eRealm Realm, ushort Region, string Name, string MobId)[] EpicTargets =
         {

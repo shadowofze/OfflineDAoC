@@ -1,0 +1,40 @@
+OFFLINE DAOC v0.32b - DARKNESS FALLS BETA + OPTIONAL SLUAGHBINDER
+
+This is the optional Sluaghbinder build on the normal v0.32 Darkness Falls base.
+If you prefer no custom class, launch the untouched normal v0.32 base folder.
+
+BEFORE LAUNCHING
+Enable the Windows .NET Framework 3.5 feature. See docs/PLAY.md for the exact
+steps, Windows requirements, and account/progress transfer instructions.
+
+START PLAYING
+1. Keep this entire playable folder together. Do not run files inside a ZIP.
+2. Double-click START OFFLINE DAOC.cmd, then click START SERVER.
+3. Wait until the launcher reports RUNNING, then click ENTER REALM.
+4. Create your character. The game creates a local offline account for you.
+5. Use the launcher buttons to create gamebots. No LLM or Git account is needed.
+
+DARKNESS FALLS BETA LIMITS
+All three realms can enter. Autonomous bots have staged routes and ordinary
+grind goals, but a long live bot run has not yet been completed. Darkness Falls
+raids are NOT implemented. Legion, the hardest level-70+ encounters, unreachable
+flying monsters, and unverified routes are excluded from ordinary bot goals.
+Some entrance ledges are one-way; leave through your own realm's exit portal.
+
+ROLLBACK AND SAVES
+The downloader leaves a normal v0.32 base in a separate sibling folder. Stop
+the server and client before changing versions. Use ROLLBACK SLAUGHBINDER
+PATCH.cmd in this optional copy to undo the class; it replaces progress made
+in this copy after patching, so back up new progress first. Or simply launch
+the untouched normal base. Do not copy an old database over the new world.
+Use the included IMPORT PROGRESS FROM OLD OFFLINE DAOC.cmd if you want to
+transfer existing characters after reading docs/PLAY.md. Your local account,
+characters, and bots are not included in this public download.
+
+FOR DEVELOPERS AND LLMS
+Start with AGENTS.md and docs/LLM-QUICKSTART.md. This playable copy includes
+editable source under source/; the matching optional Git tag is v0.32b. The
+normal v0.32 source and world remain separately available without Sluaghbinder.
+
+Only one local server can use the game port at a time. Shut it down normally
+and wait for saves before moving, importing, or modifying files.

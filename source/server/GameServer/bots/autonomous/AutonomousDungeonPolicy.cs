@@ -18,7 +18,8 @@ namespace DOL.GS
             19 or 21 or 22 or 23 or 24 or 60 or 61 or 62 or
             125 or 126 or 127 or 128 or 129 or 150 or 160 or 161 or
             180 or 190 or 191 or 220 or 221 or 222 or 223 or 224 or
-            246 or 248 or 276 or 277;
+            246 or 248 or 276 or 277 ||
+            zone == 249 && AutonomousDarknessFallsNavigation.IsReady;
 
         public static bool IsStarterDungeonRegion(ushort region) => region is 21 or 129 or 221;
 
@@ -28,7 +29,7 @@ namespace DOL.GS
         // They remain real monsters and normal route threats, but are not a
         // reliable autonomous camp objective.
         public static bool IsReliableAutonomousGoal(ushort region, string name) =>
-            region != AutonomousDarknessFallsPolicy.RegionId &&
+            (region != AutonomousDarknessFallsPolicy.RegionId || AutonomousDarknessFallsNavigation.IsReady) &&
             !(region == 129 && string.Equals(name, "haunt", StringComparison.OrdinalIgnoreCase)) &&
             // Installed entrance-to-husk corridors cross aggressive level
             // 36-43 packs. Level 10-11 husks cannot be safe XP goals for the
