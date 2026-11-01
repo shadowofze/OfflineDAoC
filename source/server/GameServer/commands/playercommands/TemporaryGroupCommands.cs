@@ -13,9 +13,13 @@ namespace DOL.GS.Commands
 
         public static IEnumerable<(eCharacterClass CharacterClass, string Role)> ForRealm(eRealm realm)
         {
-            // 0.38: the Sluaghbinder is discontinued (owner 2026-10-30): /spawn never offers it.
-            IEnumerable<eCharacterClass> classes = AutonomousBotIdentityGenerator.GetEraClasses(realm)
-                .Where(c => c != eCharacterClass.Sluaghbinder);
+            // /spawn offers the Sluaghbinder only when classes/enable_sluaghbinder is on (0.38b), in both the
+            // popup and the text form, even if the generated identity list is older.
+            IEnumerable<eCharacterClass> classes = AutonomousBotIdentityGenerator.GetEraClasses(realm);
+            if (!Properties.ENABLE_SLUAGHBINDER)
+                classes = classes.Where(c => c != eCharacterClass.Sluaghbinder);
+            else if (realm == eRealm.Hibernia && !classes.Contains(eCharacterClass.Sluaghbinder))
+                classes = classes.Append(eCharacterClass.Sluaghbinder);
 
             return classes.Select(characterClass => (characterClass, BotPartyRoles.Label(characterClass)));
         }

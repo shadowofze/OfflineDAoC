@@ -1,5 +1,6 @@
-"""0.38: the Sluaghbinder is discontinued (owner 2026-10-30). Removes its trainer Muirenn and her bound sluagh wisp
-from the normal world (Tir na Nog). The quest monsters were spawned by code and no longer start
+"""For worlds WITHOUT the custom class only (0.38; classes/enable_sluaghbinder off). Never for 0.38b, which keeps
+the Sluaghbinder: the script refuses while enable_sluaghbinder is on. Removes its trainer Muirenn and her bound
+sluagh wisp from Tir na Nog. The quest monsters are spawned by code and don't start with the switch off
 (SluaghbinderEpicQuests.Discontinued). Spells, items and specs stay so an old character's things still resolve.
 
     python -I remove_sluaghbinder_npcs.py            (server must be stopped)
@@ -26,6 +27,9 @@ def main():
                 con.execute(f"INSERT OR REPLACE INTO Mob ({','.join(use)}) VALUES ({','.join('?' * len(use))})", [row[c] for c in use])
         print(f'restored {len(rows)}')
         return
+    row = con.execute("SELECT Value FROM ServerProperty WHERE lower(\"Key\") = 'enable_sluaghbinder'").fetchone()
+    if row is None or str(row[0]).strip().lower() != 'false':
+        sys.exit('The Sluaghbinder is switched on in this world (classes/enable_sluaghbinder): nothing removed.')
     rows = [dict(zip(cols, r)) for r in con.execute(f"SELECT * FROM Mob WHERE Mob_ID IN ({','.join('?' * len(IDS))})", IDS)]
     if rows:
         json.dump(rows, open(BACKUP, 'w', encoding='utf-8'), indent=1)

@@ -11,8 +11,8 @@ The newest version is first. For the full detail of every earlier update, see
 
 0.37 / 0.37b / 0.37c is the latest and last release. Everything below is in the source only.
 
-**Going forward only the new client is supported.** The original DAoC client is no longer supported, and the
-Sluaghbinder class is discontinued.
+**Going forward only the new client is supported.** The original DAoC client is no longer supported. The
+Sluaghbinder stays in the "b" editions, as before.
 
 **MAJOR: bot armor now works like a player's**
 - Until now the armor a bot (gamebot or companion) wore did nothing when it was hit. Its defense was a monster's: a
@@ -174,9 +174,11 @@ Sluaghbinder class is discontinued.
   player's landing spot stay in that fight.
 - A companion released for good no longer makes the server retry saving it every second. Its record was deleted while
   its save stayed queued, and each failed save also held up the other bots saved with it.
-- The Sluaghbinder is no longer offered anywhere: new characters can't choose it, no gamebots or /spawn companions are
-  made as one, and its trainer, wisp, quest line and quest monsters are gone (existing installs: run
-  tools/claude-version/remove_sluaghbinder_npcs.py once with the server stopped). Old characters still load.
+- The Sluaghbinder follows the edition switch (`classes/enable_sluaghbinder`) everywhere, as in every release
+  before. With it on (the "b" editions) the class is fully playable: character creation, gamebots, `/spawn`
+  companions, its trainer, wisp, epic quest line and quest monsters. With it off, none of these are offered, and
+  `tools/claude-version/remove_sluaghbinder_npcs.py` (run once with the server stopped) also removes its trainer and
+  wisp; the script refuses to run on a world that has the class switched on. Old characters load either way.
 - Solo gamebots pick up the coin and items of their own kills again. The check for who may pick up a dropped bag
   compared the owner by reference instead of by value, so a bot never counted as the owner of its own drops.
 - Bots buy the best equipment upgrade they can afford. They chose the best upgrade on a merchant's list first and,

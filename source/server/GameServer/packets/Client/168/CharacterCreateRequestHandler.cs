@@ -423,14 +423,16 @@ namespace DOL.GS.PacketHandler.Client.v168
             // real Sluaghbinder class at level 5.  The overview packet still
             // uses the relabeled client slot, so this does not remove the
             // Sluaghbinder choice from character select.
-            // 0.38: the Sluaghbinder is discontinued (owner 2026-10-30), so that slot creates nothing any more.
-            if ((eRealm)ch.Realm == eRealm.Hibernia &&
+            // Editions without the custom class (classes/enable_sluaghbinder off, as in 0.38) turn this off; the
+            // slot is then the disabled native MaulerHib class again, and a direct request is refused below.
+            if (Properties.ENABLE_SLUAGHBINDER && (eRealm)ch.Realm == eRealm.Hibernia &&
                 (ch.Class == (int)eCharacterClass.MaulerHib ||
-                 ch.Class == (int)eCharacterClass.Sluaghbinder ||
-                 ch.Class == (int)eCharacterClass.Acolyte))
+                 ch.Class == (int)eCharacterClass.Sluaghbinder))
             {
-                log.Warn($"Character creation refused: the Sluaghbinder is discontinued (account {account.Name}, name {pdata.CharName})");
-                return false;
+                if (log.IsDebugEnabled)
+                    log.Debug($"Mapping Hibernian client class slot {eCharacterClass.MaulerHib} to experimental Acolyte (Sluaghbinder novice path)");
+
+                ch.Class = (int)eCharacterClass.Acolyte;
             }
 
             // Set Account Slot, Gender

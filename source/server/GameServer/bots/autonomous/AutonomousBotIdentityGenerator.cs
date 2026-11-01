@@ -65,7 +65,9 @@ namespace DOL.GS
                     new(eCharacterClass.Ranger, eRace.Celt, eRace.Elf, eRace.Lurikeen),
                     new(eCharacterClass.Animist, eRace.Celt, eRace.Firbolg, eRace.Sylvan),
                     new(eCharacterClass.Valewalker, eRace.Celt, eRace.Firbolg, eRace.Sylvan),
-                    // (0.38: the Sluaghbinder is discontinued, owner 2026-10-30.)
+                    // The Sluaghbinder (0.38b; dropped by IsClassAvailable when
+                    // classes/enable_sluaghbinder is off, as in 0.38).
+                    new(eCharacterClass.Sluaghbinder, eRace.Celt, eRace.Firbolg),
                 ],
             };
 
